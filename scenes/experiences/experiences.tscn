@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://8vyrunj4x0hw"]
+
+[node name="Experiences" type="Control" unique_id=1330819239]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="background" type="ColorRect" parent="." unique_id=358439415]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 28.719002
+anchor_bottom = 16.156
+offset_right = 5.23999
+offset_bottom = 3.7600098
+grow_horizontal = 2
+grow_vertical = 2

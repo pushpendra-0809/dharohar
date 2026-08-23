@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b0bf0u5goipwr"]
+
+[ext_resource type="Texture2D" uid="uid://b4mhyiqp6ksdp" path="res://assets/background/main_menu_screen.png" id="1_cbjxn"]
+[ext_resource type="Script" uid="uid://vo088apmv8xo" path="res://scenes/main menu/main_menu.gd" id="1_vifqf"]
+[ext_resource type="Texture2D" uid="uid://jr86apsp7gff" path="res://assets/ui/button.png" id="2_8w606"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5tw5"]
+texture = ExtResource("2_8w606")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cwi0r"]
+texture = ExtResource("2_8w606")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pssnx"]
+texture = ExtResource("2_8w606")
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[node name="Main Menu" type="Control" unique_id=1312714804]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vifqf")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1887871931]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cbjxn")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="StartButton" type="Button" parent="." unique_id=535851929]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 312.0
+offset_right = 732.0
+offset_bottom = 499.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_c5tw5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cwi0r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pssnx")
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
