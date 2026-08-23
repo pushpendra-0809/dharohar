@@ -1,10 +1,29 @@
 [gd_scene format=3 uid="uid://ddsqmr2o2myhb"]
 
 [ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="1_je8v3"]
+[ext_resource type="Texture2D" uid="uid://cn78vv6u1iol4" path="res://assets/Elements/buildings/Nalanda main.png" id="2_iqv3n"]
+[ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="3_f4h8v"]
+[ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="4_4sqm3"]
 
 [node name="Nalanda_University" type="Node2D" unique_id=419522682]
 position = Vector2(-5, 4)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=98546446]
+position = Vector2(0, 15)
 texture = ExtResource("1_je8v3")
 metadata/_edit_group_ = true
+
+[node name="NalandaMain" type="Sprite2D" parent="." unique_id=1917811727]
+position = Vector2(-58, -117.000015)
+scale = Vector2(0.2229405, 0.252673)
+texture = ExtResource("2_iqv3n")
+
+[node name="Build3" type="Sprite2D" parent="." unique_id=363417448]
+position = Vector2(-359.99997, -97.99999)
+scale = Vector2(0.14583333, 0.19628906)
+texture = ExtResource("3_f4h8v")
+
+[node name="ArtLibrary" type="Sprite2D" parent="." unique_id=321528314]
+position = Vector2(282.25003, -257.125)
+scale = Vector2(0.30110678, 0.28881833)
+texture = ExtResource("4_4sqm3")
