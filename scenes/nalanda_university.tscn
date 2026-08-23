@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cuniversityexitscene" path="res://scenes/objects/UniversityExit.tscn" id="4_exit"]
 [ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="6_pauseui"]
+[ext_resource type="Texture2D" uid="uid://cn78vv6u1iol4" path="res://assets/Elements/buildings/Nalanda main.png" id="7_iqv3n"]
+[ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="8_f4h8v"]
+[ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="9_4sqm3"]
 
 [node name="Nalanda_University" type="Control" unique_id=419522682]
 layout_mode = 3
@@ -26,6 +29,21 @@ grow_vertical = 2
 texture = ExtResource("2_univpng")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="NalandaMain" type="Sprite2D" parent="." unique_id=1917811727]
+position = Vector2(-58, -117)
+scale = Vector2(0.2229405, 0.252673)
+texture = ExtResource("7_iqv3n")
+
+[node name="Build3" type="Sprite2D" parent="." unique_id=363417448]
+position = Vector2(-360, -98)
+scale = Vector2(0.14583333, 0.19628906)
+texture = ExtResource("8_f4h8v")
+
+[node name="ArtLibrary" type="Sprite2D" parent="." unique_id=321528314]
+position = Vector2(282.25, -257.125)
+scale = Vector2(0.30110678, 0.28881833)
+texture = ExtResource("9_4sqm3")
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
 position = Vector2(65, 325)
