@@ -124,7 +124,7 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		_update_ui_elements()
 		
 		var pass_seq: Array = [
-			{"speaker": "Silabhadra", "text": "You have demonstrated that you understand the foundations. You may join us."}
+			{"speaker": "Silabhadra", "text": "You are admitted."}
 		]
 		dialogue_manager.start_dialogue(pass_seq, _on_pass_dialogue_finished)
 	else:

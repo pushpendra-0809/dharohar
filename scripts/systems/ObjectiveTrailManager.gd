@@ -27,7 +27,7 @@ const ARRIVAL_DISTANCE: float = 55.0
 
 # Grid parameters
 const CELL_SIZE: Vector2i = Vector2i(16, 16)
-const GRID_SIZE: Vector2i = Vector2i(72, 41)
+const GRID_SIZE: Vector2i = Vector2i(90, 50)
 
 # Visual colors (Dharohar terracotta, gold, dark brown)
 const COLOR_GOLD: Color = Color(0.96, 0.78, 0.28, 0.95)
@@ -253,7 +253,13 @@ func _sync_with_game_state() -> void:
 	if not GameState:
 		return
 		
-	if GameState.water_quest_completed or GameState.university_location_revealed:
+	if GameState.has_visited_university:
+		clear_objective()
+	elif GameState.teacher_admitted:
+		var univ_ent: Node2D = get_node_or_null("../UniversityEntrance")
+		var target_pos: Vector2 = univ_ent.global_position if univ_ent else Vector2(1098, 191)
+		set_objective("proceed_to_university", target_pos, "Proceed to Nalanda University", univ_ent)
+	elif GameState.water_quest_completed or GameState.university_location_revealed:
 		var teacher: Node2D = get_node_or_null("../Teacher")
 		var teacher_pos: Vector2 = teacher.global_position if teacher else Vector2(998, 497)
 		set_objective("meet_teacher", teacher_pos, "Meet the Teacher", teacher)
@@ -266,7 +272,6 @@ func _sync_with_game_state() -> void:
 		var pond_pos: Vector2 = pond.global_position if pond else Vector2(196, 453)
 		set_objective("collect_water", pond_pos, "Collect water from the nearby pond", pond)
 	else:
-		# Initial Game Start Objective: Meet the merchant!
 		var merch: Node2D = get_node_or_null("../Merchant")
 		var merch_pos: Vector2 = merch.global_position if merch else Vector2(487, 109)
 		set_objective("meet_merchant", merch_pos, "Meet the merchant", merch)

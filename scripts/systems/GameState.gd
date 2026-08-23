@@ -26,10 +26,26 @@ var water_quest_completed: bool = false
 var university_location_revealed: bool = false
 var has_water: bool = false
 
+# University Visited State
+var has_visited_university: bool = false
+
+# Scene Transition & Target Spawn Data
+var target_spawn_position: Vector2 = Vector2.ZERO
+var use_target_spawn: bool = false
+var pending_arrival_message: Array = []
+var is_movement_locked: bool = false
+
+func set_target_spawn(pos: Vector2, message_seq: Array = []) -> void:
+	target_spawn_position = pos
+	use_target_spawn = true
+	pending_arrival_message = message_seq
+
 func lock_player_movement() -> void:
+	is_movement_locked = true
 	player_movement_locked.emit(true)
 
 func unlock_player_movement() -> void:
+	is_movement_locked = false
 	player_movement_locked.emit(false)
 
 func reset_teacher_quiz_state() -> void:
@@ -41,6 +57,7 @@ func record_teacher_admission(domain: String, score: int) -> void:
 	teacher_quiz_completed = true
 	teacher_admitted = true
 	teacher_state_changed.emit()
+	quest_state_changed.emit()
 
 func record_merchant_result(score: int, passed: bool) -> void:
 	merchant_quiz_score = score
@@ -74,4 +91,8 @@ func complete_water_quest() -> void:
 	nalanda_location_revealed = true
 	merchant_passed = true
 	merchant_state_changed.emit()
+	quest_state_changed.emit()
+
+func mark_university_visited() -> void:
+	has_visited_university = true
 	quest_state_changed.emit()

@@ -7,12 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://cmerchantnpcscene" path="res://scenes/npcs/Merchant.tscn" id="5_merchant"]
 [ext_resource type="PackedScene" uid="uid://cpondobjectscene" path="res://scenes/objects/Pond.tscn" id="6_pond"]
 [ext_resource type="PackedScene" uid="uid://cunivmarkerscene" path="res://scenes/objects/UniversityMarker.tscn" id="7_univmarker"]
-[ext_resource type="PackedScene" uid="uid://cobjectivetrailscene" path="res://scenes/ui/ObjectiveTrail.tscn" id="8_trail"]
-[ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="9_dlgui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/DomainSelection.tscn" id="10_domui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/QuizUI.tscn" id="11_quizui"]
-[ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="12_questui"]
-[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="13_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cuniversityentrancescene" path="res://scenes/objects/UniversityEntrance.tscn" id="8_entrance"]
+[ext_resource type="PackedScene" uid="uid://cobjectivetrailscene" path="res://scenes/ui/ObjectiveTrail.tscn" id="9_trail"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="10_dlgui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DomainSelection.tscn" id="11_domui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/QuizUI.tscn" id="12_quizui"]
+[ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="13_questui"]
+[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="14_pauseui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -49,14 +50,18 @@ position = Vector2(196, 453)
 [node name="UniversityMarker" parent="." instance=ExtResource("7_univmarker")]
 position = Vector2(1000, -450)
 
-[node name="ObjectiveTrailManager" parent="." instance=ExtResource("8_trail")]
+[node name="UniversityEntrance" parent="." instance=ExtResource("8_entrance")]
+position = Vector2(1098, 191)
 
-[node name="DialogueUI" parent="." instance=ExtResource("9_dlgui")]
 
-[node name="DomainSelectionUI" parent="." instance=ExtResource("10_domui")]
+[node name="ObjectiveTrailManager" parent="." instance=ExtResource("9_trail")]
 
-[node name="QuizUI" parent="." instance=ExtResource("11_quizui")]
+[node name="DialogueUI" parent="." instance=ExtResource("10_dlgui")]
 
-[node name="QuestUI" parent="." instance=ExtResource("12_questui")]
+[node name="DomainSelectionUI" parent="." instance=ExtResource("11_domui")]
 
-[node name="PauseMenuUI" parent="." instance=ExtResource("13_pauseui")]
+[node name="QuizUI" parent="." instance=ExtResource("12_quizui")]
+
+[node name="QuestUI" parent="." instance=ExtResource("13_questui")]
+
+[node name="PauseMenuUI" parent="." instance=ExtResource("14_pauseui")]

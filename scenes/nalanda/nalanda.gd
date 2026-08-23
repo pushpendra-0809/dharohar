@@ -6,6 +6,7 @@ extends Control
 @onready var pause_menu_ui: PauseMenuUI = $PauseMenuUI
 @onready var teacher: Node = $Teacher
 @onready var merchant: Node = $Merchant
+@onready var player: Node2D = $Player
 
 var dialogue_manager: DialogueManager = null
 var quiz_manager: QuizManager = null
@@ -32,3 +33,19 @@ func _ready() -> void:
 		
 	if merchant and merchant.has_method("setup_managers"):
 		merchant.setup_managers(dialogue_manager, quiz_manager)
+		
+	if player and player.has_method("set_map_limits"):
+		player.set_map_limits(0, 0, 1152, 648, 20.0, 1132.0, 30.0, 620.0)
+		
+	call_deferred("_check_pending_arrival_message")
+
+func _check_pending_arrival_message() -> void:
+	if GameState and GameState.pending_arrival_message.size() > 0:
+		var msg_seq: Array = GameState.pending_arrival_message.duplicate()
+		GameState.pending_arrival_message = []
+		if dialogue_manager:
+			dialogue_manager.start_dialogue(msg_seq, _on_arrival_dialogue_finished)
+
+func _on_arrival_dialogue_finished() -> void:
+	if GameState:
+		GameState.unlock_player_movement()

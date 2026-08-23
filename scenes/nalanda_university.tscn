@@ -1,10 +1,38 @@
 [gd_scene format=3 uid="uid://ddsqmr2o2myhb"]
 
-[ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="1_je8v3"]
+[ext_resource type="Script" path="res://scenes/nalanda_university.gd" id="1_univgd"]
+[ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="2_univpng"]
+[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://cuniversityexitscene" path="res://scenes/objects/UniversityExit.tscn" id="4_exit"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
+[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="6_pauseui"]
 
-[node name="Nalanda_University" type="Node2D" unique_id=419522682]
-position = Vector2(-5, 4)
+[node name="Nalanda_University" type="Control" unique_id=419522682]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_univgd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=98546446]
-texture = ExtResource("1_je8v3")
-metadata/_edit_group_ = true
+[node name="background" type="TextureRect" parent="." unique_id=98546446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_univpng")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(65, 325)
+
+[node name="UniversityExit" parent="." instance=ExtResource("4_exit")]
+position = Vector2(65, 370)
+
+[node name="DialogueUI" parent="." instance=ExtResource("5_dlgui")]
+
+[node name="PauseMenuUI" parent="." instance=ExtResource("6_pauseui")]

@@ -21,7 +21,15 @@ func update_quest_ui() -> void:
 			panel_box.visible = false
 		return
 		
-	if GameState.water_quest_completed or GameState.university_location_revealed:
+	if GameState.has_visited_university:
+		if panel_box:
+			panel_box.visible = false
+	elif GameState.teacher_admitted:
+		if panel_box:
+			panel_box.visible = true
+		if objective_label:
+			objective_label.text = "Proceed to Nalanda University"
+	elif GameState.water_quest_completed or GameState.university_location_revealed:
 		if panel_box:
 			panel_box.visible = true
 		if objective_label:
@@ -37,7 +45,6 @@ func update_quest_ui() -> void:
 		if objective_label:
 			objective_label.text = "Collect water from the nearby pond"
 	else:
-		# Initial Game Start Objective: Meet the merchant!
 		if panel_box:
 			panel_box.visible = true
 		if objective_label:
