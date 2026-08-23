@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://cmerchantnpcscene"]
+
+[ext_resource type="Script" path="res://scripts/npcs/Merchant.gd" id="1_mscript"]
+[ext_resource type="Texture2D" uid="uid://cmerchantpng" path="res://assets/Player/Merchant.png" id="2_merchant"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pixelify_bold"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_merchant_body"]
+radius = 9.0
+height = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 50.0
+
+[node name="Merchant" type="StaticBody2D" unique_id=987123457]
+script = ExtResource("1_mscript")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=123456790]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_merchant")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654322]
+shape = SubResource("CapsuleShape2D_merchant_body")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=456789124]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=654321988]
+shape = SubResource("CircleShape2D_interaction")
+
+[node name="InteractionIndicator" type="Label" parent="." unique_id=321654988]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "💬"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=789123457]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -32.0
+offset_right = 75.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 13
+text = "[Press E to Talk]"
+horizontal_alignment = 1
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=147258370]
+one_shot = true

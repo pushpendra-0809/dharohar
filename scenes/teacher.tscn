@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://blrfdyedtt3p0"]
+
+[ext_resource type="Texture2D" uid="uid://ck2etkg6o0fyw" path="res://assets/Player/Guruji.png" id="1_v8tdc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_icd5h"]
+radius = 32.01562
+
+[node name="Teacher" type="Node2D" unique_id=476626926]
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=308895583]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=202441648]
+shape = SubResource("CircleShape2D_icd5h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=417442672]
+scale = Vector2(0.034293834, 0.034162104)
+texture = ExtResource("1_v8tdc")
+flip_h = true

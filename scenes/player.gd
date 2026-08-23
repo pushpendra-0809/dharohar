@@ -1,17 +1,33 @@
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
-@export var speed: float =100.0
+@export var speed: float = 100.0
+var can_move: bool = true
 
 # Map boundary limits to keep player strictly inside the village map
 @export var min_x: float = 20.0
 @export var max_x: float = 1132.0
 @export var min_y: float = 30.0
 @export var max_y: float = 620.0
-
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
+func _ready() -> void:
+	if GameState:
+		GameState.player_movement_locked.connect(_on_movement_locked)
+
+func _on_movement_locked(locked: bool) -> void:
+	can_move = not locked
+	if not can_move:
+		direction = Vector2.ZERO
+		velocity = Vector2.ZERO
+		if animated_sprite:
+			animated_sprite.stop()
+			animated_sprite.frame = 0
+
 func _physics_process(_delta: float) -> void:
+	if not can_move:
+		return
+
 	var x_input := 0.0
 	var y_input := 0.0
 

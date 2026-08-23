@@ -3,6 +3,11 @@
 [ext_resource type="Script" path="res://scenes/nalanda/nalanda.gd" id="1_nalgd"]
 [ext_resource type="Texture2D" path="res://assets/map/village.png" id="2_vilpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://dgw3gvpo4hfr7" path="res://scenes/npcs/Teacher.tscn" id="4_teacher"]
+[ext_resource type="PackedScene" uid="uid://cmerchantnpcscene" path="res://scenes/npcs/Merchant.tscn" id="5_merchant"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="6_dlgui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/DomainSelection.tscn" id="7_domui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/QuizUI.tscn" id="8_quizui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -25,4 +30,19 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Player" parent="." instance=ExtResource("3_player")]
-position = Vector2(576, 360)
+position = Vector2(30, 310)
+
+
+[node name="Teacher" parent="." instance=ExtResource("4_teacher")]
+position = Vector2(998, 497)
+
+
+[node name="Merchant" parent="." instance=ExtResource("5_merchant")]
+position = Vector2(487, 109)
+
+
+[node name="DialogueUI" parent="." instance=ExtResource("6_dlgui")]
+
+[node name="DomainSelectionUI" parent="." instance=ExtResource("7_domui")]
+
+[node name="QuizUI" parent="." instance=ExtResource("8_quizui")]

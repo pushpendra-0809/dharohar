@@ -1,57 +1,45 @@
 [gd_scene format=3 uid="uid://dqw2tv3pdo1aa"]
 
-[ext_resource type="Texture2D" uid="uid://by34qogsnmbma" path="res://assets/map/village.jpeg" id="1_lifrs"]
-[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="2_rxagg"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmbr2"]
-size = Vector2(2430, 84)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijl8h"]
-size = Vector2(2433.5, 143)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kcaue"]
-size = Vector2(80, 1487)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlrx3"]
-size = Vector2(142, 1439)
+[ext_resource type="Script" uid="uid://b8owl6l1el8j6" path="res://scenes/nalanda/nalanda.gd" id="1_nalgd"]
+[ext_resource type="Texture2D" uid="uid://bekfpg2e0hr3w" path="res://assets/map/village.png" id="2_vilpng"]
+[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://dgw3gvpo4hfr7" path="res://scenes/npcs/Teacher.tscn" id="4_teacher"]
+[ext_resource type="PackedScene" uid="uid://knydsqw62sbm" path="res://scenes/npcs/Merchant.tscn" id="5_merchant"]
+[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="6_dlgui"]
+[ext_resource type="PackedScene" uid="uid://c70ba6nng6i6l" path="res://scenes/ui/DomainSelection.tscn" id="7_domui"]
+[ext_resource type="PackedScene" uid="uid://bg476jxx32mxi" path="res://scenes/ui/QuizUI.tscn" id="8_quizui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nalgd")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1295206791]
-position = Vector2(-17, -42)
-scale = Vector2(1.48125, 1.56215)
-texture = ExtResource("1_lifrs")
+[node name="background" type="TextureRect" parent="." unique_id=1091563355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vilpng")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="Player" parent="." unique_id=878873728 instance=ExtResource("2_rxagg")]
-position = Vector2(-1114, -51)
-script = null
+[node name="Player" parent="." unique_id=109164571 instance=ExtResource("3_player")]
+position = Vector2(27, 310)
 
-[node name="Node" type="Node" parent="." unique_id=260155084]
+[node name="Teacher" parent="." unique_id=459048251 instance=ExtResource("4_teacher")]
+position = Vector2(998, 497)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Node" unique_id=338623428]
+[node name="Merchant" parent="." unique_id=1626308708 instance=ExtResource("5_merchant")]
+position = Vector2(487, 109)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D" unique_id=655980413]
-position = Vector2(-19, -704)
-shape = SubResource("RectangleShape2D_kmbr2")
+[node name="DialogueUI" parent="." unique_id=2144102048 instance=ExtResource("6_dlgui")]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Node" unique_id=1758491603]
+[node name="DomainSelectionUI" parent="." unique_id=1492788792 instance=ExtResource("7_domui")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D2" unique_id=2097399366]
-position = Vector2(-30.75, 660)
-shape = SubResource("RectangleShape2D_ijl8h")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Node" unique_id=27230910]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D3" unique_id=2003830831]
-position = Vector2(1167, -17.5)
-shape = SubResource("RectangleShape2D_kcaue")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Node" unique_id=1693506507]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/StaticBody2D4" unique_id=257886428]
-position = Vector2(-1231, -55.5)
-shape = SubResource("RectangleShape2D_mlrx3")
+[node name="QuizUI" parent="." unique_id=1576042282 instance=ExtResource("8_quizui")]
