@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
-@export var speed: float = 100.0
+@export var speed: float = 300.0
 var can_move: bool = true
 
 # Last facing direction tracking
@@ -52,6 +52,9 @@ func _on_movement_locked(locked: bool) -> void:
 			animated_sprite.stop()
 			animated_sprite.frame = 0
 
+func _is_act_pressed(action_name: String) -> bool:
+	return InputMap.has_action(action_name) and Input.is_action_pressed(action_name)
+
 func _physics_process(_delta: float) -> void:
 	if not can_move:
 		return
@@ -59,13 +62,13 @@ func _physics_process(_delta: float) -> void:
 	var x_input := 0.0
 	var y_input := 0.0
 
-	if Input.is_action_pressed("right") or Input.is_action_pressed("ui_right") or Input.is_physical_key_pressed(KEY_D):
+	if _is_act_pressed("right") or Input.is_action_pressed("ui_right") or Input.is_physical_key_pressed(KEY_D):
 		x_input += 1.0
-	if Input.is_action_pressed("left") or Input.is_action_pressed("ui_left") or Input.is_physical_key_pressed(KEY_A):
+	if _is_act_pressed("left") or Input.is_action_pressed("ui_left") or Input.is_physical_key_pressed(KEY_A):
 		x_input -= 1.0
-	if Input.is_action_pressed("backward") or Input.is_action_pressed("back") or Input.is_action_pressed("down") or Input.is_action_pressed("ui_down") or Input.is_physical_key_pressed(KEY_S):
+	if _is_act_pressed("backward") or _is_act_pressed("back") or _is_act_pressed("down") or Input.is_action_pressed("ui_down") or Input.is_physical_key_pressed(KEY_S):
 		y_input += 1.0
-	if Input.is_action_pressed("forward") or Input.is_action_pressed("up") or Input.is_action_pressed("ui_up") or Input.is_physical_key_pressed(KEY_W):
+	if _is_act_pressed("forward") or _is_act_pressed("up") or Input.is_action_pressed("ui_up") or Input.is_physical_key_pressed(KEY_W):
 		y_input -= 1.0
 
 	direction = Vector2(x_input, y_input).normalized()

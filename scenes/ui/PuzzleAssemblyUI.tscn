@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://cpuzzleassemblyuiscene"]
+
+[ext_resource type="Script" path="res://scenes/ui/PuzzleAssemblyUI.gd" id="1_assemblyscript"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_parchment"]
+[ext_resource type="Texture2D" path="res://assets/puzzles/teacher2/ui/puzzle_title_panel.png" id="3_titlepanel"]
+[ext_resource type="Texture2D" path="res://assets/puzzles/teacher2/icons/mathematics.png" id="4_mathicon"]
+[ext_resource type="Texture2D" path="res://assets/puzzles/teacher2/icons/puzzle_complete.png" id="5_completeicon"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="6_pixelify_bold"]
+
+[node name="PuzzleAssemblyUI" type="CanvasLayer" unique_id=987654323]
+layer = 10
+script = ExtResource("1_assemblyscript")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987654324]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.55)
+
+[node name="PanelContainer" type="Control" parent="." unique_id=987654325]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -220.0
+offset_right = 260.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer" unique_id=987654326]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_parchment")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="TitleTexture" type="TextureRect" parent="PanelContainer" unique_id=987654327]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 15.0
+offset_right = 160.0
+offset_bottom = 60.0
+grow_horizontal = 2
+texture = ExtResource("3_titlepanel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654328]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 22.0
+offset_right = 180.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("6_pixelify_bold")
+theme_override_font_sizes/font_size = 20
+text = "RECONSTRUCT THE SEALING"
+horizontal_alignment = 1
+
+[node name="DomainIconTexture" type="TextureRect" parent="PanelContainer" unique_id=987654329]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 65.0
+offset_right = 65.0
+offset_bottom = 105.0
+texture = ExtResource("4_mathicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ClueLabel" type="Label" parent="PanelContainer" unique_id=987654330]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 68.0
+offset_right = 490.0
+offset_bottom = 110.0
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("6_pixelify_bold")
+theme_override_font_sizes/font_size = 14
+text = "Clue: Numbers follow structure. Align pieces 1 through 9."
+autowrap_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer" unique_id=987654331]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -90.0
+offset_right = 130.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 3
+
+[node name="CompleteTexture" type="TextureRect" parent="PanelContainer" unique_id=987654332]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -60.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_completeicon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654333]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.82, 0.38, 0.22, 1)
+theme_override_fonts/font = ExtResource("6_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "X"

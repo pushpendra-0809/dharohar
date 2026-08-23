@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/QuizUI.tscn" id="12_quizui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="13_questui"]
 [ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="14_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cpuzzleassemblyuiscene" path="res://scenes/ui/PuzzleAssemblyUI.tscn" id="15_puzzleui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -53,7 +54,6 @@ position = Vector2(1000, -450)
 [node name="UniversityEntrance" parent="." instance=ExtResource("8_entrance")]
 position = Vector2(1098, 191)
 
-
 [node name="ObjectiveTrailManager" parent="." instance=ExtResource("9_trail")]
 
 [node name="DialogueUI" parent="." instance=ExtResource("10_dlgui")]
@@ -65,3 +65,5 @@ position = Vector2(1098, 191)
 [node name="QuestUI" parent="." instance=ExtResource("13_questui")]
 
 [node name="PauseMenuUI" parent="." instance=ExtResource("14_pauseui")]
+
+[node name="PuzzleAssemblyUI" parent="." instance=ExtResource("15_puzzleui")]
