@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dgw3gvpo4hfr7"]
 
-[ext_resource type="Script" uid="uid://b3c3id84klpwb" path="res://scripts/npcs/Teacher.gd" id="1_tscript"]
+[ext_resource type="Script" path="res://scripts/npcs/Teacher.gd" id="1_tscript"]
 [ext_resource type="Texture2D" uid="uid://ck2etkg6o0fyw" path="res://assets/Player/Guruji.png" id="2_guruji"]
 [ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pixelify_bold"]
 
@@ -41,7 +41,7 @@ offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 22
 text = "💬"
 horizontal_alignment = 1
 
@@ -60,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 16
 text = "[Press E to Talk]"
 horizontal_alignment = 1
 

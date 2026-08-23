@@ -2,6 +2,7 @@ class_name DomainSelectionUI
 extends CanvasLayer
 
 signal domain_selected(domain_id: String)
+signal selection_cancelled
 
 @onready var container: Control = $SelectionBox
 @onready var btn_math: Button = $SelectionBox/VBoxContainer/BtnMath
@@ -16,12 +17,22 @@ func _ready() -> void:
 	btn_med.pressed.connect(func(): _on_select("medicine"))
 	btn_phil.pressed.connect(func(): _on_select("philosophy"))
 
+func is_open() -> bool:
+	return container != null and container.visible
+
 func open_selection() -> void:
 	GameState.lock_player_movement()
 	container.visible = true
 
 func close_selection() -> void:
-	container.visible = false
+	if container:
+		container.visible = false
+
+func cancel_selection() -> void:
+	if is_open():
+		close_selection()
+		GameState.unlock_player_movement()
+		selection_cancelled.emit()
 
 func _on_select(domain_id: String) -> void:
 	close_selection()

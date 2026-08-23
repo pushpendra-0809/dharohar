@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://c8wn1y1j6wj47"]
+
+[ext_resource type="Script" uid="uid://b4naqeupcatr8" path="res://scripts/objects/Pond.gd" id="1_pondscript"]
+[ext_resource type="FontFile" uid="uid://blsypyy7ik8w6" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_pixelify_bold"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pond_body"]
+size = Vector2(190, 150)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 107.64
+
+[node name="Pond" type="StaticBody2D" unique_id=987123458]
+script = ExtResource("1_pondscript")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654323]
+shape = SubResource("RectangleShape2D_pond_body")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=456789125]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=654321989]
+shape = SubResource("CircleShape2D_interaction")
+
+[node name="InteractionIndicator" type="Label" parent="." unique_id=321654989]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -115.0
+offset_right = 20.0
+offset_bottom = -85.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 22
+text = "💬"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=789123458]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -82.0
+offset_right = 130.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 16
+text = "[Press E to Collect Water]"
+horizontal_alignment = 1
+
+[node name="NotificationLabel" type="Label" parent="." unique_id=789123459]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -82.0
+offset_right = 130.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 16
+text = "Water collected!"
+horizontal_alignment = 1
+
+[node name="NotificationTimer" type="Timer" parent="." unique_id=147258371]
+one_shot = true

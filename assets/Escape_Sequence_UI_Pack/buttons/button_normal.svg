@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="112" viewBox="0 0 720 112">
+<rect x="8" y="8" width="704" height="96" rx="3" fill="#5A351D"/>
+<rect x="18" y="18" width="684" height="76" fill="#D9B66F" stroke="#A8642A" stroke-width="5"/>
+<path d="M28 30h28v-8h12v8h28v10H28z M692 30h-28v-8h-12v8h-28v10h68z" fill="#A8642A"/>
+<path d="M28 82h28v8h12v-8h28V72H28z M692 82h-28v8h-12v-8h-28V72h68z" fill="#A8642A"/>
+<text x="360" y="70" text-anchor="middle" font-family="monospace" font-weight="700" font-size="32" fill="#5A351D">BUTTON</text>
+</svg>

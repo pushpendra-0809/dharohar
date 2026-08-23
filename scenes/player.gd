@@ -31,13 +31,13 @@ func _physics_process(_delta: float) -> void:
 	var x_input := 0.0
 	var y_input := 0.0
 
-	if Input.is_action_pressed("right") or Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right") or Input.is_action_pressed("ui_right") or Input.is_physical_key_pressed(KEY_D):
 		x_input += 1.0
-	if Input.is_action_pressed("left") or Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("left") or Input.is_action_pressed("ui_left") or Input.is_physical_key_pressed(KEY_A):
 		x_input -= 1.0
-	if Input.is_action_pressed("backward") or Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("backward") or Input.is_action_pressed("back") or Input.is_action_pressed("down") or Input.is_action_pressed("ui_down") or Input.is_physical_key_pressed(KEY_S):
 		y_input += 1.0
-	if Input.is_action_pressed("forward") or Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("forward") or Input.is_action_pressed("up") or Input.is_action_pressed("ui_up") or Input.is_physical_key_pressed(KEY_W):
 		y_input -= 1.0
 
 	direction = Vector2(x_input, y_input).normalized()
@@ -60,9 +60,15 @@ func update_animation() -> void:
 			animated_sprite.animation = "left"
 			animated_sprite.flip_h = (direction.x > 0)
 		elif direction.y > 0:
-			animated_sprite.animation = "forward"
+			if animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("forward"):
+				animated_sprite.animation = "forward"
+			elif animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("back"):
+				animated_sprite.animation = "back"
 		elif direction.y < 0:
-			animated_sprite.animation = "back"
+			if animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("back"):
+				animated_sprite.animation = "back"
+			elif animated_sprite.sprite_frames and animated_sprite.sprite_frames.has_animation("forward"):
+				animated_sprite.animation = "forward"
 	else:
 		animated_sprite.stop()
 		animated_sprite.frame = 0

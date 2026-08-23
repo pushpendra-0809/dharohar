@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="130" height="86" viewBox="0 0 130 86">
+<rect x="6" y="6" width="118" height="74" rx="5" fill="#4B351F"/>
+<rect x="12" y="12" width="106" height="62" rx="4" fill="#D9D0B8" stroke="#A88E64" stroke-width="4"/>
+<text x="65" y="53" text-anchor="middle" font-family="monospace" font-size="28" font-weight="700" fill="#3B2B1D">ESC</text>
+</svg>

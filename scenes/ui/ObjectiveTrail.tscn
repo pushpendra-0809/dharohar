@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cp7ltl4ew0hvq"]
+
+[ext_resource type="Script" path="res://scripts/systems/ObjectiveTrailManager.gd" id="1_trailscript"]
+
+[node name="ObjectiveTrailManager" type="Node2D" unique_id=987123460]
+z_index = 5
+script = ExtResource("1_trailscript")

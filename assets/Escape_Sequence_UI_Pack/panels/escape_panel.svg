@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="520" viewBox="0 0 900 520">
+<rect x="8" y="8" width="884" height="504" rx="4" fill="#E5C58A" stroke="#5A351D" stroke-width="16"/>
+<rect x="24" y="24" width="852" height="472" fill="none" stroke="#A8642A" stroke-width="5"/>
+<rect x="39" y="39" width="822" height="442" fill="none" stroke="#D39A43" stroke-width="3"/>
+<!-- blocky Indian geometric corners -->
+<g fill="#A8642A">
+<path d="M42 92V42H92V54H58V92Z M42 58H54V82H82V94H54V106H42Z"/>
+<path d="M858 92V42H808V54H842V92Z M858 58H846V82H818V94H846V106H858Z"/>
+<path d="M42 428V478H92V466H58V428Z M42 462H54V438H82V426H54V414H42Z"/>
+<path d="M858 428V478H808V466H842V428Z M858 462H846V438H818V426H846V414H858Z"/>
+</g>
+<!-- top/bottom ornamental separators -->
+<g stroke="#A8642A" stroke-width="4" fill="none">
+<path d="M310 76h70l-18-10 18-10h-70l18 10z"/>
+<path d="M590 76h-70l18-10-18-10h70l-18 10z"/>
+<path d="M410 60l40-18 40 18-40 18z"/>
+<path d="M310 460h70l-18 10 18 10h-70l18-10z"/>
+<path d="M590 460h-70l18 10-18 10h70l-18-10z"/>
+<path d="M410 476l40 18 40-18-40-18z"/>
+</g>
+</svg>

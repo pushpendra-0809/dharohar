@@ -4,6 +4,7 @@ extends Node
 signal quiz_started(domain_id: String)
 signal question_changed(current_index: int, total_questions: int, question_data: Dictionary)
 signal quiz_completed(score: int, total_questions: int, passed: bool)
+signal quiz_cancelled
 
 var _domain_id: String = ""
 var _questions: Array = []
@@ -51,6 +52,19 @@ func submit_answer(option_index: int) -> void:
 		_answering_locked = false
 	else:
 		_finish_quiz()
+
+func cancel_quiz() -> void:
+	if not _is_active:
+		return
+		
+	_is_active = false
+	_answering_locked = false
+	_current_index = 0
+	_score = 0
+	_questions.clear()
+	
+	GameState.unlock_player_movement()
+	quiz_cancelled.emit()
 
 func _emit_current_question() -> void:
 	if _current_index < _questions.size():

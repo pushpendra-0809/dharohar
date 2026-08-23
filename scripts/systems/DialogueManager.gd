@@ -4,6 +4,7 @@ extends Node
 signal dialogue_started
 signal dialogue_step_changed(speaker_name: String, text: String)
 signal dialogue_ended
+signal dialogue_cancelled
 
 var _sequence: Array = []
 var _current_index: int = -1
@@ -48,6 +49,19 @@ func close_dialogue() -> void:
 	
 	if cb.is_valid():
 		cb.call()
+
+func cancel_dialogue() -> void:
+	if not _is_active:
+		return
+		
+	_is_active = false
+	_on_complete_callback = Callable()
+	_sequence.clear()
+	_current_index = -1
+	
+	GameState.unlock_player_movement()
+	dialogue_cancelled.emit()
+	dialogue_ended.emit()
 
 func _show_current_step() -> void:
 	if _current_index >= 0 and _current_index < _sequence.size():

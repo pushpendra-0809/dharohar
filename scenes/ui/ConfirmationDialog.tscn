@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://cconfirmationdialog"]
+
+[ext_resource type="Script" path="res://scenes/ui/ConfirmationDialog.gd" id="1_confscript"]
+[ext_resource type="Texture2D" uid="uid://confirmationpanel" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_confpanel"]
+[ext_resource type="Texture2D" uid="uid://buttonyes" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_yes.svg" id="3_btnyes"]
+[ext_resource type="Texture2D" uid="uid://buttonno" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_no.svg" id="4_btnno"]
+[ext_resource type="Texture2D" uid="uid://buttonhover" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_hover.svg" id="5_btnhover"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="6_pixel_bold"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_conf_bg"]
+texture = ExtResource("2_confpanel")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yes_norm"]
+texture = ExtResource("3_btnyes")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yes_hover"]
+texture = ExtResource("5_btnhover")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no_norm"]
+texture = ExtResource("4_btnno")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_no_hover"]
+texture = ExtResource("5_btnhover")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="ConfirmationDialogUI" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_confscript")
+
+[node name="PanelBox" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -110.0
+offset_right = 200.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_conf_bg")
+
+[node name="MessageLabel" type="Label" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 35.0
+offset_right = -24.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.26, 0.15, 0.08, 1)
+theme_override_fonts/font = ExtResource("6_pixel_bold")
+theme_override_font_sizes/font_size = 22
+text = "Return to Main Menu?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -80.0
+offset_right = -30.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="BtnYes" type="Button" parent="PanelBox/HBoxContainer"]
+custom_minimum_size = Vector2(130, 48)
+layout_mode = 2
+focus_neighbor_right = NodePath("../BtnNo")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("6_pixel_bold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_yes_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_yes_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_yes_norm")
+text = "YES"
+
+[node name="BtnNo" type="Button" parent="PanelBox/HBoxContainer"]
+custom_minimum_size = Vector2(130, 48)
+layout_mode = 2
+focus_neighbor_left = NodePath("../BtnYes")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("6_pixel_bold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_no_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_no_hover")
+theme_override_styles/normal = SubResource("StyleBoxTexture_no_norm")
+text = "NO"

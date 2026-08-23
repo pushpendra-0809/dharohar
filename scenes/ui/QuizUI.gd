@@ -20,6 +20,8 @@ func setup(manager: QuizManager) -> void:
 		_quiz_manager.question_changed.connect(_on_question_changed)
 	if not _quiz_manager.quiz_completed.is_connected(_on_quiz_completed):
 		_quiz_manager.quiz_completed.connect(_on_quiz_completed)
+	if not _quiz_manager.quiz_cancelled.is_connected(_on_quiz_cancelled):
+		_quiz_manager.quiz_cancelled.connect(_on_quiz_cancelled)
 	
 	_option_buttons = [btn_a, btn_b, btn_c, btn_d]
 	
@@ -61,6 +63,9 @@ func _on_option_pressed(index: int) -> void:
 		_quiz_manager.submit_answer(index)
 
 func _on_quiz_completed(_score: int, _total: int, _passed: bool) -> void:
+	hide_quiz()
+
+func _on_quiz_cancelled() -> void:
 	hide_quiz()
 
 func _set_buttons_enabled(enabled: bool) -> void:

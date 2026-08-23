@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://cpausemenuscene"]
+
+[ext_resource type="Script" path="res://scenes/ui/PauseMenu.gd" id="1_pausescript"]
+[ext_resource type="Texture2D" uid="uid://escapepanel" path="res://assets/Escape_Sequence_UI_Pack/panels/escape_panel.svg" id="2_escapepanel"]
+[ext_resource type="Texture2D" uid="uid://buttonnormal" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_normal.svg" id="3_btnnorm"]
+[ext_resource type="Texture2D" uid="uid://buttonhover" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_hover.svg" id="4_btnhover"]
+[ext_resource type="Texture2D" uid="uid://buttonpressed" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_pressed.svg" id="5_btnpressed"]
+[ext_resource type="Texture2D" uid="uid://lotus" path="res://assets/Escape_Sequence_UI_Pack/ornaments/lotus.svg" id="6_lotus"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="7_pixel_bold"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="8_pixel_semibold"]
+[ext_resource type="PackedScene" uid="uid://cconfirmationdialog" path="res://scenes/ui/ConfirmationDialog.tscn" id="9_confscene"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pause_bg"]
+texture = ExtResource("2_escapepanel")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_normal"]
+texture = ExtResource("3_btnnorm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("4_btnhover")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("5_btnpressed")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[node name="PauseMenuUI" type="CanvasLayer"]
+process_mode = 3
+layer = 50
+script = ExtResource("1_pausescript")
+
+[node name="MenuBox" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -210.0
+offset_right = 180.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MenuBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_pause_bg")
+
+[node name="LotusIcon" type="TextureRect" parent="MenuBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 18.0
+offset_right = 20.0
+offset_bottom = 50.0
+grow_horizontal = 2
+texture = ExtResource("6_lotus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="MenuBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.26, 0.15, 0.08, 1)
+theme_override_fonts/font = ExtResource("7_pixel_bold")
+theme_override_font_sizes/font_size = 26
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 95.0
+offset_right = -32.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnResume" type="Button" parent="MenuBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../BtnExperiences")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("8_pixel_semibold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+text = "Resume"
+
+[node name="BtnExperiences" type="Button" parent="MenuBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../BtnResume")
+focus_neighbor_bottom = NodePath("../BtnMainMenu")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("8_pixel_semibold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+text = "Return to Experiences"
+
+[node name="BtnMainMenu" type="Button" parent="MenuBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../BtnExperiences")
+focus_neighbor_bottom = NodePath("../BtnExitGame")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("8_pixel_semibold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+text = "Main Menu"
+
+[node name="BtnExitGame" type="Button" parent="MenuBox/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+focus_neighbor_top = NodePath("../BtnMainMenu")
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("8_pixel_semibold")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_normal")
+text = "Exit Game"
+
+[node name="ConfirmationDialogUI" parent="." instance=ExtResource("9_confscene")]

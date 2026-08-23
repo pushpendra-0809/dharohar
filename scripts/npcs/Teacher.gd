@@ -28,19 +28,28 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 	quiz_manager = q_mgr
 	domain_ui = dom_ui
 	
-	if domain_ui and not domain_ui.domain_selected.is_connected(_on_domain_selected):
-		domain_ui.domain_selected.connect(_on_domain_selected)
-	if quiz_manager and not quiz_manager.quiz_completed.is_connected(_on_quiz_completed):
-		quiz_manager.quiz_completed.connect(_on_quiz_completed)
+	if domain_ui:
+		if not domain_ui.domain_selected.is_connected(_on_domain_selected):
+			domain_ui.domain_selected.connect(_on_domain_selected)
+		if not domain_ui.selection_cancelled.is_connected(_on_interaction_cancelled):
+			domain_ui.selection_cancelled.connect(_on_interaction_cancelled)
+			
+	if quiz_manager:
+		if not quiz_manager.quiz_completed.is_connected(_on_quiz_completed):
+			quiz_manager.quiz_completed.connect(_on_quiz_completed)
+		if not quiz_manager.quiz_cancelled.is_connected(_on_interaction_cancelled):
+			quiz_manager.quiz_cancelled.connect(_on_interaction_cancelled)
+			
+	if dialogue_manager:
+		if not dialogue_manager.dialogue_cancelled.is_connected(_on_interaction_cancelled):
+			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
 
 func _ready() -> void:
 	if interaction_area:
-
 		if not interaction_area.body_entered.is_connected(_on_body_entered):
 			interaction_area.body_entered.connect(_on_body_entered)
 		if not interaction_area.body_exited.is_connected(_on_body_exited):
 			interaction_area.body_exited.connect(_on_body_exited)
-
 			
 	if cooldown_timer and not cooldown_timer.timeout.is_connected(_on_cooldown_timeout):
 		cooldown_timer.timeout.connect(_on_cooldown_timeout)
@@ -127,6 +136,12 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 			{"speaker": "Silabhadra", "text": "You have much to learn. Try again later."}
 		]
 		dialogue_manager.start_dialogue(fail_seq, _on_fail_dialogue_finished)
+
+func _on_interaction_cancelled() -> void:
+	if current_state != State.ADMITTED and current_state != State.WAITING:
+		current_state = State.AVAILABLE
+		_selected_domain = ""
+		_update_ui_elements()
 
 func _on_pass_dialogue_finished() -> void:
 	GameState.unlock_player_movement()
