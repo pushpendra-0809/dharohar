@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dyeykxp3btjtc"]
+
+[ext_resource type="Script" path="res://scenes/nalanda/nalanda.gd" id="1_nalgd"]
+[ext_resource type="Texture2D" path="res://assets/map/village.png" id="2_vilpng"]
+[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+
+[node name="Nalanda" type="Control" unique_id=1062861969]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nalgd")
+
+[node name="background" type="TextureRect" parent="." unique_id=1091563355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vilpng")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(576, 360)
