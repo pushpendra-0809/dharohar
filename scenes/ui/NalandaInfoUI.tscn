@@ -1,0 +1,298 @@
+[gd_scene format=3 uid="uid://b372vgn7qnd7k"]
+
+[ext_resource type="Script" path="res://scenes/ui/NalandaInfoUI.gd" id="1_infoui_script"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_pixelify_med"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg_panel"]
+bg_color = Color(0.18, 0.12, 0.08, 0.97)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.85, 0.58, 0.28, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.7)
+shadow_size = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_callout"]
+bg_color = Color(0.26, 0.17, 0.11, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.92, 0.68, 0.32, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teacher"]
+bg_color = Color(0.24, 0.16, 0.10, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.46, 0.24, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.42, 0.26, 0.14, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.58, 0.28, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.58, 0.36, 0.18, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.96, 0.78, 0.28, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.32, 0.18, 0.10, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.46, 0.24, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="NalandaInfoUI" type="CanvasLayer" unique_id=987654950]
+visible = false
+layer = 10
+script = ExtResource("1_infoui_script")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987654951]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PanelContainer" type="Control" parent="." unique_id=987654952]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -390.0
+offset_top = -270.0
+offset_right = 390.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654953]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg_panel")
+
+[node name="CardCounterLabel" type="Label" parent="PanelContainer" unique_id=987654954]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 16.0
+offset_right = 170.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(0.78, 0.65, 0.50, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 14
+text = "CARD 1 / 20"
+
+[node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654955]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -280.0
+offset_top = 12.0
+offset_right = 280.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 22
+text = "NALANDA MAHAVIHARA"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="PanelContainer" unique_id=987654956]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -250.0
+offset_top = 40.0
+offset_right = 250.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.92, 0.75, 0.55, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 14
+text = "A Great Centre of Learning"
+horizontal_alignment = 1
+
+[node name="TopCloseButton" type="Button" parent="PanelContainer" unique_id=987654957]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -50.0
+offset_top = 12.0
+offset_right = -18.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.95, 0.82, 0.65, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "✕"
+
+[node name="ContentLabel" type="Label" parent="PanelContainer" unique_id=987654958]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 70.0
+offset_right = 475.0
+offset_bottom = 330.0
+theme_override_colors/font_color = Color(0.96, 0.90, 0.80, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_med")
+theme_override_font_sizes/font_size = 16
+text = "Card content text..."
+autowrap_mode = 3
+
+[node name="OnscreenBox" type="Panel" parent="PanelContainer" unique_id=987654959]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 70.0
+offset_right = 755.0
+offset_bottom = 330.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_callout")
+
+[node name="OnscreenLabel" type="Label" parent="PanelContainer/OnscreenBox" unique_id=987654960]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.98, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "KEY TAKEAWAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TeacherBox" type="Panel" parent="PanelContainer" unique_id=987654961]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 340.0
+offset_right = 755.0
+offset_bottom = 465.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_teacher")
+
+[node name="TeacherLabel" type="Label" parent="PanelContainer/TeacherBox" unique_id=987654962]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.92, 0.76, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_med")
+theme_override_font_sizes/font_size = 16
+text = "SILABHADRA: \"Teacher quote...\""
+autowrap_mode = 3
+
+[node name="PrevButton" type="Button" parent="PanelContainer" unique_id=987654963]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 480.0
+offset_right = 175.0
+offset_bottom = 518.0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "← PREVIOUS"
+
+[node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654964]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "CLOSE"
+
+[node name="NextButton" type="Button" parent="PanelContainer" unique_id=987654965]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -60.0
+offset_right = -25.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "NEXT →"

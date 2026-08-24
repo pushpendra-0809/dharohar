@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dejhv1c8vwy5c" path="res://scenes/ui/MedHeritageUI.tscn" id="17_medheritui"]
 [ext_resource type="PackedScene" uid="uid://b4tvguy7wvdv7" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
 [ext_resource type="PackedScene" uid="uid://dbp0nujiqj2h3" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://cgrbbv7ucwndy" path="res://assets/Elements/buildings/village house.png" id="20_d0xd0"]
 [ext_resource type="Texture2D" uid="uid://bllpk3deukgfm" path="res://assets/Elements/buildings/Bridge.png" id="21_4wf4l"]
 [ext_resource type="Texture2D" uid="uid://cujan3iruqnly" path="res://assets/Elements/buildings/build.png" id="22_vosot"]
@@ -30,6 +31,9 @@
 [ext_resource type="Texture2D" uid="uid://bq4g8j7kbmfu2" path="res://assets/Elements/buildings/GrassBush.png" id="28_b46ti"]
 [ext_resource type="Texture2D" uid="uid://54nftxueuwlx" path="res://assets/Elements/buildings/house-village.png" id="29_m5r48"]
 [ext_resource type="Texture2D" uid="uid://hrko58yobpux" path="res://assets/Elements/buildings/bunch.png" id="30_cmke8"]
+=======
+[ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="21_infoui"]
+>>>>>>> b981885c4703ea83f56e5bbd6c48aba3d4cba543
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -91,6 +95,7 @@ position = Vector2(1098, 191)
 
 [node name="LogicHeritageUI" parent="." unique_id=987655020 instance=ExtResource("19_logicheritui")]
 
+<<<<<<< HEAD
 [node name="VillageHouse" type="Sprite2D" parent="." unique_id=116918178]
 position = Vector2(675, 315.00003)
 scale = Vector2(0.08369977, 0.09253132)
@@ -159,3 +164,6 @@ texture = ExtResource("29_m5r48")
 position = Vector2(697, 221.00002)
 scale = Vector2(0.12320971, 0.12548828)
 texture = ExtResource("30_cmke8")
+=======
+[node name="NalandaInfoUI" parent="." unique_id=987655130 instance=ExtResource("21_infoui")]
+>>>>>>> b981885c4703ea83f56e5bbd6c48aba3d4cba543

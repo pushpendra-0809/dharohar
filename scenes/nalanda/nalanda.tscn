@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dyeykxp3btjtc"]
+[gd_scene format=3 uid="uid://dqw2tv3pdo1aa"]
 
 [ext_resource type="Script" path="res://scenes/nalanda/nalanda.gd" id="1_nalgd"]
 [ext_resource type="Texture2D" path="res://assets/map/village.png" id="2_vilpng"]
@@ -19,8 +19,10 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/MedHeritageUI.tscn" id="17_medheritui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
+[ext_resource type="PackedScene" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="20_infotrigger"]
+[ext_resource type="PackedScene" path="res://scenes/ui/NalandaInfoUI.tscn" id="21_infoui"]
 
-[node name="Nalanda" type="Control" unique_id=1062861969]
+[node name="Nalanda" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -29,7 +31,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nalgd")
 
-[node name="background" type="TextureRect" parent="." unique_id=1091563355]
+[node name="background" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,3 +81,5 @@ position = Vector2(1098, 191)
 [node name="PhilHeritageUI" parent="." visible="false" instance=ExtResource("18_philheritui")]
 
 [node name="LogicHeritageUI" parent="." visible="false" instance=ExtResource("19_logicheritui")]
+
+[node name="NalandaInfoUI" parent="." visible="false" instance=ExtResource("21_infoui")]
