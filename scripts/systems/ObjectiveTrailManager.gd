@@ -253,41 +253,7 @@ func _sync_with_game_state() -> void:
 	if not GameState:
 		return
 		
-	if GameState.teacher2_puzzle_completed:
-		clear_objective()
-	elif GameState.teacher2_puzzle_started:
-		var target_info: Dictionary = GameState.get_current_puzzle_target()
-		if not target_info.is_empty():
-			var p_id: int = target_info.get("id", 1)
-			var map_name: String = target_info.get("map", "nalanda")
-			var pos: Vector2 = target_info.get("pos", Vector2.ZERO)
-			
-			var tree := get_tree()
-			var cur_scene_name: String = tree.current_scene.name if tree and tree.current_scene else ""
-			var is_target_on_cur_map: bool = false
-			
-			if map_name == "nalanda" and (cur_scene_name == "Nalanda" or cur_scene_name == "Nalanda_Map"):
-				is_target_on_cur_map = true
-			elif map_name == "university" and cur_scene_name == "Nalanda_University":
-				is_target_on_cur_map = true
-				
-			if is_target_on_cur_map:
-				set_objective("puzzle_piece_" + str(p_id), pos, "Find Puzzle Piece #" + str(p_id) + " (Nalanda Sealing)", null)
-			else:
-				if cur_scene_name == "Nalanda" or cur_scene_name == "Nalanda_Map":
-					var entrance: Node2D = get_node_or_null("../UniversityEntrance")
-					var ent_pos: Vector2 = entrance.global_position if entrance else Vector2(1098, 191)
-					set_objective("go_to_university", ent_pos, "Travel to Nalanda University for Piece #" + str(p_id), entrance)
-				else:
-					var exit_node: Node2D = get_node_or_null("../UniversityExit")
-					var exit_pos: Vector2 = exit_node.global_position if exit_node else Vector2(65, 370)
-					set_objective("go_to_nalanda", exit_pos, "Travel to Nalanda Map for Piece #" + str(p_id), exit_node)
-		else:
-			# All 9 pieces collected -> lead to Teacher2 in Nalanda University at (477, 318)!
-			var t2: Node2D = get_node_or_null("../Teacher2")
-			var t2_pos: Vector2 = t2.global_position if t2 else Vector2(477, 318)
-			set_objective("assemble_sealing", t2_pos, "Return to Teacher Acharya to Reconstruct Sealing", t2)
-	elif GameState.has_visited_university:
+	if GameState.has_visited_university:
 		clear_objective()
 	elif GameState.teacher_admitted:
 		var univ_ent: Node2D = get_node_or_null("../UniversityEntrance")

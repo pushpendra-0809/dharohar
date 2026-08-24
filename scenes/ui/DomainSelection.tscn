@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://d9xdomainselection"]
 
 [ext_resource type="Script" path="res://scenes/ui/DomainSelection.gd" id="1_domainscript"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_pixel_bold"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="3_pixel_semibold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixel_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-SemiBold.ttf" id="3_pixel_semibold"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
 bg_color = Color(0.14, 0.1, 0.06, 0.95)

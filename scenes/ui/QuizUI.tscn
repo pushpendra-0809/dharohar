@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://c8xquizuiscene"]
 
 [ext_resource type="Script" path="res://scenes/ui/QuizUI.gd" id="1_quizscript"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_pixel_bold"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="3_pixel_med"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="4_pixel_semibold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixel_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="3_pixel_med"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-SemiBold.ttf" id="4_pixel_semibold"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel_bg"]
 bg_color = Color(0.12, 0.08, 0.05, 0.95)

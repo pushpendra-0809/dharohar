@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cmerchantnpcscene"]
 
 [ext_resource type="Script" path="res://scripts/npcs/Merchant.gd" id="1_mscript"]
-[ext_resource type="Texture2D" uid="uid://cmerchantpng" path="res://assets/Player/Merchant.png" id="2_merchant"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pixelify_bold"]
+[ext_resource type="Texture2D" path="res://assets/Player/Merchant.png" id="2_merchant"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixelify_bold"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_merchant_body"]
 radius = 9.0
@@ -59,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "[Press E to Talk]"
 horizontal_alignment = 1
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8wn1y1j6wj47"]
 
-[ext_resource type="Script" uid="uid://b4naqeupcatr8" path="res://scripts/objects/Pond.gd" id="1_pondscript"]
-[ext_resource type="FontFile" uid="uid://blsypyy7ik8w6" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_pixelify_bold"]
+[ext_resource type="Script" path="res://scripts/objects/Pond.gd" id="1_pondscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pond_body"]
 size = Vector2(190, 150)

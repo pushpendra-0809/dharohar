@@ -12,7 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://cn78vv6u1iol4" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
-[ext_resource type="PackedScene" uid="uid://bmvo2dym6wnfa" path="res://scenes/ui/PuzzleAssemblyUI.tscn" id="13_puzzleui"]
+[ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="13_mathui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
+size = Vector2(170, 138.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nalandamain"]
+size = Vector2(160, 169)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
+size = Vector2(265, 159)
 
 [node name="Nalanda_University" type="Control" unique_id=419522682]
 layout_mode = 3
@@ -30,41 +39,58 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(514, 290)
 texture = ExtResource("2_univpng")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="NalandaMain" type="Sprite2D" parent="." unique_id=1917811727]
-position = Vector2(-58, -117)
-scale = Vector2(0.2229405, 0.252673)
-texture = ExtResource("10_iqv3n")
+[node name="Build3" type="StaticBody2D" parent="." unique_id=363417448]
+position = Vector2(342, 233.75)
 
-[node name="Build3" type="Sprite2D" parent="." unique_id=363417448]
-position = Vector2(-360, -98)
-scale = Vector2(0.14583333, 0.19628906)
+[node name="Sprite2D" type="Sprite2D" parent="Build3" unique_id=1431023765]
+scale = Vector2(0.1484375, 0.19189452)
 texture = ExtResource("11_f4h8v")
 
-[node name="ArtLibrary" type="Sprite2D" parent="." unique_id=321528314]
-position = Vector2(282.25, -257.125)
-scale = Vector2(0.30110678, 0.28881833)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Build3" unique_id=1568119041]
+position = Vector2(-2, -14.375)
+shape = SubResource("RectangleShape2D_build3")
+
+[node name="NalandaMain" type="StaticBody2D" parent="." unique_id=1917811727]
+position = Vector2(573, 237)
+
+[node name="Sprite2D" type="Sprite2D" parent="NalandaMain" unique_id=2090689360]
+scale = Vector2(0.1522192, 0.16153523)
+texture = ExtResource("10_iqv3n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NalandaMain" unique_id=1186920819]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_nalandamain")
+
+[node name="ArtLibrary" type="StaticBody2D" parent="." unique_id=321528314]
+position = Vector2(770.5, 135.969)
+
+[node name="Sprite2D" type="Sprite2D" parent="ArtLibrary" unique_id=1562968727]
+scale = Vector2(0.19856772, 0.20501705)
 texture = ExtResource("12_4sqm3")
 
-[node name="Player" parent="." unique_id=1361997234 instance=ExtResource("3_player")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtLibrary" unique_id=1769683091]
+position = Vector2(8, 0.53100586)
+shape = SubResource("RectangleShape2D_artlibrary")
+
+[node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
 position = Vector2(65, 325)
 
-[node name="Teacher2" parent="." unique_id=1703984437 instance=ExtResource("4_teacher2")]
-position = Vector2(477, 318)
+[node name="Teacher2" parent="." unique_id=2079276465 instance=ExtResource("4_teacher2")]
+position = Vector2(292, 309)
 
-[node name="UniversityExit" parent="." unique_id=322934004 instance=ExtResource("5_exit")]
+[node name="UniversityExit" parent="." unique_id=1975221103 instance=ExtResource("5_exit")]
 position = Vector2(65, 370)
 
-[node name="ObjectiveTrailManager" parent="." unique_id=485913287 instance=ExtResource("6_trail")]
+[node name="ObjectiveTrailManager" parent="." unique_id=86445843 instance=ExtResource("6_trail")]
 
-[node name="DialogueUI" parent="." unique_id=521205797 instance=ExtResource("7_dlgui")]
+[node name="DialogueUI" parent="." unique_id=163371917 instance=ExtResource("7_dlgui")]
 
-[node name="QuestUI" parent="." unique_id=238762980 instance=ExtResource("8_questui")]
+[node name="QuestUI" parent="." unique_id=1472298022 instance=ExtResource("8_questui")]
 
-[node name="PauseMenuUI" parent="." unique_id=1488165243 instance=ExtResource("9_pauseui")]
+[node name="PauseMenuUI" parent="." unique_id=2088251946 instance=ExtResource("9_pauseui")]
 
-[node name="PuzzleAssemblyUI" parent="." unique_id=129209472 instance=ExtResource("13_puzzleui")]
+[node name="MathematicsPuzzleUI" parent="." unique_id=987654370 instance=ExtResource("13_mathui")]

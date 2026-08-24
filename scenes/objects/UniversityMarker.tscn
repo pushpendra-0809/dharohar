@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cunivmarkerscene"]
 
 [ext_resource type="Script" path="res://scripts/objects/UniversityMarker.gd" id="1_univscript"]
-[ext_resource type="Texture2D" uid="uid://temple" path="res://assets/Escape_Sequence_UI_Pack/ornaments/temple.svg" id="2_temple"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pixel_bold"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/ornaments/temple.svg" id="2_temple"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
 
 [node name="UniversityMarker" type="Node2D" unique_id=987123459]
 script = ExtResource("1_univscript")

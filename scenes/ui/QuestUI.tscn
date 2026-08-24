@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cquestuiscene"]
 
 [ext_resource type="Script" path="res://scenes/ui/QuestUI.gd" id="1_questscript"]
-[ext_resource type="Texture2D" uid="uid://confirmationpanel" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_questpanel"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="3_pixel_bold"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="4_pixel_med"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_questpanel"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_pixel_med"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quest_bg"]
 texture = ExtResource("2_questpanel")
@@ -44,7 +44,7 @@ offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 text = "OBJECTIVE"
 
 [node name="ObjectiveLabel" type="Label" parent="PanelBox"]
@@ -60,7 +60,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
 theme_override_fonts/font = ExtResource("4_pixel_med")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 17
 text = "Collect water from the nearby pond"
 autowrap_mode = 3
 vertical_alignment = 1

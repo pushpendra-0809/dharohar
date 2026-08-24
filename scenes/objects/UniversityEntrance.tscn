@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cuniversityentrancescene"]
 
 [ext_resource type="Script" path="res://scripts/objects/UniversityEntrance.gd" id="1_entrancescript"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="2_pixelify_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_entrance"]
 radius = 65.0

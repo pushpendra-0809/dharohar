@@ -21,26 +21,7 @@ func update_quest_ui() -> void:
 			panel_box.visible = false
 		return
 		
-	if GameState.teacher2_puzzle_completed:
-		if panel_box:
-			panel_box.visible = false
-	elif GameState.teacher2_puzzle_started:
-		if panel_box:
-			panel_box.visible = true
-			
-		var target_info: Dictionary = GameState.get_current_puzzle_target()
-		if not target_info.is_empty():
-			var p_id: int = target_info.get("id", 1)
-			if objective_label:
-				objective_label.text = "Find Sealing Piece #" + str(p_id) + " (" + str(GameState.teacher2_collected_pieces.size()) + "/9)"
-		else:
-			if GameState.teacher2_collected_pieces.size() == 9:
-				if objective_label:
-					objective_label.text = "Reconstruct the Nalanda Sealing"
-			else:
-				if objective_label:
-					objective_label.text = "Find the scattered pieces of the Nalanda sealing"
-	elif GameState.has_visited_university:
+	if GameState.has_visited_university:
 		if panel_box:
 			panel_box.visible = false
 	elif GameState.teacher_admitted:

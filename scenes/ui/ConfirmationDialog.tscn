@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cconfirmationdialog"]
 
 [ext_resource type="Script" path="res://scenes/ui/ConfirmationDialog.gd" id="1_confscript"]
-[ext_resource type="Texture2D" uid="uid://confirmationpanel" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_confpanel"]
-[ext_resource type="Texture2D" uid="uid://buttonyes" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_yes.svg" id="3_btnyes"]
-[ext_resource type="Texture2D" uid="uid://buttonno" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_no.svg" id="4_btnno"]
-[ext_resource type="Texture2D" uid="uid://buttonhover" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_hover.svg" id="5_btnhover"]
-[ext_resource type="FontFile" path="res://assets/Pixelify_Sans/static/PixelifySans-Bold.ttf" id="6_pixel_bold"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_confpanel"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_yes.svg" id="3_btnyes"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_no.svg" id="4_btnno"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_hover.svg" id="5_btnhover"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="6_pixel_bold"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_conf_bg"]
 texture = ExtResource("2_confpanel")

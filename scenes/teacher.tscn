@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://blrfdyedtt3p0"]
 
-[ext_resource type="Texture2D" uid="uid://ck2etkg6o0fyw" path="res://assets/Player/Guruji.png" id="1_v8tdc"]
+[ext_resource type="Texture2D" path="res://assets/Player/Guruji.png" id="1_v8tdc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_icd5h"]
 radius = 32.01562

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0bf0u5goipwr"]
 
 [ext_resource type="Script" path="res://scenes/main menu/main_menu.gd" id="1_vifqf"]
-[ext_resource type="Texture2D" uid="uid://b4mhyiqp6ksdp" path="res://assets/background/main_menu_screen.png" id="1_cbjxn"]
-[ext_resource type="Texture2D" uid="uid://jr86apsp7gff" path="res://assets/ui/button.png" id="2_8w606"]
-[ext_resource type="PackedScene" uid="uid://cconfirmationdialog" path="res://scenes/ui/ConfirmationDialog.tscn" id="3_confscene"]
+[ext_resource type="Texture2D" path="res://assets/background/main_menu_screen.png" id="1_cbjxn"]
+[ext_resource type="Texture2D" path="res://assets/ui/button.png" id="2_8w606"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ConfirmationDialog.tscn" id="3_confscene"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5tw5"]
 texture = ExtResource("2_8w606")

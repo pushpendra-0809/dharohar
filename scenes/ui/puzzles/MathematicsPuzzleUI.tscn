@@ -1,0 +1,237 @@
+[gd_scene format=3 uid="uid://cmathpuzzleuiscene"]
+
+[ext_resource type="Script" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.gd" id="1_mathscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixelify_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_parchment_bg"]
+bg_color = Color(0.18, 0.12, 0.08, 0.96)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.85, 0.62, 0.28, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_question_bg"]
+bg_color = Color(0.26, 0.18, 0.12, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.45, 0.22, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="MathematicsPuzzleUI" type="CanvasLayer" unique_id=987654350]
+visible = false
+layer = 10
+script = ExtResource("1_mathscript")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987654351]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="PanelContainer" type="Control" parent="." unique_id=987654352]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -250.0
+offset_right = 340.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_parchment_bg")
+
+[node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654354]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 20.0
+offset_right = 260.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 26
+text = "NALANDA NUMBER CHALLENGE"
+horizontal_alignment = 1
+
+[node name="CategoryLabel" type="Label" parent="PanelContainer" unique_id=987654355]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 58.0
+offset_right = 640.0
+offset_bottom = 82.0
+theme_override_colors/font_color = Color(0.85, 0.68, 0.42, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 17
+text = "Question 1 of 5 — Multiplication"
+
+[node name="QuestionBox" type="Panel" parent="PanelContainer" unique_id=987654365]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 88.0
+offset_right = 652.0
+offset_bottom = 175.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_question_bg")
+
+[node name="QuestionLabel" type="Label" parent="PanelContainer/QuestionBox" unique_id=987654356]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.92, 0.82, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 19
+text = "A scholar has 4 bundles of manuscripts. Each bundle contains 12 manuscripts. How many manuscripts does the scholar have in total?"
+autowrap_mode = 2
+vertical_alignment = 1
+
+[node name="AnswerSlotsContainer" type="HBoxContainer" parent="PanelContainer" unique_id=987654357]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -45.0
+offset_right = 280.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TilesGridContainer" type="GridContainer" parent="PanelContainer" unique_id=987654358]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = 10.0
+offset_right = 260.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 10
+
+[node name="OperatorsContainer" type="HBoxContainer" parent="PanelContainer" unique_id=987654359]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = 75.0
+offset_right = 180.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654360]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -110.0
+offset_right = 280.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654361]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -70.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "Submit"
+
+[node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654362]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -70.0
+offset_right = 130.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.82, 0.38, 0.22, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "Reset"
+
+[node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654363]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.82, 0.38, 0.22, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 20
+text = "X"
