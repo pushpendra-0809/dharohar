@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0feplm26u0he"
-path="res://.godot/imported/movent.png-eb031938c55073f952fb3825ef5e3c5a.ctex"
+uid="uid://cv0c45xuiurmj"
+path="res://.godot/imported/scroll_icon.png-6f4b5abde8c10e5593855ac1ff646009.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dharohar_Character_Sprite_Pack/fisherman/movent.png"
-dest_files=["res://.godot/imported/movent.png-eb031938c55073f952fb3825ef5e3c5a.ctex"]
+source_file="res://Puzzle Assets/Philosophy/Icons/scroll_icon.png"
+dest_files=["res://.godot/imported/scroll_icon.png-6f4b5abde8c10e5593855ac1ff646009.ctex"]
 
 [params]
 

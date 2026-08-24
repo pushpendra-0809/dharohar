@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dgy0y3nbhjsgl"]
+
+[ext_resource type="Script" path="res://scenes/ui/puzzles/PuzzleInfoPanel.gd" id="1_infoscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info_bg"]
+bg_color = Color(0.18, 0.13, 0.09, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.58, 0.28, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 8
+
+[node name="PuzzleInfoPanel" type="Control" unique_id=987654500]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_infoscript")
+
+[node name="DimRect" type="ColorRect" parent="." unique_id=987654501]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="MainPanel" type="Panel" parent="." unique_id=987654502]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -200.0
+offset_right = 270.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_info_bg")
+
+[node name="TitleLabel" type="Label" parent="MainPanel" unique_id=987654503]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 12.0
+offset_right = 200.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "PUZZLE RULES"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainPanel" unique_id=987654504]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 40.0
+offset_right = 200.0
+offset_bottom = 62.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.72, 0.52, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+text = "HOW TO PLAY"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel" unique_id=987654505]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 68.0
+offset_right = -20.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RulesVBox" type="VBoxContainer" parent="MainPanel/MarginContainer" unique_id=987654506]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 4
+
+[node name="DisclaimerLabel" type="Label" parent="MainPanel" unique_id=987654507]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -45.0
+offset_right = -20.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.85, 0.65, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="MainPanel" unique_id=987654508]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 10.0
+offset_right = -12.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "X"

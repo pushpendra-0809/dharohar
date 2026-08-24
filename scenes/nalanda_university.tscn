@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="8_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
-[ext_resource type="Texture2D" uid="uid://cn78vv6u1iol4" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
+[ext_resource type="Texture2D" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
 [ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="13_mathui"]
 [ext_resource type="PackedScene" uid="uid://brdqwb7cycs8e" path="res://scenes/ui/puzzles/MedicinePuzzleUI.tscn" id="14_medui"]
+[ext_resource type="PackedScene" uid="uid://ffgqnjixgoks" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.tscn" id="15_astroui"]
+[ext_resource type="PackedScene" uid="uid://d4hatamymv0qs" path="res://scenes/ui/puzzles/PhilosophyPuzzleUI.tscn" id="16_philui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
 size = Vector2(157, 138.75)
@@ -22,7 +24,7 @@ size = Vector2(157, 138.75)
 size = Vector2(160, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
-size = Vector2(160, 90)
+size = Vector2(260, 147)
 
 [node name="Nalanda_University" type="Control" unique_id=419522682]
 layout_mode = 3
@@ -52,18 +54,19 @@ scale = Vector2(0.1484375, 0.19189452)
 texture = ExtResource("11_f4h8v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Build3" unique_id=1568119041]
-position = Vector2(-8.5, -14.375)
+position = Vector2(3, -14.75)
 shape = SubResource("RectangleShape2D_build3")
 
 [node name="NalandaMain" type="StaticBody2D" parent="." unique_id=1917811727]
 position = Vector2(573, 237)
 
 [node name="Sprite2D" type="Sprite2D" parent="NalandaMain" unique_id=2090689360]
+position = Vector2(-37, 5)
 scale = Vector2(0.1522192, 0.16153523)
 texture = ExtResource("10_iqv3n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NalandaMain" unique_id=1186920819]
-position = Vector2(0, 10)
+position = Vector2(-35, 7)
 shape = SubResource("RectangleShape2D_nalandamain")
 
 [node name="ArtLibrary" type="StaticBody2D" parent="." unique_id=321528314]
@@ -74,7 +77,7 @@ scale = Vector2(0.19856772, 0.20501705)
 texture = ExtResource("12_4sqm3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtLibrary" unique_id=1769683091]
-position = Vector2(0, 10)
+position = Vector2(7.5, -13.468994)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
@@ -97,3 +100,7 @@ position = Vector2(65, 370)
 [node name="MathematicsPuzzleUI" parent="." unique_id=987654370 instance=ExtResource("13_mathui")]
 
 [node name="MedicinePuzzleUI" parent="." unique_id=987654371 instance=ExtResource("14_medui")]
+
+[node name="AstronomyPuzzleUI" parent="." unique_id=987654372 instance=ExtResource("15_astroui")]
+
+[node name="PhilosophyPuzzleUI" parent="." unique_id=987654373 instance=ExtResource("16_philui")]

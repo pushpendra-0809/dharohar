@@ -7,14 +7,18 @@ var domain_ui: Node = null
 var pause_menu_ui: Node = null
 var math_puzzle_ui: Node = null
 var med_puzzle_ui: Node = null
+var astro_puzzle_ui: Node = null
+var phil_puzzle_ui: Node = null
 
-func setup(d_mgr = null, q_mgr = null, dom_ui = null, pause_ui = null, m_puzzle_ui = null, med_p_ui = null) -> void:
+func setup(d_mgr = null, q_mgr = null, dom_ui = null, pause_ui = null, m_puzzle_ui = null, med_p_ui = null, astro_p_ui = null, phil_p_ui = null) -> void:
 	dialogue_manager = d_mgr
 	quiz_manager = q_mgr
 	domain_ui = dom_ui
 	pause_menu_ui = pause_ui
 	math_puzzle_ui = m_puzzle_ui
 	med_puzzle_ui = med_p_ui
+	astro_puzzle_ui = astro_p_ui
+	phil_puzzle_ui = phil_p_ui
 	process_mode = PROCESS_MODE_ALWAYS
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,24 +51,36 @@ func handle_escape_pressed() -> void:
 			med_puzzle_ui.close_puzzle()
 		return
 		
-	# Priority 5: ELSE IF domain selection is active -> cancel selection
+	# Priority 5: ELSE IF Astronomy puzzle UI is open -> close puzzle UI
+	if astro_puzzle_ui and ("visible" in astro_puzzle_ui) and astro_puzzle_ui.visible:
+		if astro_puzzle_ui.has_method("close_puzzle"):
+			astro_puzzle_ui.close_puzzle()
+		return
+		
+	# Priority 6: ELSE IF Philosophy puzzle UI is open -> close puzzle UI
+	if phil_puzzle_ui and ("visible" in phil_puzzle_ui) and phil_puzzle_ui.visible:
+		if phil_puzzle_ui.has_method("close_puzzle"):
+			phil_puzzle_ui.close_puzzle()
+		return
+		
+	# Priority 7: ELSE IF domain selection is active -> cancel selection
 	if domain_ui and domain_ui.has_method("is_open") and domain_ui.is_open():
 		if domain_ui.has_method("cancel_selection"):
 			domain_ui.cancel_selection()
 		return
 		
-	# Priority 6: ELSE IF quiz is active -> cancel quiz attempt
+	# Priority 8: ELSE IF quiz is active -> cancel quiz attempt
 	if quiz_manager and quiz_manager.has_method("is_active") and quiz_manager.is_active():
 		if quiz_manager.has_method("cancel_quiz"):
 			quiz_manager.cancel_quiz()
 		return
 		
-	# Priority 7: ELSE IF pause menu is open -> close pause menu, resume gameplay
+	# Priority 9: ELSE IF pause menu is open -> close pause menu, resume gameplay
 	if pause_menu_ui and pause_menu_ui.has_method("is_open") and pause_menu_ui.is_open():
 		if pause_menu_ui.has_method("close_pause_menu"):
 			pause_menu_ui.close_pause_menu()
 		return
 		
-	# Priority 8: ELSE -> open pause menu
+	# Priority 10: ELSE -> open pause menu
 	if pause_menu_ui and pause_menu_ui.has_method("open_pause_menu"):
 		pause_menu_ui.open_pause_menu()

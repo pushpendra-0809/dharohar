@@ -4,15 +4,19 @@ var _player_in_range: bool = false
 var dialogue_manager: DialogueManager = null
 var math_puzzle_ui = null
 var med_puzzle_ui = null
+var astro_puzzle_ui = null
+var phil_puzzle_ui = null
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var indicator_label: Label = $IndicatorLabel
 @onready var press_e_label: Label = $PressELabel
 
-func setup_manager(d_mgr: DialogueManager, m_puzzle_ui = null, med_p_ui = null) -> void:
+func setup_manager(d_mgr: DialogueManager, m_puzzle_ui = null, med_p_ui = null, astro_p_ui = null, phil_p_ui = null) -> void:
 	dialogue_manager = d_mgr
 	math_puzzle_ui = m_puzzle_ui
 	med_puzzle_ui = med_p_ui
+	astro_puzzle_ui = astro_p_ui
+	phil_puzzle_ui = phil_p_ui
 	if dialogue_manager:
 		if not dialogue_manager.dialogue_cancelled.is_connected(_on_interaction_cancelled):
 			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
@@ -42,7 +46,43 @@ func _start_teacher2_interaction() -> void:
 		
 	var domain: String = GameState.selected_domain.to_lower() if GameState and GameState.selected_domain != "" else ""
 	
-	if domain == "medicine":
+	if domain == "philosophy" or domain == "phil":
+		if GameState and GameState.philosophy_puzzle_completed:
+			var seq: Array = [
+				{"speaker": "Acharya", "text": "Outstanding work! You have demonstrated thoughtful reasoning and scholarly wisdom."}
+			]
+			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
+		else:
+			var phil_seq: Array = [
+				{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."},
+				{"speaker": "Acharya", "text": "Philosophy teaches us to question, examine, and reason. Let us see how carefully you can defend an idea."},
+				{"speaker": "Acharya", "text": "Read the question carefully, consider each argument, and choose the response you find best supported."}
+			]
+			dialogue_manager.start_dialogue(phil_seq, func():
+				if phil_puzzle_ui and phil_puzzle_ui.has_method("open_puzzle"):
+					phil_puzzle_ui.open_puzzle()
+				else:
+					_on_dialogue_finished()
+			)
+	elif domain == "astronomy" or domain == "astro":
+		if GameState and GameState.astronomy_puzzle_completed:
+			var seq: Array = [
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your skill in tracking the stars."}
+			]
+			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
+		else:
+			var astro_seq: Array = [
+				{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."},
+				{"speaker": "Acharya", "text": "The night sky has long guided scholars who carefully observed the movements of the heavens."},
+				{"speaker": "Acharya", "text": "Study the stars carefully and reconstruct the pattern shown by the ancient chart."}
+			]
+			dialogue_manager.start_dialogue(astro_seq, func():
+				if astro_puzzle_ui and astro_puzzle_ui.has_method("open_puzzle"):
+					astro_puzzle_ui.open_puzzle()
+				else:
+					_on_dialogue_finished()
+			)
+	elif domain == "medicine":
 		if GameState and GameState.medicine_puzzle_completed:
 			var seq: Array = [
 				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of traditional herbal knowledge."}

@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://castropuzzleuiscene"]
+
+[ext_resource type="Script" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.gd" id="1_astroscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="PackedScene" path="res://scenes/ui/puzzles/PuzzleInfoPanel.tscn" id="3_infoui"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_astro_bg"]
+bg_color = Color(0.08, 0.10, 0.18, 0.96)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.28, 0.45, 0.75, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.6)
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sky_bg"]
+bg_color = Color(0.04, 0.06, 0.14, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.38, 0.65, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="AstronomyPuzzleUI" type="CanvasLayer" unique_id=987654400]
+visible = false
+layer = 10
+script = ExtResource("1_astroscript")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987654401]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.70)
+
+[node name="PanelContainer" type="Control" parent="." unique_id=987654402]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -270.0
+offset_right = 360.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654403]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_astro_bg")
+
+[node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654404]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 18.0
+offset_right = 260.0
+offset_bottom = 52.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.45, 0.75, 0.96, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 26
+text = "NALANDA SKY WATCH — ASTRONOMY"
+horizontal_alignment = 1
+
+[node name="PuzzleHeaderLabel" type="Label" parent="PanelContainer" unique_id=987654405]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 54.0
+offset_right = 680.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0.85, 0.78, 0.55, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "PUZZLE 1 / 5 — Triangular Celestial Alignment"
+
+[node name="InstructionsLabel" type="Label" parent="PanelContainer" unique_id=987654406]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 76.0
+offset_right = 680.0
+offset_bottom = 98.0
+theme_override_colors/font_color = Color(0.75, 0.82, 0.90, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+text = "Observe the night sky. Select and connect the three main stars that form the scholar's triangle."
+
+[node name="SkyPanel" type="Panel" parent="PanelContainer" unique_id=987654407]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 100.0
+offset_right = 412.0
+offset_bottom = 370.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sky_bg")
+
+[node name="CluesBox" type="Panel" parent="PanelContainer" unique_id=987654408]
+layout_mode = 0
+offset_left = 422.0
+offset_top = 100.0
+offset_right = 688.0
+offset_bottom = 370.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sky_bg")
+
+[node name="CluesTitleLabel" type="Label" parent="PanelContainer/CluesBox" unique_id=987654409]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = 240.0
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+text = "OBSERVATION CLUES:"
+
+[node name="CluesContainer" type="VBoxContainer" parent="PanelContainer/CluesBox" unique_id=987654410]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 35.0
+offset_right = -12.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654411]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -155.0
+offset_right = 320.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 17
+horizontal_alignment = 1
+
+[node name="ExplanationLabel" type="Label" parent="PanelContainer" unique_id=987654412]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_top = -125.0
+offset_right = 320.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.85, 0.88, 0.95, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654413]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -170.0
+offset_top = -70.0
+offset_right = -60.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45, 0.75, 0.96, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "SUBMIT"
+
+[node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654414]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -70.0
+offset_right = 60.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "RESET"
+
+[node name="HintButton" type="Button" parent="PanelContainer" unique_id=987654415]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = -70.0
+offset_right = 170.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "HINT"
+
+[node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654416]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -45.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 45.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 20
+text = "X"
+
+[node name="InfoButton" type="Button" parent="PanelContainer" unique_id=987654417]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 44.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "i"
+
+[node name="PuzzleInfoPanel" parent="." instance=ExtResource("3_infoui")]
+visible = false

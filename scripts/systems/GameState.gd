@@ -18,6 +18,12 @@ var math_puzzle_completed: bool = false
 # Medicine Puzzle State
 var medicine_puzzle_completed: bool = false
 
+# Astronomy Puzzle State
+var astronomy_puzzle_completed: bool = false
+
+# Philosophy Puzzle State
+var philosophy_puzzle_completed: bool = false
+
 # Merchant state
 var merchant_quiz_score: int = 0
 var merchant_quiz_completed: bool = false
@@ -71,6 +77,14 @@ func complete_math_puzzle() -> void:
 
 func complete_medicine_puzzle() -> void:
 	medicine_puzzle_completed = true
+	quest_state_changed.emit()
+
+func complete_astronomy_puzzle() -> void:
+	astronomy_puzzle_completed = true
+	quest_state_changed.emit()
+
+func complete_philosophy_puzzle() -> void:
+	philosophy_puzzle_completed = true
 	quest_state_changed.emit()
 
 func record_merchant_result(score: int, passed: bool) -> void:

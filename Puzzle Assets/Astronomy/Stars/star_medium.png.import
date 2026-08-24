@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmkislogb4ft"
-path="res://.godot/imported/villager_sprite_sheet.png-49a9d573c9e0d1777b29a73944a54b27.ctex"
+uid="uid://dqomluya288jg"
+path="res://.godot/imported/star_medium.png-3ad10aa05c883e5cff9ed1f5dcc9e6f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dharohar_Character_Sprite_Pack/villager/villager_sprite_sheet.png"
-dest_files=["res://.godot/imported/villager_sprite_sheet.png-49a9d573c9e0d1777b29a73944a54b27.ctex"]
+source_file="res://Puzzle Assets/Astronomy/Stars/star_medium.png"
+dest_files=["res://.godot/imported/star_medium.png-3ad10aa05c883e5cff9ed1f5dcc9e6f0.ctex"]
 
 [params]
 

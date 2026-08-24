@@ -18,11 +18,14 @@ signal puzzle_closed()
 @onready var reset_button: Button = $PanelContainer/ResetButton
 @onready var hint_button: Button = $PanelContainer/HintButton
 @onready var close_button: Button = $PanelContainer/CloseButton
+@onready var info_button: Button = $PanelContainer/InfoButton
+@onready var puzzle_info_panel = $PuzzleInfoPanel
 
 var cases: Array = []
 var current_case_index: int = 0
 var selected_herbs: Array = []
 var is_solved: bool = false
+var is_processing_answer: bool = false
 
 func _ready() -> void:
 	visible = false
@@ -41,6 +44,12 @@ func _ready() -> void:
 		hint_button.pressed.connect(_on_hint_pressed)
 	if close_button and not close_button.pressed.is_connected(_on_close_pressed):
 		close_button.pressed.connect(_on_close_pressed)
+	if info_button and not info_button.pressed.is_connected(_on_info_pressed):
+		info_button.pressed.connect(_on_info_pressed)
+
+func _on_info_pressed() -> void:
+	if puzzle_info_panel and puzzle_info_panel.has_method("show_info"):
+		puzzle_info_panel.show_info("medicine")
 
 func open_puzzle() -> void:
 	visible = true
@@ -72,6 +81,10 @@ func close_puzzle() -> void:
 func _load_case(idx: int) -> void:
 	if idx < 0 or idx >= cases.size():
 		return
+		
+	is_processing_answer = false
+	if submit_button:
+		submit_button.disabled = false
 		
 	selected_herbs.clear()
 	var c_data: Dictionary = cases[idx]
@@ -201,7 +214,7 @@ func _on_hint_pressed() -> void:
 			feedback_label.add_theme_color_override("font_color", Color(0.96, 0.78, 0.28, 1.0))
 
 func _on_submit_pressed() -> void:
-	if current_case_index >= cases.size():
+	if is_processing_answer or current_case_index >= cases.size():
 		return
 		
 	var c_data: Dictionary = cases[current_case_index]
@@ -216,6 +229,10 @@ func _on_submit_pressed() -> void:
 				break
 				
 	if is_correct:
+		is_processing_answer = true
+		if submit_button:
+			submit_button.disabled = true
+			
 		if feedback_label:
 			feedback_label.text = "Correct! You matched the clues with the intended herbal knowledge."
 			feedback_label.add_theme_color_override("font_color", Color(0.28, 0.85, 0.35, 1.0))

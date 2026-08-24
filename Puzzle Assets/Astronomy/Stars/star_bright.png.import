@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cn78vv6u1iol4"
-path="res://.godot/imported/Nalanda main.png-c3b8723af48e9e591ddb6fe065233ce8.ctex"
+uid="uid://fvybgy30igbn"
+path="res://.godot/imported/star_bright.png-3fcd3becfaef62600563f11749400f04.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Elements/buildings/Nalanda main.png"
-dest_files=["res://.godot/imported/Nalanda main.png-c3b8723af48e9e591ddb6fe065233ce8.ctex"]
+source_file="res://Puzzle Assets/Astronomy/Stars/star_bright.png"
+dest_files=["res://.godot/imported/star_bright.png-3fcd3becfaef62600563f11749400f04.ctex"]
 
 [params]
 

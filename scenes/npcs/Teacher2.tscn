@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://pn3r3cl4o08y"]
 
-[ext_resource type="Script" path="res://scripts/npcs/Teacher2.gd" id="1_t2script"]
-[ext_resource type="Texture2D" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="2_t2png"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixelify_bold"]
+[ext_resource type="Script" uid="uid://b5un5ywvp5txn" path="res://scripts/npcs/Teacher2.gd" id="1_t2script"]
+[ext_resource type="Texture2D" uid="uid://cjssmdq5iy7pg" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="2_t2png"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixelify_bold"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2body"]
 radius = 12.0
 height = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t2area"]
-radius = 60.0
+radius = 40.46
 
 [node name="Teacher2" type="StaticBody2D" unique_id=987654311]
 script = ExtResource("1_t2script")

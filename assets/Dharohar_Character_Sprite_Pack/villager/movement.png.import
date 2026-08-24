@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://738htp5q78xh"
-path="res://.godot/imported/student_boy_sprite_sheet.png-acf38611737b6a4bf877941538cabf07.ctex"
+uid="uid://h88q8wbtujnq"
+path="res://.godot/imported/movement.png-737c31012e506192e374b65b6abc24f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dharohar_Character_Sprite_Pack/student_boy/student_boy_sprite_sheet.png"
-dest_files=["res://.godot/imported/student_boy_sprite_sheet.png-acf38611737b6a4bf877941538cabf07.ctex"]
+source_file="res://assets/Dharohar_Character_Sprite_Pack/villager/movement.png"
+dest_files=["res://.godot/imported/movement.png-737c31012e506192e374b65b6abc24f6.ctex"]
 
 [params]
 
