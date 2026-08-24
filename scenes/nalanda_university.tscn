@@ -13,15 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
 [ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="13_mathui"]
+[ext_resource type="PackedScene" uid="uid://brdqwb7cycs8e" path="res://scenes/ui/puzzles/MedicinePuzzleUI.tscn" id="14_medui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
-size = Vector2(170, 138.75)
+size = Vector2(157, 138.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nalandamain"]
-size = Vector2(160, 169)
+size = Vector2(160, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
-size = Vector2(265, 159)
+size = Vector2(160, 90)
 
 [node name="Nalanda_University" type="Control" unique_id=419522682]
 layout_mode = 3
@@ -51,7 +52,7 @@ scale = Vector2(0.1484375, 0.19189452)
 texture = ExtResource("11_f4h8v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Build3" unique_id=1568119041]
-position = Vector2(-2, -14.375)
+position = Vector2(-8.5, -14.375)
 shape = SubResource("RectangleShape2D_build3")
 
 [node name="NalandaMain" type="StaticBody2D" parent="." unique_id=1917811727]
@@ -62,7 +63,7 @@ scale = Vector2(0.1522192, 0.16153523)
 texture = ExtResource("10_iqv3n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NalandaMain" unique_id=1186920819]
-position = Vector2(0, -5.5)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_nalandamain")
 
 [node name="ArtLibrary" type="StaticBody2D" parent="." unique_id=321528314]
@@ -73,7 +74,7 @@ scale = Vector2(0.19856772, 0.20501705)
 texture = ExtResource("12_4sqm3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ArtLibrary" unique_id=1769683091]
-position = Vector2(8, 0.53100586)
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
@@ -94,3 +95,5 @@ position = Vector2(65, 370)
 [node name="PauseMenuUI" parent="." unique_id=2088251946 instance=ExtResource("9_pauseui")]
 
 [node name="MathematicsPuzzleUI" parent="." unique_id=987654370 instance=ExtResource("13_mathui")]
+
+[node name="MedicinePuzzleUI" parent="." unique_id=987654371 instance=ExtResource("14_medui")]

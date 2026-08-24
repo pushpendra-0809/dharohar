@@ -3,6 +3,7 @@ extends Control
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var math_puzzle_ui = $MathematicsPuzzleUI
+@onready var med_puzzle_ui = $MedicinePuzzleUI
 @onready var university_exit = $UniversityExit
 @onready var teacher2 = $Teacher2
 @onready var player = $Player
@@ -20,10 +21,10 @@ func _ready() -> void:
 	if dialogue_ui and dialogue_ui.has_method("setup"):
 		dialogue_ui.setup(dialogue_manager)
 	if pause_manager and pause_manager.has_method("setup"):
-		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui, math_puzzle_ui)
+		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui, math_puzzle_ui, med_puzzle_ui)
 		
 	if teacher2 and teacher2.has_method("setup_manager"):
-		teacher2.setup_manager(dialogue_manager, math_puzzle_ui)
+		teacher2.setup_manager(dialogue_manager, math_puzzle_ui, med_puzzle_ui)
 		
 	if player and player.has_method("set_map_limits"):
 		player.set_map_limits(14, 11, 1129, 628, 14.0, 1129.0, 11.0, 628.0)

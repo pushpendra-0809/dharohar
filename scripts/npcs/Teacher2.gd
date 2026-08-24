@@ -2,15 +2,17 @@ extends StaticBody2D
 
 var _player_in_range: bool = false
 var dialogue_manager: DialogueManager = null
-var math_puzzle_ui: MathematicsPuzzleUI = null
+var math_puzzle_ui = null
+var med_puzzle_ui = null
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var indicator_label: Label = $IndicatorLabel
 @onready var press_e_label: Label = $PressELabel
 
-func setup_manager(d_mgr: DialogueManager, m_puzzle_ui: MathematicsPuzzleUI = null) -> void:
+func setup_manager(d_mgr: DialogueManager, m_puzzle_ui = null, med_p_ui = null) -> void:
 	dialogue_manager = d_mgr
 	math_puzzle_ui = m_puzzle_ui
+	med_puzzle_ui = med_p_ui
 	if dialogue_manager:
 		if not dialogue_manager.dialogue_cancelled.is_connected(_on_interaction_cancelled):
 			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
@@ -40,22 +42,41 @@ func _start_teacher2_interaction() -> void:
 		
 	var domain: String = GameState.selected_domain.to_lower() if GameState and GameState.selected_domain != "" else ""
 	
-	if GameState and GameState.math_puzzle_completed:
-		var seq: Array = [
-			{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of numbers."}
-		]
-		dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
+	if domain == "medicine":
+		if GameState and GameState.medicine_puzzle_completed:
+			var seq: Array = [
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of traditional herbal knowledge."}
+			]
+			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
+		else:
+			var med_seq: Array = [
+				{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."},
+				{"speaker": "Acharya", "text": "You have chosen the study of medicine. Ancient scholars carefully observed plants and their traditional uses."},
+				{"speaker": "Acharya", "text": "Study this case carefully and choose the herbs that best match the clues."}
+			]
+			dialogue_manager.start_dialogue(med_seq, func():
+				if med_puzzle_ui and med_puzzle_ui.has_method("open_puzzle"):
+					med_puzzle_ui.open_puzzle()
+				else:
+					_on_dialogue_finished()
+			)
 	elif domain == "mathematics" or domain == "math":
-		var math_seq: Array = [
-			{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."},
-			{"speaker": "Acharya", "text": "Let us test your understanding of numbers. Solve the following problem carefully."}
-		]
-		dialogue_manager.start_dialogue(math_seq, func():
-			if math_puzzle_ui:
-				math_puzzle_ui.open_puzzle()
-			else:
-				_on_dialogue_finished()
-		)
+		if GameState and GameState.math_puzzle_completed:
+			var seq: Array = [
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of numbers."}
+			]
+			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
+		else:
+			var math_seq: Array = [
+				{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."},
+				{"speaker": "Acharya", "text": "Let us test your understanding of numbers. Solve the following problem carefully."}
+			]
+			dialogue_manager.start_dialogue(math_seq, func():
+				if math_puzzle_ui and math_puzzle_ui.has_method("open_puzzle"):
+					math_puzzle_ui.open_puzzle()
+				else:
+					_on_dialogue_finished()
+			)
 	else:
 		var seq: Array = [
 			{"speaker": "Acharya", "text": "Welcome to Nalanda University, young scholar."}

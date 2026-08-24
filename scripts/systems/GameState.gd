@@ -15,6 +15,9 @@ var teacher_retry_available: bool = true
 # Mathematics Puzzle State
 var math_puzzle_completed: bool = false
 
+# Medicine Puzzle State
+var medicine_puzzle_completed: bool = false
+
 # Merchant state
 var merchant_quiz_score: int = 0
 var merchant_quiz_completed: bool = false
@@ -64,6 +67,10 @@ func record_teacher_admission(domain: String, score: int) -> void:
 
 func complete_math_puzzle() -> void:
 	math_puzzle_completed = true
+	quest_state_changed.emit()
+
+func complete_medicine_puzzle() -> void:
+	medicine_puzzle_completed = true
 	quest_state_changed.emit()
 
 func record_merchant_result(score: int, passed: bool) -> void:
