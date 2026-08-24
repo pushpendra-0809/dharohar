@@ -1,0 +1,74 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/objects/StupaInfoTrigger.gd" id="1_stupascript"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_trigger"]
+radius = 95.63
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prompt_norm"]
+bg_color = Color(0.24, 0.16, 0.1, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.96, 0.78, 0.28, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prompt_press"]
+bg_color = Color(0.18, 0.1, 0.06, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.6, 0.2, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_prompt_hov"]
+bg_color = Color(0.36, 0.22, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_size = 6
+
+[node name="StupaInfoTrigger" type="Area2D"]
+script = ExtResource("1_stupascript")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_trigger")
+
+[node name="PromptContainer" type="Node2D" parent="."]
+
+[node name="InfoButton" type="Button" parent="PromptContainer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -95.0
+offset_top = -50.0
+offset_right = 95.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.98, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_prompt_norm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_prompt_press")
+theme_override_styles/hover = SubResource("StyleBoxFlat_prompt_hov")
+text = "[ i ]  Learn about the Stupa"

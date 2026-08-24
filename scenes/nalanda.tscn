@@ -14,11 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://bg476jxx32mxi" path="res://scenes/ui/QuizUI.tscn" id="12_quizui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="13_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="14_pauseui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/MathHeritageUI.tscn" id="15_heritui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/AstroHeritageUI.tscn" id="16_astroheritui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/MedHeritageUI.tscn" id="17_medheritui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
-[ext_resource type="PackedScene" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
+[ext_resource type="PackedScene" uid="uid://b8cd3ewvmju" path="res://scenes/ui/MathHeritageUI.tscn" id="15_heritui"]
+[ext_resource type="PackedScene" uid="uid://ci6fj0n4wx0ba" path="res://scenes/ui/AstroHeritageUI.tscn" id="16_astroheritui"]
+[ext_resource type="PackedScene" uid="uid://dejhv1c8vwy5c" path="res://scenes/ui/MedHeritageUI.tscn" id="17_medheritui"]
+[ext_resource type="PackedScene" uid="uid://b4tvguy7wvdv7" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
+[ext_resource type="PackedScene" uid="uid://dbp0nujiqj2h3" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
+[ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="21_infoui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -70,12 +71,14 @@ position = Vector2(1098, 191)
 
 [node name="PauseMenuUI" parent="." unique_id=1391770783 instance=ExtResource("14_pauseui")]
 
-[node name="MathHeritageUI" parent="." unique_id=987654620 visible="false" instance=ExtResource("15_heritui")]
+[node name="MathHeritageUI" parent="." unique_id=987654620 instance=ExtResource("15_heritui")]
 
-[node name="AstroHeritageUI" parent="." unique_id=987654720 visible="false" instance=ExtResource("16_astroheritui")]
+[node name="AstroHeritageUI" parent="." unique_id=987654720 instance=ExtResource("16_astroheritui")]
 
-[node name="MedHeritageUI" parent="." unique_id=987654820 visible="false" instance=ExtResource("17_medheritui")]
+[node name="MedHeritageUI" parent="." unique_id=987654820 instance=ExtResource("17_medheritui")]
 
-[node name="PhilHeritageUI" parent="." unique_id=987654920 visible="false" instance=ExtResource("18_philheritui")]
+[node name="PhilHeritageUI" parent="." unique_id=987654920 instance=ExtResource("18_philheritui")]
 
-[node name="LogicHeritageUI" parent="." unique_id=987655020 visible="false" instance=ExtResource("19_logicheritui")]
+[node name="LogicHeritageUI" parent="." unique_id=987655020 instance=ExtResource("19_logicheritui")]
+
+[node name="NalandaInfoUI" parent="." unique_id=987655130 instance=ExtResource("21_infoui")]
