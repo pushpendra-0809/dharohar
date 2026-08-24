@@ -9,24 +9,48 @@
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="8_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
-[ext_resource type="Texture2D" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
-[ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
-[ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
-[ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="13_mathui"]
-[ext_resource type="PackedScene" uid="uid://brdqwb7cycs8e" path="res://scenes/ui/puzzles/MedicinePuzzleUI.tscn" id="14_medui"]
-[ext_resource type="PackedScene" uid="uid://ffgqnjixgoks" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.tscn" id="15_astroui"]
-[ext_resource type="PackedScene" uid="uid://d4hatamymv0qs" path="res://scenes/ui/puzzles/PhilosophyPuzzleUI.tscn" id="16_philui"]
+[ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="10_mathui"]
+[ext_resource type="PackedScene" uid="uid://brdqwb7cycs8e" path="res://scenes/ui/puzzles/MedicinePuzzleUI.tscn" id="11_medui"]
+[ext_resource type="PackedScene" uid="uid://ffgqnjixgoks" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.tscn" id="12_astroui"]
+[ext_resource type="PackedScene" uid="uid://d4hatamymv0qs" path="res://scenes/ui/puzzles/PhilosophyPuzzleUI.tscn" id="13_philui"]
+[ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="14_build3"]
+[ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="15_artlib"]
+[ext_resource type="Texture2D" uid="uid://dcbk8i4r43lrd" path="res://assets/Elements/buildings/nalanda_main.png" id="16_nalmain"]
+[ext_resource type="Texture2D" uid="uid://dljgd4koh1p50" path="res://assets/Elements/buildings/build2.png" id="17_build2"]
+[ext_resource type="Texture2D" uid="uid://ctnsoqyqo1shg" path="res://assets/Elements/buildings/monument-nalanda.png" id="18_monnal"]
+[ext_resource type="Texture2D" uid="uid://cmqie2skymcbi" path="res://assets/Elements/buildings/Temple.png" id="19_temple"]
+[ext_resource type="Texture2D" uid="uid://bshtrcisejjgr" path="res://assets/Elements/buildings/table.png" id="20_table"]
+[ext_resource type="Texture2D" uid="uid://bxge4kmgrdvxx" path="res://assets/Elements/buildings/largerRock.png" id="21_rock"]
+[ext_resource type="Texture2D" uid="uid://bq4v47g4nydxa" path="res://assets/Elements/buildings/bush.png" id="22_bush"]
+[ext_resource type="Texture2D" uid="uid://clogjbiovdqq5" path="res://assets/Elements/buildings/bush3.png" id="23_bush3"]
+[ext_resource type="Texture2D" uid="uid://4i4m3s506v0y" path="res://assets/Elements/buildings/bush2.png" id="24_bush2"]
+[ext_resource type="Texture2D" uid="uid://rxj8wjtnxnh4" path="res://assets/Elements/buildings/bush4.png" id="25_bush4"]
+[ext_resource type="Texture2D" uid="uid://c3uds0i6kjsd2" path="res://assets/Elements/buildings/stone2.png" id="26_stone2"]
+[ext_resource type="Texture2D" uid="uid://c1vkw3eek8oh8" path="res://assets/Elements/buildings/stone.png" id="27_stone"]
+[ext_resource type="Texture2D" uid="uid://camx75xjeq0jq" path="res://assets/Elements/buildings/tree2.png" id="28_tree2"]
+[ext_resource type="Texture2D" uid="uid://pdp1ga8cy3u" path="res://assets/Elements/buildings/tree4.png" id="29_tree4"]
+[ext_resource type="Texture2D" uid="uid://b5dlq1pvc37aa" path="res://assets/Elements/buildings/matka.png" id="30_matka"]
+[ext_resource type="Texture2D" uid="uid://bq4g8j7kbmfu2" path="res://assets/Elements/buildings/GrassBush.png" id="31_grassbush"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
+size = Vector2(150, 110)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
 size = Vector2(157, 138.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nalandamain"]
-size = Vector2(160, 90)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nalmain"]
+size = Vector2(180, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_monnal"]
+size = Vector2(140, 90)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
 size = Vector2(260, 147)
 
-[node name="Nalanda_University" type="Control" unique_id=419522682]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
+size = Vector2(150, 100)
+
+[node name="Nalanda_University" type="Control" unique_id=1367465864]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +59,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_univgd")
 
-[node name="background" type="TextureRect" parent="." unique_id=98546446]
+[node name="background" type="TextureRect" parent="." unique_id=331693466]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,61 +70,377 @@ texture = ExtResource("2_univpng")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Build3" type="StaticBody2D" parent="." unique_id=363417448]
+[node name="Decorations" type="Node2D" parent="." unique_id=1209444399]
+
+[node name="GrassBush" type="Sprite2D" parent="Decorations" unique_id=21888367]
+position = Vector2(183, 127)
+scale = Vector2(0.081584, 0.072998)
+texture = ExtResource("31_grassbush")
+
+[node name="Bush_1" type="Sprite2D" parent="Decorations" unique_id=299882011]
+position = Vector2(488, 487)
+scale = Vector2(0.05013, 0.054688)
+texture = ExtResource("22_bush")
+
+[node name="Bush_2" type="Sprite2D" parent="Decorations" unique_id=2120841426]
+position = Vector2(779, 452)
+scale = Vector2(0.032226, 0.037598)
+texture = ExtResource("22_bush")
+
+[node name="Bush_3" type="Sprite2D" parent="Decorations" unique_id=2027800836]
+position = Vector2(907, 64)
+scale = Vector2(0.050456, 0.044922)
+texture = ExtResource("22_bush")
+
+[node name="Bush2_1" type="Sprite2D" parent="Decorations" unique_id=668059847]
+position = Vector2(491, 430)
+scale = Vector2(0.022135, 0.025238)
+texture = ExtResource("24_bush2")
+
+[node name="Bush2_2" type="Sprite2D" parent="Decorations" unique_id=1421120537]
+position = Vector2(244, 555)
+scale = Vector2(0.03215, 0.03382)
+texture = ExtResource("24_bush2")
+
+[node name="Bush2_3" type="Sprite2D" parent="Decorations" unique_id=1318867528]
+position = Vector2(710, 247)
+scale = Vector2(0.021322, 0.025696)
+texture = ExtResource("24_bush2")
+
+[node name="Bush2_4" type="Sprite2D" parent="Decorations" unique_id=1016829871]
+position = Vector2(236, 382)
+rotation = 1.19555
+scale = Vector2(0.025798, 0.024902)
+texture = ExtResource("24_bush2")
+
+[node name="Bush3_1" type="Sprite2D" parent="Decorations" unique_id=612003729]
+position = Vector2(583, 387)
+scale = Vector2(0.032227, 0.041016)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_2" type="Sprite2D" parent="Decorations" unique_id=463967386]
+position = Vector2(680, 391)
+scale = Vector2(0.02824, 0.031462)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_3" type="Sprite2D" parent="Decorations" unique_id=960216074]
+position = Vector2(664, 317)
+scale = Vector2(0.035811, 0.03941)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_4" type="Sprite2D" parent="Decorations" unique_id=913656266]
+position = Vector2(207, 108)
+scale = Vector2(0.049482, 0.051264)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_5" type="Sprite2D" parent="Decorations" unique_id=559082402]
+position = Vector2(299.75, 562)
+scale = Vector2(0.051107, 0.05481)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_6" type="Sprite2D" parent="Decorations" unique_id=957715361]
+position = Vector2(213, 368)
+scale = Vector2(0.023396, 0.020835)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_7" type="Sprite2D" parent="Decorations" unique_id=340701007]
+position = Vector2(350, 67)
+scale = Vector2(0.041585, 0.040649)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_8" type="Sprite2D" parent="Decorations" unique_id=726212954]
+position = Vector2(924, 75)
+scale = Vector2(0.028646, 0.038177)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_9" type="Sprite2D" parent="Decorations" unique_id=1603386685]
+position = Vector2(835, 436)
+scale = Vector2(0.027344, 0.030151)
+texture = ExtResource("23_bush3")
+
+[node name="Bush3_10" type="Sprite2D" parent="Decorations" unique_id=200682376]
+position = Vector2(816, 595)
+scale = Vector2(0.037593, 0.04459)
+texture = ExtResource("23_bush3")
+
+[node name="Bush4_1" type="Sprite2D" parent="Decorations" unique_id=1804452406]
+position = Vector2(484, 606)
+scale = Vector2(0.045573, 0.037842)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_2" type="Sprite2D" parent="Decorations" unique_id=68717970]
+position = Vector2(628, 582)
+scale = Vector2(0.037, 0.04043)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_3" type="Sprite2D" parent="Decorations" unique_id=1261524726]
+position = Vector2(435, 537)
+scale = Vector2(0.030298, 0.027149)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_4" type="Sprite2D" parent="Decorations" unique_id=2031853474]
+position = Vector2(316, 48)
+scale = Vector2(0.039642, 0.048683)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_5" type="Sprite2D" parent="Decorations" unique_id=1412125743]
+position = Vector2(455, 416)
+scale = Vector2(0.028148, 0.03513)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_6" type="Sprite2D" parent="Decorations" unique_id=1630161098]
+position = Vector2(175, 382)
+scale = Vector2(0.020143, 0.019478)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_7" type="Sprite2D" parent="Decorations" unique_id=935751560]
+position = Vector2(96, 31)
+scale = Vector2(0.026355, 0.034927)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_8" type="Sprite2D" parent="Decorations" unique_id=1272617279]
+position = Vector2(749, 318)
+scale = Vector2(0.03361, 0.035217)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_9" type="Sprite2D" parent="Decorations" unique_id=684129733]
+position = Vector2(937, 386)
+scale = Vector2(0.042869, 0.041854)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_10" type="Sprite2D" parent="Decorations" unique_id=1760484166]
+position = Vector2(709, 244)
+scale = Vector2(0.029378, 0.031555)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_11" type="Sprite2D" parent="Decorations" unique_id=1074243525]
+position = Vector2(753, 399)
+scale = Vector2(0.017253, 0.022949)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_12" type="Sprite2D" parent="Decorations" unique_id=1090137349]
+position = Vector2(781, 621)
+scale = Vector2(0.034749, 0.048401)
+texture = ExtResource("25_bush4")
+
+[node name="Bush4_13" type="Sprite2D" parent="Decorations" unique_id=887802987]
+position = Vector2(56, 489)
+scale = Vector2(0.035319, 0.041504)
+texture = ExtResource("25_bush4")
+
+[node name="Table" type="Sprite2D" parent="Decorations" unique_id=161678326]
+position = Vector2(673, 253)
+scale = Vector2(0.038981, 0.039307)
+texture = ExtResource("20_table")
+
+[node name="Table2" type="Sprite2D" parent="Decorations" unique_id=990378490]
+position = Vector2(741, 266)
+scale = Vector2(0.036973, 0.036621)
+texture = ExtResource("20_table")
+flip_h = true
+
+[node name="Matka" type="Sprite2D" parent="Decorations" unique_id=268004916]
+position = Vector2(709, 265)
+scale = Vector2(0.037888, 0.052319)
+texture = ExtResource("30_matka")
+
+[node name="LargerRock" type="Sprite2D" parent="Decorations" unique_id=706002018]
+position = Vector2(466, 431)
+scale = Vector2(0.032552, 0.043335)
+texture = ExtResource("21_rock")
+
+[node name="LargerRock2" type="Sprite2D" parent="Decorations" unique_id=1615910012]
+position = Vector2(766, 400)
+scale = Vector2(0.017578, 0.022827)
+texture = ExtResource("21_rock")
+
+[node name="LargerRock3" type="Sprite2D" parent="Decorations" unique_id=1255368628]
+position = Vector2(1027, 77)
+scale = Vector2(0.058085, 0.078369)
+texture = ExtResource("21_rock")
+
+[node name="LargerRock4" type="Sprite2D" parent="Decorations" unique_id=1129361841]
+position = Vector2(328, 68)
+scale = Vector2(0.044684, 0.035596)
+texture = ExtResource("21_rock")
+
+[node name="LargerRock5" type="Sprite2D" parent="Decorations" unique_id=1854658382]
+position = Vector2(104, 46)
+scale = Vector2(0.029707, 0.025538)
+texture = ExtResource("21_rock")
+
+[node name="Stone" type="Sprite2D" parent="Decorations" unique_id=1217050097]
+position = Vector2(742, 336)
+scale = Vector2(0.035156, 0.041016)
+texture = ExtResource("27_stone")
+
+[node name="Stone2" type="Sprite2D" parent="Decorations" unique_id=1435859353]
+position = Vector2(652, 513)
+scale = Vector2(0.028809, 0.032959)
+texture = ExtResource("27_stone")
+
+[node name="Stone3" type="Sprite2D" parent="Decorations" unique_id=635080631]
+position = Vector2(130, 121)
+scale = Vector2(0.026123, 0.030762)
+texture = ExtResource("27_stone")
+
+[node name="Stone4" type="Sprite2D" parent="Decorations" unique_id=1811486004]
+position = Vector2(436, 72)
+scale = Vector2(0.022177, 0.024298)
+texture = ExtResource("27_stone")
+
+[node name="Stone5" type="Sprite2D" parent="Decorations" unique_id=720318610]
+position = Vector2(585, 94)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("27_stone")
+
+[node name="Stone6" type="Sprite2D" parent="Decorations" unique_id=349248706]
+position = Vector2(176, 73)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("27_stone")
+flip_h = true
+
+[node name="Stone7" type="Sprite2D" parent="Decorations" unique_id=1739518530]
+position = Vector2(1043, 219)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("27_stone")
+flip_v = true
+
+[node name="Stone2_1" type="Sprite2D" parent="Decorations" unique_id=1520089769]
+position = Vector2(202, 383)
+scale = Vector2(0.046956, 0.04834)
+texture = ExtResource("26_stone2")
+
+[node name="Stone2_2" type="Sprite2D" parent="Decorations" unique_id=1689513056]
+position = Vector2(921, 401)
+scale = Vector2(0.040853, 0.042603)
+texture = ExtResource("26_stone2")
+
+[node name="Stone2_3" type="Sprite2D" parent="Decorations" unique_id=309864950]
+position = Vector2(777, 609)
+scale = Vector2(0.073893, 0.062012)
+texture = ExtResource("26_stone2")
+
+[node name="Stone2_4" type="Sprite2D" parent="Decorations" unique_id=987624002]
+position = Vector2(52, 610)
+scale = Vector2(0.047137, 0.045833)
+texture = ExtResource("26_stone2")
+flip_h = true
+
+[node name="Tree2_1" type="Sprite2D" parent="Decorations" unique_id=27533263]
+position = Vector2(989, 302)
+scale = Vector2(0.131054, 0.120612)
+texture = ExtResource("28_tree2")
+
+[node name="Tree2_2" type="Sprite2D" parent="Decorations" unique_id=1159464656]
+position = Vector2(54, 444)
+scale = Vector2(0.087399, 0.090992)
+texture = ExtResource("28_tree2")
+
+[node name="Tree4_1" type="Sprite2D" parent="Decorations" unique_id=7706974]
+position = Vector2(588, 501)
+scale = Vector2(0.084607, 0.062227)
+texture = ExtResource("29_tree4")
+
+[node name="Tree4_2" type="Sprite2D" parent="Decorations" unique_id=808476699]
+position = Vector2(580, 58)
+scale = Vector2(0.060632, 0.058892)
+texture = ExtResource("29_tree4")
+
+[node name="Tree4_3" type="Sprite2D" parent="Decorations" unique_id=2022494399]
+position = Vector2(1048, 189)
+scale = Vector2(0.050152, 0.049431)
+texture = ExtResource("29_tree4")
+
+[node name="Buildings" type="Node2D" parent="." unique_id=724297630]
+
+[node name="Build2" type="StaticBody2D" parent="Buildings" unique_id=1873227663]
+position = Vector2(157, 238)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/Build2" unique_id=1275781591]
+scale = Vector2(0.117188, 0.152344)
+texture = ExtResource("17_build2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build2" unique_id=1006784233]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_build2")
+
+[node name="Build3" type="StaticBody2D" parent="Buildings" unique_id=410915769]
 position = Vector2(342, 233.75)
 
-[node name="Sprite2D" type="Sprite2D" parent="Build3" unique_id=1431023765]
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/Build3" unique_id=1798112622]
 scale = Vector2(0.1484375, 0.19189452)
-texture = ExtResource("11_f4h8v")
+texture = ExtResource("14_build3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Build3" unique_id=1568119041]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build3" unique_id=1022757872]
 position = Vector2(3, -14.75)
 shape = SubResource("RectangleShape2D_build3")
 
-[node name="NalandaMain" type="StaticBody2D" parent="." unique_id=1917811727]
-position = Vector2(573, 237)
+[node name="NalandaMain" type="StaticBody2D" parent="Buildings" unique_id=1322634636]
+position = Vector2(534, 234.375)
 
-[node name="Sprite2D" type="Sprite2D" parent="NalandaMain" unique_id=2090689360]
-position = Vector2(-37, 5)
-scale = Vector2(0.1522192, 0.16153523)
-texture = ExtResource("10_iqv3n")
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/NalandaMain" unique_id=550996244]
+scale = Vector2(0.17859708, 0.1911634)
+texture = ExtResource("16_nalmain")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NalandaMain" unique_id=1186920819]
-position = Vector2(-35, 7)
-shape = SubResource("RectangleShape2D_nalandamain")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/NalandaMain" unique_id=1412095892]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_nalmain")
 
-[node name="ArtLibrary" type="StaticBody2D" parent="." unique_id=321528314]
+[node name="MonumentNalanda" type="StaticBody2D" parent="Buildings" unique_id=1108377967]
+position = Vector2(633, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/MonumentNalanda" unique_id=329753473]
+scale = Vector2(0.13378909, 0.13281251)
+texture = ExtResource("18_monnal")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/MonumentNalanda" unique_id=882901592]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_monnal")
+
+[node name="ArtLibrary" type="StaticBody2D" parent="Buildings" unique_id=1863808219]
 position = Vector2(770.5, 135.969)
 
-[node name="Sprite2D" type="Sprite2D" parent="ArtLibrary" unique_id=1562968727]
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/ArtLibrary" unique_id=2094436543]
 scale = Vector2(0.19856772, 0.20501705)
-texture = ExtResource("12_4sqm3")
+texture = ExtResource("15_artlib")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArtLibrary" unique_id=1769683091]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/ArtLibrary" unique_id=1372759998]
 position = Vector2(7.5, -13.468994)
 shape = SubResource("RectangleShape2D_artlibrary")
 
-[node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
+[node name="Temple" type="StaticBody2D" parent="Buildings" unique_id=969038972]
+position = Vector2(859, 297)
+
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/Temple" unique_id=1524023090]
+scale = Vector2(0.1388168, 0.12600233)
+texture = ExtResource("19_temple")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Temple" unique_id=436596309]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_temple")
+
+[node name="Player" parent="." unique_id=647026675 instance=ExtResource("3_player")]
 position = Vector2(65, 325)
 
-[node name="Teacher2" parent="." unique_id=2079276465 instance=ExtResource("4_teacher2")]
+[node name="Teacher2" parent="." unique_id=1938866659 instance=ExtResource("4_teacher2")]
 position = Vector2(292, 309)
 
-[node name="UniversityExit" parent="." unique_id=1975221103 instance=ExtResource("5_exit")]
+[node name="UniversityExit" parent="." unique_id=2123949862 instance=ExtResource("5_exit")]
 position = Vector2(65, 370)
 
-[node name="ObjectiveTrailManager" parent="." unique_id=86445843 instance=ExtResource("6_trail")]
+[node name="ObjectiveTrailManager" parent="." unique_id=1287644318 instance=ExtResource("6_trail")]
 
-[node name="DialogueUI" parent="." unique_id=163371917 instance=ExtResource("7_dlgui")]
+[node name="DialogueUI" parent="." unique_id=1371148007 instance=ExtResource("7_dlgui")]
 
-[node name="QuestUI" parent="." unique_id=1472298022 instance=ExtResource("8_questui")]
+[node name="QuestUI" parent="." unique_id=569073877 instance=ExtResource("8_questui")]
 
-[node name="PauseMenuUI" parent="." unique_id=2088251946 instance=ExtResource("9_pauseui")]
+[node name="PauseMenuUI" parent="." unique_id=567571371 instance=ExtResource("9_pauseui")]
 
-[node name="MathematicsPuzzleUI" parent="." unique_id=987654370 instance=ExtResource("13_mathui")]
+[node name="MathematicsPuzzleUI" parent="." unique_id=1175182085 instance=ExtResource("10_mathui")]
 
-[node name="MedicinePuzzleUI" parent="." unique_id=987654371 instance=ExtResource("14_medui")]
+[node name="MedicinePuzzleUI" parent="." unique_id=1222352839 instance=ExtResource("11_medui")]
 
-[node name="AstronomyPuzzleUI" parent="." unique_id=987654372 instance=ExtResource("15_astroui")]
+[node name="AstronomyPuzzleUI" parent="." unique_id=1240387362 instance=ExtResource("12_astroui")]
 
-[node name="PhilosophyPuzzleUI" parent="." unique_id=987654373 instance=ExtResource("16_philui")]
+[node name="PhilosophyPuzzleUI" parent="." unique_id=953939183 instance=ExtResource("13_philui")]

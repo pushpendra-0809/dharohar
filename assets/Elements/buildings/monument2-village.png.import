@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcbk8i4r43lrd"
-path="res://.godot/imported/nalanda_main.png-4c6e87f241ba552430e66cdb2389f092.ctex"
+uid="uid://delt7wua14l2v"
+path="res://.godot/imported/monument2-village.png-9b46517d5abae68622bfdd0f21c5c73f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Elements/buildings/nalanda_main.png"
-dest_files=["res://.godot/imported/nalanda_main.png-4c6e87f241ba552430e66cdb2389f092.ctex"]
+source_file="res://assets/Elements/buildings/monument2-village.png"
+dest_files=["res://.godot/imported/monument2-village.png-9b46517d5abae68622bfdd0f21c5c73f.ctex"]
 
 [params]
 

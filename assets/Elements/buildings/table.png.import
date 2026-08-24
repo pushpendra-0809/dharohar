@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcbk8i4r43lrd"
-path="res://.godot/imported/nalanda_main.png-4c6e87f241ba552430e66cdb2389f092.ctex"
+uid="uid://bshtrcisejjgr"
+path="res://.godot/imported/table.png-9992294e5ab377bbfc6608886a0b68e4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Elements/buildings/nalanda_main.png"
-dest_files=["res://.godot/imported/nalanda_main.png-4c6e87f241ba552430e66cdb2389f092.ctex"]
+source_file="res://assets/Elements/buildings/table.png"
+dest_files=["res://.godot/imported/table.png-9992294e5ab377bbfc6608886a0b68e4.ctex"]
 
 [params]
 
