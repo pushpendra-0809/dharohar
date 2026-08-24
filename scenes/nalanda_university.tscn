@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://ddsqmr2o2myhb"]
 
-[ext_resource type="Script" path="res://scenes/nalanda_university.gd" id="1_univgd"]
+[ext_resource type="Script" uid="uid://c3ggd4hf4wkx2" path="res://scenes/nalanda_university.gd" id="1_univgd"]
 [ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="2_univpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
-[ext_resource type="PackedScene" uid="uid://cteacher2npcscene" path="res://scenes/npcs/Teacher2.tscn" id="4_teacher2"]
-[ext_resource type="PackedScene" uid="uid://cuniversityexitscene" path="res://scenes/objects/UniversityExit.tscn" id="5_exit"]
-[ext_resource type="PackedScene" uid="uid://cobjectivetrailscene" path="res://scenes/ui/ObjectiveTrail.tscn" id="6_trail"]
-[ext_resource type="PackedScene" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
+[ext_resource type="PackedScene" uid="uid://pn3r3cl4o08y" path="res://scenes/npcs/Teacher2.tscn" id="4_teacher2"]
+[ext_resource type="PackedScene" uid="uid://cag5r18rcg1f3" path="res://scenes/objects/UniversityExit.tscn" id="5_exit"]
+[ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="6_trail"]
+[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="8_questui"]
-[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
+[ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
 [ext_resource type="Texture2D" uid="uid://cn78vv6u1iol4" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
-[ext_resource type="PackedScene" uid="uid://cpuzzleassemblyuiscene" path="res://scenes/ui/PuzzleAssemblyUI.tscn" id="13_puzzleui"]
+[ext_resource type="PackedScene" uid="uid://bmvo2dym6wnfa" path="res://scenes/ui/PuzzleAssemblyUI.tscn" id="13_puzzleui"]
 
 [node name="Nalanda_University" type="Control" unique_id=419522682]
 layout_mode = 3
@@ -30,6 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(514, 290)
 texture = ExtResource("2_univpng")
 expand_mode = 1
 stretch_mode = 5
@@ -49,21 +50,21 @@ position = Vector2(282.25, -257.125)
 scale = Vector2(0.30110678, 0.28881833)
 texture = ExtResource("12_4sqm3")
 
-[node name="Player" parent="." instance=ExtResource("3_player")]
+[node name="Player" parent="." unique_id=1361997234 instance=ExtResource("3_player")]
 position = Vector2(65, 325)
 
-[node name="Teacher2" parent="." instance=ExtResource("4_teacher2")]
+[node name="Teacher2" parent="." unique_id=1703984437 instance=ExtResource("4_teacher2")]
 position = Vector2(477, 318)
 
-[node name="UniversityExit" parent="." instance=ExtResource("5_exit")]
+[node name="UniversityExit" parent="." unique_id=322934004 instance=ExtResource("5_exit")]
 position = Vector2(65, 370)
 
-[node name="ObjectiveTrailManager" parent="." instance=ExtResource("6_trail")]
+[node name="ObjectiveTrailManager" parent="." unique_id=485913287 instance=ExtResource("6_trail")]
 
-[node name="DialogueUI" parent="." instance=ExtResource("7_dlgui")]
+[node name="DialogueUI" parent="." unique_id=521205797 instance=ExtResource("7_dlgui")]
 
-[node name="QuestUI" parent="." instance=ExtResource("8_questui")]
+[node name="QuestUI" parent="." unique_id=238762980 instance=ExtResource("8_questui")]
 
-[node name="PauseMenuUI" parent="." instance=ExtResource("9_pauseui")]
+[node name="PauseMenuUI" parent="." unique_id=1488165243 instance=ExtResource("9_pauseui")]
 
-[node name="PuzzleAssemblyUI" parent="." instance=ExtResource("13_puzzleui")]
+[node name="PuzzleAssemblyUI" parent="." unique_id=129209472 instance=ExtResource("13_puzzleui")]
