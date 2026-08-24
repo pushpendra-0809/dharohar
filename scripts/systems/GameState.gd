@@ -40,6 +40,12 @@ var has_water: bool = false
 
 # University Visited State
 var has_visited_university: bool = false
+var has_returned_to_nalanda: bool = false
+var teacher2_convo_started: bool = false
+
+func mark_teacher2_convo_started() -> void:
+	teacher2_convo_started = true
+	quest_state_changed.emit()
 
 # Scene Transition & Target Spawn Data
 var target_spawn_position: Vector2 = Vector2.ZERO

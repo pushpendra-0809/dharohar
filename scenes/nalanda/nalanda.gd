@@ -4,6 +4,11 @@ extends Control
 @onready var domain_ui = $DomainSelectionUI
 @onready var quiz_ui = $QuizUI
 @onready var pause_menu_ui = $PauseMenuUI
+@onready var math_heritage_ui = $MathHeritageUI
+@onready var astro_heritage_ui = $AstroHeritageUI
+@onready var med_heritage_ui = $MedHeritageUI
+@onready var phil_heritage_ui = $PhilHeritageUI
+@onready var logic_heritage_ui = $LogicHeritageUI
 @onready var teacher = $Teacher
 @onready var merchant = $Merchant
 @onready var player = $Player
@@ -29,7 +34,7 @@ func _ready() -> void:
 		pause_manager.call("setup", dialogue_manager, quiz_manager, domain_ui, pause_menu_ui)
 	
 	if teacher and teacher.has_method("setup_managers"):
-		teacher.setup_managers(dialogue_manager, quiz_manager, domain_ui)
+		teacher.setup_managers(dialogue_manager, quiz_manager, domain_ui, math_heritage_ui, astro_heritage_ui, med_heritage_ui, phil_heritage_ui, logic_heritage_ui)
 		
 	if merchant and merchant.has_method("setup_managers"):
 		merchant.setup_managers(dialogue_manager, quiz_manager)

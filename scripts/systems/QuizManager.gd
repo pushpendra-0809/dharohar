@@ -18,7 +18,7 @@ func is_active() -> bool:
 
 func start_quiz(domain_id: String) -> void:
 	_domain_id = domain_id
-	_questions = QuestionData.get_questions(domain_id)
+	_questions = QuestionData.get_questions(domain_id).duplicate()
 	
 	if _questions.is_empty():
 		push_error("QuizManager: No questions found for domain: " + domain_id)
@@ -61,7 +61,7 @@ func cancel_quiz() -> void:
 	_answering_locked = false
 	_current_index = 0
 	_score = 0
-	_questions.clear()
+	_questions = []
 	
 	GameState.unlock_player_movement()
 	quiz_cancelled.emit()

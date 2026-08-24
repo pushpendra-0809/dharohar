@@ -2,6 +2,37 @@ class_name QuestionData
 extends Object
 
 const DOMAINS: Dictionary = {
+	"merchant": {
+		"title": "Nalanda Knowledge",
+		"intro": "Answer these questions about Nalanda and ancient Indian education.",
+		"questions": [
+			{
+				"question": "What was Nalanda primarily known for?",
+				"options": ["A military fort", "A center of higher learning", "A large marketplace", "A royal palace"],
+				"answer": 1
+			},
+			{
+				"question": "Nalanda Mahavihara was located in which present-day Indian state?",
+				"options": ["Uttar Pradesh", "Bihar", "Madhya Pradesh", "Odisha"],
+				"answer": 1
+			},
+			{
+				"question": "Which of these was an important part of life at Nalanda?",
+				"options": ["Learning and scholarly debate", "Training large armies", "Shipbuilding", "Mining"],
+				"answer": 0
+			},
+			{
+				"question": "Which ancient Indian scholar is strongly associated with mathematics and astronomy?",
+				"options": ["Aryabhata", "Kalidasa", "Sushruta", "Panini"],
+				"answer": 0
+			},
+			{
+				"question": "What was one important feature of Nalanda?",
+				"options": ["It attracted scholars and students from different regions", "It was only open to kings", "It was primarily a military academy", "It was a major seaport"],
+				"answer": 0
+			}
+		]
+	},
 	"mathematics": {
 		"title": "Mathematics",
 		"intro": "If mathematics is your path, let us see whether you understand the foundations.",
@@ -96,8 +127,8 @@ const DOMAINS: Dictionary = {
 		]
 	},
 	"philosophy": {
-		"title": "Philosophy & Logic",
-		"intro": "If philosophy & logic is your path, let us see whether you understand the art of debate and reasoning.",
+		"title": "Philosophy",
+		"intro": "If philosophy is your path, let us see whether you understand the art of debate and reasoning.",
 		"questions": [
 			{
 				"question": "What does philosophy generally involve?",
@@ -125,49 +156,23 @@ const DOMAINS: Dictionary = {
 				"answer": 0
 			}
 		]
-	},
-	"merchant": {
-		"title": "Nalanda Knowledge",
-		"intro": "Answer these questions about Nalanda and ancient Indian education.",
-		"questions": [
-			{
-				"question": "What was Nalanda primarily known for?",
-				"options": ["A military fort", "A center of higher learning", "A large marketplace", "A royal palace"],
-				"answer": 1
-			},
-			{
-				"question": "Nalanda Mahavihara was located in which present-day Indian state?",
-				"options": ["Uttar Pradesh", "Bihar", "Madhya Pradesh", "Odisha"],
-				"answer": 1
-			},
-			{
-				"question": "Which of these was an important part of life at Nalanda?",
-				"options": ["Learning and scholarly debate", "Training large armies", "Shipbuilding", "Mining"],
-				"answer": 0
-			},
-			{
-				"question": "Which ancient Indian scholar is strongly associated with mathematics and astronomy?",
-				"options": ["Aryabhata", "Kalidasa", "Sushruta", "Panini"],
-				"answer": 0
-			},
-			{
-				"question": "What was one important feature of Nalanda?",
-				"options": ["It attracted scholars and students from different regions", "It was only open to kings", "It was primarily a military academy", "It was a major seaport"],
-				"answer": 0
-			}
-		]
 	}
 }
 
-static func get_domain_data(domain_id: String) -> Dictionary:
-	if DOMAINS.has(domain_id):
-		return DOMAINS[domain_id]
+static func get_domain_info(domain_id: String) -> Dictionary:
+	var key := domain_id.to_lower()
+	if DOMAINS.has(key):
+		return DOMAINS[key]
 	return {}
 
-static func get_domain_intro(domain_id: String) -> String:
-	var data := get_domain_data(domain_id)
-	return data.get("intro", "")
-
 static func get_questions(domain_id: String) -> Array:
-	var data := get_domain_data(domain_id)
-	return data.get("questions", [])
+	var info := get_domain_info(domain_id)
+	return info.get("questions", [])
+
+static func get_domain_title(domain_id: String) -> String:
+	var info := get_domain_info(domain_id)
+	return info.get("title", "Unknown Domain")
+
+static func get_domain_intro(domain_id: String) -> String:
+	var info := get_domain_info(domain_id)
+	return info.get("intro", "")

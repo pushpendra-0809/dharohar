@@ -14,6 +14,11 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/QuizUI.tscn" id="12_quizui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/QuestUI.tscn" id="13_questui"]
 [ext_resource type="PackedScene" path="res://scenes/ui/PauseMenu.tscn" id="14_pauseui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MathHeritageUI.tscn" id="15_heritui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/AstroHeritageUI.tscn" id="16_astroheritui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/MedHeritageUI.tscn" id="17_medheritui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
 
 [node name="Nalanda" type="Control" unique_id=1062861969]
 layout_mode = 3
@@ -64,3 +69,13 @@ position = Vector2(1098, 191)
 [node name="QuestUI" parent="." instance=ExtResource("13_questui")]
 
 [node name="PauseMenuUI" parent="." instance=ExtResource("14_pauseui")]
+
+[node name="MathHeritageUI" parent="." visible="false" instance=ExtResource("15_heritui")]
+
+[node name="AstroHeritageUI" parent="." visible="false" instance=ExtResource("16_astroheritui")]
+
+[node name="MedHeritageUI" parent="." visible="false" instance=ExtResource("17_medheritui")]
+
+[node name="PhilHeritageUI" parent="." visible="false" instance=ExtResource("18_philheritui")]
+
+[node name="LogicHeritageUI" parent="." visible="false" instance=ExtResource("19_logicheritui")]

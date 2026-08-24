@@ -254,7 +254,12 @@ func _sync_with_game_state() -> void:
 		return
 		
 	if GameState.has_visited_university:
-		clear_objective()
+		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
+			clear_objective()
+		else:
+			var t2: Node2D = get_node_or_null("../Teacher2")
+			var t2_pos: Vector2 = t2.global_position if t2 else Vector2(292, 309)
+			set_objective("meet_teacher2", t2_pos, "Meet the Teacher", t2)
 	elif GameState.teacher_admitted:
 		var univ_ent: Node2D = get_node_or_null("../UniversityEntrance")
 		var target_pos: Vector2 = univ_ent.global_position if univ_ent else Vector2(1098, 191)

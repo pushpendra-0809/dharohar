@@ -43,13 +43,15 @@ func _start_teacher2_interaction() -> void:
 		
 	if GameState:
 		GameState.lock_player_movement()
+		GameState.mark_teacher2_convo_started()
 		
 	var domain: String = GameState.selected_domain.to_lower() if GameState and GameState.selected_domain != "" else ""
 	
 	if domain == "philosophy" or domain == "phil":
 		if GameState and GameState.philosophy_puzzle_completed:
 			var seq: Array = [
-				{"speaker": "Acharya", "text": "Outstanding work! You have demonstrated thoughtful reasoning and scholarly wisdom."}
+				{"speaker": "Acharya", "text": "Outstanding work! You have demonstrated thoughtful reasoning and scholarly wisdom."},
+				{"speaker": "Acharya", "text": "Now, you can continue with your further studies."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -67,7 +69,8 @@ func _start_teacher2_interaction() -> void:
 	elif domain == "astronomy" or domain == "astro":
 		if GameState and GameState.astronomy_puzzle_completed:
 			var seq: Array = [
-				{"speaker": "Acharya", "text": "Outstanding work! You have proven your skill in tracking the stars."}
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your skill in tracking the stars."},
+				{"speaker": "Acharya", "text": "Now, you can continue with your further studies."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -85,7 +88,8 @@ func _start_teacher2_interaction() -> void:
 	elif domain == "medicine":
 		if GameState and GameState.medicine_puzzle_completed:
 			var seq: Array = [
-				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of traditional herbal knowledge."}
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of traditional herbal knowledge."},
+				{"speaker": "Acharya", "text": "Now, you can continue with your further studies."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -103,7 +107,8 @@ func _start_teacher2_interaction() -> void:
 	elif domain == "mathematics" or domain == "math":
 		if GameState and GameState.math_puzzle_completed:
 			var seq: Array = [
-				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of numbers."}
+				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of numbers."},
+				{"speaker": "Acharya", "text": "Now, you can continue with your further studies."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:

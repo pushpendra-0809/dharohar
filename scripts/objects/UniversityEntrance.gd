@@ -29,15 +29,17 @@ func _trigger_university_transition() -> void:
 	_is_transitioning = true
 	_update_ui_elements()
 	
+	var arrival_seq: Array = []
+	if GameState and not GameState.has_visited_university:
+		arrival_seq = [
+			{"speaker": "Scholar", "text": "You have arrived at Nalanda University."},
+			{"speaker": "Scholar", "text": "Your journey as a scholar begins here."}
+		]
+	
 	if GameState:
 		GameState.mark_university_visited()
 	
-	var arrival_seq: Array = [
-		{"speaker": "Scholar", "text": "You have arrived at Nalanda University."},
-		{"speaker": "Scholar", "text": "Your journey as a scholar begins here."}
-	]
-	
-	GameState.set_target_spawn(Vector2(65, 325), arrival_seq)
+	GameState.set_target_spawn(Vector2(347, 566), arrival_seq)
 	get_tree().change_scene_to_file("res://scenes/nalanda_university.tscn")
 
 func _on_body_entered(body: Node2D) -> void:
