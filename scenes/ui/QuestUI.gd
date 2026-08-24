@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var completion_timer: Timer = $CompletionTimer
 
 func _ready() -> void:
+	add_to_group("quest_ui")
+	
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
@@ -22,8 +24,14 @@ func update_quest_ui() -> void:
 		return
 		
 	if GameState.has_visited_university:
-		if panel_box:
-			panel_box.visible = false
+		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
+			if panel_box:
+				panel_box.visible = false
+		else:
+			if panel_box:
+				panel_box.visible = true
+			if objective_label:
+				objective_label.text = "Meet the Teacher"
 	elif GameState.teacher_admitted:
 		if panel_box:
 			panel_box.visible = true

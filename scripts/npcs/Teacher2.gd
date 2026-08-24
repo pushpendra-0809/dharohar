@@ -43,6 +43,7 @@ func _start_teacher2_interaction() -> void:
 		
 	if GameState:
 		GameState.lock_player_movement()
+		GameState.mark_teacher2_convo_started()
 		
 	var domain: String = GameState.selected_domain.to_lower() if GameState and GameState.selected_domain != "" else ""
 	

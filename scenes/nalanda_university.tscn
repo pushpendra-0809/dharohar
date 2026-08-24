@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="8_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
-[ext_resource type="Texture2D" path="res://assets/Elements/buildings/Nalanda main.png" id="10_iqv3n"]
+[ext_resource type="Texture2D" uid="uid://ccg1j6g6amfkx" path="res://assets/Elements/buildings/nalanda_main.png" id="10_iqv3n"]
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="11_f4h8v"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="12_4sqm3"]
 [ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="13_mathui"]
@@ -81,13 +81,13 @@ position = Vector2(7.5, -13.468994)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
-position = Vector2(65, 325)
+position = Vector2(381, 622)
 
 [node name="Teacher2" parent="." unique_id=2079276465 instance=ExtResource("4_teacher2")]
 position = Vector2(292, 309)
 
 [node name="UniversityExit" parent="." unique_id=1975221103 instance=ExtResource("5_exit")]
-position = Vector2(65, 370)
+position = Vector2(381, 622)
 
 [node name="ObjectiveTrailManager" parent="." unique_id=86445843 instance=ExtResource("6_trail")]
 
