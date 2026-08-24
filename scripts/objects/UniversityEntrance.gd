@@ -39,7 +39,7 @@ func _trigger_university_transition() -> void:
 	if GameState:
 		GameState.mark_university_visited()
 	
-	GameState.set_target_spawn(Vector2(381, 622), arrival_seq)
+	GameState.set_target_spawn(Vector2(347, 566), arrival_seq)
 	get_tree().change_scene_to_file("res://scenes/nalanda_university.tscn")
 
 func _on_body_entered(body: Node2D) -> void:

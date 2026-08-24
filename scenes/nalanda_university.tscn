@@ -81,13 +81,13 @@ position = Vector2(7.5, -13.468994)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="Player" parent="." unique_id=803870231 instance=ExtResource("3_player")]
-position = Vector2(381, 622)
+position = Vector2(347, 566)
 
 [node name="Teacher2" parent="." unique_id=2079276465 instance=ExtResource("4_teacher2")]
 position = Vector2(292, 309)
 
 [node name="UniversityExit" parent="." unique_id=1975221103 instance=ExtResource("5_exit")]
-position = Vector2(381, 622)
+position = Vector2(347, 566)
 
 [node name="ObjectiveTrailManager" parent="." unique_id=86445843 instance=ExtResource("6_trail")]
 

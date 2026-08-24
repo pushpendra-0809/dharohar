@@ -75,6 +75,14 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 		if not logic_heritage_ui.heritage_completed.is_connected(_on_logic_heritage_completed):
 			logic_heritage_ui.heritage_completed.connect(_on_logic_heritage_completed)
 
+func is_teacher_unlocked() -> bool:
+	if not GameState:
+		return false
+	return GameState.water_quest_completed or GameState.university_location_revealed or GameState.merchant_passed
+
+func _on_merchant_state_changed() -> void:
+	_update_ui_elements()
+
 func _ready() -> void:
 	if interaction_area:
 		if not interaction_area.body_entered.is_connected(_on_body_entered):
@@ -85,13 +93,18 @@ func _ready() -> void:
 	if cooldown_timer and not cooldown_timer.timeout.is_connected(_on_cooldown_timeout):
 		cooldown_timer.timeout.connect(_on_cooldown_timeout)
 	
-	if GameState and GameState.teacher_admitted:
-		current_state = State.ADMITTED
+	if GameState:
+		if GameState.teacher_admitted:
+			current_state = State.ADMITTED
+		if not GameState.merchant_state_changed.is_connected(_on_merchant_state_changed):
+			GameState.merchant_state_changed.connect(_on_merchant_state_changed)
+		if not GameState.quest_state_changed.is_connected(_on_merchant_state_changed):
+			GameState.quest_state_changed.connect(_on_merchant_state_changed)
 
 	_update_ui_elements()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_in_range and current_state == State.AVAILABLE:
+	if _player_in_range and current_state == State.AVAILABLE and is_teacher_unlocked():
 		if event.is_action_pressed("interact"):
 			get_viewport().set_input_as_handled()
 			_start_teacher_interaction()
@@ -331,7 +344,7 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var is_available: bool = (current_state == State.AVAILABLE and GameState.teacher_retry_available)
+	var is_available: bool = (current_state == State.AVAILABLE and GameState.teacher_retry_available and is_teacher_unlocked())
 	var show_indicator: bool = _player_in_range and is_available
 	var show_press_e: bool = _player_in_range and is_available
 	
