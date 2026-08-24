@@ -35,24 +35,30 @@
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
 [ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
+[ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing2.png" id="38_boy2"]
+[ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
+[ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
+[ext_resource type="Texture2D" uid="uid://dldxg1kcunfj6" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png" id="41_teacher1"]
+[ext_resource type="Texture2D" uid="uid://cjssmdq5iy7pg" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="42_teacher2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
-size = Vector2(150, 110)
+size = Vector2(125, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
-size = Vector2(157, 138.75)
+size = Vector2(155, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nalmain"]
-size = Vector2(180, 140)
+size = Vector2(169, 161.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monnal"]
-size = Vector2(140, 90)
+size = Vector2(138, 136)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
-size = Vector2(260, 147)
+size = Vector2(205, 177.031)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
-size = Vector2(150, 100)
+size = Vector2(113, 97)
 
 [node name="Nalanda_University" type="Control" unique_id=1796040786]
 layout_mode = 3
@@ -366,7 +372,6 @@ scale = Vector2(0.117188, 0.152344)
 texture = ExtResource("17_build2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build2" unique_id=573797353]
-position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_build2")
 
 [node name="Build3" type="StaticBody2D" parent="Buildings" unique_id=1672636282]
@@ -377,7 +382,7 @@ scale = Vector2(0.1484375, 0.19189452)
 texture = ExtResource("14_build3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build3" unique_id=2008847505]
-position = Vector2(3, -14.75)
+position = Vector2(0, 2.25)
 shape = SubResource("RectangleShape2D_build3")
 
 [node name="NalandaMain" type="StaticBody2D" parent="Buildings" unique_id=830699931]
@@ -388,7 +393,7 @@ scale = Vector2(0.17859708, 0.1911634)
 texture = ExtResource("16_nalmain")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/NalandaMain" unique_id=1924959653]
-position = Vector2(0, 5)
+position = Vector2(4, 4.625)
 shape = SubResource("RectangleShape2D_nalmain")
 
 [node name="Stupa" type="StaticBody2D" parent="Buildings" unique_id=1466698734]
@@ -399,7 +404,6 @@ scale = Vector2(0.13378909, 0.13281251)
 texture = ExtResource("18_monnal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Stupa" unique_id=1483562840]
-position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_monnal")
 
 [node name="StupaInfoTrigger" parent="Buildings/Stupa" unique_id=987655150 instance=ExtResource("36_stupatrigger")]
@@ -413,7 +417,7 @@ scale = Vector2(0.19856772, 0.20501705)
 texture = ExtResource("15_artlib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/ArtLibrary" unique_id=1866675496]
-position = Vector2(7.5, -13.468994)
+position = Vector2(-20.5, -10.968994)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="LibraryInfoTrigger" parent="Buildings/ArtLibrary" unique_id=987655140 instance=ExtResource("32_infotrigger")]
@@ -429,7 +433,7 @@ scale = Vector2(0.1388168, 0.12600233)
 texture = ExtResource("19_temple")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Temple" unique_id=169785615]
-position = Vector2(0, 10)
+position = Vector2(2, 3)
 shape = SubResource("RectangleShape2D_temple")
 
 [node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
@@ -461,3 +465,107 @@ position = Vector2(347, 566)
 position = Vector2(534, 250)
 
 [node name="NalandaInfoUI" parent="." unique_id=206000010 instance=ExtResource("33_infoui")]
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=1968128155]
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Collisions" unique_id=1702348090]
+polygon = PackedVector2Array(510, 563, 528, 563, 528, 604, 511, 606, 504, 600, 463, 592, 416, 587, 409, 552, 358, 546, 338, 529, 322, 516, 289, 498, 283, 476, 283, 450, 306, 479, 319, 479, 335, 491, 349, 510, 383, 523, 400, 522, 413, 536, 428, 555, 463, 556, 481, 556, 486, 575, 508, 582)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions" unique_id=1538801204]
+polygon = PackedVector2Array(591, 31, 664, 32, 745, 31, 799, 31, 831, 22, 871, 22, 913, 23, 944, 26, 948, 51, 964, 53, 966, 77, 948, 75, 938, 66, 939, 44, 915, 46, 867, 44, 852, 40, 834, 40, 811, 51, 798, 53, 742, 52, 674, 52, 632, 52, 600, 55, 592, 54)
+
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="Collisions" unique_id=433936842]
+polygon = PackedVector2Array(825, 631, 874, 597, 919, 581, 929, 540, 945, 539, 963, 512, 987, 495, 1016, 488, 1025, 472, 1039, 469, 1060, 465, 1077, 458, 1095, 437, 1100, 420, 1114, 396, 1127, 392, 1155, 372, 1152, 444, 1138, 446, 1128, 454, 1124, 467, 1123, 478, 1119, 487, 1109, 488, 1107, 497, 1098, 502, 1073, 502, 1069, 512, 1063, 515, 1046, 518, 1025, 520, 1006, 556, 1004, 566, 993, 583, 981, 592, 971, 598, 959, 610, 952, 637, 930, 638, 913, 637, 905, 645, 880, 646, 814, 647)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions" unique_id=1315153762]
+polygon = PackedVector2Array(129, 429, 141, 428, 153, 426, 163, 429, 174, 432, 192, 432, 204, 433, 214, 442, 233, 451, 250, 458, 257, 469, 260, 491, 257, 502, 255, 525, 253, 532, 233, 554, 229, 570, 228, 581, 220, 598, 195, 604, 176, 607, 145, 606, 137, 592, 118, 582, 95, 558, 89, 545, 89, 518, 91, 501, 95, 484, 101, 465, 110, 446, 117, 433)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Collisions" unique_id=863036848]
+polygon = PackedVector2Array(401, 472, 395, 480, 395, 488, 385, 492, 377, 492, 365, 493, 349, 493, 325, 482, 312, 476, 304, 478, 289, 464, 285, 441, 284, 420, 284, 399, 285, 382, 291, 366, 304, 359, 320, 352, 328, 352, 354, 356, 369, 355, 375, 357, 383, 357, 393, 364, 398, 366, 407, 379, 410, 399, 410, 413, 410, 427, 417, 433, 416, 446, 410, 457, 404, 470)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Collisions" unique_id=2042760442]
+polygon = PackedVector2Array(1, 323, 15, 323, 27, 319, 41, 297, 52, 277, 48, 255, 49, 238, 61, 231, 68, 210, 64, 164, 69, 158, 76, 132, 73, 111, 74, 97, 88, 91, 101, 81, 106, 72, 114, 70, 122, 70, 131, 54, 137, 50, 147, 44, 155, 40, 165, 33, 174, 31, 187, 31, 203, 33, 217, 34, 237, 32, 262, 32, 276, 33, 290, 27, 315, 15, 338, 17, 356, 18, 372, 13, 387, 15, 391, 22, 404, 30, 412, 34, 428, 35, 447, 35, 469, 35, 488, 38, 500, 33, 501, 53, 491, 60, 482, 58, 464, 58, 443, 58, 422, 59, 409, 59, 382, 37, 378, 40, 370, 40, 362, 37, 323, 37, 309, 37, 289, 51, 250, 55, 177, 54, 163, 56, 131, 86, 120, 90, 101, 101, 88, 114, 83, 135, 82, 160, 79, 174, 74, 185, 74, 201, 74, 228, 69, 246, 63, 259, 52, 323, 36, 340, 23, 348, 2, 348)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Collisions" unique_id=2018427766]
+polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274, 1009, 297, 1034, 313, 1034, 362, 1035, 405, 1018, 420, 986, 421, 964, 459, 922, 476, 879, 466, 867, 486, 857, 497, 845, 516, 843, 534, 799, 553, 767, 550, 746, 540, 727, 546, 704, 555, 669, 563, 633, 560, 616, 563, 602, 588, 576, 604, 564, 603, 562, 563, 576, 560, 578, 579, 595, 571, 604, 552, 613, 533, 640, 532, 669, 534, 696, 535, 727, 518, 739, 510, 763, 506, 805, 512, 821, 503, 847, 479, 844, 468, 858, 445, 857, 423, 917, 433, 942, 431, 975, 392, 985, 387, 1013, 383, 1029, 363, 1027, 337, 1026, 314, 996, 295, 1002, 263, 1002, 241, 1002, 235, 952, 216, 948, 184)
+
+[node name="Students" type="Node2D" parent="." unique_id=987655170]
+
+[node name="StudentBoy1" type="Sprite2D" parent="Students" unique_id=987655171]
+position = Vector2(398, 61.99994)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("37_boy1")
+
+[node name="StudentBoy4" type="Sprite2D" parent="Students" unique_id=957934955]
+position = Vector2(239.99997, 260)
+scale = Vector2(0.045000006, 0.045000006)
+texture = ExtResource("37_boy1")
+
+[node name="StudentBoy2" type="Sprite2D" parent="Students" unique_id=987655172]
+position = Vector2(674, 165.99998)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("38_boy2")
+
+[node name="StudentBoy3" type="Sprite2D" parent="Students" unique_id=987655173]
+position = Vector2(716, 173.99997)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("37_boy1")
+
+[node name="StudentGirl1" type="Sprite2D" parent="Students" unique_id=987655174]
+position = Vector2(260, 360)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("39_girl1")
+
+[node name="StudentGirl2" type="Sprite2D" parent="Students" unique_id=987655175]
+position = Vector2(530, 380)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("39_girl1")
+
+[node name="StudentGirl4" type="Sprite2D" parent="Students" unique_id=1008979158]
+position = Vector2(415, 75)
+scale = Vector2(0.047308005, 0.049366925)
+texture = ExtResource("39_girl1")
+
+[node name="StudentGirl3" type="Sprite2D" parent="Students" unique_id=987655176]
+position = Vector2(693, 174.99998)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("39_girl1")
+
+[node name="Monks" type="Node2D" parent="." unique_id=987655180]
+
+[node name="Monk_Stupa1" type="Sprite2D" parent="Monks" unique_id=987655181]
+position = Vector2(570, 440)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("40_monk")
+
+[node name="Monk_Stupa2" type="Sprite2D" parent="Monks" unique_id=987655182]
+position = Vector2(595, 445)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("40_monk")
+
+[node name="Monk_Stupa3" type="Sprite2D" parent="Monks" unique_id=987655183]
+position = Vector2(620, 440)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("40_monk")
+
+[node name="Monk_Library1" type="Sprite2D" parent="Monks" unique_id=987655184]
+position = Vector2(820, 160)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("40_monk")
+
+[node name="Monk_Library2" type="Sprite2D" parent="Monks" unique_id=987655185]
+position = Vector2(845, 165)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("40_monk")
+
+[node name="Teachers" type="Node2D" parent="." unique_id=987655190]
+
+[node name="Teacher_Standing1" type="Sprite2D" parent="Teachers" unique_id=987655191]
+position = Vector2(480, 200)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("41_teacher1")
+
+[node name="Teacher_Standing2" type="Sprite2D" parent="Teachers" unique_id=987655192]
+position = Vector2(880, 220)
+scale = Vector2(0.045, 0.045)
+texture = ExtResource("42_teacher2")
