@@ -1,5 +1,7 @@
 extends Control
 
+const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
+
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var math_puzzle_ui = $MathematicsPuzzleUI
@@ -31,7 +33,30 @@ func _ready() -> void:
 	if player and player.has_method("set_map_limits"):
 		player.set_map_limits(14, 11, 1129, 628, 14.0, 1129.0, 11.0, 628.0)
 		
-	call_deferred("_check_pending_arrival_message")
+	call_deferred("_check_domain_cutscene_or_arrival")
+
+func _check_domain_cutscene_or_arrival() -> void:
+	if GameState:
+		var domain: String = GameState.selected_domain.to_lower().strip_edges()
+		if ("math" in domain or "gaṇita" in domain) and not GameState.has_played_math_cutscene:
+			GameState.has_played_math_cutscene = true
+			_play_domain_cutscene("res://assets/videos/video2.ogv")
+			return
+		elif ("astro" in domain or "jyotiṣa" in domain) and not GameState.has_played_astro_cutscene:
+			GameState.has_played_astro_cutscene = true
+			_play_domain_cutscene("res://assets/videos/video3.ogv")
+			return
+	_check_pending_arrival_message()
+
+func _play_domain_cutscene(video_path: String) -> void:
+	if GameState:
+		GameState.lock_player_movement()
+	CutscenePlayer.play_video(self, video_path, _on_domain_cutscene_finished)
+
+func _on_domain_cutscene_finished() -> void:
+	if GameState:
+		GameState.unlock_player_movement()
+	_check_pending_arrival_message()
 
 func _check_pending_arrival_message() -> void:
 	if GameState:

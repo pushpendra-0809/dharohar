@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://cqefb78iwr7jm"]
+[gd_scene format=3 uid="uid://ddsqmr2o2myhb"]
 
 [ext_resource type="Script" uid="uid://c3ggd4hf4wkx2" path="res://scenes/nalanda_university.gd" id="1_univgd"]
 [ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="2_univpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="Texture2D" uid="uid://b27p6ul63a5x1" path="res://assets/Dharohar_Character_Sprite_Pack/special_npc/1npc_standing.png" id="3_tcrwk"]
 [ext_resource type="PackedScene" uid="uid://pn3r3cl4o08y" path="res://scenes/npcs/Teacher2.tscn" id="4_teacher2"]
 [ext_resource type="PackedScene" uid="uid://cag5r18rcg1f3" path="res://scenes/objects/UniversityExit.tscn" id="5_exit"]
 [ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="6_trail"]
@@ -78,6 +79,11 @@ grow_vertical = 2
 texture = ExtResource("2_univpng")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="1NpcStanding" type="Sprite2D" parent="background" unique_id=317405340]
+position = Vector2(583, 584)
+scale = Vector2(0.055664036, 0.05175784)
+texture = ExtResource("3_tcrwk")
 
 [node name="Decorations" type="Node2D" parent="." unique_id=529668258]
 
@@ -563,3 +569,8 @@ texture = ExtResource("41_teacher1")
 position = Vector2(915.00006, 338)
 scale = Vector2(0.05275393, 0.04933595)
 texture = ExtResource("42_teacher2")
+
+[node name="1NpcStanding" type="Sprite2D" parent="." unique_id=1708538291]
+position = Vector2(500.99997, 55)
+scale = Vector2(0.055664036, 0.05175784)
+texture = ExtResource("3_tcrwk")

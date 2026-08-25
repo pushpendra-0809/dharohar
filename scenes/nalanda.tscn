@@ -51,29 +51,17 @@
 [ext_resource type="Texture2D" uid="uid://db3yq4j8h3b0c" path="res://assets/Elements/buildings/Treeee.png" id="49_treeee"]
 [ext_resource type="Texture2D" uid="uid://br7tfmnkr50eh" path="res://assets/Elements/buildings/vill-monument3.png" id="50_villmon3"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut01"]
-size = Vector2(88, 70)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut02"]
-size = Vector2(100, 75)
+size = Vector2(64.5, 43.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut03"]
-size = Vector2(80, 70)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut04"]
-size = Vector2(110, 70)
+size = Vector2(65.5, 53.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut05"]
-size = Vector2(95, 75)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut05_2"]
-size = Vector2(60, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_shelter"]
-size = Vector2(65, 40)
+size = Vector2(62, 34.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_housevil"]
-size = Vector2(85, 70)
+size = Vector2(48, 43.43701)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monvil"]
 size = Vector2(130, 95)
@@ -249,10 +237,6 @@ position = Vector2(678, 326)
 scale = Vector2(0.1915585, 0.20923913)
 texture = ExtResource("24_hut01")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut01Large" unique_id=1045331752]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut01")
-
 [node name="Hut02Small" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1673522908]
 position = Vector2(474, 239)
 
@@ -262,7 +246,7 @@ texture = ExtResource("25_hut02")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut02Small" unique_id=144124575]
-position = Vector2(0, 5)
+position = Vector2(5.75, 2.875)
 shape = SubResource("RectangleShape2D_hut02")
 
 [node name="Hut03Round" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1656480755]
@@ -273,7 +257,7 @@ scale = Vector2(0.20526953, 0.22449712)
 texture = ExtResource("26_hut03")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut03Round" unique_id=1522740824]
-position = Vector2(0, 5)
+position = Vector2(-3.75, -1.25)
 shape = SubResource("RectangleShape2D_hut03")
 
 [node name="Hut04Longhouse" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1503464611]
@@ -284,10 +268,6 @@ scale = Vector2(0.21969683, 0.2738516)
 texture = ExtResource("27_hut04")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut04Longhouse" unique_id=1999679446]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut04")
-
 [node name="Hut05Cottage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1321050680]
 position = Vector2(344, 255)
 
@@ -297,7 +277,7 @@ texture = ExtResource("28_hut05")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage" unique_id=357084955]
-position = Vector2(0, 5)
+position = Vector2(6, -15.25)
 shape = SubResource("RectangleShape2D_hut05")
 
 [node name="Hut05Cottage2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=670550816]
@@ -308,20 +288,12 @@ scale = Vector2(0.18402775, 0.17269737)
 texture = ExtResource("28_hut05")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage2" unique_id=1986363966]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut05_2")
-
 [node name="MarketShelter" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1972550522]
 position = Vector2(752, 245)
 
 [node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/MarketShelter" unique_id=1814287826]
 scale = Vector2(0.14887644, 0.14215681)
 texture = ExtResource("29_shelter")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/MarketShelter" unique_id=1051572926]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_shelter")
 
 [node name="HouseVillage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=851044039]
 position = Vector2(526.5, 359.563)
@@ -331,7 +303,7 @@ scale = Vector2(0.060547, 0.07727)
 texture = ExtResource("39_housevil")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/HouseVillage" unique_id=937046649]
-position = Vector2(0, 5)
+position = Vector2(1.5, 1.4370117)
 shape = SubResource("RectangleShape2D_housevil")
 
 [node name="MonumentVillage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1408178988]
@@ -413,10 +385,6 @@ texture = ExtResource("21_clothesline")
 [node name="Clothesline2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=809317292]
 position = Vector2(663, 167)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Clothesline2" unique_id=1931654973]
-scale = Vector2(0.13756274, 0.14624996)
-texture = ExtResource("21_clothesline")
-
 [node name="Matka" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1001092150]
 position = Vector2(609, 321)
 
@@ -492,7 +460,7 @@ scale = Vector2(0.06742354, 0.08563233)
 texture = ExtResource("49_treeee")
 
 [node name="Player" parent="." unique_id=1452783152 instance=ExtResource("3_player")]
-position = Vector2(30, 310)
+position = Vector2(28, 311)
 
 [node name="Teacher" parent="." unique_id=1511617067 instance=ExtResource("4_teacher")]
 position = Vector2(998, 497)
@@ -532,3 +500,26 @@ position = Vector2(1098, 191)
 [node name="LogicHeritageUI" parent="." unique_id=1677529968 instance=ExtResource("19_logicheritui")]
 
 [node name="NalandaInfoUI" parent="." unique_id=1823560840 instance=ExtResource("20_infoui")]
+
+[node name="City Collisions" type="StaticBody2D" parent="." unique_id=1561436524]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="City Collisions" unique_id=1471571070]
+polygon = PackedVector2Array(1, 308, 54, 229, 53, 165, 122, 103, 213, 99, 322, 83, 387, 104, 439, 88, 551, 91, 652, 75, 737, 78, 807, 76, 856, 91, 908, 89, 978, 95, 1040, 96, 1073, 119, 1083, 148, 1141, 156, 1152, 139, 1152, 4, 509, 6, 42, 5, 1, 7)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="City Collisions" unique_id=1681772211]
+polygon = PackedVector2Array(2, 356, 2, 642, 336, 644, 329, 619, 141, 550, 94, 518, 91, 420, 65, 385, 40, 387, 17, 358)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="City Collisions" unique_id=662984311]
+polygon = PackedVector2Array(335, 306, 369, 306, 378, 316, 380, 354, 382, 392, 388, 392, 398, 409, 423, 409, 436, 432, 473, 435, 477, 493, 463, 507, 424, 502, 401, 492, 393, 486, 369, 484, 345, 484, 326, 463, 329, 381, 309, 364, 312, 321)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="City Collisions" unique_id=32131695]
+polygon = PackedVector2Array(941, 295, 946, 327, 892, 400, 872, 425, 838, 425, 817, 430, 825, 465, 806, 482, 766, 486, 746, 507, 706, 502, 690, 485, 693, 438, 725, 430, 732, 410, 760, 404, 768, 302, 792, 285, 885, 292)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="City Collisions" unique_id=1934427256]
+polygon = PackedVector2Array(1012, 355, 1013, 385, 1035, 385, 1050, 386, 1067, 382, 1077, 377, 1103, 375, 1109, 365, 1124, 363, 1139, 372, 1151, 374, 1152, 322, 1119, 324, 1108, 327, 1098, 338, 1091, 349, 1076, 349, 1060, 356, 1031, 363, 1018, 358)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="City Collisions" unique_id=1685348489]
+polygon = PackedVector2Array(990, 356, 991, 397, 985, 412, 978, 430, 935, 441, 917, 441, 899, 453, 874, 471, 862, 499, 834, 526, 820, 540, 797, 548, 786, 558, 763, 561, 750, 574, 733, 591, 737, 612, 739, 632, 730, 647, 686, 646, 694, 624, 690, 593, 699, 568, 721, 551, 738, 539, 777, 521, 805, 500, 823, 483, 837, 460, 852, 442, 878, 427, 891, 422, 907, 421, 908, 413, 933, 408, 951, 406, 969, 387, 971, 370, 981, 361)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions" unique_id=1178359228]
+polygon = PackedVector2Array(1150, 386, 1100, 390, 1085, 390, 1073, 461, 1054, 481, 1051, 522, 1017, 552, 979, 545, 966, 586, 932, 607, 913, 619, 885, 617, 869, 628, 869, 638, 1148, 642)

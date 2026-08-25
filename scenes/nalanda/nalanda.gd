@@ -1,5 +1,7 @@
 extends Control
 
+const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
+
 @onready var dialogue_ui = $DialogueUI
 @onready var domain_ui = $DomainSelectionUI
 @onready var quiz_ui = $QuizUI
@@ -42,7 +44,24 @@ func _ready() -> void:
 	if player and player.has_method("set_map_limits"):
 		player.set_map_limits(0, 0, 1152, 648, 20.0, 1132.0, 30.0, 620.0)
 		
-	call_deferred("_check_pending_arrival_message")
+	call_deferred("_check_cutscene_or_arrival")
+
+func _check_cutscene_or_arrival() -> void:
+	if GameState and not GameState.has_played_nalanda_intro_cutscene:
+		GameState.has_played_nalanda_intro_cutscene = true
+		_play_intro_cutscene()
+	else:
+		_check_pending_arrival_message()
+
+func _play_intro_cutscene() -> void:
+	if GameState:
+		GameState.lock_player_movement()
+	CutscenePlayer.play_video(self, "res://assets/videos/video1.ogv", _on_cutscene_finished)
+
+func _on_cutscene_finished() -> void:
+	if GameState:
+		GameState.unlock_player_movement()
+	_check_pending_arrival_message()
 
 func _check_pending_arrival_message() -> void:
 	if GameState and GameState.pending_arrival_message.size() > 0:

@@ -42,6 +42,9 @@ var has_water: bool = false
 var has_visited_university: bool = false
 var has_returned_to_nalanda: bool = false
 var teacher2_convo_started: bool = false
+var has_played_nalanda_intro_cutscene: bool = false
+var has_played_math_cutscene: bool = false
+var has_played_astro_cutscene: bool = false
 
 func mark_teacher2_convo_started() -> void:
 	teacher2_convo_started = true
