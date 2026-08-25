@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var direction: Vector2 = Vector2.ZERO
-@export var speed: float = 300.0
+@export var speed: float = 120.0
 var can_move: bool = true
 
 # Last facing direction tracking

@@ -45,6 +45,7 @@ var teacher2_convo_started: bool = false
 var has_played_nalanda_intro_cutscene: bool = false
 var has_played_math_cutscene: bool = false
 var has_played_astro_cutscene: bool = false
+var has_shown_nalanda_controls_tutorial: bool = false
 
 func mark_teacher2_convo_started() -> void:
 	teacher2_convo_started = true

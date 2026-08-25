@@ -1,6 +1,7 @@
 extends Control
 
 const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
+const ControlsTutorialPlayer = preload("res://scripts/systems/ControlsTutorialPlayer.gd")
 
 @onready var dialogue_ui = $DialogueUI
 @onready var domain_ui = $DomainSelectionUI
@@ -69,7 +70,27 @@ func _check_pending_arrival_message() -> void:
 		GameState.pending_arrival_message = []
 		if dialogue_manager and dialogue_manager.has_method("start_dialogue"):
 			dialogue_manager.start_dialogue(msg_seq, _on_arrival_dialogue_finished)
+		else:
+			_check_controls_tutorial()
+	else:
+		_check_controls_tutorial()
 
 func _on_arrival_dialogue_finished() -> void:
+	_check_controls_tutorial()
+
+func _check_controls_tutorial() -> void:
+	if GameState and not GameState.has_shown_nalanda_controls_tutorial:
+		GameState.has_shown_nalanda_controls_tutorial = true
+		_show_controls_tutorial()
+	else:
+		if GameState:
+			GameState.unlock_player_movement()
+
+func _show_controls_tutorial() -> void:
+	if GameState:
+		GameState.lock_player_movement()
+	ControlsTutorialPlayer.show_tutorial(self, _on_controls_tutorial_closed)
+
+func _on_controls_tutorial_closed() -> void:
 	if GameState:
 		GameState.unlock_player_movement()
