@@ -1,0 +1,71 @@
+{
+  "pack": "Dharohar Village UI Pack",
+  "format": "PNG RGBA",
+  "assets": {
+    "hut_01_large": {
+      "file": "assets/hut_01_large.png",
+      "width": 462,
+      "height": 368
+    },
+    "hut_02_small": {
+      "file": "assets/hut_02_small.png",
+      "width": 434,
+      "height": 346
+    },
+    "hut_03_round": {
+      "file": "assets/hut_03_round.png",
+      "width": 408,
+      "height": 348
+    },
+    "hut_04_longhouse": {
+      "file": "assets/hut_04_longhouse.png",
+      "width": 528,
+      "height": 283
+    },
+    "hut_05_cottage": {
+      "file": "assets/hut_05_cottage.png",
+      "width": 324,
+      "height": 304
+    },
+    "market_shelter": {
+      "file": "assets/market_shelter.png",
+      "width": 445,
+      "height": 306
+    },
+    "well": {
+      "file": "assets/well.png",
+      "width": 174,
+      "height": 221
+    },
+    "haystack": {
+      "file": "assets/haystack.png",
+      "width": 175,
+      "height": 190
+    },
+    "woodpile": {
+      "file": "assets/woodpile.png",
+      "width": 174,
+      "height": 148
+    },
+    "garden_patch": {
+      "file": "assets/garden_patch.png",
+      "width": 259,
+      "height": 191
+    },
+    "wooden_cart": {
+      "file": "assets/wooden_cart.png",
+      "width": 222,
+      "height": 176
+    },
+    "clothesline": {
+      "file": "assets/clothesline.png",
+      "width": 199,
+      "height": 200
+    },
+    "tree": {
+      "file": "assets/tree.png",
+      "width": 189,
+      "height": 267
+    }
+  }
+}
