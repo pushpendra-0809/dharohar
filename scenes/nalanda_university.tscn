@@ -498,64 +498,64 @@ polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274
 
 [node name="StudentBoy1" type="Sprite2D" parent="Students" unique_id=987655171]
 position = Vector2(376, 73)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("37_boy1")
 
 [node name="StudentBoy4" type="Sprite2D" parent="Students" unique_id=957934955]
 position = Vector2(238, 165)
-scale = Vector2(0.04054689, 0.039570313)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("37_boy1")
 
 [node name="StudentBoy3" type="Sprite2D" parent="Students" unique_id=987655173]
 position = Vector2(662.98, 180.27998)
-scale = Vector2(0.04496095, 0.04333333)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("37_boy1")
 
 [node name="StudentGirl1" type="Sprite2D" parent="Students" unique_id=987655174]
 position = Vector2(241.99997, 383)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
 
 [node name="StudentGirl2" type="Sprite2D" parent="Students" unique_id=987655175]
 position = Vector2(530, 380)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
 
 [node name="StudentGirl4" type="Sprite2D" parent="Students" unique_id=1008979158]
 position = Vector2(445, 93)
-scale = Vector2(0.047308005, 0.049366925)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
 
 [node name="StudentGirl3" type="Sprite2D" parent="Students" unique_id=987655176]
 position = Vector2(695, 197)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
 
 [node name="Monks" type="Node2D" parent="." unique_id=987655180]
 
 [node name="Monk_Stupa1" type="Sprite2D" parent="Monks" unique_id=987655181]
 position = Vector2(592.745, 402.695)
-scale = Vector2(0.029794939, 0.02564457)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Stupa2" type="Sprite2D" parent="Monks" unique_id=987655182]
 position = Vector2(663, 475.99997)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Stupa3" type="Sprite2D" parent="Monks" unique_id=987655183]
 position = Vector2(723, 430.99997)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Library1" type="Sprite2D" parent="Monks" unique_id=987655184]
 position = Vector2(788.99994, 140)
-scale = Vector2(0.045, 0.045)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Library2" type="Sprite2D" parent="Monks" unique_id=987655185]
 position = Vector2(859.00006, 200)
-scale = Vector2(0.042031202, 0.042031247)
+scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Teachers" type="Node2D" parent="." unique_id=987655190]
