@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://b0bf0u5goipwr"]
 
-[ext_resource type="Script" path="res://scenes/main menu/main_menu.gd" id="1_vifqf"]
-[ext_resource type="Texture2D" path="res://assets/background/main_menu_screen.png" id="1_cbjxn"]
-[ext_resource type="Texture2D" path="res://assets/ui/button.png" id="2_8w606"]
-[ext_resource type="PackedScene" path="res://scenes/ui/ConfirmationDialog.tscn" id="3_confscene"]
+[ext_resource type="Texture2D" uid="uid://b4mhyiqp6ksdp" path="res://assets/background/main_menu_screen.png" id="1_cbjxn"]
+[ext_resource type="Script" uid="uid://vo088apmv8xo" path="res://scenes/main menu/main_menu.gd" id="1_vifqf"]
+[ext_resource type="Texture2D" uid="uid://jr86apsp7gff" path="res://assets/ui/button.png" id="2_8w606"]
+[ext_resource type="PackedScene" uid="uid://bskfpcfjcgufe" path="res://scenes/ui/ConfirmationDialog.tscn" id="3_confscene"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c5tw5"]
 texture = ExtResource("2_8w606")
@@ -46,11 +46,11 @@ offset_left = 400.0
 offset_top = 312.0
 offset_right = 732.0
 offset_bottom = 499.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_pssnx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cwi0r")
 theme_override_styles/normal = SubResource("StyleBoxTexture_c5tw5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cwi0r")
+theme_override_styles/hover = SubResource("StyleBoxTexture_pssnx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
-[node name="ConfirmationDialogUI" parent="." instance=ExtResource("3_confscene")]
+[node name="ConfirmationDialogUI" parent="." unique_id=1931929782 instance=ExtResource("3_confscene")]
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]

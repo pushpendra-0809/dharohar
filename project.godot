@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/systems/GameState.gd"
 
+[display]
+
+window/size/mode=3
+window/stretch/mode="canvas_items"
+
 [input]
 
 escape={
