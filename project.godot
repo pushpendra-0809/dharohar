@@ -21,8 +21,9 @@ GameState="*res://scripts/systems/GameState.gd"
 
 [display]
 
-window/size/mode=3
+window/size/mode=2
 window/stretch/mode="canvas_items"
+window/stretch/aspect="ignore"
 
 [input]
 
