@@ -58,7 +58,7 @@ Nalanda is our starting point for building a larger interactive heritage-learnin
 | 3 | **Raj Kumar Rana** | Core Team Member |
 | 4 | **Shiv Bharadwaj** | Core Team Member |
 | 5 | **Pratham Agarwal** | Core Team Member |
-| 6 | **Devansh Diwedi** | Core Team Member |
+| 6 | **Devansh Dwivedi** | Core Team Member |
 
 ---
 
