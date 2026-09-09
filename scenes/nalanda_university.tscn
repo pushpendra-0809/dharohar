@@ -34,12 +34,11 @@
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
 [ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="41_8td27"]
-[ext_resource type="Texture2D" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png" id="41_teacher1"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="42_qsrvs"]
 [ext_resource type="Texture2D" uid="uid://cjssmdq5iy7pg" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="42_teacher2"]
 [ext_resource type="Texture2D" uid="uid://djqwlaccwu0al" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing2.png" id="43_qsrvs"]
@@ -50,7 +49,7 @@
 size = Vector2(125, 156)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
-size = Vector2(155, 154)
+size = Vector2(155, 142)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nalmain"]
 size = Vector2(141, 148.9375)
@@ -388,7 +387,7 @@ scale = Vector2(0.1484375, 0.19189452)
 texture = ExtResource("14_build3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build3" unique_id=2008847505]
-position = Vector2(0, 2.25)
+position = Vector2(0, -3.75)
 shape = SubResource("RectangleShape2D_build3")
 
 [node name="NalandaMain" type="StaticBody2D" parent="Buildings" unique_id=830699931]
@@ -439,7 +438,7 @@ position = Vector2(859, 297)
 position = Vector2(347, 566)
 
 [node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
-position = Vector2(292, 309)
+position = Vector2(279, 275)
 
 [node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
 position = Vector2(347, 566)
@@ -542,7 +541,6 @@ texture = ExtResource("40_monk")
 [node name="Teacher_Standing1" type="Sprite2D" parent="Teachers" unique_id=987655191]
 position = Vector2(467.97998, 296.78)
 scale = Vector2(0.02933599, 0.03096355)
-texture = ExtResource("41_teacher1")
 
 [node name="Teacher_Standing2" type="Sprite2D" parent="Teachers" unique_id=987655192]
 position = Vector2(914, 342)

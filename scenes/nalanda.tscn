@@ -245,6 +245,21 @@ position = Vector2(836, 358)
 scale = Vector2(0.032283176, 0.02779063)
 texture = ExtResource("44_rocktrans")
 
+[node name="RoadStone1" type="Sprite2D" parent="Decorations" unique_id=1849904901]
+position = Vector2(855, 205)
+scale = Vector2(0.012, 0.012)
+texture = ExtResource("58_lp60u")
+
+[node name="RoadStone2" type="Sprite2D" parent="Decorations" unique_id=1849904902]
+position = Vector2(965, 235)
+scale = Vector2(0.014, 0.014)
+texture = ExtResource("58_lp60u")
+
+[node name="RoadMatka1" type="Sprite2D" parent="Decorations" unique_id=1849904903]
+position = Vector2(1040, 168)
+scale = Vector2(0.032, 0.036)
+texture = ExtResource("42_matka")
+
 [node name="BuildingsAndProps" type="Node2D" parent="." unique_id=2017894659]
 
 [node name="Hut01Large" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1405286360]
@@ -491,10 +506,6 @@ texture = ExtResource("48_tree_bldg")
 [node name="Treeee" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1561679572]
 position = Vector2(849.219, 314.156)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Treeee" unique_id=1821963373]
-scale = Vector2(0.06742354, 0.08563233)
-texture = ExtResource("49_treeee")
-
 [node name="Player" parent="." unique_id=1452783152 instance=ExtResource("3_player")]
 position = Vector2(28, 311)
 
@@ -508,7 +519,7 @@ position = Vector2(487, 109)
 position = Vector2(196, 453)
 
 [node name="UniversityMarker" parent="." unique_id=179212516 instance=ExtResource("7_univmarker")]
-position = Vector2(1000, -450)
+position = Vector2(1098, 125)
 
 [node name="UniversityEntrance" parent="." unique_id=548852281 instance=ExtResource("8_entrance")]
 position = Vector2(1098, 191)

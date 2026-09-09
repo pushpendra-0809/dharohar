@@ -7,11 +7,20 @@ static func play_video(parent: Node, video_path: String = "res://assets/videos/v
 	if not parent or not is_instance_valid(parent):
 		return null
 		
+	var audio_mgr = parent.get_node_or_null("/root/AudioManager")
+	if audio_mgr and audio_mgr.has_method("pause_bgm"):
+		audio_mgr.pause_bgm()
+		
 	var cutscene_instance = CUTSCENE_UI_SCENE.instantiate()
 	parent.add_child(cutscene_instance)
 	
-	if on_finished_callback.is_valid():
-		cutscene_instance.cutscene_finished.connect(on_finished_callback, CONNECT_ONE_SHOT)
+	var finish_wrapper = func():
+		if audio_mgr and audio_mgr.has_method("resume_bgm"):
+			audio_mgr.resume_bgm()
+		if on_finished_callback.is_valid():
+			on_finished_callback.call()
+			
+	cutscene_instance.cutscene_finished.connect(finish_wrapper, CONNECT_ONE_SHOT)
 		
 	var video_stream: VideoStream = null
 	if ResourceLoader.exists(video_path):
