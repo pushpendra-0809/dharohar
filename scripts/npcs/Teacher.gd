@@ -163,7 +163,7 @@ func _on_domain_selected(domain_id: String) -> void:
 		
 		var math_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "Mathematics is more than the study of numbers. In our land, scholars used mathematics to understand measurement, geometry, time, calculation, and even the movements of the heavens."},
-			{"speaker": "Silabhadra", "text": "Before we test your mathematical skills, let me share the ancient knowledge granth that shaped this tradition."}
+			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me share the ancient knowledge granth with you. Read it with great care—[u]all the questions in the quiz ahead will be asked directly from this granth.[/u]"}
 		]
 		dialogue_manager.start_dialogue(math_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	elif d_lower == "astronomy":
@@ -172,7 +172,7 @@ func _on_domain_selected(domain_id: String) -> void:
 		
 		var astro_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If astronomy is your path, let us see whether you understand the movements of the cosmos."},
-			{"speaker": "Silabhadra", "text": "Before we test your knowledge of the stars, let me open the astronomical records of our scholars."}
+			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me open the astronomical records of our scholars. Study every page carefully—[u]the questions you will face will be asked directly from what is written here.[/u]"}
 		]
 		dialogue_manager.start_dialogue(astro_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	elif d_lower == "medicine":
@@ -181,7 +181,7 @@ func _on_domain_selected(domain_id: String) -> void:
 		
 		var med_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If medicine is your path, let us see whether you understand the art of healing and balance."},
-			{"speaker": "Silabhadra", "text": "Before we test your understanding, let me open the healing treatises of our ancient physicians."}
+			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me open the healing treatises of our ancient physicians. Read each verse attentively—[u]your evaluation questions will be drawn straight from these pages.[/u]"}
 		]
 		dialogue_manager.start_dialogue(med_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	elif d_lower == "philosophy" or d_lower == "phil" or d_lower == "logic":
@@ -190,7 +190,7 @@ func _on_domain_selected(domain_id: String) -> void:
 		
 		var phil_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If philosophy is your path, let us see whether you seek wisdom through questioning and debate."},
-			{"speaker": "Silabhadra", "text": "Before we test your reasoning, let me share the philosophical debates and logic of our masters."}
+			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me share the philosophical debates and logic of our masters. Read them carefully—[u]your admission questions will be based entirely on this granth.[/u]"}
 		]
 		dialogue_manager.start_dialogue(phil_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	else:

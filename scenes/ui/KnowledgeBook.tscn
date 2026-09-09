@@ -110,12 +110,10 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="KnowledgeBook" type="CanvasLayer"]
-visible = false
-layer = 16
+layer = 25
 script = ExtResource("1_kbscript")
 
 [node name="DimOverlay" type="ColorRect" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -124,7 +122,6 @@ grow_vertical = 2
 color = Color(0.06, 0.04, 0.03, 0.72)
 
 [node name="BookContainer" type="Control" parent="."]
-visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(936, 624)
 layout_mode = 3
@@ -155,16 +152,16 @@ stretch_mode = 5
 [node name="LeftPage" type="VBoxContainer" parent="BookContainer"]
 layout_mode = 0
 offset_left = 148.0
-offset_top = 118.0
-offset_right = 436.0
-offset_bottom = 472.0
-theme_override_constants/separation = 5
+offset_top = 114.0
+offset_right = 438.0
+offset_bottom = 474.0
+theme_override_constants/separation = 6
 
 [node name="LeftTitle" type="Label" parent="BookContainer/LeftPage"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_font_bold")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "THE ART OF GAṆITA"
 autowrap_mode = 2
 
@@ -172,7 +169,7 @@ autowrap_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(0.5, 0.28, 0.12, 1)
 theme_override_fonts/font = ExtResource("6_font_semibold")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 text = "Foundation of Ancient Calculation"
 autowrap_mode = 2
 
@@ -185,9 +182,9 @@ color = Color(0.7, 0.52, 0.32, 0.8)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.18, 0.12, 0.08, 1)
-theme_override_constants/line_spacing = 2
+theme_override_constants/line_spacing = 3
 theme_override_fonts/font = ExtResource("5_font_reg")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 text = "In classical India, mathematics was known as Gaṇita—the science of calculation. It connected geometry, astronomy, architecture, and time."
 autowrap_mode = 2
 
@@ -198,25 +195,25 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_quote_box")
 [node name="LeftQuote" type="Label" parent="BookContainer/LeftPage/QuoteBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.36, 0.22, 0.1, 1)
-theme_override_constants/line_spacing = 1
+theme_override_constants/line_spacing = 2
 theme_override_fonts/font = ExtResource("4_font_med")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 11
 text = "\"Numbers are the universal language through which scholars comprehend the cosmos.\""
 autowrap_mode = 2
 
 [node name="RightPage" type="VBoxContainer" parent="BookContainer"]
 layout_mode = 0
-offset_left = 500.0
-offset_top = 118.0
+offset_left = 498.0
+offset_top = 114.0
 offset_right = 788.0
-offset_bottom = 472.0
-theme_override_constants/separation = 5
+offset_bottom = 474.0
+theme_override_constants/separation = 6
 
 [node name="RightTitle" type="Label" parent="BookContainer/RightPage"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_font_bold")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 16
 text = "CORE PILLARS"
 autowrap_mode = 2
 
@@ -229,9 +226,9 @@ color = Color(0.7, 0.52, 0.32, 0.8)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.18, 0.12, 0.08, 1)
-theme_override_constants/line_separation = 2
+theme_override_constants/line_separation = 3
 theme_override_fonts/normal_font = ExtResource("5_font_reg")
-theme_override_font_sizes/normal_font_size = 11
+theme_override_font_sizes/normal_font_size = 12
 bbcode_enabled = true
 text = "• Arithmetic (Pāṭīgaṇita): Fundamental calculations.
 
@@ -248,9 +245,9 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_insight_box")
 [node name="RightInsight" type="Label" parent="BookContainer/RightPage/InsightBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.42, 0.25, 0.1, 1)
-theme_override_constants/line_spacing = 1
+theme_override_constants/line_spacing = 2
 theme_override_fonts/font = ExtResource("6_font_semibold")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 11
 text = "Gaṇita formed the bedrock of all scientific inquiry in classical Indian universities."
 autowrap_mode = 2
 
@@ -275,7 +272,7 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0.45, 0.3, 0.15, 1)
 theme_override_fonts/font = ExtResource("4_font_med")
-theme_override_font_sizes/font_size = 11
+theme_override_font_sizes/font_size = 12
 text = "— Page 1 of 6 —"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -290,7 +287,7 @@ theme_override_colors/font_color = Color(0.95, 0.88, 0.75, 1)
 theme_override_colors/font_hover_color = Color(1, 0.95, 0.85, 1)
 theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.45, 0.6)
 theme_override_fonts/font = ExtResource("3_font_bold")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
@@ -307,7 +304,7 @@ theme_override_colors/font_color = Color(0.95, 0.88, 0.75, 1)
 theme_override_colors/font_hover_color = Color(1, 0.95, 0.85, 1)
 theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.45, 0.6)
 theme_override_fonts/font = ExtResource("3_font_bold")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")

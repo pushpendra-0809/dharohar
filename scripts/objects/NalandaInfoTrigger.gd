@@ -3,7 +3,7 @@ extends Area2D
 @onready var prompt_container: Node2D = $PromptContainer
 @onready var info_button: Button = $PromptContainer/InfoButton
 
-@export var prompt_title: String = "[ i ]  Learn about Nalanda's Library"
+@export var prompt_title: String = "i"
 @export var custom_cards_script: Script = null
 
 var _player_in_range: bool = false
@@ -15,6 +15,7 @@ func _ready() -> void:
 		body_exited.connect(_on_body_exited)
 		
 	if info_button:
+		info_button.text = "i"
 		if prompt_title != "":
 			info_button.text = prompt_title
 		if not info_button.pressed.is_connected(_on_info_button_pressed):

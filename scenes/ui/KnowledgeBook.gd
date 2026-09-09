@@ -37,15 +37,29 @@ var _turn_direction: int = 1 # 1 for next, -1 for prev
 const ANIM_FPS: float = 22.0
 
 func _get_game_state() -> Node:
-	if is_inside_tree() and get_tree().root:
-		return get_tree().root.get_node_or_null("GameState")
+	if is_inside_tree():
+		var n: Node = get_node_or_null("/root/GameState")
+		if n:
+			return n
+	var ml: MainLoop = Engine.get_main_loop()
+	if ml is SceneTree:
+		var st: SceneTree = ml as SceneTree
+		if st.root:
+			var n: Node = st.root.get_node_or_null("GameState")
+			if n:
+				return n
 	return null
 
 func _ready() -> void:
 	visible = false
+	layer = 25
 	process_mode = PROCESS_MODE_ALWAYS
 	if page_turn_anim:
 		page_turn_anim.visible = false
+	if dim_overlay:
+		dim_overlay.visible = true
+	if book_container:
+		book_container.visible = true
 	
 	if prev_button and not prev_button.pressed.is_connected(_on_prev_pressed):
 		prev_button.pressed.connect(_on_prev_pressed)
@@ -110,6 +124,10 @@ func open_knowledge_book(domain_id: String) -> void:
 		gs.lock_player_movement()
 		
 	visible = true
+	if dim_overlay:
+		dim_overlay.visible = true
+	if book_container:
+		book_container.visible = true
 	_render_page_instant(_current_page_index)
 	_animate_open()
 
@@ -125,12 +143,24 @@ func _animate_open() -> void:
 	if _open_close_tween and _open_close_tween.is_valid():
 		_open_close_tween.kill()
 		
+	if not is_inside_tree():
+		if dim_overlay:
+			dim_overlay.visible = true
+			dim_overlay.modulate.a = 1.0
+		if book_container:
+			book_container.visible = true
+			book_container.modulate.a = 1.0
+			book_container.scale = Vector2.ONE
+		return
+		
 	if dim_overlay:
+		dim_overlay.visible = true
 		dim_overlay.modulate = Color(1, 1, 1, 0)
 	if book_container:
+		book_container.visible = true
 		book_container.modulate = Color(1, 1, 1, 0)
 		book_container.scale = Vector2(0.92, 0.92)
-		book_container.pivot_offset = book_container.size / 2.0
+		book_container.pivot_offset = Vector2(468, 312)
 		
 	_open_close_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	if dim_overlay:
@@ -142,6 +172,14 @@ func _animate_open() -> void:
 func _animate_close() -> void:
 	if _open_close_tween and _open_close_tween.is_valid():
 		_open_close_tween.kill()
+		
+	if not is_inside_tree():
+		visible = false
+		var gs := _get_game_state()
+		if gs and gs.has_method("unlock_player_movement"):
+			gs.unlock_player_movement()
+		book_closed.emit()
+		return
 		
 	_open_close_tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	if dim_overlay:

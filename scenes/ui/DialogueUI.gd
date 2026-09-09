@@ -3,7 +3,7 @@ extends CanvasLayer
 
 @onready var dialogue_box: Control = $DialogueBox
 @onready var speaker_label: Label = $DialogueBox/SpeakerName
-@onready var text_label: Label = $DialogueBox/DialogueText
+@onready var text_label: Control = $DialogueBox/DialogueText
 @onready var continue_label: Label = $DialogueBox/ContinueLabel
 
 var _dialogue_manager: DialogueManager = null

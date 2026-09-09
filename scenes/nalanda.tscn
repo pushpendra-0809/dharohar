@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://b4tvguy7wvdv7" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
 [ext_resource type="PackedScene" uid="uid://dbp0nujiqj2h3" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="20_infoui"]
-
 [ext_resource type="Texture2D" uid="uid://bxgwyg7tcm4x4" path="res://assets/Elements/villagePack/clothesline.png" id="21_clothesline"]
 [ext_resource type="Texture2D" uid="uid://bb6at443pvgg4" path="res://assets/Elements/villagePack/garden_patch.png" id="22_gardenpatch"]
 [ext_resource type="Texture2D" uid="uid://cbql8umekh0ov" path="res://assets/Elements/villagePack/haystack.png" id="23_haystack"]
@@ -29,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://ir03hgcrw3mo" path="res://assets/Elements/villagePack/hut_03_round.png" id="26_hut03"]
 [ext_resource type="Texture2D" uid="uid://biduyrv417x7c" path="res://assets/Elements/villagePack/hut_04_longhouse.png" id="27_hut04"]
 [ext_resource type="Texture2D" uid="uid://b70ot0q3dndqn" path="res://assets/Elements/villagePack/hut_05_cottage.png" id="28_hut05"]
-[ext_resource type="Texture2D" uid="uid://comhnbd3j0qsb" path="res://assets/Elements/villagePack/market_shelter.png" id="29_shelter"]
 [ext_resource type="Texture2D" uid="uid://cw3ncgdtmsv4" path="res://assets/Elements/villagePack/tree.png" id="30_tree_vp"]
 [ext_resource type="Texture2D" uid="uid://bqr0dw3yqcw7n" path="res://assets/Elements/villagePack/well.png" id="31_well"]
 [ext_resource type="Texture2D" uid="uid://4ihi0qfbj6ff" path="res://assets/Elements/villagePack/wooden_cart.png" id="32_cart"]
@@ -69,7 +67,6 @@ size = Vector2(62, 34.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heg7l"]
 size = Vector2(48, 33)
-
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_housevil"]
 size = Vector2(70, 49.718506)
@@ -219,7 +216,7 @@ scale = Vector2(0.120656475, 0.12958108)
 texture = ExtResource("22_gardenpatch")
 
 [node name="Bridge3" type="Sprite2D" parent="Decorations" unique_id=975289743]
-position = Vector2(1001.99994, 373)
+position = Vector2(1000.99994, 373)
 rotation = -0.020392746
 scale = Vector2(0.07340404, 0.055981927)
 texture = ExtResource("40_bridge3")
@@ -310,14 +307,6 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage2" unique_id=1571878901]
 position = Vector2(1, -3.5)
 shape = SubResource("RectangleShape2D_heg7l")
-
-
-[node name="MarketShelter" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1972550522]
-position = Vector2(752, 245)
-
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/MarketShelter" unique_id=1814287826]
-scale = Vector2(0.14887644, 0.14215681)
-texture = ExtResource("29_shelter")
 
 [node name="HouseVillage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=851044039]
 position = Vector2(526.5, 359.563)
@@ -526,7 +515,6 @@ position = Vector2(1098, 191)
 [node name="NalandaInfoUI" parent="." unique_id=1823560840 instance=ExtResource("20_infoui")]
 
 [node name="City Collisions" type="StaticBody2D" parent="." unique_id=1561436524]
-
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="City Collisions" unique_id=1471571070]
 polygon = PackedVector2Array(1, 308, 54, 229, 53, 165, 122, 103, 213, 99, 322, 83, 387, 104, 439, 88, 551, 91, 652, 75, 737, 78, 807, 76, 856, 91, 908, 89, 978, 95, 1040, 96, 1073, 119, 1083, 148, 1141, 156, 1152, 139, 1152, 4, 509, 6, 42, 5, 1, 7)

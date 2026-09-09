@@ -56,7 +56,7 @@ theme_override_fonts/font = ExtResource("2_pixel_bold")
 theme_override_font_sizes/font_size = 30
 text = "Teacher"
 
-[node name="DialogueText" type="Label" parent="DialogueBox"]
+[node name="DialogueText" type="RichTextLabel" parent="DialogueBox"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,10 +67,14 @@ offset_right = -28.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
-theme_override_fonts/font = ExtResource("3_pixel_med")
-theme_override_font_sizes/font_size = 25
+theme_override_colors/default_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_fonts/normal_font = ExtResource("3_pixel_med")
+theme_override_fonts/bold_font = ExtResource("2_pixel_bold")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/bold_font_size = 25
+bbcode_enabled = true
 text = "Dialogue text goes here..."
+scroll_active = false
 autowrap_mode = 3
 
 [node name="ContinueLabel" type="Label" parent="DialogueBox"]

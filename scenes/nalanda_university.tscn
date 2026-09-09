@@ -19,7 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dcbk8i4r43lrd" path="res://assets/Elements/buildings/nalanda_main.png" id="16_nalmain"]
 [ext_resource type="Texture2D" uid="uid://dljgd4koh1p50" path="res://assets/Elements/buildings/build2.png" id="17_build2"]
 [ext_resource type="Texture2D" uid="uid://ctnsoqyqo1shg" path="res://assets/Elements/buildings/monument-nalanda.png" id="18_monnal"]
-[ext_resource type="Texture2D" uid="uid://cmqie2skymcbi" path="res://assets/Elements/buildings/Temple.png" id="19_temple"]
 [ext_resource type="Texture2D" uid="uid://bshtrcisejjgr" path="res://assets/Elements/buildings/table.png" id="20_table"]
 [ext_resource type="Texture2D" uid="uid://bxge4kmgrdvxx" path="res://assets/Elements/buildings/largerRock.png" id="21_rock"]
 [ext_resource type="Texture2D" uid="uid://bq4v47g4nydxa" path="res://assets/Elements/buildings/bush.png" id="22_bush"]
@@ -35,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
@@ -49,16 +48,13 @@ size = Vector2(125, 156)
 size = Vector2(155, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nalmain"]
-size = Vector2(169, 161.875)
+size = Vector2(141, 148.9375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monnal"]
-size = Vector2(138, 136)
+size = Vector2(93, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
-size = Vector2(205, 177.031)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
-size = Vector2(113, 97)
+size = Vector2(205, 161.5155)
 
 [node name="Nalanda_University" type="Control" unique_id=1796040786]
 layout_mode = 3
@@ -398,48 +394,41 @@ scale = Vector2(0.17859708, 0.1911634)
 texture = ExtResource("16_nalmain")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/NalandaMain" unique_id=1924959653]
-position = Vector2(4, 4.625)
+position = Vector2(-5.5, 11.09375)
 shape = SubResource("RectangleShape2D_nalmain")
 
 [node name="Stupa" type="StaticBody2D" parent="Buildings" unique_id=1466698734]
 position = Vector2(633, 387)
 
 [node name="Sprite2D" type="Sprite2D" parent="Buildings/Stupa" unique_id=932244119]
+position = Vector2(227, -123)
 scale = Vector2(0.13378909, 0.13281251)
 texture = ExtResource("18_monnal")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Stupa" unique_id=1483562840]
+position = Vector2(226, -104)
 shape = SubResource("RectangleShape2D_monnal")
 
 [node name="StupaInfoTrigger" parent="Buildings/Stupa" unique_id=987655150 instance=ExtResource("36_stupatrigger")]
-position = Vector2(0, 10)
+position = Vector2(226, -114)
 
-[node name="ArtLibrary" type="StaticBody2D" parent="Buildings" unique_id=711814442]
+[node name="Library" type="StaticBody2D" parent="Buildings" unique_id=711814442]
 position = Vector2(770.5, 135.969)
 
-[node name="Sprite2D" type="Sprite2D" parent="Buildings/ArtLibrary" unique_id=606947908]
+[node name="Sprite2D" type="Sprite2D" parent="Buildings/Library" unique_id=606947908]
 scale = Vector2(0.19856772, 0.20501705)
 texture = ExtResource("15_artlib")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/ArtLibrary" unique_id=1866675496]
-position = Vector2(-20.5, -10.968994)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Library" unique_id=1866675496]
+position = Vector2(-20.5, -18.726746)
 shape = SubResource("RectangleShape2D_artlibrary")
 
-[node name="LibraryInfoTrigger" parent="Buildings/ArtLibrary" unique_id=987655140 instance=ExtResource("32_infotrigger")]
-position = Vector2(96.5, -6.968992)
-prompt_title = "[ i ]  Learn about this place"
+[node name="LibraryInfoTrigger" parent="Buildings/Library" unique_id=987655140 instance=ExtResource("32_infotrigger")]
+position = Vector2(-16.5, 30.031008)
 custom_cards_script = ExtResource("34_libinfodata")
 
 [node name="Temple" type="StaticBody2D" parent="Buildings" unique_id=966198803]
 position = Vector2(859, 297)
-
-[node name="Sprite2D" type="Sprite2D" parent="Buildings/Temple" unique_id=587760364]
-scale = Vector2(0.1388168, 0.12600233)
-texture = ExtResource("19_temple")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Temple" unique_id=169785615]
-position = Vector2(2, 3)
-shape = SubResource("RectangleShape2D_temple")
 
 [node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
 position = Vector2(347, 566)
