@@ -3,6 +3,7 @@ extends Control
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var player = $Player
+@onready var scholar_reasoning_ui = get_node_or_null("ScholarReasoningUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null
@@ -19,6 +20,16 @@ func _ready() -> void:
 	if pause_manager and pause_manager.has_method("setup"):
 		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui)
 		
+	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
+		if npc.has_method("setup_manager"):
+			npc.setup_manager(dialogue_manager)
+		if npc.has_method("setup_scholar_ui") and scholar_reasoning_ui:
+			npc.setup_scholar_ui(scholar_reasoning_ui)
+			
+	for point in get_tree().get_nodes_in_group("interaction_points"):
+		if point.has_method("setup_manager"):
+			point.setup_manager(dialogue_manager)
+			
 	if player:
 		if player.has_method("set_camera_zoom"):
 			player.set_camera_zoom(Vector2(2.35, 2.35))
