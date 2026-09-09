@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameState="*res://scripts/systems/GameState.gd"
+DevModeManager="*res://scripts/systems/DevModeManager.gd"
 
 [display]
 

@@ -21,10 +21,17 @@ func _ready() -> void:
 
 	_update_ui_elements()
 
+func _is_dev_mode() -> bool:
+	var dev = get_node_or_null("/root/DevModeManager")
+	return dev != null and dev.dev_mode_enabled
+
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_in_range:
 		if event.is_action_pressed("interact"):
-			if GameState and GameState.merchant_water_quest_started and not GameState.water_collected:
+			if _is_dev_mode():
+				get_viewport().set_input_as_handled()
+				_collect_water()
+			elif GameState and GameState.merchant_water_quest_started and not GameState.water_collected:
 				get_viewport().set_input_as_handled()
 				_collect_water()
 			elif GameState and GameState.water_collected:
@@ -32,7 +39,8 @@ func _unhandled_input(event: InputEvent) -> void:
 				_show_notification("The vessel is already filled.")
 
 func _collect_water() -> void:
-	GameState.collect_water()
+	if GameState:
+		GameState.collect_water()
 	_update_ui_elements()
 	_show_notification("Water collected!")
 
@@ -61,7 +69,7 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var can_collect: bool = (GameState and GameState.merchant_water_quest_started and not GameState.water_collected)
+	var can_collect: bool = _is_dev_mode() or (GameState and GameState.merchant_water_quest_started and not GameState.water_collected)
 	var show_prompt: bool = _player_in_range and can_collect and not _notification_active
 	
 	if indicator:

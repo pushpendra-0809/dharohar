@@ -61,6 +61,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			_start_merchant_interaction()
 
+func _is_dev_mode() -> bool:
+	var dev = get_node_or_null("/root/DevModeManager")
+	return dev != null and dev.dev_mode_enabled
+
 func _can_interact() -> bool:
 	return dialogue_manager != null and not dialogue_manager.is_active()
 
@@ -68,6 +72,28 @@ func _start_merchant_interaction() -> void:
 	if not dialogue_manager:
 		push_error("Merchant: DialogueManager not assigned.")
 		return
+
+	# Dev Mode Handling: Always allow full flow testing
+	if _is_dev_mode():
+		if GameState and GameState.has_water:
+			current_state = State.WATER_COLLECTED
+			_update_ui_elements()
+			var complete_seq: Array = [
+				{"speaker": "Merchant", "text": "You have helped me well."},
+				{"speaker": "Merchant", "text": "You have earned the knowledge you seek."},
+				{"speaker": "Merchant", "text": "Nalanda lies beyond these roads. Follow the path ahead."}
+			]
+			dialogue_manager.start_dialogue(complete_seq, _on_water_completion_dialogue_finished)
+			return
+		else:
+			current_state = State.INTRO_DIALOGUE
+			_update_ui_elements()
+			var intro_seq: Array = [
+				{"speaker": "Merchant", "text": "Greetings traveller! I sell wares and share knowledge of Nalanda."},
+				{"speaker": "Merchant", "text": "Answer my questions about Nalanda to unlock your path ahead."}
+			]
+			dialogue_manager.start_dialogue(intro_seq, _start_merchant_quiz)
+			return
 
 	# State 1: Post Quest / Revealed persistent state
 	if GameState.water_quest_completed or GameState.university_location_revealed or current_state == State.UNIVERSITY_REVEALED:
@@ -143,25 +169,33 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		dialogue_manager.start_dialogue(fail_seq, _on_fail_dialogue_finished)
 
 func _on_pass_dialogue_finished() -> void:
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 
 func _on_fail_dialogue_finished() -> void:
 	GameState.start_water_quest()
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 
 func _on_reminder_dialogue_finished() -> void:
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 
 func _on_water_completion_dialogue_finished() -> void:
-	current_state = State.UNIVERSITY_REVEALED
+	current_state = State.AVAILABLE if _is_dev_mode() else State.UNIVERSITY_REVEALED
 	GameState.complete_water_quest()
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 
 func _on_repeat_dialogue_finished() -> void:
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 

@@ -134,3 +134,85 @@ func complete_water_quest() -> void:
 func mark_university_visited() -> void:
 	has_visited_university = true
 	quest_state_changed.emit()
+
+var session_exp: int = 0
+signal exp_changed(new_exp: int, delta: int)
+
+func add_exp(amount: int) -> void:
+	session_exp += amount
+	exp_changed.emit(session_exp, amount)
+
+func unlock_all_progression() -> void:
+	merchant_passed = true
+	merchant_quiz_completed = true
+	merchant_quiz_score = 5
+	water_quest_completed = true
+	water_collected = true
+	university_location_revealed = true
+	nalanda_location_revealed = true
+	
+	if selected_domain == "":
+		selected_domain = "mathematics"
+	teacher_quiz_completed = true
+	teacher_admitted = true
+	teacher_quiz_score = 5
+	
+	math_puzzle_completed = true
+	astronomy_puzzle_completed = true
+	medicine_puzzle_completed = true
+	philosophy_puzzle_completed = true
+	
+	has_visited_university = true
+	has_returned_to_nalanda = true
+	teacher2_convo_started = true
+	has_played_nalanda_intro_cutscene = true
+	has_played_math_cutscene = true
+	has_played_astro_cutscene = true
+	has_shown_nalanda_controls_tutorial = true
+	
+	merchant_state_changed.emit()
+	teacher_state_changed.emit()
+	quest_state_changed.emit()
+
+func reset_test_progression() -> void:
+	selected_domain = ""
+	teacher_quiz_score = 0
+	teacher_quiz_completed = false
+	teacher_admitted = false
+	teacher_retry_available = true
+	
+	math_puzzle_completed = false
+	medicine_puzzle_completed = false
+	astronomy_puzzle_completed = false
+	philosophy_puzzle_completed = false
+	
+	merchant_quiz_score = 0
+	merchant_quiz_completed = false
+	merchant_passed = false
+	merchant_retry_available = true
+	nalanda_location_revealed = false
+	
+	merchant_water_quest_started = false
+	water_collected = false
+	water_quest_completed = false
+	university_location_revealed = false
+	has_water = false
+	
+	has_visited_university = false
+	has_returned_to_nalanda = false
+	teacher2_convo_started = false
+	session_exp = 0
+	
+	use_target_spawn = false
+	target_spawn_position = Vector2.ZERO
+	pending_arrival_message = []
+	is_movement_locked = false
+	has_played_nalanda_intro_cutscene = false
+	has_played_math_cutscene = false
+	has_played_astro_cutscene = false
+	has_shown_nalanda_controls_tutorial = false
+	
+	merchant_state_changed.emit()
+	teacher_state_changed.emit()
+	quest_state_changed.emit()
+

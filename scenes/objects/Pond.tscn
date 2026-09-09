@@ -1,23 +1,25 @@
 [gd_scene format=3 uid="uid://c8wn1y1j6wj47"]
 
-[ext_resource type="Script" path="res://scripts/objects/Pond.gd" id="1_pondscript"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
+[ext_resource type="Script" uid="uid://b4naqeupcatr8" path="res://scripts/objects/Pond.gd" id="1_pondscript"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pond_body"]
-size = Vector2(190, 150)
+size = Vector2(151.5, 147.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
-radius = 107.64
+radius = 90.64
 
 [node name="Pond" type="StaticBody2D" unique_id=987123458]
 script = ExtResource("1_pondscript")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654323]
+position = Vector2(-7.75, -2.25)
 shape = SubResource("RectangleShape2D_pond_body")
 
 [node name="InteractionArea" type="Area2D" parent="." unique_id=456789125]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=654321989]
+position = Vector2(-1, 0)
 shape = SubResource("CircleShape2D_interaction")
 
 [node name="InteractionIndicator" type="Label" parent="." unique_id=321654989]

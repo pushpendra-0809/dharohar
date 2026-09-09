@@ -1,0 +1,329 @@
+[gd_scene format=3 uid="uid://c6knowledgebookui"]
+
+[ext_resource type="Script" path="res://scenes/ui/KnowledgeBook.gd" id="1_kbscript"]
+[ext_resource type="Texture2D" uid="uid://brpf60fok35fg" path="res://assets/ui/book.png" id="2_booktex"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_font_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_font_med"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="5_font_reg"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-SemiBold.ttf" id="6_font_semibold"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quote_box"]
+bg_color = Color(0.92, 0.84, 0.72, 0.75)
+border_width_left = 3
+border_color = Color(0.68, 0.48, 0.26, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 2
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_insight_box"]
+bg_color = Color(0.88, 0.80, 0.68, 0.75)
+border_width_left = 3
+border_color = Color(0.60, 0.40, 0.20, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 2
+content_margin_left = 8.0
+content_margin_top = 6.0
+content_margin_right = 8.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.24, 0.16, 0.10, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.60, 0.35, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.4)
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.38, 0.26, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.84, 0.45, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_disabled"]
+bg_color = Color(0.20, 0.16, 0.14, 0.5)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.38, 0.32, 0.5)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_btn_normal"]
+bg_color = Color(0.35, 0.12, 0.08, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.65, 0.35, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_close_btn_hover"]
+bg_color = Color(0.55, 0.18, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.5, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="KnowledgeBook" type="CanvasLayer"]
+visible = false
+layer = 16
+script = ExtResource("1_kbscript")
+
+[node name="DimOverlay" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06, 0.04, 0.03, 0.72)
+
+[node name="BookContainer" type="Control" parent="."]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(936, 624)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.0
+offset_top = -312.0
+offset_right = 468.0
+offset_bottom = 312.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OpenBookTexture" type="TextureRect" parent="BookContainer"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_booktex")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftPage" type="VBoxContainer" parent="BookContainer"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 118.0
+offset_right = 436.0
+offset_bottom = 472.0
+theme_override_constants/separation = 5
+
+[node name="LeftTitle" type="Label" parent="BookContainer/LeftPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 15
+text = "THE ART OF GAṆITA"
+autowrap_mode = 2
+
+[node name="LeftSubtitle" type="Label" parent="BookContainer/LeftPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.28, 0.12, 1)
+theme_override_fonts/font = ExtResource("6_font_semibold")
+theme_override_font_sizes/font_size = 11
+text = "Foundation of Ancient Calculation"
+autowrap_mode = 2
+
+[node name="LeftDivider" type="ColorRect" parent="BookContainer/LeftPage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.7, 0.52, 0.32, 0.8)
+
+[node name="LeftNarrative" type="Label" parent="BookContainer/LeftPage"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.18, 0.12, 0.08, 1)
+theme_override_constants/line_spacing = 2
+theme_override_fonts/font = ExtResource("5_font_reg")
+theme_override_font_sizes/font_size = 11
+text = "In classical India, mathematics was known as Gaṇita—the science of calculation. It connected geometry, astronomy, architecture, and time."
+autowrap_mode = 2
+
+[node name="QuoteBox" type="PanelContainer" parent="BookContainer/LeftPage"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_quote_box")
+
+[node name="LeftQuote" type="Label" parent="BookContainer/LeftPage/QuoteBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.36, 0.22, 0.1, 1)
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = ExtResource("4_font_med")
+theme_override_font_sizes/font_size = 10
+text = "\"Numbers are the universal language through which scholars comprehend the cosmos.\""
+autowrap_mode = 2
+
+[node name="RightPage" type="VBoxContainer" parent="BookContainer"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 118.0
+offset_right = 788.0
+offset_bottom = 472.0
+theme_override_constants/separation = 5
+
+[node name="RightTitle" type="Label" parent="BookContainer/RightPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 15
+text = "CORE PILLARS"
+autowrap_mode = 2
+
+[node name="RightDivider" type="ColorRect" parent="BookContainer/RightPage"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.7, 0.52, 0.32, 0.8)
+
+[node name="RightPoints" type="RichTextLabel" parent="BookContainer/RightPage"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.18, 0.12, 0.08, 1)
+theme_override_constants/line_separation = 2
+theme_override_fonts/normal_font = ExtResource("5_font_reg")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "• Arithmetic (Pāṭīgaṇita): Fundamental calculations.
+
+• Geometry: Measurement of sacred altars.
+
+• Astronomical Math: Seasonal calendars."
+scroll_active = false
+autowrap_mode = 2
+
+[node name="InsightBox" type="PanelContainer" parent="BookContainer/RightPage"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_insight_box")
+
+[node name="RightInsight" type="Label" parent="BookContainer/RightPage/InsightBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.25, 0.1, 1)
+theme_override_constants/line_spacing = 1
+theme_override_fonts/font = ExtResource("6_font_semibold")
+theme_override_font_sizes/font_size = 10
+text = "Gaṇita formed the bedrock of all scientific inquiry in classical Indian universities."
+autowrap_mode = 2
+
+[node name="PageTurnAnimation" type="AnimatedSprite2D" parent="BookContainer"]
+visible = false
+texture_filter = 1
+position = Vector2(468, 312)
+scale = Vector2(2.585, 2.585)
+
+[node name="PageIndicator" type="Label" parent="BookContainer"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -142.0
+offset_right = 100.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45, 0.3, 0.15, 1)
+theme_override_fonts/font = ExtResource("4_font_med")
+theme_override_font_sizes/font_size = 11
+text = "— Page 1 of 6 —"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PrevButton" type="Button" parent="BookContainer"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 480.0
+offset_right = 274.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.75, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.45, 0.6)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "◀ PREVIOUS"
+
+[node name="NextButton" type="Button" parent="BookContainer"]
+layout_mode = 0
+offset_left = 662.0
+offset_top = 480.0
+offset_right = 788.0
+offset_bottom = 514.0
+theme_override_colors/font_color = Color(0.95, 0.88, 0.75, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_disabled_color = Color(0.55, 0.5, 0.45, 0.6)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "NEXT ▶"
+
+[node name="CloseButton" type="Button" parent="BookContainer"]
+layout_mode = 0
+offset_left = 766.0
+offset_top = 78.0
+offset_right = 794.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(1, 0.9, 0.8, 1)
+theme_override_fonts/font = ExtResource("3_font_bold")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_close_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_close_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_close_btn_hover")
+text = "✕"

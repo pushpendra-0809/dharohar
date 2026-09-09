@@ -28,8 +28,9 @@ var astro_heritage_ui: Node = null
 var med_heritage_ui: Node = null
 var phil_heritage_ui: Node = null
 var logic_heritage_ui: Node = null
+var knowledge_book_ui: Node = null
 
-func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSelectionUI, math_h_ui: Node = null, astro_h_ui: Node = null, med_h_ui: Node = null, phil_h_ui: Node = null, logic_h_ui: Node = null) -> void:
+func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSelectionUI, math_h_ui: Node = null, astro_h_ui: Node = null, med_h_ui: Node = null, phil_h_ui: Node = null, logic_h_ui: Node = null, kb_ui: Node = null) -> void:
 	dialogue_manager = d_mgr
 	quiz_manager = q_mgr
 	domain_ui = dom_ui
@@ -38,6 +39,7 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 	med_heritage_ui = med_h_ui
 	phil_heritage_ui = phil_h_ui
 	logic_heritage_ui = logic_h_ui
+	knowledge_book_ui = kb_ui
 	
 	if domain_ui:
 		if not domain_ui.domain_selected.is_connected(_on_domain_selected):
@@ -54,6 +56,12 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 	if dialogue_manager:
 		if not dialogue_manager.dialogue_cancelled.is_connected(_on_interaction_cancelled):
 			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
+
+	if knowledge_book_ui:
+		if not knowledge_book_ui.book_completed.is_connected(_on_knowledge_book_completed):
+			knowledge_book_ui.book_completed.connect(_on_knowledge_book_completed)
+		if not knowledge_book_ui.book_closed.is_connected(_on_interaction_cancelled):
+			knowledge_book_ui.book_closed.connect(_on_interaction_cancelled)
 
 	if math_heritage_ui:
 		if not math_heritage_ui.heritage_completed.is_connected(_on_math_heritage_completed):
@@ -75,7 +83,14 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 		if not logic_heritage_ui.heritage_completed.is_connected(_on_logic_heritage_completed):
 			logic_heritage_ui.heritage_completed.connect(_on_logic_heritage_completed)
 
+
+func _is_dev_mode() -> bool:
+	var dev = get_node_or_null("/root/DevModeManager")
+	return dev != null and dev.dev_mode_enabled
+
 func is_teacher_unlocked() -> bool:
+	if _is_dev_mode():
+		return true
 	if not GameState:
 		return false
 	return GameState.water_quest_completed or GameState.university_location_revealed or GameState.merchant_passed
@@ -94,7 +109,7 @@ func _ready() -> void:
 		cooldown_timer.timeout.connect(_on_cooldown_timeout)
 	
 	if GameState:
-		if GameState.teacher_admitted:
+		if GameState.teacher_admitted and not _is_dev_mode():
 			current_state = State.ADMITTED
 		if not GameState.merchant_state_changed.is_connected(_on_merchant_state_changed):
 			GameState.merchant_state_changed.connect(_on_merchant_state_changed)
@@ -104,7 +119,7 @@ func _ready() -> void:
 	_update_ui_elements()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_in_range and current_state == State.AVAILABLE and is_teacher_unlocked():
+	if _player_in_range and (_is_dev_mode() or current_state == State.AVAILABLE) and is_teacher_unlocked():
 		if event.is_action_pressed("interact"):
 			get_viewport().set_input_as_handled()
 			_start_teacher_interaction()
@@ -148,80 +163,50 @@ func _on_domain_selected(domain_id: String) -> void:
 		
 		var math_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "Mathematics is more than the study of numbers. In our land, scholars used mathematics to understand measurement, geometry, time, calculation, and even the movements of the heavens."},
-			{"speaker": "Silabhadra", "text": "Before we test your mathematical skills, let me tell you about some of the scholars and ideas that shaped this tradition."}
+			{"speaker": "Silabhadra", "text": "Before we test your mathematical skills, let me share the ancient knowledge granth that shaped this tradition."}
 		]
-		dialogue_manager.start_dialogue(math_intro_seq, func():
-			if math_heritage_ui:
-				math_heritage_ui.open_heritage()
-			else:
-				_on_math_heritage_completed()
-		)
+		dialogue_manager.start_dialogue(math_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	elif d_lower == "astronomy":
 		current_state = State.HERITAGE
 		_update_ui_elements()
 		
 		var astro_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If astronomy is your path, let us see whether you understand the movements of the cosmos."},
-			{"speaker": "Silabhadra", "text": "Before we test your knowledge of the stars, let me share how our ancient scholars observed the heavens."}
+			{"speaker": "Silabhadra", "text": "Before we test your knowledge of the stars, let me open the astronomical records of our scholars."}
 		]
-		dialogue_manager.start_dialogue(astro_intro_seq, func():
-			if astro_heritage_ui:
-				astro_heritage_ui.open_heritage()
-			else:
-				_on_astro_heritage_completed()
-		)
+		dialogue_manager.start_dialogue(astro_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	elif d_lower == "medicine":
 		current_state = State.HERITAGE
 		_update_ui_elements()
 		
 		var med_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If medicine is your path, let us see whether you understand the art of healing and balance."},
-			{"speaker": "Silabhadra", "text": "Before we test your understanding, let me share how our ancient scholars studied health and healing."}
+			{"speaker": "Silabhadra", "text": "Before we test your understanding, let me open the healing treatises of our ancient physicians."}
 		]
-		dialogue_manager.start_dialogue(med_intro_seq, func():
-			if med_heritage_ui:
-				med_heritage_ui.open_heritage()
-			else:
-				_on_med_heritage_completed()
-		)
-	elif d_lower == "philosophy":
+		dialogue_manager.start_dialogue(med_intro_seq, func(): _open_knowledge_book(_selected_domain))
+	elif d_lower == "philosophy" or d_lower == "phil" or d_lower == "logic":
 		current_state = State.HERITAGE
 		_update_ui_elements()
 		
 		var phil_intro_seq: Array = [
 			{"speaker": "Silabhadra", "text": "If philosophy is your path, let us see whether you seek wisdom through questioning and debate."},
-			{"speaker": "Silabhadra", "text": "Before we test your reasoning, let me share how our ancient scholars explored the nature of truth."}
+			{"speaker": "Silabhadra", "text": "Before we test your reasoning, let me share the philosophical debates and logic of our masters."}
 		]
-		dialogue_manager.start_dialogue(phil_intro_seq, func():
-			if phil_heritage_ui:
-				phil_heritage_ui.open_heritage()
-			else:
-				_on_phil_heritage_completed()
-		)
-	elif d_lower == "logic":
-		current_state = State.HERITAGE
-		_update_ui_elements()
-		
-		var logic_intro_seq: Array = [
-			{"speaker": "Silabhadra", "text": "If logic is your path, let us see whether you can analyze arguments and deduce truth."},
-			{"speaker": "Silabhadra", "text": "Before we test your logical skills, let me share how our ancient scholars developed the art of reasoning."}
-		]
-		dialogue_manager.start_dialogue(logic_intro_seq, func():
-			if logic_heritage_ui:
-				logic_heritage_ui.open_heritage()
-			else:
-				_on_logic_heritage_completed()
-		)
+		dialogue_manager.start_dialogue(phil_intro_seq, func(): _open_knowledge_book(_selected_domain))
 	else:
-		current_state = State.QUIZ
-		_update_ui_elements()
-		
-		var intro_text: String = QuestionData.get_domain_intro(domain_id)
-		var domain_seq: Array = [
-			{"speaker": "Silabhadra", "text": intro_text}
-		]
-		
-		dialogue_manager.start_dialogue(domain_seq, _start_domain_quiz)
+		_start_domain_quiz()
+
+func _open_knowledge_book(domain_id: String) -> void:
+	if knowledge_book_ui and is_instance_valid(knowledge_book_ui) and knowledge_book_ui.has_method("open_knowledge_book"):
+		knowledge_book_ui.open_knowledge_book(domain_id)
+	else:
+		KnowledgeBook.open_book(get_tree().root, domain_id, _on_knowledge_book_completed, _on_interaction_cancelled)
+
+func _on_knowledge_book_completed(_domain_id: String) -> void:
+	current_state = State.QUIZ
+	_update_ui_elements()
+	_start_domain_quiz()
+
 
 func _on_math_heritage_completed() -> void:
 	current_state = State.QUIZ
@@ -289,27 +274,54 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		GameState.record_teacher_admission(_selected_domain, score)
 		_update_ui_elements()
 		
-		var pass_msg: String = "You are admitted."
-		if _selected_domain.to_lower() == "mathematics" or _selected_domain.to_lower() == "math":
-			pass_msg = "You have learned about the mathematical traditions of our scholars. Now, let us see how you use numbers and reasoning yourself."
+		var pass_seq: Array = []
+		var d_low := _selected_domain.to_lower()
+		if "math" in d_low:
+			pass_seq = [
+				{"speaker": "Silabhadra", "text": "Well done, seeker! You have demonstrated a sharp grasp of our mathematical heritage."},
+				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—your journey as a scholar begins!"}
+			]
+		elif "astro" in d_low:
+			pass_seq = [
+				{"speaker": "Silabhadra", "text": "Splendid! You observe the heavens and planetary rhythms with true scholarly clarity."},
+				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—the observatory and teachers await you!"}
+			]
+		elif "med" in d_low:
+			pass_seq = [
+				{"speaker": "Silabhadra", "text": "Commendable! You understand the balance of elements and healing wisdom of Ayurveda."},
+				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates to deepen your study!"}
+			]
+		elif "phil" in d_low or "logic" in d_low:
+			pass_seq = [
+				{"speaker": "Silabhadra", "text": "Remarkable! You have shown great clarity of reasoning, discernment, and debate."},
+				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—the great hall of discourse awaits!"}
+			]
+		else:
+			pass_seq = [
+				{"speaker": "Silabhadra", "text": "Excellent work! You have proven your dedication to knowledge and wisdom."},
+				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—your journey begins!"}
+			]
 			
-		var pass_seq: Array = [
-			{"speaker": "Silabhadra", "text": pass_msg}
-		]
-		dialogue_manager.start_dialogue(pass_seq, _on_pass_dialogue_finished)
+		if dialogue_manager:
+			dialogue_manager.start_dialogue(pass_seq, _on_pass_dialogue_finished)
+		else:
+			_on_pass_dialogue_finished()
 	else:
 		current_state = State.WAITING
 		GameState.teacher_retry_available = false
 		_update_ui_elements()
 		
-		var fail_msg: String = "You have much to learn. Try again later."
+		var fail_msg: String = "You have much to learn. Reflect on what you have studied and try again."
 		if _selected_domain.to_lower() == "mathematics" or _selected_domain.to_lower() == "math":
-			fail_msg = "Not quite. Think back to what you just learned and try again."
+			fail_msg = "Not quite. Think back to the teachings of Aryabhata and Brahmagupta, and try again."
 			
 		var fail_seq: Array = [
 			{"speaker": "Silabhadra", "text": fail_msg}
 		]
-		dialogue_manager.start_dialogue(fail_seq, _on_fail_dialogue_finished)
+		if dialogue_manager:
+			dialogue_manager.start_dialogue(fail_seq, _on_fail_dialogue_finished)
+		else:
+			_on_fail_dialogue_finished()
 
 func _on_interaction_cancelled() -> void:
 	if current_state != State.ADMITTED and current_state != State.WAITING:
@@ -318,17 +330,22 @@ func _on_interaction_cancelled() -> void:
 		_update_ui_elements()
 
 func _on_pass_dialogue_finished() -> void:
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
 	GameState.unlock_player_movement()
 	_update_ui_elements()
 
 func _on_fail_dialogue_finished() -> void:
+	if _is_dev_mode():
+		current_state = State.AVAILABLE
+		GameState.teacher_retry_available = true
 	GameState.unlock_player_movement()
 	_update_ui_elements()
-	if cooldown_timer:
+	if cooldown_timer and not _is_dev_mode():
 		cooldown_timer.start(15.0)
 
 func _on_cooldown_timeout() -> void:
-	if current_state != State.ADMITTED:
+	if current_state != State.ADMITTED or _is_dev_mode():
 		current_state = State.AVAILABLE
 		GameState.teacher_retry_available = true
 		_update_ui_elements()
@@ -344,7 +361,7 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var is_available: bool = (current_state == State.AVAILABLE and GameState.teacher_retry_available and is_teacher_unlocked())
+	var is_available: bool = _is_dev_mode() or (current_state == State.AVAILABLE and GameState.teacher_retry_available and is_teacher_unlocked())
 	var show_indicator: bool = _player_in_range and is_available
 	var show_press_e: bool = _player_in_range and is_available
 	

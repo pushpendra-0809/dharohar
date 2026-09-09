@@ -18,11 +18,19 @@ func is_active() -> bool:
 
 func start_quiz(domain_id: String) -> void:
 	_domain_id = domain_id
-	_questions = QuestionData.get_questions(domain_id).duplicate()
+	var all_q: Array = QuestionData.get_questions(domain_id).duplicate()
 	
-	if _questions.is_empty():
+	if all_q.is_empty():
 		push_error("QuizManager: No questions found for domain: " + domain_id)
 		return
+
+	if all_q.size() > 5:
+		var shuffled: Array = all_q.duplicate()
+		shuffled.shuffle()
+		_questions = shuffled.slice(0, 5)
+	else:
+		_questions = all_q.duplicate()
+
 
 	_current_index = 0
 	_score = 0

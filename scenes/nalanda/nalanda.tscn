@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://b4tvguy7wvdv7" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
 [ext_resource type="PackedScene" uid="uid://dbp0nujiqj2h3" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="20_infoui"]
+
 [ext_resource type="Texture2D" uid="uid://bxgwyg7tcm4x4" path="res://assets/Elements/villagePack/clothesline.png" id="21_clothesline"]
 [ext_resource type="Texture2D" uid="uid://bb6at443pvgg4" path="res://assets/Elements/villagePack/garden_patch.png" id="22_gardenpatch"]
 [ext_resource type="Texture2D" uid="uid://cbql8umekh0ov" path="res://assets/Elements/villagePack/haystack.png" id="23_haystack"]
@@ -657,6 +658,7 @@ position = Vector2(1098, 191)
 [node name="NalandaInfoUI" parent="." instance=ExtResource("20_infoui")]
 
 [node name="City Collisions" type="StaticBody2D" parent="."]
+
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="City Collisions"]
 polygon = PackedVector2Array(1, 308, 54, 229, 53, 165, 122, 103, 213, 99, 322, 83, 387, 104, 439, 88, 551, 91, 652, 75, 737, 78, 807, 76, 856, 91, 908, 89, 978, 95, 1040, 96, 1073, 119, 1083, 148, 1141, 156, 1152, 139, 1152, 4, 509, 6, 42, 5, 1, 7)

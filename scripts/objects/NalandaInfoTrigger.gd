@@ -3,7 +3,7 @@ extends Area2D
 @onready var prompt_container: Node2D = $PromptContainer
 @onready var info_button: Button = $PromptContainer/InfoButton
 
-@export var prompt_title: String = "[ i ]  Learn about Nalanda"
+@export var prompt_title: String = "[ i ]  Learn about Nalanda's Library"
 @export var custom_cards_script: Script = null
 
 var _player_in_range: bool = false

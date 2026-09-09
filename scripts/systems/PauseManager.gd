@@ -9,8 +9,9 @@ var math_puzzle_ui: Node = null
 var med_puzzle_ui: Node = null
 var astro_puzzle_ui: Node = null
 var phil_puzzle_ui: Node = null
+var knowledge_book_ui: Node = null
 
-func setup(d_mgr = null, q_mgr = null, dom_ui = null, pause_ui = null, m_puzzle_ui = null, med_p_ui = null, astro_p_ui = null, phil_p_ui = null) -> void:
+func setup(d_mgr = null, q_mgr = null, dom_ui = null, pause_ui = null, m_puzzle_ui = null, med_p_ui = null, astro_p_ui = null, phil_p_ui = null, kb_ui = null) -> void:
 	dialogue_manager = d_mgr
 	quiz_manager = q_mgr
 	domain_ui = dom_ui
@@ -19,7 +20,9 @@ func setup(d_mgr = null, q_mgr = null, dom_ui = null, pause_ui = null, m_puzzle_
 	med_puzzle_ui = med_p_ui
 	astro_puzzle_ui = astro_p_ui
 	phil_puzzle_ui = phil_p_ui
+	knowledge_book_ui = kb_ui
 	process_mode = PROCESS_MODE_ALWAYS
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause") or event.is_action_pressed("escape"):
@@ -38,6 +41,13 @@ func handle_escape_pressed() -> void:
 		if dialogue_manager.has_method("cancel_dialogue"):
 			dialogue_manager.cancel_dialogue()
 		return
+		
+	# Priority 2.5: ELSE IF Knowledge Book is open -> close knowledge book
+	if knowledge_book_ui and ("visible" in knowledge_book_ui) and knowledge_book_ui.visible:
+		if knowledge_book_ui.has_method("close_knowledge_book"):
+			knowledge_book_ui.close_knowledge_book()
+		return
+
 		
 	# Priority 3: ELSE IF Mathematics puzzle UI is open -> close puzzle UI
 	if math_puzzle_ui and ("visible" in math_puzzle_ui) and math_puzzle_ui.visible:

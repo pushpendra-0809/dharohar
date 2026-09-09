@@ -12,6 +12,7 @@ const ControlsTutorialPlayer = preload("res://scripts/systems/ControlsTutorialPl
 @onready var med_heritage_ui = $MedHeritageUI
 @onready var phil_heritage_ui = $PhilHeritageUI
 @onready var logic_heritage_ui = $LogicHeritageUI
+var knowledge_book_ui: Node = null
 @onready var teacher = $Teacher
 @onready var merchant = $Merchant
 @onready var player = $Player
@@ -34,10 +35,11 @@ func _ready() -> void:
 	if quiz_ui and quiz_ui.has_method("setup"):
 		quiz_ui.setup(quiz_manager)
 	if pause_manager and pause_manager.has_method("setup"):
-		pause_manager.call("setup", dialogue_manager, quiz_manager, domain_ui, pause_menu_ui)
+		pause_manager.call("setup", dialogue_manager, quiz_manager, domain_ui, pause_menu_ui, null, null, null, null, knowledge_book_ui)
 	
 	if teacher and teacher.has_method("setup_managers"):
-		teacher.setup_managers(dialogue_manager, quiz_manager, domain_ui, math_heritage_ui, astro_heritage_ui, med_heritage_ui, phil_heritage_ui, logic_heritage_ui)
+		teacher.setup_managers(dialogue_manager, quiz_manager, domain_ui, math_heritage_ui, astro_heritage_ui, med_heritage_ui, phil_heritage_ui, logic_heritage_ui, knowledge_book_ui)
+
 		
 	if merchant and merchant.has_method("setup_managers"):
 		merchant.setup_managers(dialogue_manager, quiz_manager)
