@@ -34,12 +34,17 @@
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
-[ext_resource type="Texture2D" uid="uid://dldxg1kcunfj6" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png" id="41_teacher1"]
+[ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="41_8td27"]
+[ext_resource type="Texture2D" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png" id="41_teacher1"]
+[ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="42_qsrvs"]
 [ext_resource type="Texture2D" uid="uid://cjssmdq5iy7pg" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="42_teacher2"]
+[ext_resource type="Texture2D" uid="uid://djqwlaccwu0al" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing2.png" id="43_qsrvs"]
+[ext_resource type="Texture2D" uid="uid://c4bpal7twma6w" path="res://assets/Elements/buildings/Tomb.png" id="44_ljjcv"]
+[ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="45_0kcse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -84,8 +89,8 @@ texture = ExtResource("3_tcrwk")
 [node name="Decorations" type="Node2D" parent="." unique_id=529668258]
 
 [node name="GrassBush" type="Sprite2D" parent="Decorations" unique_id=357454695]
-position = Vector2(183, 127)
-scale = Vector2(0.081584, 0.072998)
+position = Vector2(168.17174, 132.68748)
+scale = Vector2(0.062276367, 0.06188963)
 texture = ExtResource("31_grassbush")
 
 [node name="Bush_1" type="Sprite2D" parent="Decorations" unique_id=58747943]
@@ -125,12 +130,12 @@ scale = Vector2(0.025798, 0.024902)
 texture = ExtResource("24_bush2")
 
 [node name="Bush3_1" type="Sprite2D" parent="Decorations" unique_id=1316332744]
-position = Vector2(583, 387)
-scale = Vector2(0.032227, 0.041016)
+position = Vector2(573, 363.00003)
+scale = Vector2(0.0271812, 0.031250205)
 texture = ExtResource("23_bush3")
 
 [node name="Bush3_2" type="Sprite2D" parent="Decorations" unique_id=559131108]
-position = Vector2(680, 391)
+position = Vector2(687.99994, 436.00003)
 scale = Vector2(0.02824, 0.031462)
 texture = ExtResource("23_bush3")
 
@@ -140,8 +145,8 @@ scale = Vector2(0.035811, 0.03941)
 texture = ExtResource("23_bush3")
 
 [node name="Bush3_4" type="Sprite2D" parent="Decorations" unique_id=590523477]
-position = Vector2(207, 108)
-scale = Vector2(0.049482, 0.051264)
+position = Vector2(198, 120.99999)
+scale = Vector2(0.040366, 0.041257005)
 texture = ExtResource("23_bush3")
 
 [node name="Bush3_5" type="Sprite2D" parent="Decorations" unique_id=1726532121]
@@ -245,7 +250,7 @@ scale = Vector2(0.038981, 0.039307)
 texture = ExtResource("20_table")
 
 [node name="Table2" type="Sprite2D" parent="Decorations" unique_id=1556339074]
-position = Vector2(741, 266)
+position = Vector2(742, 261)
 scale = Vector2(0.036973, 0.036621)
 texture = ExtResource("20_table")
 flip_h = true
@@ -486,80 +491,95 @@ polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274
 [node name="Students" type="Node2D" parent="." unique_id=987655170]
 
 [node name="StudentBoy1" type="Sprite2D" parent="Students" unique_id=987655171]
-position = Vector2(376, 73)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("37_boy1")
-
-[node name="StudentBoy4" type="Sprite2D" parent="Students" unique_id=957934955]
-position = Vector2(238, 165)
-scale = Vector2(0.03, 0.03)
+position = Vector2(714.91003, 368.25998)
+scale = Vector2(0.033378854, 0.031588543)
 texture = ExtResource("37_boy1")
 
 [node name="StudentBoy3" type="Sprite2D" parent="Students" unique_id=987655173]
-position = Vector2(662.98, 180.27998)
+position = Vector2(616, 162)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("37_boy1")
 
-[node name="StudentGirl1" type="Sprite2D" parent="Students" unique_id=987655174]
-position = Vector2(241.99997, 383)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("39_girl1")
-
 [node name="StudentGirl2" type="Sprite2D" parent="Students" unique_id=987655175]
-position = Vector2(530, 380)
-scale = Vector2(0.03, 0.03)
+position = Vector2(515, 393.00003)
+scale = Vector2(0.026718749, 0.025416661)
 texture = ExtResource("39_girl1")
 
 [node name="StudentGirl4" type="Sprite2D" parent="Students" unique_id=1008979158]
-position = Vector2(445, 93)
+position = Vector2(454, 131)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
 
 [node name="StudentGirl3" type="Sprite2D" parent="Students" unique_id=987655176]
-position = Vector2(695, 197)
+position = Vector2(689, 208)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("39_girl1")
+
+[node name="Girl2" type="Sprite2D" parent="Students" unique_id=1924101427]
+position = Vector2(152, 359)
+scale = Vector2(0.040649418, 0.03873697)
+texture = ExtResource("45_0kcse")
 
 [node name="Monks" type="Node2D" parent="." unique_id=987655180]
 
 [node name="Monk_Stupa1" type="Sprite2D" parent="Monks" unique_id=987655181]
-position = Vector2(592.745, 402.695)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("40_monk")
-
-[node name="Monk_Stupa2" type="Sprite2D" parent="Monks" unique_id=987655182]
-position = Vector2(663, 475.99997)
-scale = Vector2(0.03, 0.03)
+position = Vector2(546, 457.00003)
+scale = Vector2(0.02574211, 0.025416661)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Stupa3" type="Sprite2D" parent="Monks" unique_id=987655183]
-position = Vector2(723, 430.99997)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("40_monk")
-
-[node name="Monk_Library1" type="Sprite2D" parent="Monks" unique_id=987655184]
-position = Vector2(788.99994, 140)
-scale = Vector2(0.03, 0.03)
+position = Vector2(385, 80)
+scale = Vector2(0.025742168, 0.025416678)
 texture = ExtResource("40_monk")
 
 [node name="Monk_Library2" type="Sprite2D" parent="Monks" unique_id=987655185]
-position = Vector2(859.00006, 200)
+position = Vector2(832, 207)
 scale = Vector2(0.03, 0.03)
 texture = ExtResource("40_monk")
 
 [node name="Teachers" type="Node2D" parent="." unique_id=987655190]
 
 [node name="Teacher_Standing1" type="Sprite2D" parent="Teachers" unique_id=987655191]
-position = Vector2(475.99997, 284.28)
-scale = Vector2(0.045, 0.047239583)
+position = Vector2(467.97998, 296.78)
+scale = Vector2(0.02933599, 0.03096355)
 texture = ExtResource("41_teacher1")
 
 [node name="Teacher_Standing2" type="Sprite2D" parent="Teachers" unique_id=987655192]
-position = Vector2(915.00006, 338)
-scale = Vector2(0.05275393, 0.04933595)
+position = Vector2(914, 342)
+scale = Vector2(0.043955002, 0.04094402)
 texture = ExtResource("42_teacher2")
 
 [node name="1NpcStanding" type="Sprite2D" parent="." unique_id=1708538291]
-position = Vector2(500.99997, 55)
-scale = Vector2(0.055664036, 0.05175784)
+position = Vector2(515, 57.999996)
+scale = Vector2(0.042480446, 0.039550792)
 texture = ExtResource("3_tcrwk")
+
+[node name="Standing2" type="Sprite2D" parent="." unique_id=712882144]
+position = Vector2(444, 368.76563)
+scale = Vector2(0.033203132, 0.030944793)
+texture = ExtResource("41_8td27")
+
+[node name="Standing" type="Sprite2D" parent="." unique_id=1938199778]
+position = Vector2(681.68756, 280.49997)
+scale = Vector2(0.02990712, 0.029296879)
+texture = ExtResource("42_qsrvs")
+
+[node name="Standing3" type="Sprite2D" parent="." unique_id=2119235360]
+position = Vector2(806.65625, 367.6875)
+scale = Vector2(0.033874486, 0.032145172)
+texture = ExtResource("42_qsrvs")
+
+[node name="Standing4" type="Sprite2D" parent="." unique_id=831416256]
+position = Vector2(242.00002, 159)
+scale = Vector2(0.034179684, 0.033691414)
+texture = ExtResource("43_qsrvs")
+
+[node name="Tomb" type="Sprite2D" parent="." unique_id=1523014133]
+position = Vector2(631.5, 394.5)
+scale = Vector2(0.10221355, 0.11621093)
+texture = ExtResource("44_ljjcv")
+
+[node name="Girl2" type="Sprite2D" parent="." unique_id=1459711307]
+position = Vector2(734.00006, 290)
+scale = Vector2(0.032653842, 0.029947916)
+texture = ExtResource("45_0kcse")

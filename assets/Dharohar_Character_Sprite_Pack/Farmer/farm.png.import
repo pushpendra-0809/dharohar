@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dldxg1kcunfj6"
-path="res://.godot/imported/standing.png-eeeb6e7a533578b69462a06bd581536b.ctex"
+uid="uid://c6llrtk84whku"
+path="res://.godot/imported/farm.png-cb6bc58857604a4c1fe64b36b32b026a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png"
-dest_files=["res://.godot/imported/standing.png-eeeb6e7a533578b69462a06bd581536b.ctex"]
+source_file="res://assets/Dharohar_Character_Sprite_Pack/Farmer/farm.png"
+dest_files=["res://.godot/imported/farm.png-cb6bc58857604a4c1fe64b36b32b026a.ctex"]
 
 [params]
 
