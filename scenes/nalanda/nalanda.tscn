@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://b4tvguy7wvdv7" path="res://scenes/ui/PhilHeritageUI.tscn" id="18_philheritui"]
 [ext_resource type="PackedScene" uid="uid://dbp0nujiqj2h3" path="res://scenes/ui/LogicHeritageUI.tscn" id="19_logicheritui"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="20_infoui"]
-
 [ext_resource type="Texture2D" uid="uid://bxgwyg7tcm4x4" path="res://assets/Elements/villagePack/clothesline.png" id="21_clothesline"]
 [ext_resource type="Texture2D" uid="uid://bb6at443pvgg4" path="res://assets/Elements/villagePack/garden_patch.png" id="22_gardenpatch"]
 [ext_resource type="Texture2D" uid="uid://cbql8umekh0ov" path="res://assets/Elements/villagePack/haystack.png" id="23_haystack"]
@@ -29,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://ir03hgcrw3mo" path="res://assets/Elements/villagePack/hut_03_round.png" id="26_hut03"]
 [ext_resource type="Texture2D" uid="uid://biduyrv417x7c" path="res://assets/Elements/villagePack/hut_04_longhouse.png" id="27_hut04"]
 [ext_resource type="Texture2D" uid="uid://b70ot0q3dndqn" path="res://assets/Elements/villagePack/hut_05_cottage.png" id="28_hut05"]
-[ext_resource type="Texture2D" uid="uid://comhnbd3j0qsb" path="res://assets/Elements/villagePack/market_shelter.png" id="29_shelter"]
 [ext_resource type="Texture2D" uid="uid://cw3ncgdtmsv4" path="res://assets/Elements/villagePack/tree.png" id="30_tree_vp"]
 [ext_resource type="Texture2D" uid="uid://bqr0dw3yqcw7n" path="res://assets/Elements/villagePack/well.png" id="31_well"]
 [ext_resource type="Texture2D" uid="uid://4ihi0qfbj6ff" path="res://assets/Elements/villagePack/wooden_cart.png" id="32_cart"]
@@ -49,97 +47,48 @@
 [ext_resource type="Texture2D" uid="uid://camx75xjeq0jq" path="res://assets/Elements/buildings/tree2.png" id="46_tree2"]
 [ext_resource type="Texture2D" uid="uid://pdp1ga8cy3u" path="res://assets/Elements/buildings/tree4.png" id="47_tree4"]
 [ext_resource type="Texture2D" uid="uid://chkgge3sillal" path="res://assets/Elements/buildings/Tree.png" id="48_tree_bldg"]
-[ext_resource type="Texture2D" uid="uid://db3yq4j8h3b0c" path="res://assets/Elements/buildings/Treeee.png" id="49_treeee"]
 [ext_resource type="Texture2D" uid="uid://br7tfmnkr50eh" path="res://assets/Elements/buildings/vill-monument3.png" id="50_villmon3"]
+[ext_resource type="Texture2D" uid="uid://ug1kfc688whv" path="res://assets/Dharohar_Character_Sprite_Pack/Farmer/standing.png" id="51_ok3o3"]
+[ext_resource type="Texture2D" uid="uid://uawi467ajt03" path="res://assets/Dharohar_Character_Sprite_Pack/fisherman/standing.png" id="52_14dm2"]
+[ext_resource type="Texture2D" uid="uid://dlxe31uf1nqi5" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing.png" id="53_guh1u"]
+[ext_resource type="Texture2D" uid="uid://diwgen7ubw47l" path="res://assets/Dharohar_Character_Sprite_Pack/villager/villager3.png" id="54_lp60u"]
+[ext_resource type="Texture2D" uid="uid://br3lasyv8p33p" path="res://assets/Dharohar_Character_Sprite_Pack/merchant/standing.png" id="55_8vno3"]
+[ext_resource type="Texture2D" uid="uid://c6llrtk84whku" path="res://assets/Dharohar_Character_Sprite_Pack/Farmer/farm.png" id="56_ok3o3"]
+[ext_resource type="Texture2D" uid="uid://b6g3leli2rvol" path="res://assets/Dharohar_Character_Sprite_Pack/Builder/area.png" id="57_guh1u"]
+[ext_resource type="Texture2D" uid="uid://c1vkw3eek8oh8" path="res://assets/Elements/buildings/stone.png" id="58_lp60u"]
+[ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="59_explornpc"]
+[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="60_interactpt"]
+[ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="61_pickupitem"]
+[ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="62_prog_ui"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut01"]
-size = Vector2(88, 70)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icd5h"]
+size = Vector2(70, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut02"]
-size = Vector2(100, 75)
+size = Vector2(64.5, 36.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut03"]
-size = Vector2(80, 70)
+size = Vector2(65.5, 45)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut04"]
-size = Vector2(110, 70)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pcij1"]
+size = Vector2(83, 46)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hut05"]
-size = Vector2(95, 75)
+size = Vector2(62, 34.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hut05_2"]
-size = Vector2(60, 50)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_shelter"]
-size = Vector2(65, 40)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heg7l"]
+size = Vector2(48, 22)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_housevil"]
-size = Vector2(85, 70)
+size = Vector2(70, 49.718506)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monvil"]
-size = Vector2(130, 95)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_villmon3"]
-size = Vector2(45, 40)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_well"]
-size = Vector2(32, 28)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_well2"]
-size = Vector2(22, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cart"]
-size = Vector2(33, 23)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_woodpile"]
-size = Vector2(35, 26)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_woodpile2"]
-size = Vector2(34, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_woodpile3"]
-size = Vector2(31, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_haystack"]
-size = Vector2(20, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_clothesline"]
-size = Vector2(23, 15)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_clothesline2"]
-size = Vector2(27, 18)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_matka"]
-size = Vector2(18, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_vp"]
-size = Vector2(25, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree2"]
-size = Vector2(30, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree5"]
-size = Vector2(35, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree4"]
-size = Vector2(30, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tree_bldg"]
-size = Vector2(40, 25)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_treeee"]
-size = Vector2(35, 25)
+size = Vector2(78, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_largerrock"]
 size = Vector2(120, 70)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_largerrock2"]
-size = Vector2(55, 45)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rocktrans"]
-size = Vector2(70, 45)
-
-[node name="Nalanda" type="Control"]
+[node name="Nalanda" type="Control" unique_id=880556528]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +97,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nalgd")
 
-[node name="background" type="TextureRect" parent="."]
+[node name="background" type="TextureRect" parent="." unique_id=1701735494]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -159,524 +108,667 @@ texture = ExtResource("2_vilpng")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Decorations" type="Node2D" parent="."]
+[node name="Decorations" type="Node2D" parent="." unique_id=686848546]
 
-[node name="Bush2" type="Sprite2D" parent="Decorations"]
+[node name="Bush2" type="Sprite2D" parent="Decorations" unique_id=549919882]
 position = Vector2(129, 267)
 scale = Vector2(0.01896163, 0.020385787)
 texture = ExtResource("34_bush2")
 
-[node name="Bush9" type="Sprite2D" parent="Decorations"]
+[node name="Bush9" type="Sprite2D" parent="Decorations" unique_id=994670470]
 position = Vector2(98, 356)
 scale = Vector2(0.03580729, 0.03519071)
 texture = ExtResource("34_bush2")
 
-[node name="Bush6" type="Sprite2D" parent="Decorations"]
-position = Vector2(447, 520)
-scale = Vector2(0.050861366, 0.05369539)
+[node name="Bush6" type="Sprite2D" parent="Decorations" unique_id=1390320155]
+position = Vector2(436.4692, 526.74603)
+scale = Vector2(0.037149403, 0.04051954)
 texture = ExtResource("34_bush2")
 
-[node name="Bush3" type="Sprite2D" parent="Decorations"]
-position = Vector2(536, 548)
-scale = Vector2(0.06640626, 0.07971192)
+[node name="Bush3" type="Sprite2D" parent="Decorations" unique_id=1132863014]
+position = Vector2(598, 629)
+scale = Vector2(0.046875007, 0.03594975)
 texture = ExtResource("35_bush3")
 
-[node name="Bush14" type="Sprite2D" parent="Decorations"]
+[node name="Bush14" type="Sprite2D" parent="Decorations" unique_id=1707558229]
 position = Vector2(964, 166)
 scale = Vector2(0.027310023, 0.037737094)
 texture = ExtResource("35_bush3")
 
-[node name="Bush10" type="Sprite2D" parent="Decorations"]
+[node name="Bush10" type="Sprite2D" parent="Decorations" unique_id=107072161]
 position = Vector2(306, 105)
 scale = Vector2(0.034112286, 0.03885307)
 texture = ExtResource("35_bush3")
 
-[node name="Bush5" type="Sprite2D" parent="Decorations"]
+[node name="Bush5" type="Sprite2D" parent="Decorations" unique_id=1064277601]
 position = Vector2(179.764, 550.351)
 scale = Vector2(0.054164663, 0.076293476)
 texture = ExtResource("35_bush3")
 
-[node name="Bush4" type="Sprite2D" parent="Decorations"]
-position = Vector2(415, 511)
-scale = Vector2(0.046549667, 0.05664061)
+[node name="Bush4" type="Sprite2D" parent="Decorations" unique_id=1739296510]
+position = Vector2(404.62494, 520)
+scale = Vector2(0.033040453, 0.039062496)
 texture = ExtResource("36_bush4")
 
-[node name="Bush11" type="Sprite2D" parent="Decorations"]
+[node name="Bush11" type="Sprite2D" parent="Decorations" unique_id=694309856]
 position = Vector2(384, 131)
 scale = Vector2(0.022895973, 0.028405681)
 texture = ExtResource("36_bush4")
 
-[node name="Bush12" type="Sprite2D" parent="Decorations"]
+[node name="Bush12" type="Sprite2D" parent="Decorations" unique_id=1156645739]
 position = Vector2(385, 209)
 scale = Vector2(0.03014664, 0.03549413)
 texture = ExtResource("36_bush4")
 
-[node name="Bush7" type="Sprite2D" parent="Decorations"]
-position = Vector2(568.5, 562.019)
-scale = Vector2(0.07096354, 0.0839477)
+[node name="Bush7" type="Sprite2D" parent="Decorations" unique_id=513851807]
+position = Vector2(652.00006, 612)
+scale = Vector2(0.03092446, 0.042950407)
 texture = ExtResource("36_bush4")
 
-[node name="Bush8" type="Sprite2D" parent="Decorations"]
+[node name="Bush8" type="Sprite2D" parent="Decorations" unique_id=1349456923]
 position = Vector2(917.622, 373)
 scale = Vector2(0.05517979, 0.06054688)
 texture = ExtResource("36_bush4")
 
-[node name="Bush13" type="Sprite2D" parent="Decorations"]
+[node name="Bush13" type="Sprite2D" parent="Decorations" unique_id=808106190]
 position = Vector2(138, 268)
 scale = Vector2(0.019368453, 0.028564474)
 texture = ExtResource("36_bush4")
 
-[node name="Bush_Dec1" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec1" type="Sprite2D" parent="Decorations" unique_id=945469005]
 position = Vector2(902, 390)
 scale = Vector2(0.04817708, 0.061279308)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec2" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec2" type="Sprite2D" parent="Decorations" unique_id=1040091583]
 position = Vector2(1041, 133)
 scale = Vector2(0.025118303, 0.031499907)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec3" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec3" type="Sprite2D" parent="Decorations" unique_id=304824158]
 position = Vector2(273, 483)
 scale = Vector2(0.053222634, 0.058593813)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec4" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec4" type="Sprite2D" parent="Decorations" unique_id=760030386]
 position = Vector2(143, 382)
 scale = Vector2(0.030762, 0.036189)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec5" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec5" type="Sprite2D" parent="Decorations" unique_id=1715056323]
 position = Vector2(366, 135)
 scale = Vector2(0.027636, 0.033067)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec6" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec6" type="Sprite2D" parent="Decorations" unique_id=803840349]
 position = Vector2(416, 157)
 scale = Vector2(0.024827, 0.030215)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec7" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec7" type="Sprite2D" parent="Decorations" unique_id=133642914]
 position = Vector2(72.6, 314.77)
 scale = Vector2(0.01777973, 0.02235076)
 texture = ExtResource("37_bush")
 
-[node name="Bush_Dec8" type="Sprite2D" parent="Decorations"]
+[node name="Bush_Dec8" type="Sprite2D" parent="Decorations" unique_id=1849904802]
 position = Vector2(1012, 131)
 scale = Vector2(0.017405147, 0.021423342)
 texture = ExtResource("35_bush3")
 
-[node name="GrassBush" type="Sprite2D" parent="Decorations"]
+[node name="GrassBush" type="Sprite2D" parent="Decorations" unique_id=1890141638]
 position = Vector2(726, 385)
 scale = Vector2(0.04931628, 0.06518532)
 texture = ExtResource("38_grassbush")
 flip_h = true
 
-[node name="GardenPatch" type="Sprite2D" parent="Decorations"]
+[node name="GardenPatch" type="Sprite2D" parent="Decorations" unique_id=667581115]
 position = Vector2(613, 263)
 scale = Vector2(0.120656475, 0.12958108)
 texture = ExtResource("22_gardenpatch")
 
-[node name="Bridge3" type="Sprite2D" parent="Decorations"]
-position = Vector2(1002.625, 373.016)
+[node name="Bridge3" type="Sprite2D" parent="Decorations" unique_id=975289743]
+position = Vector2(1000.99994, 373)
 rotation = -0.020392746
-scale = Vector2(0.055419903, 0.03908286)
+scale = Vector2(0.07340404, 0.055981927)
 texture = ExtResource("40_bridge3")
 
-[node name="Stone2" type="Sprite2D" parent="Decorations"]
+[node name="Stone2" type="Sprite2D" parent="Decorations" unique_id=1324073828]
 position = Vector2(291.5625, 120.1875)
 scale = Vector2(0.046142593, 0.04724122)
 texture = ExtResource("45_stone2")
 
-[node name="RockTrans2" type="Sprite2D" parent="Decorations"]
+[node name="RockTrans2" type="Sprite2D" parent="Decorations" unique_id=1762452058]
 position = Vector2(444, 391)
 scale = Vector2(0.023930019, 0.032122243)
 texture = ExtResource("44_rocktrans")
 
-[node name="RockTrans3" type="Sprite2D" parent="Decorations"]
+[node name="RockTrans3" type="Sprite2D" parent="Decorations" unique_id=1103547946]
 position = Vector2(836, 358)
 scale = Vector2(0.032283176, 0.02779063)
 texture = ExtResource("44_rocktrans")
 
-[node name="BuildingsAndProps" type="Node2D" parent="."]
+[node name="RoadStone1" type="Sprite2D" parent="Decorations" unique_id=1849904901]
+position = Vector2(855, 205)
+scale = Vector2(0.012, 0.012)
+texture = ExtResource("58_lp60u")
 
-[node name="Hut01Large" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="RoadStone2" type="Sprite2D" parent="Decorations" unique_id=1849904902]
+position = Vector2(965, 235)
+scale = Vector2(0.014, 0.014)
+texture = ExtResource("58_lp60u")
+
+[node name="RoadMatka1" type="Sprite2D" parent="Decorations" unique_id=1849904903]
+position = Vector2(1040, 168)
+scale = Vector2(0.032, 0.036)
+texture = ExtResource("42_matka")
+
+[node name="GatePillarNorth" type="Sprite2D" parent="Decorations" unique_id=98765401]
+position = Vector2(1090, 150)
+scale = Vector2(0.032, 0.038)
+texture = ExtResource("50_villmon3")
+
+[node name="GatePillarSouth" type="Sprite2D" parent="Decorations" unique_id=98765402]
+position = Vector2(1090, 235)
+scale = Vector2(0.032, 0.038)
+texture = ExtResource("50_villmon3")
+
+[node name="RoadStone3" type="Sprite2D" parent="Decorations" unique_id=98765403]
+position = Vector2(1065, 195)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("58_lp60u")
+
+[node name="RoadMatka2" type="Sprite2D" parent="Decorations" unique_id=98765404]
+position = Vector2(1090, 225)
+scale = Vector2(0.03, 0.035)
+texture = ExtResource("42_matka")
+
+[node name="GateBush1" type="Sprite2D" parent="Decorations" unique_id=98765405]
+position = Vector2(1070, 145)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("35_bush3")
+
+[node name="GateBush2" type="Sprite2D" parent="Decorations" unique_id=98765406]
+position = Vector2(1070, 245)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("35_bush3")
+
+[node name="TeacherStudyStone" type="Sprite2D" parent="Decorations" unique_id=98765407]
+position = Vector2(960, 515)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("58_lp60u")
+
+[node name="TeacherMatka" type="Sprite2D" parent="Decorations" unique_id=98765408]
+position = Vector2(1030, 480)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("42_matka")
+
+[node name="TeacherGroveBush" type="Sprite2D" parent="Decorations" unique_id=98765409]
+position = Vector2(950, 475)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("34_bush2")
+
+[node name="PondGrass1" type="Sprite2D" parent="Decorations" unique_id=98765410]
+position = Vector2(150, 430)
+scale = Vector2(0.045, 0.05)
+texture = ExtResource("38_grassbush")
+
+[node name="PondGrass2" type="Sprite2D" parent="Decorations" unique_id=98765411]
+position = Vector2(240, 470)
+scale = Vector2(0.045, 0.05)
+texture = ExtResource("38_grassbush")
+flip_h = true
+
+[node name="PondStone1" type="Sprite2D" parent="Decorations" unique_id=98765412]
+position = Vector2(220, 420)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("58_lp60u")
+
+[node name="PondStone2" type="Sprite2D" parent="Decorations" unique_id=98765413]
+position = Vector2(160, 475)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("58_lp60u")
+
+[node name="BuildingsAndProps" type="Node2D" parent="." unique_id=2017894659]
+
+[node name="Hut01Large" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1405286360]
 position = Vector2(678, 326)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut01Large"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut01Large" unique_id=326905533]
 scale = Vector2(0.1915585, 0.20923913)
 texture = ExtResource("24_hut01")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut01Large"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut01")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut01Large" unique_id=521351587]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_icd5h")
 
-[node name="Hut02Small" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Hut02Small" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1673522908]
 position = Vector2(474, 239)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut02Small"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut02Small" unique_id=2036221]
 scale = Vector2(0.23041475, 0.2283237)
 texture = ExtResource("25_hut02")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut02Small"]
-position = Vector2(0, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut02Small" unique_id=144124575]
+position = Vector2(6, -9.4375)
 shape = SubResource("RectangleShape2D_hut02")
 
-[node name="Hut03Round" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Hut03Round" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1656480755]
 position = Vector2(683, 210)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut03Round"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut03Round" unique_id=1548529880]
 scale = Vector2(0.20526953, 0.22449712)
 texture = ExtResource("26_hut03")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut03Round"]
-position = Vector2(0, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut03Round" unique_id=1522740824]
+position = Vector2(-3.75, -5.5)
 shape = SubResource("RectangleShape2D_hut03")
 
-[node name="Hut04Longhouse" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Hut04Longhouse" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1503464611]
 position = Vector2(871, 134)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut04Longhouse"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut04Longhouse" unique_id=777295965]
+position = Vector2(7, 0)
 scale = Vector2(0.21969683, 0.2738516)
 texture = ExtResource("27_hut04")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut04Longhouse"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut04")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut04Longhouse" unique_id=623993926]
+position = Vector2(8.5, -6)
+shape = SubResource("RectangleShape2D_pcij1")
 
-[node name="Hut05Cottage" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Hut05Cottage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1321050680]
 position = Vector2(344, 255)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut05Cottage"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut05Cottage" unique_id=989446158]
 scale = Vector2(0.30246913, 0.2631579)
 texture = ExtResource("28_hut05")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage"]
-position = Vector2(0, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage" unique_id=357084955]
+position = Vector2(1, -3)
 shape = SubResource("RectangleShape2D_hut05")
 
-[node name="Hut05Cottage2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Hut05Cottage2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=670550816]
 position = Vector2(703, 99)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut05Cottage2"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Hut05Cottage2" unique_id=126695135]
+position = Vector2(-5, 0)
 scale = Vector2(0.18402775, 0.17269737)
 texture = ExtResource("28_hut05")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage2"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_hut05_2")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage2" unique_id=1571878901]
+shape = SubResource("RectangleShape2D_heg7l")
 
-[node name="MarketShelter" type="StaticBody2D" parent="BuildingsAndProps"]
-position = Vector2(752, 245)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="BuildingsAndProps/Hut05Cottage2" unique_id=1309222971]
+shape = SubResource("RectangleShape2D_heg7l")
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/MarketShelter"]
-scale = Vector2(0.14887644, 0.14215681)
-texture = ExtResource("29_shelter")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/MarketShelter"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_shelter")
-
-[node name="HouseVillage" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="HouseVillage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=851044039]
 position = Vector2(526.5, 359.563)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/HouseVillage"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/HouseVillage" unique_id=1623737667]
 scale = Vector2(0.060547, 0.07727)
 texture = ExtResource("39_housevil")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/HouseVillage"]
-position = Vector2(0, 5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/HouseVillage" unique_id=937046649]
+position = Vector2(1.5, -5.422241)
 shape = SubResource("RectangleShape2D_housevil")
 
-[node name="MonumentVillage" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="MonumentVillage" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1408178988]
 position = Vector2(204, 145)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/MonumentVillage"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/MonumentVillage" unique_id=1108703548]
 scale = Vector2(0.09358723, 0.107055664)
 texture = ExtResource("43_monvil")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/MonumentVillage"]
-position = Vector2(0, 10)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/MonumentVillage" unique_id=952419364]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_monvil")
 
-[node name="VillMonument3" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="VillMonument3" type="StaticBody2D" parent="BuildingsAndProps" unique_id=51752658]
 position = Vector2(1030, 135)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/VillMonument3"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/VillMonument3" unique_id=1476291840]
 scale = Vector2(0.030924428, 0.04101561)
 texture = ExtResource("50_villmon3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/VillMonument3"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_villmon3")
-
-[node name="Well" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Well" type="StaticBody2D" parent="BuildingsAndProps" unique_id=337602771]
 position = Vector2(610.75, 379.375)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Well"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Well" unique_id=696403668]
 scale = Vector2(0.18678193, 0.13009042)
 texture = ExtResource("31_well")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Well"]
-shape = SubResource("RectangleShape2D_well")
-
-[node name="Well2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Well2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1555774381]
 position = Vector2(650.5, 103.438)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Well2"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Well2" unique_id=532577699]
 scale = Vector2(0.120689295, 0.12160637)
 texture = ExtResource("31_well")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Well2"]
-shape = SubResource("RectangleShape2D_well2")
-
-[node name="WoodenCart" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="WoodenCart" type="StaticBody2D" parent="BuildingsAndProps" unique_id=474626007]
 position = Vector2(540.25, 245.75)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/WoodenCart"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/WoodenCart" unique_id=1713580179]
+position = Vector2(1.75, 0.25)
 scale = Vector2(0.1509009, 0.13352276)
 texture = ExtResource("32_cart")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/WoodenCart"]
-shape = SubResource("RectangleShape2D_cart")
+[node name="WoodenCart" type="Sprite2D" parent="BuildingsAndProps/WoodenCart" unique_id=1557083024]
+position = Vector2(-100.25, 325.25)
+scale = Vector2(0.24324325, 0.19318181)
+texture = ExtResource("32_cart")
 
-[node name="Woodpile" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Woodpile" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1085643109]
 position = Vector2(413, 266)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile" unique_id=1576066394]
 scale = Vector2(0.20114942, 0.17567568)
 texture = ExtResource("33_woodpile")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Woodpile"]
-shape = SubResource("RectangleShape2D_woodpile")
-
-[node name="Woodpile2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Woodpile2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=517973337]
 position = Vector2(614, 238.125)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile2"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile2" unique_id=651673544]
 scale = Vector2(0.19540225, 0.15033785)
 texture = ExtResource("33_woodpile")
 flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Woodpile2"]
-shape = SubResource("RectangleShape2D_woodpile2")
-
-[node name="Woodpile3" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Woodpile3" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1202191484]
 position = Vector2(750.375, 91)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile3"]
-scale = Vector2(0.17959733, 0.16554049)
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Woodpile3" unique_id=945575118]
+position = Vector2(35.625023, 59)
+scale = Vector2(0.13577579, 0.13006751)
 texture = ExtResource("33_woodpile")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Woodpile3"]
-shape = SubResource("RectangleShape2D_woodpile3")
-
-[node name="Haystack" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Haystack" type="StaticBody2D" parent="BuildingsAndProps" unique_id=726778287]
 position = Vector2(539, 285)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Haystack"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Haystack" unique_id=201473255]
 scale = Vector2(0.11285711, 0.12368419)
 texture = ExtResource("23_haystack")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Haystack"]
-shape = SubResource("RectangleShape2D_haystack")
-
-[node name="Clothesline" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Clothesline" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1364704426]
 position = Vector2(536, 223)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Clothesline"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Clothesline" unique_id=824624356]
 scale = Vector2(0.11432156, 0.107499935)
 texture = ExtResource("21_clothesline")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Clothesline"]
-shape = SubResource("RectangleShape2D_clothesline")
-
-[node name="Clothesline2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Clothesline2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=809317292]
 position = Vector2(663, 167)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Clothesline2"]
-scale = Vector2(0.13756274, 0.14624996)
-texture = ExtResource("21_clothesline")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Clothesline2"]
-shape = SubResource("RectangleShape2D_clothesline2")
-
-[node name="Matka" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Matka" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1001092150]
 position = Vector2(609, 321)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Matka"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Matka" unique_id=923457940]
+position = Vector2(14, 1.0000001)
 scale = Vector2(0.05634716, 0.06334846)
 texture = ExtResource("42_matka")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Matka"]
-shape = SubResource("RectangleShape2D_matka")
-
-[node name="LargerRock" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="LargerRock" type="StaticBody2D" parent="BuildingsAndProps" unique_id=320335072]
 position = Vector2(206.5, 600.75)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/LargerRock"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/LargerRock" unique_id=1776764]
 scale = Vector2(0.09960938, 0.10107421)
 texture = ExtResource("41_largerrock")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/LargerRock"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/LargerRock" unique_id=100535175]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_largerrock")
 
-[node name="LargerRock2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="LargerRock2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1452780205]
 position = Vector2(986, 171)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/LargerRock2"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/LargerRock2" unique_id=1672119979]
 scale = Vector2(0.039632123, 0.05664062)
 texture = ExtResource("41_largerrock")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/LargerRock2"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_largerrock2")
-
-[node name="RockTrans" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="RockTrans" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1647697680]
 position = Vector2(76, 365)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/RockTrans"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/RockTrans" unique_id=818293667]
 scale = Vector2(0.09024287, 0.09415583)
 texture = ExtResource("44_rocktrans")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/RockTrans"]
-position = Vector2(0, 5)
-shape = SubResource("RectangleShape2D_rocktrans")
-
-[node name="Tree_VP" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Tree_VP" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1278536685]
 position = Vector2(951, 112)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree_VP"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree_VP" unique_id=159823065]
+position = Vector2(1, 0)
 scale = Vector2(0.2658728, 0.2275281)
 texture = ExtResource("30_tree_vp")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Tree_VP"]
-position = Vector2(0, 20)
-shape = SubResource("RectangleShape2D_tree_vp")
-
-[node name="Tree2" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Tree2" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1059169421]
 position = Vector2(430.469, 356.063)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree2"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree2" unique_id=1568829821]
 scale = Vector2(0.06023284, 0.06491127)
 texture = ExtResource("46_tree2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Tree2"]
-position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_tree2")
-
-[node name="Tree5" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Tree5" type="StaticBody2D" parent="BuildingsAndProps" unique_id=251323317]
 position = Vector2(612.201, 516.389)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree5"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree5" unique_id=1009618018]
+position = Vector2(57.799004, -17.388977)
 scale = Vector2(0.08442021, 0.09010623)
 texture = ExtResource("46_tree2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Tree5"]
-position = Vector2(0, 35)
-shape = SubResource("RectangleShape2D_tree5")
-
-[node name="Tree4" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Tree4" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1444736560]
 position = Vector2(122, 212)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree4"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree4" unique_id=188966749]
 scale = Vector2(0.07882098, 0.06404659)
 texture = ExtResource("47_tree4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Tree4"]
-position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_tree4")
-
-[node name="Tree3" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Tree3" type="StaticBody2D" parent="BuildingsAndProps" unique_id=496662941]
 position = Vector2(1074, 565)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree3"]
+[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Tree3" unique_id=1411546544]
 scale = Vector2(0.09429817, 0.106831975)
 texture = ExtResource("48_tree_bldg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Tree3"]
-position = Vector2(0, 35)
-shape = SubResource("RectangleShape2D_tree_bldg")
-
-[node name="Treeee" type="StaticBody2D" parent="BuildingsAndProps"]
+[node name="Treeee" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1561679572]
 position = Vector2(849.219, 314.156)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Treeee"]
-scale = Vector2(0.06742354, 0.08563233)
-texture = ExtResource("49_treeee")
+[node name="Player" parent="." unique_id=1452783152 instance=ExtResource("3_player")]
+position = Vector2(28, 311)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BuildingsAndProps/Treeee"]
-position = Vector2(0, 25)
-shape = SubResource("RectangleShape2D_treeee")
-
-[node name="Player" parent="." instance=ExtResource("3_player")]
-position = Vector2(30, 310)
-
-[node name="Teacher" parent="." instance=ExtResource("4_teacher")]
+[node name="Teacher" parent="." unique_id=1511617067 instance=ExtResource("4_teacher")]
 position = Vector2(998, 497)
 
-[node name="Merchant" parent="." instance=ExtResource("5_merchant")]
+[node name="Merchant" parent="." unique_id=628373084 instance=ExtResource("5_merchant")]
 position = Vector2(487, 109)
 
-[node name="Pond" parent="." instance=ExtResource("6_pond")]
+[node name="Pond" parent="." unique_id=1070536718 instance=ExtResource("6_pond")]
 position = Vector2(196, 453)
 
-[node name="UniversityMarker" parent="." instance=ExtResource("7_univmarker")]
-position = Vector2(1000, -450)
+[node name="UniversityMarker" parent="." unique_id=179212516 instance=ExtResource("7_univmarker")]
+position = Vector2(1098, 125)
 
-[node name="UniversityEntrance" parent="." instance=ExtResource("8_entrance")]
+[node name="UniversityEntrance" parent="." unique_id=548852281 instance=ExtResource("8_entrance")]
 position = Vector2(1098, 191)
 
-[node name="ObjectiveTrailManager" parent="." instance=ExtResource("9_trail")]
+[node name="ObjectiveTrailManager" parent="." unique_id=106089675 instance=ExtResource("9_trail")]
 
-[node name="DialogueUI" parent="." instance=ExtResource("10_dlgui")]
+[node name="DialogueUI" parent="." unique_id=614796306 instance=ExtResource("10_dlgui")]
 
-[node name="DomainSelectionUI" parent="." instance=ExtResource("11_domui")]
+[node name="DomainSelectionUI" parent="." unique_id=230040228 instance=ExtResource("11_domui")]
 
-[node name="QuizUI" parent="." instance=ExtResource("12_quizui")]
+[node name="QuizUI" parent="." unique_id=706113324 instance=ExtResource("12_quizui")]
 
-[node name="QuestUI" parent="." instance=ExtResource("13_questui")]
+[node name="QuestUI" parent="." unique_id=1794854375 instance=ExtResource("13_questui")]
 
-[node name="PauseMenuUI" parent="." instance=ExtResource("14_pauseui")]
+[node name="PauseMenuUI" parent="." unique_id=1971325800 instance=ExtResource("14_pauseui")]
 
-[node name="MathHeritageUI" parent="." instance=ExtResource("15_heritui")]
+[node name="MathHeritageUI" parent="." unique_id=768379946 instance=ExtResource("15_heritui")]
 
-[node name="AstroHeritageUI" parent="." instance=ExtResource("16_astroheritui")]
+[node name="AstroHeritageUI" parent="." unique_id=1779727528 instance=ExtResource("16_astroheritui")]
 
-[node name="MedHeritageUI" parent="." instance=ExtResource("17_medheritui")]
+[node name="MedHeritageUI" parent="." unique_id=1053896411 instance=ExtResource("17_medheritui")]
 
-[node name="PhilHeritageUI" parent="." instance=ExtResource("18_philheritui")]
+[node name="PhilHeritageUI" parent="." unique_id=1842188656 instance=ExtResource("18_philheritui")]
 
-[node name="LogicHeritageUI" parent="." instance=ExtResource("19_logicheritui")]
+[node name="LogicHeritageUI" parent="." unique_id=1677529968 instance=ExtResource("19_logicheritui")]
 
-[node name="NalandaInfoUI" parent="." instance=ExtResource("20_infoui")]
+[node name="NalandaInfoUI" parent="." unique_id=1823560840 instance=ExtResource("20_infoui")]
 
-[node name="City Collisions" type="StaticBody2D" parent="."]
+[node name="City Collisions" type="StaticBody2D" parent="." unique_id=1561436524]
 
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="City Collisions"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="City Collisions" unique_id=1471571070]
 polygon = PackedVector2Array(1, 308, 54, 229, 53, 165, 122, 103, 213, 99, 322, 83, 387, 104, 439, 88, 551, 91, 652, 75, 737, 78, 807, 76, 856, 91, 908, 89, 978, 95, 1040, 96, 1073, 119, 1083, 148, 1141, 156, 1152, 139, 1152, 4, 509, 6, 42, 5, 1, 7)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="City Collisions"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="City Collisions" unique_id=1681772211]
 polygon = PackedVector2Array(2, 356, 2, 642, 336, 644, 329, 619, 141, 550, 94, 518, 91, 420, 65, 385, 40, 387, 17, 358)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="City Collisions"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="City Collisions" unique_id=662984311]
 polygon = PackedVector2Array(335, 306, 369, 306, 378, 316, 380, 354, 382, 392, 388, 392, 398, 409, 423, 409, 436, 432, 473, 435, 477, 493, 463, 507, 424, 502, 401, 492, 393, 486, 369, 484, 345, 484, 326, 463, 329, 381, 309, 364, 312, 321)
 
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="City Collisions"]
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="City Collisions" unique_id=32131695]
 polygon = PackedVector2Array(941, 295, 946, 327, 892, 400, 872, 425, 838, 425, 817, 430, 825, 465, 806, 482, 766, 486, 746, 507, 706, 502, 690, 485, 693, 438, 725, 430, 732, 410, 760, 404, 768, 302, 792, 285, 885, 292)
 
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="City Collisions"]
-polygon = PackedVector2Array(1012, 355, 1013, 385, 1035, 385, 1050, 386, 1067, 382, 1077, 377, 1103, 375, 1109, 365, 1124, 363, 1139, 372, 1151, 374, 1152, 322, 1119, 324, 1108, 327, 1098, 338, 1091, 349, 1076, 349, 1060, 356, 1031, 363, 1018, 358)
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="City Collisions" unique_id=1934427256]
+polygon = PackedVector2Array(1023, 349, 1022, 372, 1024, 390, 1035, 385, 1050, 386, 1067, 382, 1077, 377, 1103, 375, 1109, 365, 1124, 363, 1139, 372, 1151, 374, 1152, 322, 1119, 324, 1108, 327, 1098, 338, 1091, 349, 1076, 349, 1060, 356, 1031, 363, 1024, 357)
 
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="City Collisions"]
-polygon = PackedVector2Array(990, 356, 991, 397, 985, 412, 978, 430, 935, 441, 917, 441, 899, 453, 874, 471, 862, 499, 834, 526, 820, 540, 797, 548, 786, 558, 763, 561, 750, 574, 733, 591, 737, 612, 739, 632, 730, 647, 686, 646, 694, 624, 690, 593, 699, 568, 721, 551, 738, 539, 777, 521, 805, 500, 823, 483, 837, 460, 852, 442, 878, 427, 891, 422, 907, 421, 908, 413, 933, 408, 951, 406, 969, 387, 971, 370, 981, 361)
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="City Collisions" unique_id=1685348489]
+polygon = PackedVector2Array(982, 358, 983, 398, 981, 415, 978, 430, 935, 441, 917, 441, 899, 453, 874, 471, 862, 499, 834, 526, 820, 540, 797, 548, 786, 558, 763, 561, 750, 574, 733, 591, 737, 612, 739, 632, 730, 647, 686, 646, 694, 624, 690, 593, 699, 568, 721, 551, 738, 539, 777, 521, 805, 500, 823, 483, 837, 460, 852, 442, 878, 427, 891, 422, 907, 421, 908, 413, 933, 408, 951, 406, 969, 387, 971, 370, 981, 361)
 
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions"]
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions" unique_id=1178359228]
 polygon = PackedVector2Array(1150, 386, 1100, 390, 1085, 390, 1073, 461, 1054, 481, 1051, 522, 1017, 552, 979, 545, 966, 586, 932, 607, 913, 619, 885, 617, 869, 628, 869, 638, 1148, 642)
+
+[node name="Standing5" type="Sprite2D" parent="." unique_id=1781992425]
+position = Vector2(560, 294)
+scale = Vector2(0.031249976, 0.03190103)
+texture = ExtResource("55_8vno3")
+
+[node name="Standing6" type="Sprite2D" parent="." unique_id=160949160]
+position = Vector2(419, 225)
+scale = Vector2(0.028320307, 0.0284831)
+texture = ExtResource("51_ok3o3")
+
+[node name="Farm" type="Sprite2D" parent="." unique_id=1432270051]
+position = Vector2(554.3125, 559.00006)
+scale = Vector2(0.13370761, 0.1361084)
+texture = ExtResource("56_ok3o3")
+
+[node name="Woodpile" type="Sprite2D" parent="." unique_id=725520822]
+position = Vector2(583, 496.99997)
+scale = Vector2(0.22126424, 0.19932476)
+texture = ExtResource("33_woodpile")
+
+[node name="Haystack" type="Sprite2D" parent="." unique_id=203702453]
+position = Vector2(440, 589.00006)
+scale = Vector2(0.122857146, 0.1368421)
+texture = ExtResource("23_haystack")
+
+[node name="Area" type="Sprite2D" parent="." unique_id=1222505308]
+position = Vector2(781, 110.00001)
+scale = Vector2(0.068766296, 0.071289055)
+texture = ExtResource("57_guh1u")
+flip_h = true
+
+[node name="Stone" type="Sprite2D" parent="." unique_id=895975193]
+position = Vector2(770, 142)
+scale = Vector2(0.007405564, 0.008239769)
+texture = ExtResource("58_lp60u")
+
+[node name="NPC_FarmerElder" parent="." unique_id=987701 instance=ExtResource("59_explornpc")]
+position = Vector2(536, 475)
+npc_name = "Village Elder"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("51_ok3o3")
+sprite_scale = Vector2(0.042, 0.039)
+dialogue_lines = [{
+"speaker": "Village Elder",
+"text": "Nalanda sirf apne vidwanon se nahi, aas-paas ke gaon ke logon se bhi juda hua hai."
+}, {
+"speaker": "Village Elder",
+"text": "Gaon ke khet aur upaj hi is vishwavidyalaya ke hazaron vidyarthiyon ka ahar bante hain."
+}]
+
+[node name="NPC_Scribe" parent="." unique_id=987702 instance=ExtResource("59_explornpc")]
+position = Vector2(920, 165)
+npc_name = "Scribe"
+quest_id = "scribe_manuscript"
+sprite_texture = ExtResource("54_lp60u")
+sprite_scale = Vector2(0.029, 0.027)
+dialogue_lines = [{
+"speaker": "Scribe",
+"text": "Yahan ek granth ko ek sthaan se doosre sthaan tak pahunchana bhi gyan ki yatra ka hissa hai."
+}, {
+"speaker": "Scribe",
+"text": "Taadpatra par likhe har akshar ko surakshit rakhna hamara kartavya hai."
+}]
+
+[node name="NPC_Fisherman" parent="." unique_id=987703 instance=ExtResource("59_explornpc")]
+position = Vector2(265.75, 368.4)
+npc_name = "Fisherman"
+sprite_texture = ExtResource("52_14dm2")
+sprite_scale = Vector2(0.032, 0.032)
+dialogue_lines = [{
+"speaker": "Fisherman",
+"text": "Is jalashay ka shant jal poore gaon ko jeevan deta hai."
+}]
+
+[node name="NPC_Villager" parent="." unique_id=987704 instance=ExtResource("59_explornpc")]
+position = Vector2(680.3, 258.9)
+sprite_texture = ExtResource("53_guh1u")
+sprite_scale = Vector2(0.023, 0.023)
+dialogue_lines = [{
+"speaker": "Villager",
+"text": "Nalanda Mahavihara ki chhavi door-door tak prasiddh hai."
+}]
+
+[node name="InteractionPoint_Gate" parent="." unique_id=987801 instance=ExtResource("60_interactpt")]
+position = Vector2(1090, 191)
+point_name = "University Gate"
+prompt_text = "[Press E to Read Inscription]"
+dialogue_lines = [{
+"speaker": "University Gate",
+"text": "Yahi Nalanda Vishwavidyalaya ka pravesh dwar hai. Desh-videsh se vidwan yahan gyan ki khoj mein aate the."
+}]
+
+[node name="InteractionPoint_Pond" parent="." unique_id=987802 instance=ExtResource("60_interactpt")]
+position = Vector2(200, 440)
+point_name = "Village Reservoir"
+prompt_text = "[Press E to Inspect Water]"
+dialogue_lines = [{
+"speaker": "Village Reservoir",
+"text": "Paani Nalanda ke jeevan ka ek mahatvapurn hissa tha. Jal ke bina itni badi basti ka jeevan sambhav nahi tha."
+}]
+
+[node name="InteractionPoint_Market" parent="." unique_id=987803 instance=ExtResource("60_interactpt")]
+position = Vector2(540, 245)
+point_name = "Settlement Market"
+prompt_text = "[Press E to Observe Market]"
+dialogue_lines = [{
+"speaker": "Settlement",
+"text": "Nalanda ka jeevan keval Vishwavidyalaya tak simit nahi tha. Aas-paas ki basti bhi is jeevan ka ek hissa thi."
+}]
+[node name="Item_GrainSack" parent="." unique_id=987901 instance=ExtResource("61_pickupitem")]
+position = Vector2(415, 505)
+item_id = "provision_grain"
+item_name = "Grain Sack"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+
+[node name="Item_VegBasket" parent="." unique_id=987902 instance=ExtResource("61_pickupitem")]
+position = Vector2(615, 475)
+item_id = "provision_veg"
+item_name = "Vegetable Basket"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+
+[node name="Item_FoodPot" parent="." unique_id=987903 instance=ExtResource("61_pickupitem")]
+position = Vector2(728, 312)
+item_id = "provision_pot"
+item_name = "Provisions Pot"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+

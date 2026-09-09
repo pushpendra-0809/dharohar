@@ -1,33 +1,8 @@
-[gd_scene format=3 uid="uid://cunivmarkerscene"]
+[gd_scene format=3 uid="uid://bhnepa65xfx2u"]
 
-[ext_resource type="Script" path="res://scripts/objects/UniversityMarker.gd" id="1_univscript"]
-[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/ornaments/temple.svg" id="2_temple"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
+[ext_resource type="Script" uid="uid://ba1hojmibodam" path="res://scripts/objects/UniversityMarker.gd" id="1_univscript"]
 
 [node name="UniversityMarker" type="Node2D" unique_id=987123459]
 script = ExtResource("1_univscript")
 
 [node name="MarkerContainer" type="Node2D" parent="." unique_id=123456791]
-
-[node name="TempleIcon" type="Sprite2D" parent="MarkerContainer" unique_id=123456792]
-position = Vector2(0, -20)
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_temple")
-
-[node name="MarkerLabel" type="Label" parent="MarkerContainer" unique_id=789123460]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -110.0
-offset_top = -65.0
-offset_right = 110.0
-offset_bottom = -40.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
-theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 18
-text = "🏛️ Nalanda University"
-horizontal_alignment = 1

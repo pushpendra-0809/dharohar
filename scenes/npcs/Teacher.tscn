@@ -66,3 +66,6 @@ horizontal_alignment = 1
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=147258369]
 one_shot = true
+
+[node name="VoiceAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=987654323]
+bus = &"Master"

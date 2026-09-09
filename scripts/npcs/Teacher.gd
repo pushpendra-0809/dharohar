@@ -5,19 +5,41 @@ enum State {
 	INTRO_DIALOGUE,
 	DOMAIN_SELECTION,
 	HERITAGE,
+	TRANSITION_DIALOGUE,
 	QUIZ,
 	ADMITTED,
 	WAITING
 }
 
+const DOMAIN_AUDIO: Dictionary = {
+	"mathematics": {
+		"teaching": "res://audio/mathematics 1.mp3.mpeg",
+		"transition": "res://audio/mathematics 2.mp3.mpeg"
+	},
+	"astronomy": {
+		"teaching": "res://audio/Astronomy 1.mp3.mpeg",
+		"transition": "res://audio/Astronomy 2.mp3.mpeg"
+	},
+	"medicine": {
+		"teaching": "res://audio/Ayurveda 1.mp3.mpeg",
+		"transition": "res://audio/Ayurveda 2.mp3.mpeg"
+	},
+	"philosophy": {
+		"teaching": "res://audio/Philosophy 1.mp3.mpeg",
+		"transition": "res://audio/Philosophy 2.mp3.mpeg"
+	}
+}
+
 var current_state: State = State.AVAILABLE
 var _player_in_range: bool = false
 var _selected_domain: String = ""
+var _audio_cache: Dictionary = {}
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var indicator: Label = $InteractionIndicator
 @onready var press_e_label: Label = $PressELabel
 @onready var cooldown_timer: Timer = $CooldownTimer
+@onready var voice_player: AudioStreamPlayer = $VoiceAudioPlayer
 
 # Managers (initialized or referenced from scene tree)
 var dialogue_manager: DialogueManager = null
@@ -83,7 +105,6 @@ func setup_managers(d_mgr: DialogueManager, q_mgr: QuizManager, dom_ui: DomainSe
 		if not logic_heritage_ui.heritage_completed.is_connected(_on_logic_heritage_completed):
 			logic_heritage_ui.heritage_completed.connect(_on_logic_heritage_completed)
 
-
 func _is_dev_mode() -> bool:
 	var dev = get_node_or_null("/root/DevModeManager")
 	return dev != null and dev.dev_mode_enabled
@@ -99,6 +120,14 @@ func _on_merchant_state_changed() -> void:
 	_update_ui_elements()
 
 func _ready() -> void:
+	if not voice_player:
+		voice_player = get_node_or_null("VoiceAudioPlayer")
+	if not voice_player:
+		voice_player = AudioStreamPlayer.new()
+		voice_player.name = "VoiceAudioPlayer"
+		voice_player.bus = &"Master"
+		add_child(voice_player)
+		
 	if interaction_area:
 		if not interaction_area.body_entered.is_connected(_on_body_entered):
 			interaction_area.body_entered.connect(_on_body_entered)
@@ -118,6 +147,91 @@ func _ready() -> void:
 
 	_update_ui_elements()
 
+# ==================================================
+# AUDIO MANAGEMENT
+# ==================================================
+func _get_canonical_domain(d: String) -> String:
+	var d_lower := d.to_lower()
+	if "math" in d_lower:
+		return "mathematics"
+	elif "astro" in d_lower:
+		return "astronomy"
+	elif "med" in d_lower or "ayur" in d_lower:
+		return "medicine"
+	elif "phil" in d_lower or "logic" in d_lower or "darshan" in d_lower:
+		return "philosophy"
+	return d_lower
+
+func _get_audio_stream(path: String) -> AudioStream:
+	if _audio_cache.has(path):
+		return _audio_cache[path]
+		
+	var stream: AudioStream = null
+	if ResourceLoader.exists(path):
+		var res = load(path)
+		if res is AudioStream:
+			stream = res
+			
+	if stream == null and FileAccess.file_exists(path):
+		var bytes := FileAccess.get_file_as_bytes(path)
+		if bytes.size() > 0:
+			var mp3 := AudioStreamMP3.new()
+			mp3.data = bytes
+			stream = mp3
+			
+	if stream:
+		_audio_cache[path] = stream
+	else:
+		push_warning("Teacher1: Could not load audio from: " + path)
+		
+	return stream
+
+func _play_voice_audio(path: String, on_finished: Callable = Callable()) -> void:
+	_stop_voice_audio()
+	
+	if path == "":
+		if on_finished.is_valid():
+			on_finished.call()
+		return
+		
+	var stream := _get_audio_stream(path)
+	if not stream or not voice_player:
+		if on_finished.is_valid():
+			on_finished.call()
+		return
+		
+	# Pause background music when teacher starts speaking
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr and audio_mgr.has_method("pause_bgm"):
+		audio_mgr.pause_bgm()
+		
+	voice_player.stream = stream
+	
+	var conn_callable: Callable
+	conn_callable = func():
+		if voice_player.finished.is_connected(conn_callable):
+			voice_player.finished.disconnect(conn_callable)
+		# Resume background music when teacher finishes speaking
+		var a_mgr = get_node_or_null("/root/AudioManager")
+		if a_mgr and a_mgr.has_method("resume_bgm"):
+			a_mgr.resume_bgm()
+		if on_finished.is_valid():
+			on_finished.call()
+			
+	voice_player.finished.connect(conn_callable)
+	voice_player.play()
+
+func _stop_voice_audio() -> void:
+	if voice_player and voice_player.playing:
+		voice_player.stop()
+	# Resume background music whenever teacher audio is stopped
+	var audio_mgr = get_node_or_null("/root/AudioManager")
+	if audio_mgr and audio_mgr.has_method("resume_bgm"):
+		audio_mgr.resume_bgm()
+
+# ==================================================
+# INTERACTION & DIALOGUE FLOW
+# ==================================================
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_in_range and (_is_dev_mode() or current_state == State.AVAILABLE) and is_teacher_unlocked():
 		if event.is_action_pressed("interact"):
@@ -129,13 +243,12 @@ func _start_teacher_interaction() -> void:
 		push_error("Silabhadra: DialogueManager not assigned.")
 		return
 		
+	_stop_voice_audio()
 	current_state = State.INTRO_DIALOGUE
 	_update_ui_elements()
 	
 	var intro_seq: Array = [
-		{"speaker": "Silabhadra", "text": "Hey traveller, why are you here?"},
-		{"speaker": "Player", "text": "I am here to learn."},
-		{"speaker": "Silabhadra", "text": "What would you like to study?"}
+		{"speaker": "Silabhadra", "text": "Choose the field you wish to study, and I shall share the knowledge preserved by the great scholars of Nalanda."}
 	]
 	
 	dialogue_manager.start_dialogue(intro_seq, _on_intro_dialogue_finished)
@@ -156,45 +269,44 @@ func _on_domain_selected(domain_id: String) -> void:
 	_selected_domain = domain_id
 	GameState.selected_domain = domain_id
 	
-	var d_lower := domain_id.to_lower()
-	if d_lower == "mathematics" or d_lower == "math":
-		current_state = State.HERITAGE
-		_update_ui_elements()
+	var canon_domain := _get_canonical_domain(domain_id)
+	current_state = State.HERITAGE
+	_update_ui_elements()
+	
+	# Start domain teaching audio
+	var audio_info: Dictionary = DOMAIN_AUDIO.get(canon_domain, {})
+	var teaching_audio: String = audio_info.get("teaching", "")
+	if teaching_audio != "":
+		_play_voice_audio(teaching_audio)
 		
-		var math_intro_seq: Array = [
-			{"speaker": "Silabhadra", "text": "Mathematics is more than the study of numbers. In our land, scholars used mathematics to understand measurement, geometry, time, calculation, and even the movements of the heavens."},
-			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me share the ancient knowledge granth with you. Read it with great care—[u]all the questions in the quiz ahead will be asked directly from this granth.[/u]"}
-		]
-		dialogue_manager.start_dialogue(math_intro_seq, func(): _open_knowledge_book(_selected_domain))
-	elif d_lower == "astronomy":
-		current_state = State.HERITAGE
-		_update_ui_elements()
-		
-		var astro_intro_seq: Array = [
-			{"speaker": "Silabhadra", "text": "If astronomy is your path, let us see whether you understand the movements of the cosmos."},
-			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me open the astronomical records of our scholars. Study every page carefully—[u]the questions you will face will be asked directly from what is written here.[/u]"}
-		]
-		dialogue_manager.start_dialogue(astro_intro_seq, func(): _open_knowledge_book(_selected_domain))
-	elif d_lower == "medicine":
-		current_state = State.HERITAGE
-		_update_ui_elements()
-		
-		var med_intro_seq: Array = [
-			{"speaker": "Silabhadra", "text": "If medicine is your path, let us see whether you understand the art of healing and balance."},
-			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me open the healing treatises of our ancient physicians. Read each verse attentively—[u]your evaluation questions will be drawn straight from these pages.[/u]"}
-		]
-		dialogue_manager.start_dialogue(med_intro_seq, func(): _open_knowledge_book(_selected_domain))
-	elif d_lower == "philosophy" or d_lower == "phil" or d_lower == "logic":
-		current_state = State.HERITAGE
-		_update_ui_elements()
-		
-		var phil_intro_seq: Array = [
-			{"speaker": "Silabhadra", "text": "If philosophy is your path, let us see whether you seek wisdom through questioning and debate."},
-			{"speaker": "Silabhadra", "text": "Before we begin your entrance test, let me share the philosophical debates and logic of our masters. Read them carefully—[u]your admission questions will be based entirely on this granth.[/u]"}
-		]
-		dialogue_manager.start_dialogue(phil_intro_seq, func(): _open_knowledge_book(_selected_domain))
-	else:
-		_start_domain_quiz()
+	var teaching_seq: Array = []
+	match canon_domain:
+		"mathematics":
+			teaching_seq = [
+				{"speaker": "Silabhadra", "text": "At Nalanda, Gaṇita was more than numbers. It helped scholars understand trade, architecture, astronomy, and the measurement of time."},
+				{"speaker": "Silabhadra", "text": "Before we begin your entrance test, study this ancient granth with great care—[u]all the admission questions in the quiz ahead will be based entirely on these teachings.[/u]"}
+			]
+		"astronomy":
+			teaching_seq = [
+				{"speaker": "Silabhadra", "text": "Jyotiṣa taught scholars to observe the heavens, measure time, understand seasons, and study the movements of the stars and planets."},
+				{"speaker": "Silabhadra", "text": "Before we begin your entrance test, study this ancient granth with great care—[u]all the admission questions in the quiz ahead will be based entirely on these teachings.[/u]"}
+			]
+		"medicine":
+			teaching_seq = [
+				{"speaker": "Silabhadra", "text": "Āyurveda teaches that true health comes from balance. The body, mind, food, and nature must remain in harmony."},
+				{"speaker": "Silabhadra", "text": "Before we begin your entrance test, study this ancient granth with great care—[u]all the admission questions in the quiz ahead will be based entirely on these teachings.[/u]"}
+			]
+		"philosophy":
+			teaching_seq = [
+				{"speaker": "Silabhadra", "text": "At Nalanda, wisdom was not accepted blindly. Scholars questioned, reasoned, debated, and searched for truth through knowledge and logic."},
+				{"speaker": "Silabhadra", "text": "Before we begin your entrance test, study this ancient granth with great care—[u]all the admission questions in the quiz ahead will be based entirely on these teachings.[/u]"}
+			]
+		_:
+			teaching_seq = [
+				{"speaker": "Silabhadra", "text": "Before we begin your entrance test, study this ancient granth with great care—[u]all the admission questions in the quiz ahead will be based entirely on these teachings.[/u]"}
+			]
+			
+	dialogue_manager.start_dialogue(teaching_seq, func(): _open_knowledge_book(_selected_domain))
 
 func _open_knowledge_book(domain_id: String) -> void:
 	if knowledge_book_ui and is_instance_valid(knowledge_book_ui) and knowledge_book_ui.has_method("open_knowledge_book"):
@@ -203,66 +315,62 @@ func _open_knowledge_book(domain_id: String) -> void:
 		KnowledgeBook.open_book(get_tree().root, domain_id, _on_knowledge_book_completed, _on_interaction_cancelled)
 
 func _on_knowledge_book_completed(_domain_id: String) -> void:
-	current_state = State.QUIZ
+	_stop_voice_audio()
+	current_state = State.TRANSITION_DIALOGUE
 	_update_ui_elements()
-	_start_domain_quiz()
-
+	
+	var canon_domain := _get_canonical_domain(_selected_domain)
+	var audio_info: Dictionary = DOMAIN_AUDIO.get(canon_domain, {})
+	var transition_audio: String = audio_info.get("transition", "")
+	
+	if transition_audio != "":
+		_play_voice_audio(transition_audio)
+		
+	var domain_transition_line := ""
+	match canon_domain:
+		"mathematics":
+			domain_transition_line = "Now, let us see how well you have understood the mathematical wisdom of our ancient scholars."
+		"astronomy":
+			domain_transition_line = "Now, look to the heavens within your mind, and show me what you have learned."
+		"medicine":
+			domain_transition_line = "Now, let us test your knowledge of the ancient science of healing."
+		"philosophy":
+			domain_transition_line = "Now, use reason as your guide, and prove what you have learned."
+		_:
+			domain_transition_line = "Now, let us test what you have learned from the granth."
+			
+	var transition_seq: Array = [
+		{"speaker": "Silabhadra", "text": domain_transition_line},
+		{"speaker": "Silabhadra", "text": "You have studied the teachings. Now, answer carefully and show whether you are ready to walk the path of knowledge."}
+	]
+	
+	dialogue_manager.start_dialogue(transition_seq, func():
+		_stop_voice_audio()
+		_start_domain_quiz()
+	)
 
 func _on_math_heritage_completed() -> void:
-	current_state = State.QUIZ
-	_update_ui_elements()
-	
-	var summary_seq: Array = [
-		{"speaker": "Silabhadra", "text": "Now you know a little about the mathematical tradition that surrounded the age of Nalanda."},
-		{"speaker": "Silabhadra", "text": "Let us see how much you have understood."}
-	]
-	dialogue_manager.start_dialogue(summary_seq, _start_domain_quiz)
+	_on_knowledge_book_completed("mathematics")
 
 func _on_astro_heritage_completed() -> void:
-	current_state = State.QUIZ
-	_update_ui_elements()
-	
-	var summary_seq: Array = [
-		{"speaker": "Silabhadra", "text": "The heavens were not merely something to admire. To the scholars of our tradition, they were something to observe, measure, calculate, and understand."},
-		{"speaker": "Silabhadra", "text": "Now, let us see what you have learned."}
-	]
-	dialogue_manager.start_dialogue(summary_seq, _start_domain_quiz)
+	_on_knowledge_book_completed("astronomy")
 
 func _on_med_heritage_completed() -> void:
-	current_state = State.QUIZ
-	_update_ui_elements()
-	
-	var summary_seq: Array = [
-		{"speaker": "Silabhadra", "text": "The study of medicine required observation, patience, knowledge of nature, and the wisdom to understand what had been learned."},
-		{"speaker": "Silabhadra", "text": "Now, let us see what you have remembered."}
-	]
-	dialogue_manager.start_dialogue(summary_seq, _start_domain_quiz)
+	_on_knowledge_book_completed("medicine")
 
 func _on_phil_heritage_completed() -> void:
-	current_state = State.QUIZ
-	_update_ui_elements()
-	
-	var summary_seq: Array = [
-		{"speaker": "Silabhadra", "text": "A philosopher asks not just 'What is the answer?' but 'Why should I believe it?'"},
-		{"speaker": "Silabhadra", "text": "Now, let us see how carefully you can reason."}
-	]
-	dialogue_manager.start_dialogue(summary_seq, _start_domain_quiz)
+	_on_knowledge_book_completed("philosophy")
 
 func _on_logic_heritage_completed() -> void:
-	current_state = State.QUIZ
-	_update_ui_elements()
-	
-	var summary_seq: Array = [
-		{"speaker": "Silabhadra", "text": "A clever guess may sometimes find an answer, but a scholar should explain why it must be correct."},
-		{"speaker": "Silabhadra", "text": "Now, let us see whether you can reason like a scholar."}
-	]
-	dialogue_manager.start_dialogue(summary_seq, _start_domain_quiz)
+	_on_knowledge_book_completed("philosophy")
 
 func _start_domain_quiz() -> void:
 	if not quiz_manager:
 		push_error("Silabhadra: QuizManager not assigned.")
 		return
 		
+	current_state = State.QUIZ
+	_update_ui_elements()
 	quiz_manager.start_quiz(_selected_domain)
 
 func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
@@ -274,34 +382,11 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		GameState.record_teacher_admission(_selected_domain, score)
 		_update_ui_elements()
 		
-		var pass_seq: Array = []
-		var d_low := _selected_domain.to_lower()
-		if "math" in d_low:
-			pass_seq = [
-				{"speaker": "Silabhadra", "text": "Well done, seeker! You have demonstrated a sharp grasp of our mathematical heritage."},
-				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—your journey as a scholar begins!"}
-			]
-		elif "astro" in d_low:
-			pass_seq = [
-				{"speaker": "Silabhadra", "text": "Splendid! You observe the heavens and planetary rhythms with true scholarly clarity."},
-				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—the observatory and teachers await you!"}
-			]
-		elif "med" in d_low:
-			pass_seq = [
-				{"speaker": "Silabhadra", "text": "Commendable! You understand the balance of elements and healing wisdom of Ayurveda."},
-				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates to deepen your study!"}
-			]
-		elif "phil" in d_low or "logic" in d_low:
-			pass_seq = [
-				{"speaker": "Silabhadra", "text": "Remarkable! You have shown great clarity of reasoning, discernment, and debate."},
-				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—the great hall of discourse awaits!"}
-			]
-		else:
-			pass_seq = [
-				{"speaker": "Silabhadra", "text": "Excellent work! You have proven your dedication to knowledge and wisdom."},
-				{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—your journey begins!"}
-			]
-			
+		var pass_seq: Array = [
+			{"speaker": "Silabhadra", "text": "Well done. Knowledge grows when we learn, question, and apply what we have understood."},
+			{"speaker": "Silabhadra", "text": "You are worthy of entering Nalanda Mahavihara. Proceed to the university gates—your journey as a scholar begins!"}
+		]
+		
 		if dialogue_manager:
 			dialogue_manager.start_dialogue(pass_seq, _on_pass_dialogue_finished)
 		else:
@@ -324,6 +409,7 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 			_on_fail_dialogue_finished()
 
 func _on_interaction_cancelled() -> void:
+	_stop_voice_audio()
 	if current_state != State.ADMITTED and current_state != State.WAITING:
 		current_state = State.AVAILABLE
 		_selected_domain = ""

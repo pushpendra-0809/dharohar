@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
@@ -46,6 +46,11 @@
 [ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="45_0kcse"]
 [ext_resource type="Texture2D" uid="uid://cjvcwchv5t0g5" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/teacher1.png" id="45_iojbb"]
 [ext_resource type="PackedScene" uid="uid://dqam82qsgruag" path="res://scenes/objects/LibraryEntrance.tscn" id="46_libentrance"]
+[ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="47_explornpc"]
+[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
+[ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
+[ext_resource type="PackedScene" uid="uid://scholarreasoninguipopup" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
+[ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="51_prog_ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -369,6 +374,72 @@ position = Vector2(1048, 189)
 scale = Vector2(0.050152, 0.049431)
 texture = ExtResource("29_tree4")
 
+[node name="PathStone_Center1" type="Sprite2D" parent="Decorations" unique_id=98765501]
+position = Vector2(534, 320)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("27_stone")
+
+[node name="PathStone_ToStupa1" type="Sprite2D" parent="Decorations" unique_id=98765502]
+position = Vector2(650, 310)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("27_stone")
+
+[node name="PathStone_ToLibrary1" type="Sprite2D" parent="Decorations" unique_id=98765503]
+position = Vector2(680, 200)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("27_stone")
+
+[node name="PathStone_ToVihara1" type="Sprite2D" parent="Decorations" unique_id=98765504]
+position = Vector2(420, 320)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("27_stone")
+
+[node name="StupaStone1" type="Sprite2D" parent="Decorations" unique_id=98765505]
+position = Vector2(810, 250)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("26_stone2")
+
+[node name="StupaStone2" type="Sprite2D" parent="Decorations" unique_id=98765506]
+position = Vector2(910, 250)
+scale = Vector2(0.035, 0.035)
+texture = ExtResource("26_stone2")
+flip_h = true
+
+[node name="StupaMatka1" type="Sprite2D" parent="Decorations" unique_id=98765507]
+position = Vector2(830, 285)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("30_matka")
+
+[node name="StupaMatka2" type="Sprite2D" parent="Decorations" unique_id=98765508]
+position = Vector2(890, 285)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("30_matka")
+
+[node name="LibStone1" type="Sprite2D" parent="Decorations" unique_id=98765509]
+position = Vector2(750, 210)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("27_stone")
+
+[node name="LibMatka" type="Sprite2D" parent="Decorations" unique_id=98765510]
+position = Vector2(790, 185)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("30_matka")
+
+[node name="ViharaTable" type="Sprite2D" parent="Decorations" unique_id=98765511]
+position = Vector2(250, 290)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("20_table")
+
+[node name="ViharaMatka" type="Sprite2D" parent="Decorations" unique_id=98765512]
+position = Vector2(235, 295)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("30_matka")
+
+[node name="ViharaBush" type="Sprite2D" parent="Decorations" unique_id=98765513]
+position = Vector2(190, 275)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("24_bush2")
+
 [node name="Buildings" type="Node2D" parent="." unique_id=1851740733]
 
 [node name="Build2" type="StaticBody2D" parent="Buildings" unique_id=462608885]
@@ -492,46 +563,20 @@ position = Vector2(914, 342)
 scale = Vector2(0.038, 0.038)
 texture = ExtResource("42_teacher2")
 
-[node name="1NpcStanding" type="Sprite2D" parent="." unique_id=1708538291]
-position = Vector2(515, 57.999996)
-scale = Vector2(0.038, 0.038)
-texture = ExtResource("3_tcrwk")
-
-[node name="Standing2" type="Sprite2D" parent="." unique_id=712882144]
-position = Vector2(444, 368.76563)
-scale = Vector2(0.036, 0.036)
-texture = ExtResource("41_8td27")
-
-[node name="Standing" type="Sprite2D" parent="." unique_id=1938199778]
-position = Vector2(681.68756, 280.49997)
-scale = Vector2(0.036, 0.036)
-texture = ExtResource("42_qsrvs")
-
 [node name="Standing3" type="Sprite2D" parent="." unique_id=2119235360]
 position = Vector2(806.65625, 367.6875)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("42_qsrvs")
 
-[node name="Standing4" type="Sprite2D" parent="." unique_id=831416256]
-position = Vector2(242.00002, 159)
-scale = Vector2(0.036, 0.036)
-texture = ExtResource("43_qsrvs")
-
 [node name="Tomb" type="Sprite2D" parent="." unique_id=1523014133]
 position = Vector2(631.5, 394.5)
 scale = Vector2(0.10221355, 0.11621093)
 texture = ExtResource("44_ljjcv")
-
-[node name="Girl2" type="Sprite2D" parent="." unique_id=1459711307]
-position = Vector2(734.00006, 290)
-scale = Vector2(0.036, 0.036)
-texture = ExtResource("45_0kcse")
-
 [node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
 position = Vector2(347, 566)
 
 [node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
-position = Vector2(292, 309)
+position = Vector2(293, 282)
 
 [node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
 position = Vector2(347, 566)
@@ -585,5 +630,167 @@ polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274
 
 [node name="Teacher1" type="Sprite2D" parent="." unique_id=711037887]
 position = Vector2(474.625, 302)
-scale = Vector2(0.035888642, 0.03776042)
+scale = Vector2(0.038, 0.038)
 texture = ExtResource("45_iojbb")
+
+[node name="NPC_StupaCaretaker" parent="." unique_id=987711 instance=ExtResource("47_explornpc")]
+position = Vector2(843, 331)
+npc_name = "Stupa Caretaker"
+quest_id = "stupa_caretaker"
+sprite_texture = ExtResource("40_monk")
+sprite_scale = Vector2(0.036, 0.036)
+dialogue_lines = [{
+"speaker": "Stupa Caretaker",
+"text": "Yeh stupa keval pathar ki rachna nahi. Yeh yahan ke jeevan aur parampara ka ek mahatvapurn hissa hai."
+}, {
+"speaker": "Stupa Caretaker",
+"text": "Yahan prarthana aur shanti ka vatavaran vidyarthiyon ko ekagratha pradan karta hai."
+}]
+
+[node name="NPC_ViharaWorker" parent="." unique_id=987712 instance=ExtResource("47_explornpc")]
+position = Vector2(242, 160)
+npc_name = "Vihara Worker"
+quest_id = "vihara_supplies"
+sprite_texture = ExtResource("43_qsrvs")
+sprite_scale = Vector2(0.036, 0.036)
+dialogue_lines = [{
+"speaker": "Vihara Worker",
+"text": "Vihara mein rehne wale vidyarthiyon aur bhikshuson ke liye har din bahut saare kaam sambhalne padte hain."
+}, {
+"speaker": "Vihara Worker",
+"text": "Nalanda ki yeh sundar eetain aur kothriyan sadiyon ki mehnat se bani hain."
+}]
+
+[node name="NPC_SeniorStudent" parent="." unique_id=987713 instance=ExtResource("47_explornpc")]
+position = Vector2(444, 368.8)
+npc_name = "Senior Student"
+quest_id = "missing_student"
+sprite_texture = ExtResource("41_8td27")
+sprite_scale = Vector2(0.036, 0.036)
+dialogue_lines = [{
+"speaker": "Senior Student",
+"text": "Nalanda mein har din naye logon aur naye vicharon se milne ka mauka milta hai."
+}, {
+"speaker": "Senior Student",
+"text": "Tarka aur samvad hi yahan ke shastra-arth ka mool aadhar hain."
+}]
+
+[node name="NPC_Scholar" parent="." unique_id=987714 instance=ExtResource("47_explornpc")]
+position = Vector2(681.7, 280.5)
+npc_name = "Scholar"
+quest_id = "scholar_question"
+sprite_texture = ExtResource("42_qsrvs")
+sprite_scale = Vector2(0.036, 0.036)
+dialogue_lines = [{
+"speaker": "Scholar",
+"text": "Ek achha vidwan keval jo padhta hai usse yaad nahi rakhta. Woh us par prashn bhi karta hai."
+}, {
+"speaker": "Scholar",
+"text": "Dharmaganja ke teeno bhawan gyan ka anant sagar hain."
+}]
+
+[node name="NPC_YoungStudent" parent="." unique_id=987715 instance=ExtResource("47_explornpc")]
+position = Vector2(734, 290)
+npc_name = "Student"
+sprite_texture = ExtResource("45_0kcse")
+sprite_scale = Vector2(0.036, 0.036)
+dialogue_lines = [{
+"speaker": "Student",
+"text": "Acharya Silabhadra aur Acharya Dharmapala ke path anmol hain."
+}]
+
+[node name="NPC_ResidentMonk" parent="." unique_id=987716 instance=ExtResource("47_explornpc")]
+position = Vector2(515, 58)
+npc_name = "Monk"
+sprite_texture = ExtResource("3_tcrwk")
+sprite_scale = Vector2(0.038, 0.038)
+dialogue_lines = [{
+"speaker": "Monk",
+"text": "Shanti aur adhyayan hi yahan ka sarvochha dhyeya hai."
+}]
+
+[node name="InteractionPoint_Stupa" parent="." unique_id=987811 instance=ExtResource("48_interactpt")]
+position = Vector2(859, 273)
+point_name = "Great Stupa"
+prompt_text = "[Press E to Contemplate]"
+dialogue_lines = [{
+"speaker": "Great Stupa",
+"text": "Yeh stupa Nalanda ke pavitra aur mahatvapurn sthalon mein se ek hai."
+}]
+
+[node name="InteractionPoint_Library" parent="." unique_id=987812 instance=ExtResource("48_interactpt")]
+position = Vector2(770.5, 136)
+point_name = "Dharmaganja Library"
+prompt_text = "[Press E to Examine Texts]"
+dialogue_lines = [{
+"speaker": "Dharmaganja Library",
+"text": "Yahan granthon aur hastlikhit pustakon ka adhyayan aur sanrakshan kiya jata tha."
+}]
+
+[node name="InteractionPoint_Vihara" parent="." unique_id=987813 instance=ExtResource("48_interactpt")]
+position = Vector2(342, 240)
+point_name = "Vihara Monastic Cells"
+prompt_text = "[Press E to Observe Cells]"
+dialogue_lines = [{
+"speaker": "Vihara",
+"text": "Vihara vidyarthiyon aur bhikshuson ke rehne, padhne aur charcha karne ke sthaan the."
+}]
+
+[node name="InteractionPoint_WritingArea" parent="." unique_id=987814 instance=ExtResource("48_interactpt")]
+position = Vector2(673, 253)
+point_name = "Manuscript Scribe Station"
+prompt_text = "[Press E to Examine Scribe Desk]"
+dialogue_lines = [{
+"speaker": "Manuscript Desk",
+"text": "Ek granth ko likhna, padhna aur sambhal kar rakhna gyan ki parampara ko aage badhana tha."
+}]
+[node name="ScholarReasoningUI" parent="." unique_id=987920 instance=ExtResource("50_scholarui")]
+
+[node name="Item_StupaLamp" parent="." unique_id=987911 instance=ExtResource("49_pickupitem")]
+position = Vector2(912, 312)
+item_id = "stupa_lamp"
+item_name = "Oil Lamp"
+quest_id = "stupa_caretaker"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+
+[node name="Item_StupaCloth" parent="." unique_id=987912 instance=ExtResource("49_pickupitem")]
+position = Vector2(818, 412)
+item_id = "stupa_cloth"
+item_name = "Prayer Cloth"
+quest_id = "stupa_caretaker"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+
+[node name="Item_StupaFlowers" parent="." unique_id=987913 instance=ExtResource("49_pickupitem")]
+position = Vector2(782, 248)
+item_id = "stupa_flowers"
+item_name = "Lotus Flowers"
+quest_id = "stupa_caretaker"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+
+[node name="Item_ViharaWood" parent="." unique_id=987914 instance=ExtResource("49_pickupitem")]
+position = Vector2(162, 202)
+item_id = "vihara_wood"
+item_name = "Timber Plank"
+quest_id = "vihara_supplies"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+
+[node name="Item_ViharaStone" parent="." unique_id=987915 instance=ExtResource("49_pickupitem")]
+position = Vector2(302, 138)
+item_id = "vihara_stone"
+item_name = "Carved Stone"
+quest_id = "vihara_supplies"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+
+[node name="Item_ViharaRope" parent="." unique_id=987916 instance=ExtResource("49_pickupitem")]
+position = Vector2(172, 368)
+item_id = "vihara_rope"
+item_name = "Hemp Rope"
+quest_id = "vihara_supplies"
+sprite_texture = ExtResource("45_iojbb")
+sprite_scale = Vector2(0.008, 0.008)
+

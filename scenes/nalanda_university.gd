@@ -11,6 +11,7 @@ const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
 @onready var university_exit = $UniversityExit
 @onready var teacher2 = $Teacher2
 @onready var player = $Player
+@onready var scholar_reasoning_ui = get_node_or_null("ScholarReasoningUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null
@@ -29,6 +30,16 @@ func _ready() -> void:
 		
 	if teacher2 and teacher2.has_method("setup_manager"):
 		teacher2.setup_manager(dialogue_manager, math_puzzle_ui, med_puzzle_ui, astro_puzzle_ui, phil_puzzle_ui)
+		
+	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
+		if npc.has_method("setup_manager"):
+			npc.setup_manager(dialogue_manager)
+		if npc.has_method("setup_scholar_ui") and scholar_reasoning_ui:
+			npc.setup_scholar_ui(scholar_reasoning_ui)
+			
+	for point in get_tree().get_nodes_in_group("interaction_points"):
+		if point.has_method("setup_manager"):
+			point.setup_manager(dialogue_manager)
 		
 	if player and player.has_method("set_map_limits"):
 		player.set_map_limits(14, 11, 1129, 628, 14.0, 1129.0, 11.0, 628.0)

@@ -4,9 +4,24 @@
 [ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_questpanel"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_pixel_med"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="5_pixel_reg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quest_bg"]
 texture = ExtResource("2_questpanel")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toast_bg"]
+bg_color = Color(0.1, 0.07, 0.04, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.72, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.75)
+shadow_size = 8
 
 [node name="QuestUI" type="CanvasLayer"]
 layer = 20
@@ -18,10 +33,10 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_top = 20.0
-offset_right = -20.0
-offset_bottom = 110.0
+offset_left = -320.0
+offset_top = 18.0
+offset_right = -16.0
+offset_bottom = 145.0
 grow_horizontal = 0
 
 [node name="Panel" type="Panel" parent="PanelBox"]
@@ -38,32 +53,121 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 16.0
-offset_top = 12.0
+offset_top = 10.0
 offset_right = -16.0
-offset_bottom = 32.0
+offset_bottom = 28.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 15
 text = "OBJECTIVE"
 
 [node name="ObjectiveLabel" type="Label" parent="PanelBox"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 28.0
+offset_right = -16.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_fonts/font = ExtResource("4_pixel_med")
+theme_override_font_sizes/font_size = 14
+text = "Complete side quests to gain EXP."
+autowrap_mode = 3
+
+[node name="RewardLabel" type="Label" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 16.0
-offset_top = 34.0
+offset_top = -54.0
 offset_right = -16.0
-offset_bottom = -10.0
+offset_bottom = -34.0
 grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
-theme_override_fonts/font = ExtResource("4_pixel_med")
-theme_override_font_sizes/font_size = 17
-text = "Collect water from the nearby pond"
-autowrap_mode = 3
-vertical_alignment = 1
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.65, 0.35, 0.1, 1)
+theme_override_fonts/font = ExtResource("3_pixel_bold")
+theme_override_font_sizes/font_size = 13
+text = "Reward: +50 EXP"
+
+[node name="ExpStatsLabel" type="Label" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -32.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.35, 0.22, 0.12, 1)
+theme_override_fonts/font = ExtResource("5_pixel_reg")
+theme_override_font_sizes/font_size = 12
+text = "Level: 1   EXP: 0 / 100"
 
 [node name="CompletionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ExpToast" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 18.0
+offset_right = 160.0
+offset_bottom = 92.0
+grow_horizontal = 2
+
+[node name="ToastBg" type="Panel" parent="ExpToast"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_toast_bg")
+
+[node name="VBox" type="VBoxContainer" parent="ExpToast"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+theme_override_constants/separation = 2
+
+[node name="ToastTitle" type="Label" parent="ExpToast/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_pixel_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+text = "QUEST COMPLETE!"
+horizontal_alignment = 1
+
+[node name="ToastSubtitle" type="Label" parent="ExpToast/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_pixel_med")
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.92, 0.88, 0.8, 1)
+text = "University Provisions"
+horizontal_alignment = 1
+
+[node name="ToastAmount" type="Label" parent="ExpToast/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_pixel_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.4, 1.0, 0.4, 1)
+text = "+ 50 EXP"
+horizontal_alignment = 1
+
+[node name="ExpTimer" type="Timer" parent="ExpToast"]
 one_shot = true

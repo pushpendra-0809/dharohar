@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	_check_player_node()
 	
 	if player:
-		if target_node:
+		if target_node and is_instance_valid(target_node):
 			destination_position = target_node.global_position
 			
 		var curr_pos: Vector2 = player.global_position
@@ -111,7 +111,7 @@ func recalculate_path() -> void:
 		return
 		
 	var start_pos: Vector2 = player.global_position
-	if target_node:
+	if target_node and is_instance_valid(target_node):
 		destination_position = target_node.global_position
 		
 	last_calc_player_pos = start_pos
@@ -242,7 +242,7 @@ func _is_cell_valid(cell: Vector2i) -> bool:
 	return cell.x >= 0 and cell.x < GRID_SIZE.x and cell.y >= 0 and cell.y < GRID_SIZE.y
 
 func _check_player_node() -> void:
-	if not player:
+	if not player or not is_instance_valid(player):
 		player = get_node_or_null("../Player")
 		if not player:
 			var tree := get_tree()
@@ -253,6 +253,14 @@ func _sync_with_game_state() -> void:
 	if not GameState:
 		return
 		
+	# 1. Check for Active Side Quests First
+	if GameState.has_method("is_side_quest_active"):
+		for q_id in ["farmer_provisions", "scribe_manuscript", "stupa_caretaker", "vihara_supplies", "missing_student", "scholar_question"]:
+			if GameState.is_side_quest_active(q_id):
+				_sync_side_quest(q_id)
+				return
+				
+	# 2. Main Storyline Progression Flow
 	if GameState.has_visited_university:
 		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
 			clear_objective()
@@ -280,6 +288,116 @@ func _sync_with_game_state() -> void:
 		var merch: Node2D = get_node_or_null("../Merchant")
 		var merch_pos: Vector2 = merch.global_position if merch else Vector2(487, 109)
 		set_objective("meet_merchant", merch_pos, "Meet the merchant", merch)
+
+func _sync_side_quest(q_id: String) -> void:
+	match q_id:
+		"farmer_provisions":
+			var q: Dictionary = GameState.side_quests["farmer_provisions"]
+			var prog: int = q.get("progress", 0)
+			var tgt: int = q.get("target", 3)
+			if prog < tgt:
+				var next_item: Node2D = _find_nearest_quest_item("farmer_provisions")
+				if next_item:
+					set_objective("collect_provision", next_item.global_position, "Collect provision (" + str(prog) + "/3)", next_item)
+				else:
+					var elder: Node2D = get_node_or_null("../NPC_FarmerElder")
+					var elder_pos: Vector2 = elder.global_position if elder else Vector2(536, 475)
+					set_objective("return_elder", elder_pos, "Return to the Village Elder", elder)
+			else:
+				var elder: Node2D = get_node_or_null("../NPC_FarmerElder")
+				var elder_pos: Vector2 = elder.global_position if elder else Vector2(536, 475)
+				set_objective("return_elder", elder_pos, "Return to the Village Elder", elder)
+
+		"scribe_manuscript":
+			var is_deliv: bool = GameState.is_manuscript_delivered()
+			if not is_deliv:
+				# Deliver to Library desk / InteractionPoint_Library
+				var lib_desk: Node2D = get_node_or_null("../InteractionPoint_Library")
+				if not lib_desk:
+					lib_desk = get_node_or_null("../InteractionPoint_WritingArea")
+				if lib_desk:
+					set_objective("deliver_manuscript", lib_desk.global_position, "Deliver manuscript to Library Desk", lib_desk)
+				else:
+					var univ_gate: Node2D = get_node_or_null("../UniversityEntrance")
+					if not univ_gate:
+						univ_gate = get_node_or_null("../InteractionPoint_Gate")
+					var gate_pos: Vector2 = univ_gate.global_position if univ_gate else Vector2(1098, 191)
+					set_objective("go_to_library", gate_pos, "Enter University towards Library", univ_gate)
+			else:
+				# Return to Scribe
+				var scribe: Node2D = get_node_or_null("../NPC_Scribe")
+				if scribe:
+					set_objective("return_scribe", scribe.global_position, "Return to the Scribe", scribe)
+				else:
+					var exit_node: Node2D = get_node_or_null("../UniversityExit")
+					var exit_pos: Vector2 = exit_node.global_position if exit_node else Vector2(347, 566)
+					set_objective("exit_to_scribe", exit_pos, "Return to Scribe via Gate Exit", exit_node)
+
+		"stupa_caretaker":
+			var q: Dictionary = GameState.side_quests["stupa_caretaker"]
+			var prog: int = q.get("progress", 0)
+			var tgt: int = q.get("target", 3)
+			if prog < tgt:
+				var next_item: Node2D = _find_nearest_quest_item("stupa_caretaker")
+				if next_item:
+					set_objective("collect_stupa_item", next_item.global_position, "Collect Stupa item (" + str(prog) + "/3)", next_item)
+				else:
+					var caretaker: Node2D = get_node_or_null("../NPC_StupaCaretaker")
+					var c_pos: Vector2 = caretaker.global_position if caretaker else Vector2(843, 331)
+					set_objective("return_stupa", c_pos, "Return to the Stupa Caretaker", caretaker)
+			else:
+				var caretaker: Node2D = get_node_or_null("../NPC_StupaCaretaker")
+				var c_pos: Vector2 = caretaker.global_position if caretaker else Vector2(843, 331)
+				set_objective("return_stupa", c_pos, "Return to the Stupa Caretaker", caretaker)
+
+		"vihara_supplies":
+			var q: Dictionary = GameState.side_quests["vihara_supplies"]
+			var prog: int = q.get("progress", 0)
+			var tgt: int = q.get("target", 3)
+			if prog < tgt:
+				var next_item: Node2D = _find_nearest_quest_item("vihara_supplies")
+				if next_item:
+					set_objective("collect_vihara_item", next_item.global_position, "Collect Vihara supply (" + str(prog) + "/3)", next_item)
+				else:
+					var worker: Node2D = get_node_or_null("../NPC_ViharaWorker")
+					var w_pos: Vector2 = worker.global_position if worker else Vector2(242, 160)
+					set_objective("return_vihara", w_pos, "Return to the Vihara Worker", worker)
+			else:
+				var worker: Node2D = get_node_or_null("../NPC_ViharaWorker")
+				var w_pos: Vector2 = worker.global_position if worker else Vector2(242, 160)
+				set_objective("return_vihara", w_pos, "Return to the Vihara Worker", worker)
+
+		"missing_student":
+			var is_found: bool = GameState.is_missing_student_found()
+			if not is_found:
+				var young_stud: Node2D = get_node_or_null("../NPC_YoungStudent")
+				var y_pos: Vector2 = young_stud.global_position if young_stud else Vector2(734, 290)
+				set_objective("find_student", y_pos, "Find the missing student", young_stud)
+			else:
+				var senior: Node2D = get_node_or_null("../NPC_SeniorStudent")
+				var s_pos: Vector2 = senior.global_position if senior else Vector2(444, 368.8)
+				set_objective("return_senior", s_pos, "Return to the Senior Student", senior)
+
+		"scholar_question":
+			var scholar: Node2D = get_node_or_null("../NPC_Scholar")
+			var sch_pos: Vector2 = scholar.global_position if scholar else Vector2(681.7, 280.5)
+			set_objective("talk_scholar", sch_pos, "Talk to the Scholar", scholar)
+
+func _find_nearest_quest_item(q_id: String) -> Node2D:
+	_check_player_node()
+	var player_pos: Vector2 = player.global_position if player else Vector2.ZERO
+	var best_node: Node2D = null
+	var best_dist: float = 999999.0
+	
+	for item in get_tree().get_nodes_in_group("pickup_items"):
+		if item is Node2D and item.visible and "quest_id" in item and item.quest_id == q_id:
+			if "item_id" in item and not GameState.is_quest_item_collected(item.item_id):
+				var d: float = player_pos.distance_to(item.global_position)
+				if d < best_dist:
+					best_dist = d
+					best_node = item
+					
+	return best_node
 
 func _on_quest_state_changed() -> void:
 	_sync_with_game_state()

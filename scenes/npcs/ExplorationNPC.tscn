@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://klmc8ul3n3d7"]
+
+[ext_resource type="Script" path="res://scripts/npcs/ExplorationNPC.gd" id="1_explornpc"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_npc_body"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 45.0
+
+[node name="ExplorationNPC" type="StaticBody2D" unique_id=987123999]
+script = ExtResource("1_explornpc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=123456999]
+scale = Vector2(0.03, 0.03)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654999]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_npc_body")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=456789999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=654321999]
+shape = SubResource("CircleShape2D_interaction")
+
+[node name="InteractionIndicator" type="Label" parent="." unique_id=321654999]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "💬"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=789123999]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -32.0
+offset_right = 75.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "[Press E to Talk]"
+horizontal_alignment = 1
+[node name="QuestMarker" type="Label" parent="." unique_id=987123998]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -54.0
+offset_right = 16.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.12, 0.04, 0.95)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+

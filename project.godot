@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/systems/GameState.gd"
 DevModeManager="*res://scripts/systems/DevModeManager.gd"
+AudioManager="*res://scripts/systems/AudioManager.gd"
 
 [display]
 

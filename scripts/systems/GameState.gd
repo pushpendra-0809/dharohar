@@ -135,12 +135,245 @@ func mark_university_visited() -> void:
 	has_visited_university = true
 	quest_state_changed.emit()
 
-var session_exp: int = 0
-signal exp_changed(new_exp: int, delta: int)
+# ==============================================================================
+# STEP 10: NALANDA SIDE QUESTS STATE SYSTEM
+# ==============================================================================
+enum QuestStatus {
+	NOT_STARTED = 0,
+	ACTIVE = 1,
+	COMPLETE = 2
+}
+
+signal side_quest_state_changed(quest_id: String, new_state: int)
+signal side_quest_completed(quest_id: String)
+
+var side_quests: Dictionary = {
+	"farmer_provisions": {
+		"id": "farmer_provisions",
+		"title": "University Provisions",
+		"state": QuestStatus.NOT_STARTED,
+		"progress": 0,
+		"target": 3,
+		"collected_items": []
+	},
+	"scribe_manuscript": {
+		"id": "scribe_manuscript",
+		"title": "The Right Manuscript",
+		"state": QuestStatus.NOT_STARTED,
+		"delivered": false
+	},
+	"stupa_caretaker": {
+		"id": "stupa_caretaker",
+		"title": "Care for the Stupa",
+		"state": QuestStatus.NOT_STARTED,
+		"progress": 0,
+		"target": 3,
+		"collected_items": []
+	},
+	"vihara_supplies": {
+		"id": "vihara_supplies",
+		"title": "Vihara Supplies",
+		"state": QuestStatus.NOT_STARTED,
+		"progress": 0,
+		"target": 3,
+		"collected_items": []
+	},
+	"missing_student": {
+		"id": "missing_student",
+		"title": "The Missing Student",
+		"state": QuestStatus.NOT_STARTED,
+		"found": false
+	},
+	"scholar_question": {
+		"id": "scholar_question",
+		"title": "A Scholar's Question",
+		"state": QuestStatus.NOT_STARTED,
+		"solved": false
+	}
+}
+
+func get_side_quest_state(quest_id: String) -> int:
+	if side_quests.has(quest_id):
+		return side_quests[quest_id].get("state", QuestStatus.NOT_STARTED)
+	return QuestStatus.NOT_STARTED
+
+func is_side_quest_active(quest_id: String) -> bool:
+	return get_side_quest_state(quest_id) == QuestStatus.ACTIVE
+
+func is_side_quest_complete(quest_id: String) -> bool:
+	return get_side_quest_state(quest_id) == QuestStatus.COMPLETE
+
+func start_side_quest(quest_id: String) -> void:
+	if side_quests.has(quest_id) and side_quests[quest_id]["state"] == QuestStatus.NOT_STARTED:
+		side_quests[quest_id]["state"] = QuestStatus.ACTIVE
+		side_quest_state_changed.emit(quest_id, QuestStatus.ACTIVE)
+		quest_state_changed.emit()
+
+func collect_quest_item(quest_id: String, item_id: String) -> void:
+	if side_quests.has(quest_id) and side_quests[quest_id]["state"] == QuestStatus.ACTIVE:
+		var q: Dictionary = side_quests[quest_id]
+		var items: Array = q.get("collected_items", [])
+		if not items.has(item_id):
+			items.append(item_id)
+			q["collected_items"] = items
+			q["progress"] = items.size()
+			side_quest_state_changed.emit(quest_id, QuestStatus.ACTIVE)
+			quest_state_changed.emit()
+
+func is_quest_item_collected(item_id: String) -> bool:
+	for q_id in side_quests:
+		var q: Dictionary = side_quests[q_id]
+		if q.has("collected_items"):
+			var items: Array = q.get("collected_items", [])
+			if items.has(item_id):
+				return true
+	return false
+
+func deliver_manuscript() -> void:
+	if side_quests.has("scribe_manuscript") and side_quests["scribe_manuscript"]["state"] == QuestStatus.ACTIVE:
+		side_quests["scribe_manuscript"]["delivered"] = true
+		side_quest_state_changed.emit("scribe_manuscript", QuestStatus.ACTIVE)
+		quest_state_changed.emit()
+
+func is_manuscript_delivered() -> bool:
+	if side_quests.has("scribe_manuscript"):
+		return side_quests["scribe_manuscript"].get("delivered", false)
+	return false
+
+func find_missing_student() -> void:
+	if side_quests.has("missing_student") and side_quests["missing_student"]["state"] == QuestStatus.ACTIVE:
+		side_quests["missing_student"]["found"] = true
+		side_quest_state_changed.emit("missing_student", QuestStatus.ACTIVE)
+		quest_state_changed.emit()
+
+func is_missing_student_found() -> bool:
+	if side_quests.has("missing_student"):
+		return side_quests["missing_student"].get("found", false)
+	return false
+
+func solve_scholar_question() -> void:
+	if side_quests.has("scholar_question"):
+		side_quests["scholar_question"]["solved"] = true
+		side_quest_state_changed.emit("scholar_question", QuestStatus.ACTIVE)
+		quest_state_changed.emit()
+
+func is_scholar_question_solved() -> bool:
+	if side_quests.has("scholar_question"):
+		return side_quests["scholar_question"].get("solved", false)
+	return false
+
+func are_teacher2_tasks_completed() -> bool:
+	var dev = get_node_or_null("/root/DevModeManager")
+	var is_dev: bool = dev != null and dev.dev_mode_enabled
+	return is_dev or math_puzzle_completed or medicine_puzzle_completed or astronomy_puzzle_completed or philosophy_puzzle_completed or teacher2_convo_started
+
+const SIDE_QUEST_EXP_REWARDS: Dictionary = {
+	"farmer_provisions": 50,
+	"scribe_manuscript": 50,
+	"stupa_caretaker": 50,
+	"vihara_supplies": 50,
+	"missing_student": 50,
+	"scholar_question": 75
+}
+
+var quest_rewards_claimed: Dictionary = {}
+
+# Player Progression & Level System (Step 11)
+var player_level: int = 1
+var player_exp: int = 0
+var total_accumulated_exp: int = 0
+
+signal exp_awarded(amount: int, current_exp: int, exp_required: int, did_level_up: bool)
+signal level_up(new_level: int)
+
+func get_exp_required_for_next_level(lvl: int) -> int:
+	match lvl:
+		1: return 100
+		2: return 150
+		3: return 200
+		4: return 250
+		_: return 300 + (lvl - 5) * 50
 
 func add_exp(amount: int) -> void:
-	session_exp += amount
-	exp_changed.emit(session_exp, amount)
+	if amount <= 0:
+		return
+		
+	total_accumulated_exp += amount
+	player_exp += amount
+	exp_changed.emit(player_exp, amount)
+	
+	var req: int = get_exp_required_for_next_level(player_level)
+	var did_level_up: bool = false
+	
+	while player_exp >= req:
+		player_exp -= req
+		player_level += 1
+		did_level_up = true
+		level_up.emit(player_level)
+		req = get_exp_required_for_next_level(player_level)
+		
+	exp_awarded.emit(amount, player_exp, req, did_level_up)
+
+func complete_side_quest(quest_id: String) -> void:
+	if side_quests.has(quest_id):
+		var was_complete: bool = side_quests[quest_id].get("state", QuestStatus.NOT_STARTED) == QuestStatus.COMPLETE
+		side_quests[quest_id]["state"] = QuestStatus.COMPLETE
+		
+		# Award EXP only once upon completion
+		if not was_complete and not quest_rewards_claimed.get(quest_id, false):
+			quest_rewards_claimed[quest_id] = true
+			var exp_reward: int = SIDE_QUEST_EXP_REWARDS.get(quest_id, 50)
+			add_exp(exp_reward)
+			
+		side_quest_completed.emit(quest_id)
+		side_quest_state_changed.emit(quest_id, QuestStatus.COMPLETE)
+		quest_state_changed.emit()
+
+func get_active_side_quest_objective() -> String:
+	for q_id in ["farmer_provisions", "scribe_manuscript", "stupa_caretaker", "vihara_supplies", "missing_student", "scholar_question"]:
+		var q: Dictionary = side_quests[q_id]
+		if q.get("state", QuestStatus.NOT_STARTED) == QuestStatus.ACTIVE:
+			match q_id:
+				"farmer_provisions":
+					var prog: int = q.get("progress", 0)
+					var tgt: int = q.get("target", 3)
+					if prog < tgt:
+						return "Collect provisions for Elder (" + str(prog) + "/" + str(tgt) + ")"
+					else:
+						return "Return the provisions to the Village Elder"
+				"scribe_manuscript":
+					if not q.get("delivered", false):
+						return "Deliver manuscript to the Library Desk"
+					else:
+						return "Return to the Scribe"
+				"stupa_caretaker":
+					var prog: int = q.get("progress", 0)
+					var tgt: int = q.get("target", 3)
+					if prog < tgt:
+						return "Collect Stupa items (" + str(prog) + "/" + str(tgt) + ")"
+					else:
+						return "Return items to the Stupa Caretaker"
+				"vihara_supplies":
+					var prog: int = q.get("progress", 0)
+					var tgt: int = q.get("target", 3)
+					if prog < tgt:
+						return "Collect Vihara supplies (" + str(prog) + "/" + str(tgt) + ")"
+					else:
+						return "Return supplies to the Vihara Worker"
+				"missing_student":
+					if not q.get("found", false):
+						return "Find the missing student"
+					else:
+						return "Return to the Senior Student"
+				"scholar_question":
+					if not q.get("solved", false):
+						return "Solve the Scholar's classification challenge"
+					else:
+						return "Talk to the Scholar"
+	return ""
+
+var session_exp: int = 0
+signal exp_changed(new_exp: int, delta: int)
 
 func unlock_all_progression() -> void:
 	merchant_passed = true
@@ -169,6 +402,21 @@ func unlock_all_progression() -> void:
 	has_played_math_cutscene = true
 	has_played_astro_cutscene = true
 	has_shown_nalanda_controls_tutorial = true
+	
+	for q_id in side_quests:
+		side_quests[q_id]["state"] = QuestStatus.COMPLETE
+		quest_rewards_claimed[q_id] = true
+		if side_quests[q_id].has("progress"):
+			side_quests[q_id]["progress"] = side_quests[q_id].get("target", 3)
+		if side_quests[q_id].has("delivered"):
+			side_quests[q_id]["delivered"] = true
+		if side_quests[q_id].has("found"):
+			side_quests[q_id]["found"] = true
+		if side_quests[q_id].has("solved"):
+			side_quests[q_id]["solved"] = true
+	player_level = 3
+	player_exp = 75
+	total_accumulated_exp = 325
 	
 	merchant_state_changed.emit()
 	teacher_state_changed.emit()
@@ -212,7 +460,26 @@ func reset_test_progression() -> void:
 	has_played_astro_cutscene = false
 	has_shown_nalanda_controls_tutorial = false
 	
+	player_level = 1
+	player_exp = 0
+	total_accumulated_exp = 0
+	quest_rewards_claimed.clear()
+	for q_id in side_quests:
+		side_quests[q_id]["state"] = QuestStatus.NOT_STARTED
+		if side_quests[q_id].has("progress"):
+			side_quests[q_id]["progress"] = 0
+		if side_quests[q_id].has("collected_items"):
+			side_quests[q_id]["collected_items"] = []
+		if side_quests[q_id].has("delivered"):
+			side_quests[q_id]["delivered"] = false
+		if side_quests[q_id].has("found"):
+			side_quests[q_id]["found"] = false
+		if side_quests[q_id].has("solved"):
+			side_quests[q_id]["solved"] = false
+	
 	merchant_state_changed.emit()
 	teacher_state_changed.emit()
 	quest_state_changed.emit()
+
+
 
