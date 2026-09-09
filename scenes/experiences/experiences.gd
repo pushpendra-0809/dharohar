@@ -14,9 +14,13 @@ func _ready() -> void:
 		if btn:
 			_setup_button_hover_zoom(btn)
 			
-	if comingsoon_button1:
+	if nalanda_button and not nalanda_button.pressed.is_connected(_on_nalanda_button_pressed):
+		nalanda_button.pressed.connect(_on_nalanda_button_pressed)
+	if back_button and not back_button.pressed.is_connected(_on_back_pressed):
+		back_button.pressed.connect(_on_back_pressed)
+	if comingsoon_button1 and not comingsoon_button1.pressed.is_connected(_on_comingsoon1_pressed):
 		comingsoon_button1.pressed.connect(_on_comingsoon1_pressed)
-	if comingsoon_button2:
+	if comingsoon_button2 and not comingsoon_button2.pressed.is_connected(_on_comingsoon2_pressed):
 		comingsoon_button2.pressed.connect(_on_comingsoon2_pressed)
 		
 	_check_dev_mode_ui()
@@ -86,6 +90,7 @@ func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/main menu/main_menu.tscn")
 
 func _setup_button_hover_zoom(btn: Button) -> void:
+	btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
 	btn.pivot_offset = btn.size / 2.0
 	if not btn.mouse_entered.is_connected(_on_button_hover.bind(btn, true)):
 		btn.mouse_entered.connect(_on_button_hover.bind(btn, true))
