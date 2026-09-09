@@ -506,10 +506,6 @@ texture = ExtResource("48_tree_bldg")
 [node name="Treeee" type="StaticBody2D" parent="BuildingsAndProps" unique_id=1561679572]
 position = Vector2(849.219, 314.156)
 
-[node name="Sprite2D" type="Sprite2D" parent="BuildingsAndProps/Treeee" unique_id=1821963373]
-scale = Vector2(0.06742354, 0.08563233)
-texture = ExtResource("49_treeee")
-
 [node name="Player" parent="." unique_id=1452783152 instance=ExtResource("3_player")]
 position = Vector2(28, 311)
 
@@ -575,3 +571,63 @@ polygon = PackedVector2Array(982, 358, 983, 398, 981, 415, 978, 430, 935, 441, 9
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions" unique_id=1178359228]
 polygon = PackedVector2Array(1150, 386, 1100, 390, 1085, 390, 1073, 461, 1054, 481, 1051, 522, 1017, 552, 979, 545, 966, 586, 932, 607, 913, 619, 885, 617, 869, 628, 869, 638, 1148, 642)
 
+[node name="Standing" type="Sprite2D" parent="." unique_id=1501937050]
+position = Vector2(721.99994, 117.99999)
+scale = Vector2(0.026000986, 0.027303062)
+texture = ExtResource("50_davql")
+
+[node name="Standing2" type="Sprite2D" parent="." unique_id=1674461740]
+position = Vector2(536.53125, 475)
+scale = Vector2(0.04193114, 0.0393067)
+texture = ExtResource("51_ok3o3")
+
+[node name="Standing3" type="Sprite2D" parent="." unique_id=218381176]
+position = Vector2(265.75, 368.4375)
+scale = Vector2(0.03173828, 0.031819656)
+texture = ExtResource("52_14dm2")
+
+[node name="Standing4" type="Sprite2D" parent="." unique_id=1526586221]
+position = Vector2(680.3281, 258.89063)
+scale = Vector2(0.022796612, 0.023295088)
+texture = ExtResource("53_guh1u")
+
+[node name="Villager3" type="Sprite2D" parent="." unique_id=1050060819]
+position = Vector2(919.1875, 165)
+scale = Vector2(0.028930657, 0.027343754)
+texture = ExtResource("54_lp60u")
+
+[node name="Standing5" type="Sprite2D" parent="." unique_id=1781992425]
+position = Vector2(560, 294)
+scale = Vector2(0.031249976, 0.03190103)
+texture = ExtResource("55_8vno3")
+
+[node name="Standing6" type="Sprite2D" parent="." unique_id=160949160]
+position = Vector2(419, 225)
+scale = Vector2(0.028320307, 0.0284831)
+texture = ExtResource("51_ok3o3")
+
+[node name="Farm" type="Sprite2D" parent="." unique_id=1432270051]
+position = Vector2(554.3125, 559.00006)
+scale = Vector2(0.13370761, 0.1361084)
+texture = ExtResource("56_ok3o3")
+
+[node name="Woodpile" type="Sprite2D" parent="." unique_id=725520822]
+position = Vector2(583, 496.99997)
+scale = Vector2(0.22126424, 0.19932476)
+texture = ExtResource("33_woodpile")
+
+[node name="Haystack" type="Sprite2D" parent="." unique_id=203702453]
+position = Vector2(440, 589.00006)
+scale = Vector2(0.122857146, 0.1368421)
+texture = ExtResource("23_haystack")
+
+[node name="Area" type="Sprite2D" parent="." unique_id=1222505308]
+position = Vector2(781, 110.00001)
+scale = Vector2(0.068766296, 0.071289055)
+texture = ExtResource("57_guh1u")
+flip_h = true
+
+[node name="Stone" type="Sprite2D" parent="." unique_id=895975193]
+position = Vector2(770, 142)
+scale = Vector2(0.007405564, 0.008239769)
+texture = ExtResource("58_lp60u")
