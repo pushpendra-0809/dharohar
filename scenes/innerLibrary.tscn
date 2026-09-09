@@ -1,0 +1,209 @@
+[gd_scene format=3 uid="uid://b0qrb84ua0kly"]
+
+[ext_resource type="Script" uid="uid://0arpe7g0ppet" path="res://scenes/innerLibrary.gd" id="1_libgd"]
+[ext_resource type="Texture2D" uid="uid://cw6h5bybes65t" path="res://assets/Elements/buildings/InnerLibrary.png" id="2_bgpng"]
+[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://ylmvb8a874p3" path="res://scenes/objects/LibraryExit.tscn" id="4_exit"]
+[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
+[ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
+[ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="8_trail"]
+[ext_resource type="Texture2D" uid="uid://djqwlaccwu0al" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing2.png" id="9_vh8sf"]
+[ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="10_nwcvm"]
+[ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="11_51f2q"]
+[ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="12_54sn1"]
+[ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="13_we5yx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
+size = Vector2(1152, 130)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_side"]
+size = Vector2(80, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_bottom_left"]
+size = Vector2(480, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_bottom_right"]
+size = Vector2(480, 138)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table_main"]
+size = Vector2(173.5, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pedestal"]
+size = Vector2(40, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_candle_stand"]
+size = Vector2(32, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side_pillar"]
+size = Vector2(127.5, 51.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side_table_left"]
+size = Vector2(60, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_side_table_right"]
+size = Vector2(60.5, 45)
+
+[node name="InnerLibrary" type="Control" unique_id=1892019283]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_libgd")
+
+[node name="background" type="TextureRect" parent="." unique_id=1892019284]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bgpng")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LibraryExit" parent="." unique_id=1892019285 instance=ExtResource("4_exit")]
+position = Vector2(576, 605)
+
+[node name="Player" parent="." unique_id=1892019286 instance=ExtResource("3_player")]
+position = Vector2(575, 511)
+
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1858382033]
+zoom = Vector2(2.5, 2.5)
+
+[node name="ObjectiveTrailManager" parent="." unique_id=1892019287 instance=ExtResource("8_trail")]
+
+[node name="DialogueUI" parent="." unique_id=1892019288 instance=ExtResource("5_dlgui")]
+
+[node name="QuestUI" parent="." unique_id=1892019289 instance=ExtResource("6_questui")]
+
+[node name="PauseMenuUI" parent="." unique_id=1892019290 instance=ExtResource("7_pauseui")]
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=1892019291]
+
+[node name="WallTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019292]
+position = Vector2(576, 65)
+shape = SubResource("RectangleShape2D_wall_top")
+
+[node name="WallLeft" type="CollisionShape2D" parent="Collisions" unique_id=1892019293]
+position = Vector2(40, 324)
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="WallRight" type="CollisionShape2D" parent="Collisions" unique_id=1892019294]
+position = Vector2(1112, 324)
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="WallBottomLeft" type="CollisionShape2D" parent="Collisions" unique_id=1892019295]
+position = Vector2(240, 579)
+shape = SubResource("RectangleShape2D_wall_bottom_left")
+
+[node name="WallBottomRight" type="CollisionShape2D" parent="Collisions" unique_id=1892019296]
+position = Vector2(912, 579)
+shape = SubResource("RectangleShape2D_wall_bottom_right")
+
+[node name="TableLeftTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019297]
+position = Vector2(391.25, 231)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="TableLeftMid" type="CollisionShape2D" parent="Collisions" unique_id=1892019298]
+position = Vector2(399, 324)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="TableLeftBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019299]
+position = Vector2(401, 421)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="TableRightTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019300]
+position = Vector2(780, 234)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="TableRightMid" type="CollisionShape2D" parent="Collisions" unique_id=1892019301]
+position = Vector2(761, 326)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="TableRightBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019302]
+position = Vector2(763, 427)
+shape = SubResource("RectangleShape2D_table_main")
+
+[node name="AstrolabePedestal" type="CollisionShape2D" parent="Collisions" unique_id=1892019303]
+position = Vector2(578, 321)
+shape = SubResource("RectangleShape2D_pedestal")
+
+[node name="CandleLeft" type="CollisionShape2D" parent="Collisions" unique_id=1892019304]
+position = Vector2(462, 242)
+shape = SubResource("RectangleShape2D_candle_stand")
+
+[node name="CandleRight" type="CollisionShape2D" parent="Collisions" unique_id=1892019305]
+position = Vector2(690, 242)
+shape = SubResource("RectangleShape2D_candle_stand")
+
+[node name="PillarLeftTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019306]
+position = Vector2(160, 166)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="PillarLeftMid" type="CollisionShape2D" parent="Collisions" unique_id=1892019307]
+position = Vector2(165.5, 366.25)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="PillarLeftBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019308]
+position = Vector2(156.25, 456.875)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="PillarRightTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019309]
+position = Vector2(954, 356)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="PillarRightMid" type="CollisionShape2D" parent="Collisions" unique_id=1892019310]
+position = Vector2(1037.4375, 375)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="PillarRightBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019311]
+position = Vector2(1007, 464)
+shape = SubResource("RectangleShape2D_side_pillar")
+
+[node name="SideTableLeftTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019312]
+position = Vector2(38, 260)
+shape = SubResource("RectangleShape2D_side_table_left")
+
+[node name="SideTableLeftBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019313]
+position = Vector2(38, 500)
+shape = SubResource("RectangleShape2D_side_table_left")
+
+[node name="SideTableRightTop" type="CollisionShape2D" parent="Collisions" unique_id=1892019314]
+position = Vector2(1020, 259)
+shape = SubResource("RectangleShape2D_side_table_right")
+
+[node name="SideBookshelfRightMid" type="CollisionShape2D" parent="Collisions" unique_id=1892019315]
+position = Vector2(991.75, 159)
+shape = SubResource("RectangleShape2D_side_table_right")
+
+[node name="SideTableRightBottom" type="CollisionShape2D" parent="Collisions" unique_id=1892019316]
+position = Vector2(1074, 520)
+shape = SubResource("RectangleShape2D_side_table_right")
+
+[node name="Standing2" type="Sprite2D" parent="." unique_id=1705128769]
+position = Vector2(672, 182.00002)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("9_vh8sf")
+
+[node name="Standing" type="Sprite2D" parent="." unique_id=1757038082]
+position = Vector2(285.8125, 277.5)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("10_nwcvm")
+
+[node name="Standing3" type="Sprite2D" parent="." unique_id=1192543260]
+position = Vector2(765, 360.8125)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("11_51f2q")
+
+[node name="Standing4" type="Sprite2D" parent="." unique_id=1140322888]
+position = Vector2(489.0625, 275)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("12_54sn1")
+
+[node name="Standing5" type="Sprite2D" parent="." unique_id=2140059733]
+position = Vector2(968.00006, 233.00002)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("13_we5yx")

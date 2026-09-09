@@ -497,37 +497,37 @@ texture = ExtResource("49_treeee")
 
 [node name="Standing" type="Sprite2D" parent="." unique_id=1501937050]
 position = Vector2(721.99994, 117.99999)
-scale = Vector2(0.026000986, 0.027303062)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("50_davql")
 
 [node name="Standing2" type="Sprite2D" parent="." unique_id=1674461740]
 position = Vector2(536.53125, 475)
-scale = Vector2(0.04193114, 0.0393067)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("51_ok3o3")
 
 [node name="Standing3" type="Sprite2D" parent="." unique_id=218381176]
 position = Vector2(265.75, 368.4375)
-scale = Vector2(0.03173828, 0.031819656)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("52_14dm2")
 
 [node name="Standing4" type="Sprite2D" parent="." unique_id=1526586221]
 position = Vector2(680.3281, 258.89063)
-scale = Vector2(0.022796612, 0.023295088)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("53_guh1u")
 
 [node name="Villager3" type="Sprite2D" parent="." unique_id=1050060819]
 position = Vector2(919.1875, 165)
-scale = Vector2(0.028930657, 0.027343754)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("54_lp60u")
 
 [node name="Standing5" type="Sprite2D" parent="." unique_id=1781992425]
 position = Vector2(560, 294)
-scale = Vector2(0.031249976, 0.03190103)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("55_8vno3")
 
 [node name="Standing6" type="Sprite2D" parent="." unique_id=160949160]
 position = Vector2(419, 225)
-scale = Vector2(0.028320307, 0.0284831)
+scale = Vector2(0.036, 0.036)
 texture = ExtResource("51_ok3o3")
 
 [node name="Farm" type="Sprite2D" parent="." unique_id=1432270051]
@@ -620,4 +620,3 @@ polygon = PackedVector2Array(982, 358, 983, 398, 981, 415, 978, 430, 935, 441, 9
 
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions" unique_id=1178359228]
 polygon = PackedVector2Array(1150, 386, 1100, 390, 1085, 390, 1073, 461, 1054, 481, 1051, 522, 1017, 552, 979, 545, 966, 586, 932, 607, 913, 619, 885, 617, 869, 628, 869, 638, 1148, 642)
-

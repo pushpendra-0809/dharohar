@@ -35,6 +35,11 @@ func set_camera_limits(l_left: int, l_top: int, l_right: int, l_bottom: int) -> 
 		cam.limit_smoothed = true
 		cam.position_smoothing_enabled = true
 
+func set_camera_zoom(p_zoom: Vector2) -> void:
+	var cam: Camera2D = get_node_or_null("Camera2D")
+	if cam:
+		cam.zoom = p_zoom
+
 func set_map_limits(cam_left: int, cam_top: int, cam_right: int, cam_bottom: int, p_min_x: float, p_max_x: float, p_min_y: float, p_max_y: float) -> void:
 	set_camera_limits(cam_left, cam_top, cam_right, cam_bottom)
 	enable_clamp = true
