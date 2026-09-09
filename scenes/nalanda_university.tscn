@@ -39,12 +39,12 @@
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
 [ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="41_8td27"]
-[ext_resource type="Texture2D" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/standing.png" id="41_teacher1"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="42_qsrvs"]
 [ext_resource type="Texture2D" uid="uid://cjssmdq5iy7pg" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/2teacher_standing.png" id="42_teacher2"]
 [ext_resource type="Texture2D" uid="uid://djqwlaccwu0al" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing2.png" id="43_qsrvs"]
 [ext_resource type="Texture2D" uid="uid://c4bpal7twma6w" path="res://assets/Elements/buildings/Tomb.png" id="44_ljjcv"]
 [ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="45_0kcse"]
+[ext_resource type="Texture2D" uid="uid://cjvcwchv5t0g5" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/teacher1.png" id="45_iojbb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -435,59 +435,6 @@ custom_cards_script = ExtResource("34_libinfodata")
 [node name="Temple" type="StaticBody2D" parent="Buildings" unique_id=966198803]
 position = Vector2(859, 297)
 
-[node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
-position = Vector2(347, 566)
-
-[node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
-position = Vector2(292, 309)
-
-[node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
-position = Vector2(347, 566)
-
-[node name="ObjectiveTrailManager" parent="." unique_id=842126714 instance=ExtResource("6_trail")]
-
-[node name="DialogueUI" parent="." unique_id=1502186591 instance=ExtResource("7_dlgui")]
-
-[node name="QuestUI" parent="." unique_id=1281322466 instance=ExtResource("8_questui")]
-
-[node name="PauseMenuUI" parent="." unique_id=855158119 instance=ExtResource("9_pauseui")]
-
-[node name="MathematicsPuzzleUI" parent="." unique_id=789311201 instance=ExtResource("10_mathui")]
-
-[node name="MedicinePuzzleUI" parent="." unique_id=1840470576 instance=ExtResource("11_medui")]
-
-[node name="AstronomyPuzzleUI" parent="." unique_id=654199331 instance=ExtResource("12_astroui")]
-
-[node name="PhilosophyPuzzleUI" parent="." unique_id=936915978 instance=ExtResource("13_philui")]
-
-[node name="NalandaInfoTrigger" parent="." unique_id=249734453 instance=ExtResource("32_infotrigger")]
-position = Vector2(534, 250)
-
-[node name="NalandaInfoUI" parent="." unique_id=206000010 instance=ExtResource("33_infoui")]
-
-[node name="Collisions" type="StaticBody2D" parent="." unique_id=1968128155]
-
-[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Collisions" unique_id=1702348090]
-polygon = PackedVector2Array(510, 563, 528, 563, 528, 604, 511, 606, 504, 600, 463, 592, 416, 587, 409, 552, 358, 546, 338, 529, 322, 516, 289, 498, 283, 476, 283, 450, 306, 479, 319, 479, 335, 491, 349, 510, 383, 523, 400, 522, 413, 536, 428, 555, 463, 556, 481, 556, 486, 575, 508, 582)
-
-[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions" unique_id=1538801204]
-polygon = PackedVector2Array(591, 31, 664, 32, 745, 31, 799, 31, 831, 22, 871, 22, 913, 23, 944, 26, 948, 51, 964, 53, 966, 77, 948, 75, 938, 66, 939, 44, 915, 46, 867, 44, 852, 40, 834, 40, 811, 51, 798, 53, 742, 52, 674, 52, 632, 52, 600, 55, 592, 54)
-
-[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="Collisions" unique_id=433936842]
-polygon = PackedVector2Array(825, 631, 874, 597, 919, 581, 929, 540, 945, 539, 963, 512, 987, 495, 1016, 488, 1025, 472, 1039, 469, 1060, 465, 1077, 458, 1095, 437, 1100, 420, 1114, 396, 1127, 392, 1155, 372, 1152, 444, 1138, 446, 1128, 454, 1124, 467, 1123, 478, 1119, 487, 1109, 488, 1107, 497, 1098, 502, 1073, 502, 1069, 512, 1063, 515, 1046, 518, 1025, 520, 1006, 556, 1004, 566, 993, 583, 981, 592, 971, 598, 959, 610, 952, 637, 930, 638, 913, 637, 905, 645, 880, 646, 814, 647)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions" unique_id=1315153762]
-polygon = PackedVector2Array(129, 429, 141, 428, 153, 426, 163, 429, 174, 432, 192, 432, 204, 433, 214, 442, 233, 451, 250, 458, 257, 469, 260, 491, 257, 502, 255, 525, 253, 532, 233, 554, 229, 570, 228, 581, 220, 598, 195, 604, 176, 607, 145, 606, 137, 592, 118, 582, 95, 558, 89, 545, 89, 518, 91, 501, 95, 484, 101, 465, 110, 446, 117, 433)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Collisions" unique_id=863036848]
-polygon = PackedVector2Array(401, 472, 395, 480, 395, 488, 385, 492, 377, 492, 365, 493, 349, 493, 325, 482, 312, 476, 304, 478, 289, 464, 285, 441, 284, 420, 284, 399, 285, 382, 291, 366, 304, 359, 320, 352, 328, 352, 354, 356, 369, 355, 375, 357, 383, 357, 393, 364, 398, 366, 407, 379, 410, 399, 410, 413, 410, 427, 417, 433, 416, 446, 410, 457, 404, 470)
-
-[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Collisions" unique_id=2042760442]
-polygon = PackedVector2Array(1, 323, 15, 323, 27, 319, 41, 297, 52, 277, 48, 255, 49, 238, 61, 231, 68, 210, 64, 164, 69, 158, 76, 132, 73, 111, 74, 97, 88, 91, 101, 81, 106, 72, 114, 70, 122, 70, 131, 54, 137, 50, 147, 44, 155, 40, 165, 33, 174, 31, 187, 31, 203, 33, 217, 34, 237, 32, 262, 32, 276, 33, 290, 27, 315, 15, 338, 17, 356, 18, 372, 13, 387, 15, 391, 22, 404, 30, 412, 34, 428, 35, 447, 35, 469, 35, 488, 38, 500, 33, 501, 53, 491, 60, 482, 58, 464, 58, 443, 58, 422, 59, 409, 59, 382, 37, 378, 40, 370, 40, 362, 37, 323, 37, 309, 37, 289, 51, 250, 55, 177, 54, 163, 56, 131, 86, 120, 90, 101, 101, 88, 114, 83, 135, 82, 160, 79, 174, 74, 185, 74, 201, 74, 228, 69, 246, 63, 259, 52, 323, 36, 340, 23, 348, 2, 348)
-
-[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Collisions" unique_id=2018427766]
-polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274, 1009, 297, 1034, 313, 1034, 362, 1035, 405, 1018, 420, 986, 421, 964, 459, 922, 476, 879, 466, 867, 486, 857, 497, 845, 516, 843, 534, 799, 553, 767, 550, 746, 540, 727, 546, 704, 555, 669, 563, 633, 560, 616, 563, 602, 588, 576, 604, 564, 603, 562, 563, 576, 560, 578, 579, 595, 571, 604, 552, 613, 533, 640, 532, 669, 534, 696, 535, 727, 518, 739, 510, 763, 506, 805, 512, 821, 503, 847, 479, 844, 468, 858, 445, 857, 423, 917, 433, 942, 431, 975, 392, 985, 387, 1013, 383, 1029, 363, 1027, 337, 1026, 314, 996, 295, 1002, 263, 1002, 241, 1002, 235, 952, 216, 948, 184)
-
 [node name="Students" type="Node2D" parent="." unique_id=987655170]
 
 [node name="StudentBoy1" type="Sprite2D" parent="Students" unique_id=987655171]
@@ -542,7 +489,6 @@ texture = ExtResource("40_monk")
 [node name="Teacher_Standing1" type="Sprite2D" parent="Teachers" unique_id=987655191]
 position = Vector2(467.97998, 296.78)
 scale = Vector2(0.02933599, 0.03096355)
-texture = ExtResource("41_teacher1")
 
 [node name="Teacher_Standing2" type="Sprite2D" parent="Teachers" unique_id=987655192]
 position = Vector2(914, 342)
@@ -583,3 +529,61 @@ texture = ExtResource("44_ljjcv")
 position = Vector2(734.00006, 290)
 scale = Vector2(0.032653842, 0.029947916)
 texture = ExtResource("45_0kcse")
+
+[node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
+position = Vector2(347, 566)
+
+[node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
+position = Vector2(292, 309)
+
+[node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
+position = Vector2(347, 566)
+
+[node name="ObjectiveTrailManager" parent="." unique_id=842126714 instance=ExtResource("6_trail")]
+
+[node name="DialogueUI" parent="." unique_id=1502186591 instance=ExtResource("7_dlgui")]
+
+[node name="QuestUI" parent="." unique_id=1281322466 instance=ExtResource("8_questui")]
+
+[node name="PauseMenuUI" parent="." unique_id=855158119 instance=ExtResource("9_pauseui")]
+
+[node name="MathematicsPuzzleUI" parent="." unique_id=789311201 instance=ExtResource("10_mathui")]
+
+[node name="MedicinePuzzleUI" parent="." unique_id=1840470576 instance=ExtResource("11_medui")]
+
+[node name="AstronomyPuzzleUI" parent="." unique_id=654199331 instance=ExtResource("12_astroui")]
+
+[node name="PhilosophyPuzzleUI" parent="." unique_id=936915978 instance=ExtResource("13_philui")]
+
+[node name="NalandaInfoTrigger" parent="." unique_id=249734453 instance=ExtResource("32_infotrigger")]
+position = Vector2(534, 250)
+
+[node name="NalandaInfoUI" parent="." unique_id=206000010 instance=ExtResource("33_infoui")]
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=1968128155]
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="Collisions" unique_id=1702348090]
+polygon = PackedVector2Array(510, 563, 528, 563, 528, 604, 511, 606, 504, 600, 463, 592, 416, 587, 409, 552, 358, 546, 338, 529, 322, 516, 289, 498, 283, 476, 283, 450, 306, 479, 319, 479, 335, 491, 349, 510, 383, 523, 400, 522, 413, 536, 428, 555, 463, 556, 481, 556, 486, 575, 508, 582)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions" unique_id=1538801204]
+polygon = PackedVector2Array(591, 31, 664, 32, 745, 31, 799, 31, 831, 22, 871, 22, 913, 23, 944, 26, 948, 51, 964, 53, 966, 77, 948, 75, 938, 66, 939, 44, 915, 46, 867, 44, 852, 40, 834, 40, 811, 51, 798, 53, 742, 52, 674, 52, 632, 52, 600, 55, 592, 54)
+
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="Collisions" unique_id=433936842]
+polygon = PackedVector2Array(825, 631, 874, 597, 919, 581, 929, 540, 945, 539, 963, 512, 987, 495, 1016, 488, 1025, 472, 1039, 469, 1060, 465, 1077, 458, 1095, 437, 1100, 420, 1114, 396, 1127, 392, 1155, 372, 1152, 444, 1138, 446, 1128, 454, 1124, 467, 1123, 478, 1119, 487, 1109, 488, 1107, 497, 1098, 502, 1073, 502, 1069, 512, 1063, 515, 1046, 518, 1025, 520, 1006, 556, 1004, 566, 993, 583, 981, 592, 971, 598, 959, 610, 952, 637, 930, 638, 913, 637, 905, 645, 880, 646, 814, 647)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Collisions" unique_id=1315153762]
+polygon = PackedVector2Array(129, 429, 141, 428, 153, 426, 163, 429, 174, 432, 192, 432, 204, 433, 214, 442, 233, 451, 250, 458, 257, 469, 260, 491, 257, 502, 255, 525, 253, 532, 233, 554, 229, 570, 228, 581, 220, 598, 195, 604, 176, 607, 145, 606, 137, 592, 118, 582, 95, 558, 89, 545, 89, 518, 91, 501, 95, 484, 101, 465, 110, 446, 117, 433)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Collisions" unique_id=863036848]
+polygon = PackedVector2Array(401, 472, 395, 480, 395, 488, 385, 492, 377, 492, 365, 493, 349, 493, 325, 482, 312, 476, 304, 478, 289, 464, 285, 441, 284, 420, 284, 399, 285, 382, 291, 366, 304, 359, 320, 352, 328, 352, 354, 356, 369, 355, 375, 357, 383, 357, 393, 364, 398, 366, 407, 379, 410, 399, 410, 413, 410, 427, 417, 433, 416, 446, 410, 457, 404, 470)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="Collisions" unique_id=2042760442]
+polygon = PackedVector2Array(1, 323, 15, 323, 27, 319, 41, 297, 52, 277, 48, 255, 49, 238, 61, 231, 68, 210, 64, 164, 69, 158, 76, 132, 73, 111, 74, 97, 88, 91, 101, 81, 106, 72, 114, 70, 122, 70, 131, 54, 137, 50, 147, 44, 155, 40, 165, 33, 174, 31, 187, 31, 203, 33, 217, 34, 237, 32, 262, 32, 276, 33, 290, 27, 315, 15, 338, 17, 356, 18, 372, 13, 387, 15, 391, 22, 404, 30, 412, 34, 428, 35, 447, 35, 469, 35, 488, 38, 500, 33, 501, 53, 491, 60, 482, 58, 464, 58, 443, 58, 422, 59, 409, 59, 382, 37, 378, 40, 370, 40, 362, 37, 323, 37, 309, 37, 289, 51, 250, 55, 177, 54, 163, 56, 131, 86, 120, 90, 101, 101, 88, 114, 83, 135, 82, 160, 79, 174, 74, 185, 74, 201, 74, 228, 69, 246, 63, 259, 52, 323, 36, 340, 23, 348, 2, 348)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="Collisions" unique_id=2018427766]
+polygon = PackedVector2Array(956, 184, 956, 199, 1010, 223, 1013, 244, 1013, 274, 1009, 297, 1034, 313, 1034, 362, 1035, 405, 1018, 420, 986, 421, 964, 459, 922, 476, 879, 466, 867, 486, 857, 497, 845, 516, 843, 534, 799, 553, 767, 550, 746, 540, 727, 546, 704, 555, 669, 563, 633, 560, 616, 563, 602, 588, 576, 604, 564, 603, 562, 563, 576, 560, 578, 579, 595, 571, 604, 552, 613, 533, 640, 532, 669, 534, 696, 535, 727, 518, 739, 510, 763, 506, 805, 512, 821, 503, 847, 479, 844, 468, 858, 445, 857, 423, 917, 433, 942, 431, 975, 392, 985, 387, 1013, 383, 1029, 363, 1027, 337, 1026, 314, 996, 295, 1002, 263, 1002, 241, 1002, 235, 952, 216, 948, 184)
+
+[node name="Teacher1" type="Sprite2D" parent="." unique_id=711037887]
+position = Vector2(474.625, 302)
+scale = Vector2(0.035888642, 0.03776042)
+texture = ExtResource("45_iojbb")
