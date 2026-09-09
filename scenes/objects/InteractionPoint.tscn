@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://ce87cfr5t4hoo"]
+
+[ext_resource type="Script" path="res://scripts/objects/InteractionPoint.gd" id="1_pointscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 45.0
+
+[node name="InteractionPoint" type="Area2D" unique_id=987123980]
+script = ExtResource("1_pointscript")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=654321980]
+shape = SubResource("CircleShape2D_interaction")
+
+[node name="InteractionIndicator" type="Label" parent="." unique_id=321654980]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 20
+text = "💬"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=789123980]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -32.0
+offset_right = 85.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 16
+text = "[Press E to Inspect]"
+horizontal_alignment = 1
+[node name="QuestMarker" type="Label" parent="." unique_id=987123970]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -54.0
+offset_right = 16.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.4, 1.0, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0.2, 0.12, 0.04, 0.95)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 18
+text = "!"
+horizontal_alignment = 1
+vertical_alignment = 1
+

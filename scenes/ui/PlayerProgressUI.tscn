@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://cq2kfu4o8w8vc"]
+
+[ext_resource type="Script" path="res://scenes/ui/PlayerProgressUI.gd" id="1_progscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_oswald_reg"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_oswald_med"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.09, 0.06, 0.04, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.68, 0.35, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.18, 0.12, 0.08, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.45, 0.25, 0.8)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.92, 0.74, 0.28, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
+bg_color = Color(0.22, 0.16, 0.1, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.85, 0.7, 0.35, 0.9)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.4, 0.28, 0.15, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.88, 0.5, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="PlayerProgressUI" type="CanvasLayer"]
+visible = false
+layer = 25
+script = ExtResource("1_progscript")
+
+[node name="PanelBox" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -170.0
+offset_right = 220.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="TitleLabel" type="Label" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -180.0
+offset_top = 14.0
+offset_right = 180.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+text = "NALANDA PROGRESS"
+horizontal_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -115.0
+offset_right = 180.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="LevelLabel" type="Label" parent="PanelBox/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+text = "LEVEL: 1"
+horizontal_alignment = 1
+
+[node name="ExpLabel" type="Label" parent="PanelBox/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oswald_med")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+text = "EXP: 0 / 100"
+horizontal_alignment = 1
+
+[node name="ExpProgressBar" type="ProgressBar" parent="PanelBox/VBox"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+max_value = 100.0
+show_percentage = false
+
+[node name="NextLevelLabel" type="Label" parent="PanelBox/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.8, 0.75, 0.65, 1)
+text = "Next Level: 100 EXP remaining"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="PanelBox/VBox"]
+layout_mode = 2
+
+[node name="QuestStatsLabel" type="Label" parent="PanelBox/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_oswald_med")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.95, 0.9, 0.75, 1)
+text = "Side Quests Completed: 0 / 6"
+horizontal_alignment = 1
+
+[node name="TotalExpLabel" type="Label" parent="PanelBox/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.75, 0.7, 0.6, 1)
+text = "Lifetime Experience: 0 EXP"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="PanelBox"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -38.0
+offset_right = 60.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("4_oswald_med")
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.9, 0.8, 0.6, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Close [P / ESC]"

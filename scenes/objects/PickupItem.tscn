@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c8rnkh57g5h7u"]
+
+[ext_resource type="Script" path="res://scripts/objects/PickupItem.gd" id="1_pickupscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswald"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
+radius = 28.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_e"]
+font = ExtResource("2_oswald")
+font_size = 13
+font_color = Color(1, 0.88, 0.45, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 0.9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_icon"]
+font = ExtResource("2_oswald")
+font_size = 12
+font_color = Color(1, 0.95, 0.8, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 0.8)
+
+[node name="PickupItem" type="Area2D"]
+collision_layer = 1
+collision_mask = 1
+script = ExtResource("1_pickupscript")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pickup")
+
+[node name="InteractionIndicator" type="Label" parent="."]
+visible = false
+offset_left = -16.0
+offset_top = -42.0
+offset_right = 16.0
+offset_bottom = -24.0
+text = "[ E ]"
+label_settings = SubResource("LabelSettings_e")
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="."]
+visible = false
+offset_left = -90.0
+offset_top = -24.0
+offset_right = 90.0
+offset_bottom = -6.0
+text = "[Press E to Collect]"
+label_settings = SubResource("LabelSettings_icon")
+horizontal_alignment = 1

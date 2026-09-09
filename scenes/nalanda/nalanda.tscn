@@ -47,8 +47,6 @@
 [ext_resource type="Texture2D" uid="uid://camx75xjeq0jq" path="res://assets/Elements/buildings/tree2.png" id="46_tree2"]
 [ext_resource type="Texture2D" uid="uid://pdp1ga8cy3u" path="res://assets/Elements/buildings/tree4.png" id="47_tree4"]
 [ext_resource type="Texture2D" uid="uid://chkgge3sillal" path="res://assets/Elements/buildings/Tree.png" id="48_tree_bldg"]
-[ext_resource type="Texture2D" uid="uid://db3yq4j8h3b0c" path="res://assets/Elements/buildings/Treeee.png" id="49_treeee"]
-[ext_resource type="Texture2D" uid="uid://b1l12qlpttnir" path="res://assets/Dharohar_Character_Sprite_Pack/Builder/standing.png" id="50_davql"]
 [ext_resource type="Texture2D" uid="uid://br7tfmnkr50eh" path="res://assets/Elements/buildings/vill-monument3.png" id="50_villmon3"]
 [ext_resource type="Texture2D" uid="uid://ug1kfc688whv" path="res://assets/Dharohar_Character_Sprite_Pack/Farmer/standing.png" id="51_ok3o3"]
 [ext_resource type="Texture2D" uid="uid://uawi467ajt03" path="res://assets/Dharohar_Character_Sprite_Pack/fisherman/standing.png" id="52_14dm2"]
@@ -58,6 +56,10 @@
 [ext_resource type="Texture2D" uid="uid://c6llrtk84whku" path="res://assets/Dharohar_Character_Sprite_Pack/Farmer/farm.png" id="56_ok3o3"]
 [ext_resource type="Texture2D" uid="uid://b6g3leli2rvol" path="res://assets/Dharohar_Character_Sprite_Pack/Builder/area.png" id="57_guh1u"]
 [ext_resource type="Texture2D" uid="uid://c1vkw3eek8oh8" path="res://assets/Elements/buildings/stone.png" id="58_lp60u"]
+[ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="59_explornpc"]
+[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="60_interactpt"]
+[ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="61_pickupitem"]
+[ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="62_prog_ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icd5h"]
 size = Vector2(70, 56)
@@ -259,6 +261,72 @@ texture = ExtResource("58_lp60u")
 position = Vector2(1040, 168)
 scale = Vector2(0.032, 0.036)
 texture = ExtResource("42_matka")
+
+[node name="GatePillarNorth" type="Sprite2D" parent="Decorations" unique_id=98765401]
+position = Vector2(1090, 150)
+scale = Vector2(0.032, 0.038)
+texture = ExtResource("50_villmon3")
+
+[node name="GatePillarSouth" type="Sprite2D" parent="Decorations" unique_id=98765402]
+position = Vector2(1090, 235)
+scale = Vector2(0.032, 0.038)
+texture = ExtResource("50_villmon3")
+
+[node name="RoadStone3" type="Sprite2D" parent="Decorations" unique_id=98765403]
+position = Vector2(1065, 195)
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("58_lp60u")
+
+[node name="RoadMatka2" type="Sprite2D" parent="Decorations" unique_id=98765404]
+position = Vector2(1090, 225)
+scale = Vector2(0.03, 0.035)
+texture = ExtResource("42_matka")
+
+[node name="GateBush1" type="Sprite2D" parent="Decorations" unique_id=98765405]
+position = Vector2(1070, 145)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("35_bush3")
+
+[node name="GateBush2" type="Sprite2D" parent="Decorations" unique_id=98765406]
+position = Vector2(1070, 245)
+scale = Vector2(0.025, 0.025)
+texture = ExtResource("35_bush3")
+
+[node name="TeacherStudyStone" type="Sprite2D" parent="Decorations" unique_id=98765407]
+position = Vector2(960, 515)
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("58_lp60u")
+
+[node name="TeacherMatka" type="Sprite2D" parent="Decorations" unique_id=98765408]
+position = Vector2(1030, 480)
+scale = Vector2(0.035, 0.04)
+texture = ExtResource("42_matka")
+
+[node name="TeacherGroveBush" type="Sprite2D" parent="Decorations" unique_id=98765409]
+position = Vector2(950, 475)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("34_bush2")
+
+[node name="PondGrass1" type="Sprite2D" parent="Decorations" unique_id=98765410]
+position = Vector2(150, 430)
+scale = Vector2(0.045, 0.05)
+texture = ExtResource("38_grassbush")
+
+[node name="PondGrass2" type="Sprite2D" parent="Decorations" unique_id=98765411]
+position = Vector2(240, 470)
+scale = Vector2(0.045, 0.05)
+texture = ExtResource("38_grassbush")
+flip_h = true
+
+[node name="PondStone1" type="Sprite2D" parent="Decorations" unique_id=98765412]
+position = Vector2(220, 420)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("58_lp60u")
+
+[node name="PondStone2" type="Sprite2D" parent="Decorations" unique_id=98765413]
+position = Vector2(160, 475)
+scale = Vector2(0.018, 0.018)
+texture = ExtResource("58_lp60u")
 
 [node name="BuildingsAndProps" type="Node2D" parent="." unique_id=2017894659]
 
@@ -571,31 +639,6 @@ polygon = PackedVector2Array(982, 358, 983, 398, 981, 415, 978, 430, 935, 441, 9
 [node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="City Collisions" unique_id=1178359228]
 polygon = PackedVector2Array(1150, 386, 1100, 390, 1085, 390, 1073, 461, 1054, 481, 1051, 522, 1017, 552, 979, 545, 966, 586, 932, 607, 913, 619, 885, 617, 869, 628, 869, 638, 1148, 642)
 
-[node name="Standing" type="Sprite2D" parent="." unique_id=1501937050]
-position = Vector2(721.99994, 117.99999)
-scale = Vector2(0.026000986, 0.027303062)
-texture = ExtResource("50_davql")
-
-[node name="Standing2" type="Sprite2D" parent="." unique_id=1674461740]
-position = Vector2(536.53125, 475)
-scale = Vector2(0.04193114, 0.0393067)
-texture = ExtResource("51_ok3o3")
-
-[node name="Standing3" type="Sprite2D" parent="." unique_id=218381176]
-position = Vector2(265.75, 368.4375)
-scale = Vector2(0.03173828, 0.031819656)
-texture = ExtResource("52_14dm2")
-
-[node name="Standing4" type="Sprite2D" parent="." unique_id=1526586221]
-position = Vector2(680.3281, 258.89063)
-scale = Vector2(0.022796612, 0.023295088)
-texture = ExtResource("53_guh1u")
-
-[node name="Villager3" type="Sprite2D" parent="." unique_id=1050060819]
-position = Vector2(919.1875, 165)
-scale = Vector2(0.028930657, 0.027343754)
-texture = ExtResource("54_lp60u")
-
 [node name="Standing5" type="Sprite2D" parent="." unique_id=1781992425]
 position = Vector2(560, 294)
 scale = Vector2(0.031249976, 0.03190103)
@@ -631,3 +674,101 @@ flip_h = true
 position = Vector2(770, 142)
 scale = Vector2(0.007405564, 0.008239769)
 texture = ExtResource("58_lp60u")
+
+[node name="NPC_FarmerElder" parent="." unique_id=987701 instance=ExtResource("59_explornpc")]
+position = Vector2(536, 475)
+npc_name = "Village Elder"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("51_ok3o3")
+sprite_scale = Vector2(0.042, 0.039)
+dialogue_lines = [{
+"speaker": "Village Elder",
+"text": "Nalanda sirf apne vidwanon se nahi, aas-paas ke gaon ke logon se bhi juda hua hai."
+}, {
+"speaker": "Village Elder",
+"text": "Gaon ke khet aur upaj hi is vishwavidyalaya ke hazaron vidyarthiyon ka ahar bante hain."
+}]
+
+[node name="NPC_Scribe" parent="." unique_id=987702 instance=ExtResource("59_explornpc")]
+position = Vector2(920, 165)
+npc_name = "Scribe"
+quest_id = "scribe_manuscript"
+sprite_texture = ExtResource("54_lp60u")
+sprite_scale = Vector2(0.029, 0.027)
+dialogue_lines = [{
+"speaker": "Scribe",
+"text": "Yahan ek granth ko ek sthaan se doosre sthaan tak pahunchana bhi gyan ki yatra ka hissa hai."
+}, {
+"speaker": "Scribe",
+"text": "Taadpatra par likhe har akshar ko surakshit rakhna hamara kartavya hai."
+}]
+
+[node name="NPC_Fisherman" parent="." unique_id=987703 instance=ExtResource("59_explornpc")]
+position = Vector2(265.75, 368.4)
+npc_name = "Fisherman"
+sprite_texture = ExtResource("52_14dm2")
+sprite_scale = Vector2(0.032, 0.032)
+dialogue_lines = [{
+"speaker": "Fisherman",
+"text": "Is jalashay ka shant jal poore gaon ko jeevan deta hai."
+}]
+
+[node name="NPC_Villager" parent="." unique_id=987704 instance=ExtResource("59_explornpc")]
+position = Vector2(680.3, 258.9)
+sprite_texture = ExtResource("53_guh1u")
+sprite_scale = Vector2(0.023, 0.023)
+dialogue_lines = [{
+"speaker": "Villager",
+"text": "Nalanda Mahavihara ki chhavi door-door tak prasiddh hai."
+}]
+
+[node name="InteractionPoint_Gate" parent="." unique_id=987801 instance=ExtResource("60_interactpt")]
+position = Vector2(1090, 191)
+point_name = "University Gate"
+prompt_text = "[Press E to Read Inscription]"
+dialogue_lines = [{
+"speaker": "University Gate",
+"text": "Yahi Nalanda Vishwavidyalaya ka pravesh dwar hai. Desh-videsh se vidwan yahan gyan ki khoj mein aate the."
+}]
+
+[node name="InteractionPoint_Pond" parent="." unique_id=987802 instance=ExtResource("60_interactpt")]
+position = Vector2(200, 440)
+point_name = "Village Reservoir"
+prompt_text = "[Press E to Inspect Water]"
+dialogue_lines = [{
+"speaker": "Village Reservoir",
+"text": "Paani Nalanda ke jeevan ka ek mahatvapurn hissa tha. Jal ke bina itni badi basti ka jeevan sambhav nahi tha."
+}]
+
+[node name="InteractionPoint_Market" parent="." unique_id=987803 instance=ExtResource("60_interactpt")]
+position = Vector2(540, 245)
+point_name = "Settlement Market"
+prompt_text = "[Press E to Observe Market]"
+dialogue_lines = [{
+"speaker": "Settlement",
+"text": "Nalanda ka jeevan keval Vishwavidyalaya tak simit nahi tha. Aas-paas ki basti bhi is jeevan ka ek hissa thi."
+}]
+[node name="Item_GrainSack" parent="." unique_id=987901 instance=ExtResource("61_pickupitem")]
+position = Vector2(415, 505)
+item_id = "provision_grain"
+item_name = "Grain Sack"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+
+[node name="Item_VegBasket" parent="." unique_id=987902 instance=ExtResource("61_pickupitem")]
+position = Vector2(615, 475)
+item_id = "provision_veg"
+item_name = "Vegetable Basket"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+
+[node name="Item_FoodPot" parent="." unique_id=987903 instance=ExtResource("61_pickupitem")]
+position = Vector2(728, 312)
+item_id = "provision_pot"
+item_name = "Provisions Pot"
+quest_id = "farmer_provisions"
+sprite_texture = ExtResource("58_lp60u")
+sprite_scale = Vector2(0.006, 0.006)
+

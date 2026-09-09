@@ -44,6 +44,14 @@ func _ready() -> void:
 	if merchant and merchant.has_method("setup_managers"):
 		merchant.setup_managers(dialogue_manager, quiz_manager)
 		
+	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
+		if npc.has_method("setup_manager"):
+			npc.setup_manager(dialogue_manager)
+			
+	for point in get_tree().get_nodes_in_group("interaction_points"):
+		if point.has_method("setup_manager"):
+			point.setup_manager(dialogue_manager)
+		
 	if player and player.has_method("set_map_limits"):
 		player.set_map_limits(0, 0, 1152, 648, 20.0, 1132.0, 30.0, 620.0)
 		
