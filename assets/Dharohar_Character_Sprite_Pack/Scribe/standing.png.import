@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0to5vftxt887"
-path="res://.godot/imported/movement2.png-0fcbdd79eb7e0dd13c1c9c13ef917bdb.ctex"
+uid="uid://iqsy4tmdof1u"
+path="res://.godot/imported/standing.png-f9f4559b2b7569526da19070ed0f2275.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Dharohar_Character_Sprite_Pack/Scholar/movement2.png"
-dest_files=["res://.godot/imported/movement2.png-0fcbdd79eb7e0dd13c1c9c13ef917bdb.ctex"]
+source_file="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png"
+dest_files=["res://.godot/imported/standing.png-f9f4559b2b7569526da19070ed0f2275.ctex"]
 
 [params]
 
