@@ -146,6 +146,17 @@ func _enable_dev_mode() -> void:
 		
 	_show_toast_notification()
 	print("[DEV MODE] Direct activation successful! All progression unlocked. Free exploration active.")
+	
+	# If currently on Main Menu, automatically transition straight to Experiences screen
+	var tree := get_tree()
+	if tree and tree.current_scene:
+		var scene_path: String = tree.current_scene.scene_file_path.to_lower()
+		var scene_name: String = tree.current_scene.name.to_lower()
+		if "main_menu" in scene_path or "main menu" in scene_path or "mainmenu" in scene_name:
+			tree.change_scene_to_file("res://scenes/experiences/experiences.tscn")
+		elif "experiences" in scene_path or "experiences" in scene_name:
+			if tree.current_scene.has_method("_check_dev_mode_ui"):
+				tree.current_scene._check_dev_mode_ui()
 
 func _disable_dev_mode_and_restart() -> void:
 	dev_mode_enabled = false
@@ -161,8 +172,19 @@ func _disable_dev_mode_and_restart() -> void:
 		if gs.has_method("unlock_player_movement"):
 			gs.unlock_player_movement()
 			
-	print("[DEV MODE] Dev Mode turned OFF. Restarting Nalanda from beginning.")
-	get_tree().change_scene_to_file("res://scenes/nalanda.tscn")
+	print("[DEV MODE] Dev Mode turned OFF. Returning / Restarting.")
+	var tree := get_tree()
+	if tree and tree.current_scene:
+		var scene_path: String = tree.current_scene.scene_file_path.to_lower()
+		if "main_menu" in scene_path or "main menu" in scene_path or "experiences" in scene_path:
+			if "experiences" in scene_path and tree.current_scene.has_method("_check_dev_mode_ui"):
+				tree.current_scene._check_dev_mode_ui()
+			else:
+				tree.change_scene_to_file("res://scenes/main menu/main_menu.tscn")
+		else:
+			tree.change_scene_to_file("res://scenes/nalanda.tscn")
+	else:
+		tree.change_scene_to_file("res://scenes/main menu/main_menu.tscn")
 
 func _show_toast_notification() -> void:
 	if not toast_banner:
