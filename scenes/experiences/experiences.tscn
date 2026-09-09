@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://8vyrunj4x0hw"]
 
-[ext_resource type="Texture2D" path="res://assets/background/experience_screen.png" id="1_474bk"]
-[ext_resource type="Script" path="res://scenes/experiences/experiences.gd" id="1_c5vio"]
-[ext_resource type="Texture2D" path="res://assets/nalanda_card_transparent.png" id="2_nhqnu"]
-[ext_resource type="Texture2D" path="res://assets/ui/coming sooon.png" id="3_csb"]
-[ext_resource type="Texture2D" path="res://assets/ui/back_button.png" id="5_82vb8"]
+[ext_resource type="Texture2D" uid="uid://dce74f8y840h2" path="res://assets/background/experience_screen.png" id="1_474bk"]
+[ext_resource type="Script" uid="uid://cxskn06ouf23g" path="res://scenes/experiences/experiences.gd" id="1_c5vio"]
+[ext_resource type="Texture2D" uid="uid://dhjyunf5br2r3" path="res://assets/nalanda_card_transparent.png" id="2_nhqnu"]
+[ext_resource type="Texture2D" uid="uid://cxi1uv172b8ic" path="res://assets/ui/coming sooon.png" id="3_csb"]
+[ext_resource type="Texture2D" uid="uid://dobuuom27seij" path="res://assets/ui/back_button.png" id="5_82vb8"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icd5h"]
 texture = ExtResource("2_nhqnu")
@@ -18,6 +18,8 @@ expand_margin_left = 4.0
 expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cs_norm"]
 texture = ExtResource("3_csb")
@@ -44,8 +46,6 @@ expand_margin_left = 4.0
 expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
 [node name="Experiences" type="Control" unique_id=1330819239]
 layout_mode = 3
@@ -74,10 +74,10 @@ offset_left = 474.0
 offset_top = 207.0
 offset_right = 676.0
 offset_bottom = 469.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qjbnn")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_heg7l")
 theme_override_styles/normal = SubResource("StyleBoxTexture_icd5h")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_heg7l")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qjbnn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
 [node name="comingsoon_button1" type="Button" parent="." unique_id=1849201920]
 layout_mode = 0
@@ -85,10 +85,10 @@ offset_left = 261.0
 offset_top = 212.0
 offset_right = 436.0
 offset_bottom = 448.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_cs_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cs_press")
 theme_override_styles/normal = SubResource("StyleBoxTexture_cs_norm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cs_press")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cs_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
 [node name="comingsoon_button2" type="Button" parent="." unique_id=1938201921]
 layout_mode = 0
@@ -96,10 +96,10 @@ offset_left = 718.0
 offset_top = 211.0
 offset_right = 893.0
 offset_bottom = 447.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_cs_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cs_press")
 theme_override_styles/normal = SubResource("StyleBoxTexture_cs_norm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_cs_press")
+theme_override_styles/hover = SubResource("StyleBoxTexture_cs_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
 [node name="back" type="Button" parent="." unique_id=648667331]
 layout_mode = 0
@@ -107,10 +107,10 @@ offset_left = 40.0
 offset_top = 545.0
 offset_right = 180.0
 offset_bottom = 605.0
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
-theme_override_styles/hover = SubResource("StyleBoxTexture_back_hover")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_back_press")
 theme_override_styles/normal = SubResource("StyleBoxTexture_back_norm")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_back_press")
+theme_override_styles/hover = SubResource("StyleBoxTexture_back_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
 [connection signal="pressed" from="Nalanda_Button" to="." method="_on_nalanda_button_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
