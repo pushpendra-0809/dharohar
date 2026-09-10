@@ -45,6 +45,7 @@ func _ready() -> void:
 		
 	_find_dialogue_manager()
 	_find_scholar_ui()
+	_update_npc_visibility()
 	_update_ui_elements()
 	_update_quest_marker()
 
@@ -57,7 +58,29 @@ func _process(delta: float) -> void:
 		quest_marker.position.y = _marker_base_y + sin(_anim_time * 4.0) * 2.5
 
 func _on_quest_state_changed() -> void:
+	_update_npc_visibility()
 	_update_quest_marker()
+
+func _update_npc_visibility() -> void:
+	if name == "NPC_YoungStudent" or npc_name == "Student":
+		if GameState:
+			var teacher2_done: bool = GameState.are_teacher2_tasks_completed() if GameState.has_method("are_teacher2_tasks_completed") else true
+			var active: bool = GameState.is_side_quest_active("missing_student")
+			var found: bool = GameState.is_missing_student_found()
+			var complete: bool = GameState.is_side_quest_complete("missing_student")
+			var dev = get_node_or_null("/root/DevModeManager")
+			var is_dev: bool = dev != null and dev.dev_mode_enabled
+			var should_show: bool = (is_dev or (teacher2_done and active)) and not found and not complete
+			visible = should_show
+			var col = get_node_or_null("CollisionShape2D")
+			if col:
+				col.disabled = not should_show
+			if interaction_area:
+				var a_col = interaction_area.get_node_or_null("CollisionShape2D")
+				if a_col:
+					a_col.disabled = not should_show
+			if not should_show:
+				_player_in_range = false
 
 func _update_quest_marker() -> void:
 	if not quest_marker or not GameState:
