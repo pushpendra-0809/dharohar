@@ -19,6 +19,19 @@ func _ready() -> void:
 	if pause_manager and pause_manager.has_method("setup"):
 		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui)
 		
+	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
+		if npc.has_method("setup_manager"):
+			npc.setup_manager(dialogue_manager)
+			
+	for point in get_tree().get_nodes_in_group("interaction_points"):
+		if point.has_method("setup_manager"):
+			point.setup_manager(dialogue_manager)
+
+	var scholar_npc = get_node_or_null("NPC_Scholar")
+	var scholar_ui = get_node_or_null("ScholarReasoningUI")
+	if scholar_npc and scholar_ui and scholar_npc.has_method("set_custom_ui"):
+		scholar_npc.set_custom_ui(scholar_ui)
+		
 	if player:
 		if player.has_method("set_camera_zoom"):
 			player.set_camera_zoom(Vector2(2.35, 2.35))

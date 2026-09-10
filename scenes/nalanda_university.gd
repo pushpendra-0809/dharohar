@@ -10,6 +10,7 @@ const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
 @onready var phil_puzzle_ui = $PhilosophyPuzzleUI
 @onready var university_exit = $UniversityExit
 @onready var teacher2 = $Teacher2
+@onready var teacher3 = get_node_or_null("Teacher3")
 @onready var player = $Player
 @onready var scholar_reasoning_ui = get_node_or_null("ScholarReasoningUI")
 
@@ -30,6 +31,9 @@ func _ready() -> void:
 		
 	if teacher2 and teacher2.has_method("setup_manager"):
 		teacher2.setup_manager(dialogue_manager, math_puzzle_ui, med_puzzle_ui, astro_puzzle_ui, phil_puzzle_ui)
+		
+	if teacher3 and teacher3.has_method("setup_manager"):
+		teacher3.setup_manager(dialogue_manager)
 		
 	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
 		if npc.has_method("setup_manager"):

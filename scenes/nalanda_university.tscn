@@ -47,11 +47,17 @@
 [ext_resource type="Texture2D" uid="uid://cjvcwchv5t0g5" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/teacher1.png" id="45_iojbb"]
 [ext_resource type="PackedScene" uid="uid://dqam82qsgruag" path="res://scenes/objects/LibraryEntrance.tscn" id="46_libentrance"]
 [ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="47_explornpc"]
-[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
-[ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
-[ext_resource type="PackedScene" uid="uid://scholarreasoninguipopup" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
-[ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="51_prog_ui"]
+[ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
+[ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
+[ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
 [ext_resource type="PackedScene" uid="uid://dvharentrancescene01" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
+[ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
+[ext_resource type="Texture2D" uid="uid://cp663m1a2u6ge" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
+[ext_resource type="Texture2D" uid="uid://bxyemd7ow3xpy" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]
+[ext_resource type="Texture2D" uid="uid://b8d5j62p3vypw" path="res://assets/items/item_vihara_wood.png" id="76_viharawood"]
+[ext_resource type="Texture2D" uid="uid://sywdcuxb1ut5" path="res://assets/items/item_vihara_stone.png" id="77_viharastone"]
+[ext_resource type="Texture2D" uid="uid://bh2finjn1pkrp" path="res://assets/items/item_vihara_rope.png" id="78_vihararope"]
+[ext_resource type="PackedScene" uid="uid://cex2h1i3mlxrk" path="res://scenes/npcs/Teacher3.tscn" id="79_teacher3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -573,11 +579,15 @@ texture = ExtResource("42_qsrvs")
 position = Vector2(631.5, 394.5)
 scale = Vector2(0.10221355, 0.11621093)
 texture = ExtResource("44_ljjcv")
+
 [node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
 position = Vector2(347, 566)
 
 [node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
 position = Vector2(293, 282)
+
+[node name="Teacher3" parent="." unique_id=987654330 instance=ExtResource("79_teacher3")]
+position = Vector2(534, 330)
 
 [node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
 position = Vector2(347, 566)
@@ -615,7 +625,8 @@ position = Vector2(534, 250)
 polygon = PackedVector2Array(510, 563, 528, 563, 528, 604, 511, 606, 504, 600, 463, 592, 416, 587, 409, 552, 358, 546, 338, 529, 322, 516, 289, 498, 283, 476, 283, 450, 306, 479, 319, 479, 335, 491, 349, 510, 383, 523, 400, 522, 413, 536, 428, 555, 463, 556, 481, 556, 486, 575, 508, 582)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="Collisions" unique_id=1538801204]
-polygon = PackedVector2Array(591, 31, 664, 32, 745, 31, 799, 31, 831, 22, 871, 22, 913, 23, 944, 26, 948, 51, 964, 53, 966, 77, 948, 75, 938, 66, 939, 44, 915, 46, 867, 44, 852, 40, 834, 40, 811, 51, 798, 53, 742, 52, 674, 52, 632, 52, 600, 55, 592, 54)
+position = Vector2(-1, 0)
+polygon = PackedVector2Array(591, 31, 664, 32, 745, 31, 799, 31, 831, 22, 871, 22, 913, 23, 944, 26, 948, 51, 964, 53, 967, 138, 954, 138, 954, 61, 939, 44, 915, 46, 867, 44, 852, 40, 834, 40, 811, 51, 798, 53, 742, 52, 674, 52, 632, 52, 600, 55, 592, 54)
 
 [node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="Collisions" unique_id=433936842]
 polygon = PackedVector2Array(825, 631, 874, 597, 919, 581, 929, 540, 945, 539, 963, 512, 987, 495, 1016, 488, 1025, 472, 1039, 469, 1060, 465, 1077, 458, 1095, 437, 1100, 420, 1114, 396, 1127, 392, 1155, 372, 1152, 444, 1138, 446, 1128, 454, 1124, 467, 1123, 478, 1119, 487, 1109, 488, 1107, 497, 1098, 502, 1073, 502, 1069, 512, 1063, 515, 1046, 518, 1025, 520, 1006, 556, 1004, 566, 993, 583, 981, 592, 971, 598, 959, 610, 952, 637, 930, 638, 913, 637, 905, 645, 880, 646, 814, 647)
@@ -640,7 +651,6 @@ texture = ExtResource("45_iojbb")
 [node name="NPC_StupaCaretaker" parent="." unique_id=987711 instance=ExtResource("47_explornpc")]
 position = Vector2(843, 331)
 npc_name = "Stupa Caretaker"
-quest_id = "stupa_caretaker"
 sprite_texture = ExtResource("40_monk")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
@@ -650,11 +660,11 @@ dialogue_lines = [{
 "speaker": "Stupa Caretaker",
 "text": "Yahan prarthana aur shanti ka vatavaran vidyarthiyon ko ekagratha pradan karta hai."
 }]
+quest_id = "stupa_caretaker"
 
 [node name="NPC_ViharaWorker" parent="." unique_id=987712 instance=ExtResource("47_explornpc")]
 position = Vector2(242, 160)
 npc_name = "Vihara Worker"
-quest_id = "vihara_supplies"
 sprite_texture = ExtResource("43_qsrvs")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
@@ -664,11 +674,11 @@ dialogue_lines = [{
 "speaker": "Vihara Worker",
 "text": "Nalanda ki yeh sundar eetain aur kothriyan sadiyon ki mehnat se bani hain."
 }]
+quest_id = "vihara_supplies"
 
 [node name="NPC_SeniorStudent" parent="." unique_id=987713 instance=ExtResource("47_explornpc")]
 position = Vector2(444, 368.8)
 npc_name = "Senior Student"
-quest_id = "missing_student"
 sprite_texture = ExtResource("41_8td27")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
@@ -678,11 +688,11 @@ dialogue_lines = [{
 "speaker": "Senior Student",
 "text": "Tarka aur samvad hi yahan ke shastra-arth ka mool aadhar hain."
 }]
+quest_id = "missing_student"
 
 [node name="NPC_Scholar" parent="." unique_id=987714 instance=ExtResource("47_explornpc")]
 position = Vector2(681.7, 280.5)
 npc_name = "Scholar"
-quest_id = "scholar_question"
 sprite_texture = ExtResource("42_qsrvs")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
@@ -692,6 +702,7 @@ dialogue_lines = [{
 "speaker": "Scholar",
 "text": "Dharmaganja ke teeno bhawan gyan ka anant sagar hain."
 }]
+quest_id = "scholar_question"
 
 [node name="NPC_YoungStudent" parent="." unique_id=987715 instance=ExtResource("47_explornpc")]
 position = Vector2(734, 290)
@@ -722,15 +733,6 @@ dialogue_lines = [{
 "text": "Yeh stupa Nalanda ke pavitra aur mahatvapurn sthalon mein se ek hai."
 }]
 
-[node name="InteractionPoint_Library" parent="." unique_id=987812 instance=ExtResource("48_interactpt")]
-position = Vector2(770.5, 136)
-point_name = "Dharmaganja Library"
-prompt_text = "[Press E to Examine Texts]"
-dialogue_lines = [{
-"speaker": "Dharmaganja Library",
-"text": "Yahan granthon aur hastlikhit pustakon ka adhyayan aur sanrakshan kiya jata tha."
-}]
-
 [node name="InteractionPoint_Vihara" parent="." unique_id=987813 instance=ExtResource("48_interactpt")]
 position = Vector2(342, 240)
 point_name = "Vihara Monastic Cells"
@@ -748,6 +750,7 @@ dialogue_lines = [{
 "speaker": "Manuscript Desk",
 "text": "Ek granth ko likhna, padhna aur sambhal kar rakhna gyan ki parampara ko aage badhana tha."
 }]
+
 [node name="ScholarReasoningUI" parent="." unique_id=987920 instance=ExtResource("50_scholarui")]
 
 [node name="Item_StupaLamp" parent="." unique_id=987911 instance=ExtResource("49_pickupitem")]
@@ -755,46 +758,45 @@ position = Vector2(912, 312)
 item_id = "stupa_lamp"
 item_name = "Oil Lamp"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("73_stupalamp")
+sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_StupaCloth" parent="." unique_id=987912 instance=ExtResource("49_pickupitem")]
 position = Vector2(818, 412)
 item_id = "stupa_cloth"
 item_name = "Prayer Cloth"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("74_stupacloth")
+sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_StupaFlowers" parent="." unique_id=987913 instance=ExtResource("49_pickupitem")]
 position = Vector2(782, 248)
 item_id = "stupa_flowers"
 item_name = "Lotus Flowers"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("75_stupaflowers")
+sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_ViharaWood" parent="." unique_id=987914 instance=ExtResource("49_pickupitem")]
 position = Vector2(162, 202)
 item_id = "vihara_wood"
 item_name = "Timber Plank"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("76_viharawood")
+sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_ViharaStone" parent="." unique_id=987915 instance=ExtResource("49_pickupitem")]
 position = Vector2(302, 138)
 item_id = "vihara_stone"
 item_name = "Carved Stone"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("77_viharastone")
+sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_ViharaRope" parent="." unique_id=987916 instance=ExtResource("49_pickupitem")]
 position = Vector2(172, 368)
 item_id = "vihara_rope"
 item_name = "Hemp Rope"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("78_vihararope")
+sprite_scale = Vector2(0.035, 0.035)
