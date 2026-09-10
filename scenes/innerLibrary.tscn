@@ -13,11 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="11_51f2q"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="12_54sn1"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="13_we5yx"]
-
-[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="14_interactpt"]
+[ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="14_interactpt"]
 [ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="15_explornpc"]
-[ext_resource type="PackedScene" uid="uid://cscholarreasoningui" path="res://scenes/ui/ScholarReasoningUI.tscn" id="16_scholar_ui"]
-[ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="17_prog_ui"]
+[ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="16_scholar_ui"]
+[ext_resource type="PackedScene" uid="uid://cq2kfu4o8w8vc" path="res://scenes/ui/PlayerProgressUI.tscn" id="17_prog_ui"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 130)
 
@@ -225,12 +225,7 @@ dialogue_lines = [{
 position = Vector2(765, 360)
 npc_name = "Scholar"
 quest_id = "scholar_question"
-dialogue_greeting = "Welcome to the grand Library of Nalanda. Knowledge here is boundless."
-dialogue_in_progress = "Reason carefully, learner. What guides knowledge forward?"
-dialogue_completed = "A true scholar seeks wisdom through contemplation and inquiry."
 
 [node name="ScholarReasoningUI" parent="." unique_id=1892019403 instance=ExtResource("16_scholar_ui")]
-visible = false
 
 [node name="PlayerProgressUI" parent="." unique_id=1892019404 instance=ExtResource("17_prog_ui")]
-visible = false

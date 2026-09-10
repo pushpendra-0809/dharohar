@@ -34,7 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
 [ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
@@ -50,14 +50,14 @@
 [ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
-[ext_resource type="PackedScene" uid="uid://dvharentrancescene01" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
+[ext_resource type="PackedScene" uid="uid://biob8wae51661" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
+[ext_resource type="Texture2D" uid="uid://bjf4d00samjms" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/teacher3.png" id="58_mc6dv"]
 [ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
 [ext_resource type="Texture2D" uid="uid://cp663m1a2u6ge" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
 [ext_resource type="Texture2D" uid="uid://bxyemd7ow3xpy" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]
 [ext_resource type="Texture2D" uid="uid://b8d5j62p3vypw" path="res://assets/items/item_vihara_wood.png" id="76_viharawood"]
 [ext_resource type="Texture2D" uid="uid://sywdcuxb1ut5" path="res://assets/items/item_vihara_stone.png" id="77_viharastone"]
 [ext_resource type="Texture2D" uid="uid://bh2finjn1pkrp" path="res://assets/items/item_vihara_rope.png" id="78_vihararope"]
-[ext_resource type="PackedScene" uid="uid://cex2h1i3mlxrk" path="res://scenes/npcs/Teacher3.tscn" id="79_teacher3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -508,7 +508,7 @@ position = Vector2(-20.5, -18.726746)
 shape = SubResource("RectangleShape2D_artlibrary")
 
 [node name="LibraryInfoTrigger" parent="Buildings/Library" unique_id=987655140 instance=ExtResource("32_infotrigger")]
-position = Vector2(-16.5, 30.031008)
+position = Vector2(-11.5, 4.031006)
 custom_cards_script = ExtResource("34_libinfodata")
 
 [node name="Temple" type="StaticBody2D" parent="Buildings" unique_id=966198803]
@@ -585,9 +585,6 @@ position = Vector2(347, 566)
 
 [node name="Teacher2" parent="." unique_id=582074548 instance=ExtResource("4_teacher2")]
 position = Vector2(293, 282)
-
-[node name="Teacher3" parent="." unique_id=987654330 instance=ExtResource("79_teacher3")]
-position = Vector2(534, 330)
 
 [node name="UniversityExit" parent="." unique_id=1386033088 instance=ExtResource("5_exit")]
 position = Vector2(347, 566)
@@ -714,16 +711,6 @@ dialogue_lines = [{
 "text": "Acharya Silabhadra aur Acharya Dharmapala ke path anmol hain."
 }]
 
-[node name="NPC_ResidentMonk" parent="." unique_id=987716 instance=ExtResource("47_explornpc")]
-position = Vector2(515, 58)
-npc_name = "Monk"
-sprite_texture = ExtResource("3_tcrwk")
-sprite_scale = Vector2(0.038, 0.038)
-dialogue_lines = [{
-"speaker": "Monk",
-"text": "Shanti aur adhyayan hi yahan ka sarvochha dhyeya hai."
-}]
-
 [node name="InteractionPoint_Stupa" parent="." unique_id=987811 instance=ExtResource("48_interactpt")]
 position = Vector2(859, 273)
 point_name = "Great Stupa"
@@ -800,3 +787,8 @@ item_name = "Hemp Rope"
 quest_id = "vihara_supplies"
 sprite_texture = ExtResource("78_vihararope")
 sprite_scale = Vector2(0.035, 0.035)
+
+[node name="Teacher3" type="Sprite2D" parent="." unique_id=611318122]
+position = Vector2(737.6719, 456)
+scale = Vector2(0.047515705, 0.044270825)
+texture = ExtResource("58_mc6dv")

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bvharscene001"]
 
-[ext_resource type="Script" uid="uid://c3vharcontroller" path="res://scenes/innerVihar.gd" id="1_vihargd"]
+[ext_resource type="Script" uid="uid://drfj5f58y7aa8" path="res://scenes/innerVihar.gd" id="1_vihargd"]
 [ext_resource type="Texture2D" uid="uid://bo5pr84sakp8b" path="res://assets/Elements/buildings/innerVihar.png" id="2_bgpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
-[ext_resource type="PackedScene" uid="uid://dvharexitscene01" path="res://scenes/objects/ViharaExit.tscn" id="4_exit"]
+[ext_resource type="PackedScene" uid="uid://dqgpur8mk37mm" path="res://scenes/objects/ViharaExit.tscn" id="4_exit"]
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
@@ -39,7 +39,7 @@ size = Vector2(65, 45)
 size = Vector2(60, 45)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pillar"]
-size = Vector2(40, 45)
+size = Vector2(34, 108.25)
 
 [node name="InnerVihar" type="Control" unique_id=1992019280]
 layout_mode = 3
@@ -59,15 +59,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_bgpng")
 expand_mode = 1
-stretch_mode = 0
 
 [node name="ViharaExit" parent="." unique_id=1992019282 instance=ExtResource("4_exit")]
 position = Vector2(576, 582)
 
 [node name="Player" parent="." unique_id=1992019283 instance=ExtResource("3_player")]
-position = Vector2(576, 480)
+position = Vector2(597, 393)
 
 [node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1992019284]
+position = Vector2(0, 4)
 zoom = Vector2(2.35, 2.35)
 
 [node name="ObjectiveTrailManager" parent="." unique_id=1992019285 instance=ExtResource("8_trail")]
@@ -153,11 +153,11 @@ position = Vector2(932, 130)
 shape = SubResource("RectangleShape2D_pillar")
 
 [node name="PillarRight2" type="CollisionShape2D" parent="Collisions" unique_id=1992019308]
-position = Vector2(932, 230)
+position = Vector2(860, 213)
 shape = SubResource("RectangleShape2D_pillar")
 
 [node name="PillarRight3" type="CollisionShape2D" parent="Collisions" unique_id=1992019309]
-position = Vector2(932, 335)
+position = Vector2(933, 323)
 shape = SubResource("RectangleShape2D_pillar")
 
 [node name="PillarRight4" type="CollisionShape2D" parent="Collisions" unique_id=1992019310]
@@ -165,17 +165,17 @@ position = Vector2(932, 440)
 shape = SubResource("RectangleShape2D_pillar")
 
 [node name="Monk_Shrine" type="Sprite2D" parent="." unique_id=1992019311]
-position = Vector2(510, 135)
+position = Vector2(513, 155)
 scale = Vector2(0.038, 0.038)
 texture = ExtResource("9_monk")
 
 [node name="Scholar_Center" type="Sprite2D" parent="." unique_id=1992019312]
-position = Vector2(640, 260)
+position = Vector2(656, 229.00003)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("10_scholar")
 
 [node name="Student_Study" type="Sprite2D" parent="." unique_id=1992019313]
-position = Vector2(745, 135)
+position = Vector2(721.00006, 149)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("11_student")
 
