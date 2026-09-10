@@ -182,7 +182,10 @@ func _disable_dev_mode_and_restart() -> void:
 			else:
 				tree.change_scene_to_file("res://scenes/main menu/main_menu.tscn")
 		else:
-			tree.change_scene_to_file("res://scenes/nalanda.tscn")
+			if ResourceLoader.exists("res://scenes/nalanda/nalanda.tscn"):
+				tree.change_scene_to_file("res://scenes/nalanda/nalanda.tscn")
+			else:
+				tree.change_scene_to_file("res://scenes/nalanda.tscn")
 	else:
 		tree.change_scene_to_file("res://scenes/main menu/main_menu.tscn")
 

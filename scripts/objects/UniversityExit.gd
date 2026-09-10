@@ -33,7 +33,10 @@ func _trigger_nalanda_return() -> void:
 		GameState.has_returned_to_nalanda = true
 	
 	GameState.set_target_spawn(Vector2(1055, 191), return_seq)
-	get_tree().change_scene_to_file("res://scenes/nalanda.tscn")
+	if ResourceLoader.exists("res://scenes/nalanda/nalanda.tscn"):
+		get_tree().change_scene_to_file("res://scenes/nalanda/nalanda.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/nalanda.tscn")
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player" or body is CharacterBody2D:

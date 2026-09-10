@@ -60,19 +60,22 @@
 [ext_resource type="Texture2D" uid="uid://bh2finjn1pkrp" path="res://assets/items/item_vihara_rope.png" id="78_vihararope"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
-size = Vector2(125, 156)
+size = Vector2(125, 139)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build3"]
 size = Vector2(155, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nalmain"]
-size = Vector2(141, 148.9375)
+size = Vector2(141, 131)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_monnal"]
 size = Vector2(93, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_artlibrary"]
 size = Vector2(205, 161.5155)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tomb"]
+size = Vector2(136, 81)
 
 [node name="Nalanda_University" type="Control" unique_id=1796040786]
 layout_mode = 3
@@ -432,16 +435,6 @@ position = Vector2(790, 185)
 scale = Vector2(0.035, 0.04)
 texture = ExtResource("30_matka")
 
-[node name="ViharaTable" type="Sprite2D" parent="Decorations" unique_id=98765511]
-position = Vector2(250, 290)
-scale = Vector2(0.03, 0.03)
-texture = ExtResource("20_table")
-
-[node name="ViharaMatka" type="Sprite2D" parent="Decorations" unique_id=98765512]
-position = Vector2(235, 295)
-scale = Vector2(0.035, 0.04)
-texture = ExtResource("30_matka")
-
 [node name="ViharaBush" type="Sprite2D" parent="Decorations" unique_id=98765513]
 position = Vector2(190, 275)
 scale = Vector2(0.025, 0.025)
@@ -457,6 +450,7 @@ scale = Vector2(0.117188, 0.152344)
 texture = ExtResource("17_build2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/Build2" unique_id=573797353]
+position = Vector2(7, -5.5)
 shape = SubResource("RectangleShape2D_build2")
 
 [node name="Build3" type="StaticBody2D" parent="Buildings" unique_id=1672636282]
@@ -478,7 +472,7 @@ scale = Vector2(0.17859708, 0.1911634)
 texture = ExtResource("16_nalmain")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Buildings/NalandaMain" unique_id=1924959653]
-position = Vector2(-5.5, 11.09375)
+position = Vector2(-5.5, 2.125)
 shape = SubResource("RectangleShape2D_nalmain")
 
 [node name="Stupa" type="StaticBody2D" parent="Buildings" unique_id=1466698734]
@@ -575,10 +569,16 @@ position = Vector2(806.65625, 367.6875)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("42_qsrvs")
 
-[node name="Tomb" type="Sprite2D" parent="." unique_id=1523014133]
+[node name="Tomb" type="StaticBody2D" parent="." unique_id=1523014133]
 position = Vector2(631.5, 394.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="Tomb" unique_id=1523014134]
 scale = Vector2(0.10221355, 0.11621093)
 texture = ExtResource("44_ljjcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tomb" unique_id=1523014135]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_tomb")
 
 [node name="Player" parent="." unique_id=648215544 instance=ExtResource("3_player")]
 position = Vector2(347, 566)
@@ -741,7 +741,7 @@ dialogue_lines = [{
 [node name="ScholarReasoningUI" parent="." unique_id=987920 instance=ExtResource("50_scholarui")]
 
 [node name="Item_StupaLamp" parent="." unique_id=987911 instance=ExtResource("49_pickupitem")]
-position = Vector2(912, 312)
+position = Vector2(955, 348)
 item_id = "stupa_lamp"
 item_name = "Oil Lamp"
 quest_id = "stupa_caretaker"
@@ -757,7 +757,7 @@ sprite_texture = ExtResource("74_stupacloth")
 sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_StupaFlowers" parent="." unique_id=987913 instance=ExtResource("49_pickupitem")]
-position = Vector2(782, 248)
+position = Vector2(996, 181)
 item_id = "stupa_flowers"
 item_name = "Lotus Flowers"
 quest_id = "stupa_caretaker"
@@ -765,7 +765,7 @@ sprite_texture = ExtResource("75_stupaflowers")
 sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_ViharaWood" parent="." unique_id=987914 instance=ExtResource("49_pickupitem")]
-position = Vector2(162, 202)
+position = Vector2(117, 144)
 item_id = "vihara_wood"
 item_name = "Timber Plank"
 quest_id = "vihara_supplies"
@@ -781,7 +781,7 @@ sprite_texture = ExtResource("77_viharastone")
 sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Item_ViharaRope" parent="." unique_id=987916 instance=ExtResource("49_pickupitem")]
-position = Vector2(172, 368)
+position = Vector2(111, 390)
 item_id = "vihara_rope"
 item_name = "Hemp Rope"
 quest_id = "vihara_supplies"
@@ -790,3 +790,8 @@ sprite_scale = Vector2(0.035, 0.035)
 
 [node name="Teacher3" parent="." unique_id=611318122 instance=ExtResource("53_teacher3scene")]
 position = Vector2(737.6719, 456)
+
+[node name="1NpcStanding" type="Sprite2D" parent="." unique_id=582159941]
+position = Vector2(522.00006, 36)
+scale = Vector2(0.044677746, 0.043375652)
+texture = ExtResource("3_tcrwk")

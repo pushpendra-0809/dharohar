@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://narrativechoiceui001"]
+[gd_scene format=3 uid="uid://c2w18v3gee3uy"]
 
 [ext_resource type="Script" path="res://scenes/ui/NarrativeChoiceUI.gd" id="1_narrativeui"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]

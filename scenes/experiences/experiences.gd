@@ -106,7 +106,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_back_pressed()
 
 func _on_nalanda_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/nalanda.tscn")
+	if ResourceLoader.exists("res://scenes/nalanda/nalanda.tscn"):
+		get_tree().change_scene_to_file("res://scenes/nalanda/nalanda.tscn")
+	else:
+		get_tree().change_scene_to_file("res://scenes/nalanda.tscn")
 
 func _on_comingsoon1_pressed() -> void:
 	var is_nalanda_done: bool = GameState != null and GameState.nalanda_complete
