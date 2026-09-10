@@ -51,6 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://scholarreasoninguipopup" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
 [ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="51_prog_ui"]
+[ext_resource type="PackedScene" uid="uid://dvharentrancescene01" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
@@ -583,6 +584,9 @@ position = Vector2(347, 566)
 
 [node name="LibraryEntrance" parent="." unique_id=987655199 instance=ExtResource("46_libentrance")]
 position = Vector2(754, 185)
+
+[node name="ViharaEntrance" parent="." unique_id=987655200 instance=ExtResource("52_vharentrance")]
+position = Vector2(342, 280)
 
 [node name="ObjectiveTrailManager" parent="." unique_id=842126714 instance=ExtResource("6_trail")]
 

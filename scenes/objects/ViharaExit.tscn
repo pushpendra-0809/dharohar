@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dqgpur8mk37mm"]
+
+[ext_resource type="Script" path="res://scripts/objects/ViharaExit.gd" id="1_exitscript"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_pixelify_bold"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exit"]
+radius = 45.0
+
+[node name="ViharaExit" type="Area2D" unique_id=987123490]
+script = ExtResource("1_exitscript")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654350]
+shape = SubResource("CircleShape2D_exit")
+
+[node name="IndicatorLabel" type="Label" parent="." unique_id=321654997]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -65.0
+offset_right = 150.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 16
+text = "Campus Exit"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=789123490]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -42.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_pixelify_bold")
+theme_override_font_sizes/font_size = 16
+text = "[Press E to Exit]"
+horizontal_alignment = 1

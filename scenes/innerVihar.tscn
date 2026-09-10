@@ -1,0 +1,195 @@
+[gd_scene format=3 uid="uid://bvharscene001"]
+
+[ext_resource type="Script" uid="uid://c3vharcontroller" path="res://scenes/innerVihar.gd" id="1_vihargd"]
+[ext_resource type="Texture2D" uid="uid://bo5pr84sakp8b" path="res://assets/Elements/buildings/innerVihar.png" id="2_bgpng"]
+[ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" uid="uid://dvharexitscene01" path="res://scenes/objects/ViharaExit.tscn" id="4_exit"]
+[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
+[ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
+[ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="8_trail"]
+[ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="9_monk"]
+[ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="10_scholar"]
+[ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="11_student"]
+[ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="12_scribe"]
+[ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="13_girl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
+size = Vector2(1152, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_side"]
+size = Vector2(70, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_bottom_left"]
+size = Vector2(490, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_bottom_right"]
+size = Vector2(490, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_shrine"]
+size = Vector2(120, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_table_center"]
+size = Vector2(165, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_study_table"]
+size = Vector2(65, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_study_table_side"]
+size = Vector2(60, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pillar"]
+size = Vector2(40, 45)
+
+[node name="InnerVihar" type="Control" unique_id=1992019280]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vihargd")
+
+[node name="background" type="TextureRect" parent="." unique_id=1992019281]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bgpng")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="ViharaExit" parent="." unique_id=1992019282 instance=ExtResource("4_exit")]
+position = Vector2(576, 582)
+
+[node name="Player" parent="." unique_id=1992019283 instance=ExtResource("3_player")]
+position = Vector2(576, 480)
+
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1992019284]
+zoom = Vector2(2.35, 2.35)
+
+[node name="ObjectiveTrailManager" parent="." unique_id=1992019285 instance=ExtResource("8_trail")]
+
+[node name="DialogueUI" parent="." unique_id=1992019286 instance=ExtResource("5_dlgui")]
+
+[node name="QuestUI" parent="." unique_id=1992019287 instance=ExtResource("6_questui")]
+
+[node name="PauseMenuUI" parent="." unique_id=1992019288 instance=ExtResource("7_pauseui")]
+
+[node name="Collisions" type="StaticBody2D" parent="." unique_id=1992019289]
+
+[node name="WallTop" type="CollisionShape2D" parent="Collisions" unique_id=1992019290]
+position = Vector2(576, 50)
+shape = SubResource("RectangleShape2D_wall_top")
+
+[node name="WallLeft" type="CollisionShape2D" parent="Collisions" unique_id=1992019291]
+position = Vector2(35, 324)
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="WallRight" type="CollisionShape2D" parent="Collisions" unique_id=1992019292]
+position = Vector2(1117, 324)
+shape = SubResource("RectangleShape2D_wall_side")
+
+[node name="WallBottomLeft" type="CollisionShape2D" parent="Collisions" unique_id=1992019293]
+position = Vector2(245, 595)
+shape = SubResource("RectangleShape2D_wall_bottom_left")
+
+[node name="WallBottomRight" type="CollisionShape2D" parent="Collisions" unique_id=1992019294]
+position = Vector2(907, 595)
+shape = SubResource("RectangleShape2D_wall_bottom_right")
+
+[node name="ShrineBuddha" type="CollisionShape2D" parent="Collisions" unique_id=1992019295]
+position = Vector2(576, 120)
+shape = SubResource("RectangleShape2D_shrine")
+
+[node name="TableCenter" type="CollisionShape2D" parent="Collisions" unique_id=1992019296]
+position = Vector2(576, 284)
+shape = SubResource("RectangleShape2D_table_center")
+
+[node name="StudyTableLeftTop" type="CollisionShape2D" parent="Collisions" unique_id=1992019297]
+position = Vector2(371, 142)
+shape = SubResource("RectangleShape2D_study_table")
+
+[node name="StudyTableRightTop" type="CollisionShape2D" parent="Collisions" unique_id=1992019298]
+position = Vector2(780, 142)
+shape = SubResource("RectangleShape2D_study_table")
+
+[node name="StudyTableLeftMid" type="CollisionShape2D" parent="Collisions" unique_id=1992019299]
+position = Vector2(305, 282)
+shape = SubResource("RectangleShape2D_study_table_side")
+
+[node name="StudyTableRightMid" type="CollisionShape2D" parent="Collisions" unique_id=1992019300]
+position = Vector2(846, 282)
+shape = SubResource("RectangleShape2D_study_table_side")
+
+[node name="StudyTableLeftBottom" type="CollisionShape2D" parent="Collisions" unique_id=1992019301]
+position = Vector2(295, 405)
+shape = SubResource("RectangleShape2D_study_table_side")
+
+[node name="StudyTableRightBottom" type="CollisionShape2D" parent="Collisions" unique_id=1992019302]
+position = Vector2(856, 405)
+shape = SubResource("RectangleShape2D_study_table_side")
+
+[node name="PillarLeft1" type="CollisionShape2D" parent="Collisions" unique_id=1992019303]
+position = Vector2(220, 130)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarLeft2" type="CollisionShape2D" parent="Collisions" unique_id=1992019304]
+position = Vector2(220, 230)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarLeft3" type="CollisionShape2D" parent="Collisions" unique_id=1992019305]
+position = Vector2(220, 335)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarLeft4" type="CollisionShape2D" parent="Collisions" unique_id=1992019306]
+position = Vector2(220, 440)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarRight1" type="CollisionShape2D" parent="Collisions" unique_id=1992019307]
+position = Vector2(932, 130)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarRight2" type="CollisionShape2D" parent="Collisions" unique_id=1992019308]
+position = Vector2(932, 230)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarRight3" type="CollisionShape2D" parent="Collisions" unique_id=1992019309]
+position = Vector2(932, 335)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="PillarRight4" type="CollisionShape2D" parent="Collisions" unique_id=1992019310]
+position = Vector2(932, 440)
+shape = SubResource("RectangleShape2D_pillar")
+
+[node name="Monk_Shrine" type="Sprite2D" parent="." unique_id=1992019311]
+position = Vector2(510, 135)
+scale = Vector2(0.038, 0.038)
+texture = ExtResource("9_monk")
+
+[node name="Scholar_Center" type="Sprite2D" parent="." unique_id=1992019312]
+position = Vector2(640, 260)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("10_scholar")
+
+[node name="Student_Study" type="Sprite2D" parent="." unique_id=1992019313]
+position = Vector2(745, 135)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("11_student")
+
+[node name="Scribe_MidLeft" type="Sprite2D" parent="." unique_id=1992019314]
+position = Vector2(350, 280)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("12_scribe")
+
+[node name="Monk_Courtyard" type="Sprite2D" parent="." unique_id=1992019315]
+position = Vector2(430, 380)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("9_monk")
+
+[node name="Student_Girl" type="Sprite2D" parent="." unique_id=1992019316]
+position = Vector2(720, 380)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("13_girl")
