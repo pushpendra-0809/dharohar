@@ -60,6 +60,7 @@ func mark_teacher2_convo_started() -> void:
 func mark_teacher3_intro_completed() -> void:
 	has_met_teacher3 = true
 	mastery_challenges_unlocked = true
+	check_building_unlocks()
 	quest_state_changed.emit()
 
 # Step 13: Stupa Building Challenges State
@@ -69,19 +70,21 @@ var stupa_challenges: Dictionary = {
 	"medicine": {"easy": false, "medium": false, "hard": false},
 	"philosophy": {"easy": false, "medium": false, "hard": false}
 }
+var stupa_unlocked: bool = false
+var stupa_complete: bool = false
 var stupa_scroll_earned: bool = false
 var stupa_mastery_completed: bool = false
 var stupa_story_choice: String = ""
-var stupa_story_exp_claimed: bool = false
+
+func is_stupa_completed() -> bool:
+	return stupa_complete or stupa_scroll_earned or stupa_mastery_completed
 
 func complete_stupa_story_chapter(choice_id: String = "") -> void:
 	stupa_story_choice = choice_id
+	stupa_complete = true
 	stupa_scroll_earned = true
 	stupa_mastery_completed = true
-	if not stupa_story_exp_claimed:
-		stupa_story_exp_claimed = true
-		add_exp(100)
-	_check_and_update_three_scrolls()
+	check_building_unlocks()
 	quest_state_changed.emit()
 
 
@@ -120,12 +123,9 @@ func complete_stupa_challenge(domain: String, difficulty: String) -> void:
 		
 	stupa_challenges[dom][diff] = true
 	
-	# Award EXP once per challenge
+	# No EXP awarded from buildings (NPC tasks only)
 	var reward_key: String = "stupa_" + dom + "_" + diff
-	if not stupa_exp_claimed.get(reward_key, false):
-		stupa_exp_claimed[reward_key] = true
-		var exp_amt: int = STUPA_EXP_REWARDS.get(diff, 25)
-		add_exp(exp_amt)
+	stupa_exp_claimed[reward_key] = true
 		
 	# Check if all 4 domains have completed hard
 	if are_all_stupa_hard_challenges_completed():
@@ -163,21 +163,21 @@ var library_challenges: Dictionary = {
 	"medicine": {"easy": false, "medium": false, "hard": false},
 	"philosophy": {"easy": false, "medium": false, "hard": false}
 }
+var library_unlocked: bool = false
+var library_complete: bool = false
 var library_scroll_earned: bool = false
 var library_mastery_completed: bool = false
-var library_complete: bool = false
 var library_story_choice: String = ""
-var library_story_exp_claimed: bool = false
+
+func is_library_completed() -> bool:
+	return library_complete or library_scroll_earned or library_mastery_completed
 
 func complete_library_story_chapter(choice_id: String = "") -> void:
 	library_story_choice = choice_id
+	library_complete = true
 	library_scroll_earned = true
 	library_mastery_completed = true
-	library_complete = true
-	if not library_story_exp_claimed:
-		library_story_exp_claimed = true
-		add_exp(100)
-	_check_and_update_three_scrolls()
+	check_building_unlocks()
 	quest_state_changed.emit()
 
 
@@ -216,12 +216,9 @@ func complete_library_challenge(domain: String, difficulty: String) -> void:
 		
 	library_challenges[dom][diff] = true
 	
-	# Award EXP once per challenge
+	# No EXP awarded from buildings (NPC tasks only)
 	var reward_key: String = "library_" + dom + "_" + diff
-	if not library_exp_claimed.get(reward_key, false):
-		library_exp_claimed[reward_key] = true
-		var exp_amt: int = LIBRARY_EXP_REWARDS.get(diff, 25)
-		add_exp(exp_amt)
+	library_exp_claimed[reward_key] = true
 		
 	# Check if all 4 domains have completed hard
 	if are_all_library_hard_challenges_completed():
@@ -261,24 +258,54 @@ var vihara_challenges: Dictionary = {
 	"medicine": {"easy": false, "medium": false, "hard": false},
 	"philosophy": {"easy": false, "medium": false, "hard": false}
 }
+var vihara_unlocked: bool = false
+var vihara_complete: bool = false
 var vihara_scroll_earned: bool = false
 var vihara_mastery_completed: bool = false
-var vihara_complete: bool = false
 var vihara_story_choice: String = ""
-var vihara_story_exp_claimed: bool = false
+
+func is_vihara_completed() -> bool:
+	return vihara_complete or vihara_scroll_earned or vihara_mastery_completed
 
 func complete_vihara_story_chapter(choice_id: String = "") -> void:
 	vihara_story_choice = choice_id
+	vihara_complete = true
 	vihara_scroll_earned = true
 	vihara_mastery_completed = true
-	vihara_complete = true
-	if not vihara_story_exp_claimed:
-		vihara_story_exp_claimed = true
-		add_exp(100)
-	_check_and_update_three_scrolls()
+	check_building_unlocks()
 	quest_state_changed.emit()
 
-func _check_and_update_three_scrolls() -> void:
+func get_completed_side_quests_count() -> int:
+	var count: int = 0
+	for q_id in side_quests:
+		if side_quests[q_id].get("state", QuestStatus.NOT_STARTED) == QuestStatus.COMPLETE:
+			count += 1
+	return count
+
+func check_building_unlocks() -> void:
+	if not has_met_teacher3:
+		return
+		
+	var dev = get_node_or_null("/root/DevModeManager")
+	var is_dev: bool = dev != null and dev.dev_mode_enabled
+	
+	var sq_count: int = get_completed_side_quests_count()
+	
+	# Gate 1: Stupa Unlock (Requires Teacher 3 intro + at least 1 NPC side task or 50+ total EXP)
+	if not stupa_unlocked:
+		if is_dev or sq_count >= 1 or total_accumulated_exp >= 50:
+			stupa_unlocked = true
+			
+	# Gate 2: Library Unlock (Requires Stupa Complete + at least 3 NPC side tasks or 150+ total EXP)
+	if is_stupa_completed() and not library_unlocked:
+		if is_dev or sq_count >= 3 or total_accumulated_exp >= 150:
+			library_unlocked = true
+			
+	# Gate 3: Vihara Unlock (Requires Library Complete + at least 5 NPC side tasks or 250+ total EXP)
+	if is_library_completed() and not vihara_unlocked:
+		if is_dev or sq_count >= 5 or total_accumulated_exp >= 250:
+			vihara_unlocked = true
+			
 	if has_all_three_scrolls():
 		three_scrolls_collected = true
 
@@ -318,12 +345,9 @@ func complete_vihara_challenge(domain: String, difficulty: String) -> void:
 		
 	vihara_challenges[dom][diff] = true
 	
-	# Award EXP once per challenge
+	# No EXP awarded from buildings (NPC tasks only)
 	var reward_key: String = "vihara_" + dom + "_" + diff
-	if not vihara_exp_claimed.get(reward_key, false):
-		vihara_exp_claimed[reward_key] = true
-		var exp_amt: int = VIHARA_EXP_REWARDS.get(diff, 25)
-		add_exp(exp_amt)
+	vihara_exp_claimed[reward_key] = true
 		
 	# Check if all 4 domains have completed hard
 	if are_all_vihara_hard_challenges_completed():
@@ -473,9 +497,6 @@ func complete_nalanda_experience() -> void:
 
 func complete_final_mastery() -> void:
 	final_mastery_complete = true
-	if not final_mastery_exp_claimed:
-		final_mastery_exp_claimed = true
-		add_exp(100) # Final Mastery Capstone Reward
 	quest_state_changed.emit()
 
 
@@ -483,27 +504,28 @@ func serialize_building_progression() -> Dictionary:
 	return {
 		"stupa": {
 			"challenges": stupa_challenges.duplicate(true),
+			"unlocked": stupa_unlocked,
+			"complete": stupa_complete,
 			"scroll_earned": stupa_scroll_earned,
 			"mastery_completed": stupa_mastery_completed,
 			"story_choice": stupa_story_choice,
-			"story_exp_claimed": stupa_story_exp_claimed,
 			"exp_claimed": stupa_exp_claimed.duplicate(true)
 		},
 		"library": {
 			"challenges": library_challenges.duplicate(true),
+			"unlocked": library_unlocked,
 			"scroll_earned": library_scroll_earned,
 			"mastery_completed": library_mastery_completed,
 			"story_choice": library_story_choice,
-			"story_exp_claimed": library_story_exp_claimed,
 			"complete": library_complete,
 			"exp_claimed": library_exp_claimed.duplicate(true)
 		},
 		"vihara": {
 			"challenges": vihara_challenges.duplicate(true),
+			"unlocked": vihara_unlocked,
 			"scroll_earned": vihara_scroll_earned,
 			"mastery_completed": vihara_mastery_completed,
 			"story_choice": vihara_story_choice,
-			"story_exp_claimed": vihara_story_exp_claimed,
 			"complete": vihara_complete,
 			"exp_claimed": vihara_exp_claimed.duplicate(true)
 		},
@@ -523,29 +545,30 @@ func deserialize_building_progression(data: Dictionary) -> void:
 	if data.has("stupa"):
 		var s = data["stupa"]
 		stupa_challenges = s.get("challenges", stupa_challenges)
+		stupa_unlocked = s.get("unlocked", false)
+		stupa_complete = s.get("complete", false)
 		stupa_scroll_earned = s.get("scroll_earned", false)
 		stupa_mastery_completed = s.get("mastery_completed", false)
 		stupa_story_choice = s.get("story_choice", "")
-		stupa_story_exp_claimed = s.get("story_exp_claimed", false)
 		stupa_exp_claimed = s.get("exp_claimed", {})
 		
 	if data.has("library"):
 		var l = data["library"]
 		library_challenges = l.get("challenges", library_challenges)
+		library_unlocked = l.get("unlocked", false)
 		library_scroll_earned = l.get("scroll_earned", false)
 		library_mastery_completed = l.get("mastery_completed", false)
 		library_story_choice = l.get("story_choice", "")
-		library_story_exp_claimed = l.get("story_exp_claimed", false)
 		library_complete = l.get("complete", false)
 		library_exp_claimed = l.get("exp_claimed", {})
 		
 	if data.has("vihara"):
 		var v = data["vihara"]
 		vihara_challenges = v.get("challenges", vihara_challenges)
+		vihara_unlocked = v.get("unlocked", false)
 		vihara_scroll_earned = v.get("scroll_earned", false)
 		vihara_mastery_completed = v.get("mastery_completed", false)
 		vihara_story_choice = v.get("story_choice", "")
-		vihara_story_exp_claimed = v.get("story_exp_claimed", false)
 		vihara_complete = v.get("complete", false)
 		vihara_exp_claimed = v.get("exp_claimed", {})
 		
@@ -841,6 +864,7 @@ func add_exp(amount: int) -> void:
 		req = get_exp_required_for_next_level(player_level)
 		
 	exp_awarded.emit(amount, player_exp, req, did_level_up)
+	check_building_unlocks()
 
 func complete_side_quest(quest_id: String) -> void:
 	if side_quests.has(quest_id):
@@ -855,6 +879,7 @@ func complete_side_quest(quest_id: String) -> void:
 			
 		side_quest_completed.emit(quest_id)
 		side_quest_state_changed.emit(quest_id, QuestStatus.COMPLETE)
+		check_building_unlocks()
 		quest_state_changed.emit()
 
 func get_active_side_quest_objective() -> String:
@@ -904,6 +929,9 @@ var session_exp: int = 0
 signal exp_changed(new_exp: int, delta: int)
 
 func unlock_all_progression() -> void:
+	stupa_unlocked = true
+	library_unlocked = true
+	vihara_unlocked = true
 	merchant_passed = true
 	merchant_quiz_completed = true
 	merchant_quiz_score = 5

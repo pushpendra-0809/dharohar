@@ -2,7 +2,7 @@ class_name NarrativeMasteryData
 extends RefCounted
 
 # ==============================================================================
-# NALANDA STORY MASTERY SYSTEM — DETROIT-INSPIRED NARRATIVE DATA
+# NALANDA STORY MASTERY SYSTEM — DETROIT-INSPIRED NARRATIVE DATA (NO EXP)
 # ==============================================================================
 
 const CHAPTER_STUPA: Dictionary = {
@@ -48,8 +48,7 @@ const CHAPTER_STUPA: Dictionary = {
 			"is_optimal": true
 		}
 	],
-	"scroll_name": "Stupa Scroll of Prudence",
-	"exp_reward": 100
+	"scroll_name": "Stupa Scroll of Prudence"
 }
 
 const CHAPTER_LIBRARY: Dictionary = {
@@ -95,8 +94,7 @@ const CHAPTER_LIBRARY: Dictionary = {
 			"is_optimal": true
 		}
 	],
-	"scroll_name": "Library Scroll of Truth",
-	"exp_reward": 100
+	"scroll_name": "Library Scroll of Truth"
 }
 
 const CHAPTER_VIHARA: Dictionary = {
@@ -142,12 +140,11 @@ const CHAPTER_VIHARA: Dictionary = {
 			"is_optimal": true
 		}
 	],
-	"scroll_name": "Vihara Scroll of Harmony",
-	"exp_reward": 100
+	"scroll_name": "Vihara Scroll of Harmony"
 }
 
 # ==============================================================================
-# FINAL MASTERY SCENARIOS — DOMAIN SPECIFIC
+# FINAL MASTERY SCENARIOS — DOMAIN SPECIFIC (NO EXP)
 # ==============================================================================
 
 const FINAL_MASTERY_SCENARIOS: Dictionary = {
@@ -189,8 +186,7 @@ const FINAL_MASTERY_SCENARIOS: Dictionary = {
 				"explanation": "Arbitrarily curtails the convocation scope rather than solving the allocation system.",
 				"feedback": "Avoid evading constraints through arbitrary reductions; rigorous planning solves the full problem."
 			}
-		],
-		"exp_reward": 200
+		]
 	},
 	"astronomy": {
 		"domain": "Astronomy",
@@ -230,8 +226,7 @@ const FINAL_MASTERY_SCENARIOS: Dictionary = {
 				"explanation": "Midday shadows are shortest at the Summer Solstice, when the Sun reaches peak altitude.",
 				"feedback": "Fundamental error in solar elevation and shadow dynamics."
 			}
-		],
-		"exp_reward": 200
+		]
 	},
 	"medicine": {
 		"domain": "Medicine",
@@ -271,8 +266,7 @@ const FINAL_MASTERY_SCENARIOS: Dictionary = {
 				"explanation": "Prolonged starvation severely depletes vital bodily tissues (Dhatus) and worsens dehydration.",
 				"feedback": "Excessive starvation causes severe physical deterioration."
 			}
-		],
-		"exp_reward": 200
+		]
 	},
 	"philosophy": {
 		"domain": "Philosophy",
@@ -313,8 +307,7 @@ const FINAL_MASTERY_SCENARIOS: Dictionary = {
 				"explanation": "Ad hominem fallacy violating the sacred code of Nalanda academic debate (Vada-maryada).",
 				"feedback": "Personal attacks violate the ethical and rational standards of Nalanda debate."
 			}
-		],
-		"exp_reward": 200
+		]
 	}
 }
 

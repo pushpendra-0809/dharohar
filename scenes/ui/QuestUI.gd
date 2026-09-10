@@ -94,26 +94,35 @@ func update_quest_ui() -> void:
 		if title_label:
 			title_label.text = "STORY MASTERY"
 		if objective_label:
-			var stupa_done: bool = GameState.stupa_scroll_earned or GameState.stupa_mastery_completed
-			var stupa_str: String = "Stupa: 📜 Claimed" if stupa_done else "Stupa: Explore"
-				
-			var lib_done: bool = GameState.library_scroll_earned or GameState.library_mastery_completed or GameState.library_complete
-			var lib_str: String = "Library: 📜 Claimed" if lib_done else "Library: Explore"
-				
-			var vih_done: bool = GameState.vihara_scroll_earned or GameState.vihara_mastery_completed or GameState.vihara_complete
-			var vih_str: String = "Vihara: 📜 Claimed" if vih_done else "Vihara: Explore"
+			var stupa_done: bool = GameState.is_stupa_completed() if GameState.has_method("is_stupa_completed") else (GameState.stupa_scroll_earned or GameState.stupa_mastery_completed)
+			var lib_done: bool = GameState.is_library_completed() if GameState.has_method("is_library_completed") else (GameState.library_scroll_earned or GameState.library_mastery_completed)
+			var vih_done: bool = GameState.is_vihara_completed() if GameState.has_method("is_vihara_completed") else (GameState.vihara_scroll_earned or GameState.vihara_mastery_completed)
 			
-			var scrolls_count: int = (1 if stupa_done else 0) + (1 if lib_done else 0) + (1 if vih_done else 0)
+			var stupa_str: String = "Stupa: 📜 Claimed" if stupa_done else ("Stupa: 🔓 Ready" if GameState.stupa_unlocked else "Stupa: 🔒 Locked")
+			var lib_str: String = "Library: 📜 Claimed" if lib_done else ("Library: 🔓 Ready" if GameState.library_unlocked else "Library: 🔒 Locked")
+			var vih_str: String = "Vihara: 📜 Claimed" if vih_done else ("Vihara: 🔓 Ready" if GameState.vihara_unlocked else "Vihara: 🔒 Locked")
 			
 			var headline: String = ""
 			if GameState.nalanda_complete:
 				headline = "Nalanda Journey Complete! Wisdom preserved."
 			elif GameState.final_mastery_complete:
 				headline = "Mastery Complete! Speak with Teacher 3."
-			elif GameState.final_mastery_unlocked or scrolls_count >= 3:
-				headline = "Return to Teacher 3 for Final Mastery."
+			elif GameState.has_all_three_scrolls():
+				headline = "Return to Teacher 3 with 3 Scrolls for Final Mastery."
+			elif not GameState.stupa_unlocked:
+				headline = "Help villagers & complete NPC tasks to unlock the Stupa."
+			elif not stupa_done:
+				headline = "Visit the Great Stupa and resolve the crisis."
+			elif not GameState.library_unlocked:
+				headline = "Help more NPCs to gain EXP and unlock the Library."
+			elif not lib_done:
+				headline = "Visit the Dharmaganja Library and resolve the dispute."
+			elif not GameState.vihara_unlocked:
+				headline = "Help more NPCs to gain EXP and unlock the Vihara."
+			elif not vih_done:
+				headline = "Visit the Vihara Living Quarters and resolve the dilemma."
 			else:
-				headline = "Explore the Stupa, Library and Vihara (" + str(scrolls_count) + "/3 Scrolls)"
+				headline = "Explore Nalanda and complete building chapters."
 				
 			objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
 		if reward_label:

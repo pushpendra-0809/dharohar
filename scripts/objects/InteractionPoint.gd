@@ -62,11 +62,11 @@ func _update_quest_marker() -> void:
 	if quest_marker:
 		if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
 			quest_marker.visible = true
-		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and not GameState.library_scroll_earned:
+		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.library_unlocked and not GameState.is_library_completed():
 			quest_marker.visible = true
-		elif point_name == "Great Stupa" and GameState.has_met_teacher3 and not GameState.stupa_scroll_earned:
+		elif point_name == "Great Stupa" and GameState.stupa_unlocked and not GameState.is_stupa_completed():
 			quest_marker.visible = true
-		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3 and not GameState.vihara_scroll_earned:
+		elif point_name == "Vihara Living Quarters" and GameState.vihara_unlocked and not GameState.is_vihara_completed():
 			quest_marker.visible = true
 		else:
 			quest_marker.visible = false
@@ -119,19 +119,26 @@ func _start_interaction() -> void:
 		
 	_update_ui_elements()
 	
-	# 1. Great Stupa Narrative Chapter
-	if point_name == "Great Stupa" and GameState and GameState.has_met_teacher3:
-		if GameState.stupa_scroll_earned:
+	# 1. Great Stupa Narrative Chapter (Gated by stupa_unlocked)
+	if point_name == "Great Stupa" and GameState:
+		if GameState.is_stupa_completed():
 			var stupa_done_seq: Array = [
 				{"speaker": "Great Stupa", "text": "The Great Stupa stands in balanced harmony, protected and revered according to your wise decision."}
 			]
 			dialogue_manager.start_dialogue(stupa_done_seq, _on_dialogue_finished)
 			return
-		else:
+		elif GameState.stupa_unlocked:
 			var n_ui = _get_narrative_ui()
 			if n_ui:
 				n_ui.open_chapter("stupa", _on_chapter_completed)
 				return
+		elif GameState.has_met_teacher3:
+			var locked_stupa_seq: Array = [
+				{"speaker": "Great Stupa", "text": "The path ahead is not yet ready for you.
+Help the people of Nalanda through their tasks to gain experience before undertaking the Stupa trial."}
+			]
+			dialogue_manager.start_dialogue(locked_stupa_seq, _on_dialogue_finished)
+			return
 	
 	# 2. Scribe Side Quest Manuscript Delivery
 	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState:
@@ -147,33 +154,47 @@ func _start_interaction() -> void:
 			)
 			return
 
-	# 3. Dharmaganja Library Narrative Chapter
-	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState and GameState.has_met_teacher3:
-		if GameState.library_scroll_earned:
+	# 3. Dharmaganja Library Narrative Chapter (Gated by library_unlocked)
+	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState:
+		if GameState.is_library_completed():
 			var lib_done_seq: Array = [
 				{"speaker": "Dharmaganja Library", "text": "The Ratnasagara manuscript archives remain preserved and accurately catalogued through evidence and dialogue."}
 			]
 			dialogue_manager.start_dialogue(lib_done_seq, _on_dialogue_finished)
 			return
-		else:
+		elif GameState.library_unlocked:
 			var n_ui = _get_narrative_ui()
 			if n_ui:
 				n_ui.open_chapter("library", _on_chapter_completed)
 				return
+		elif GameState.has_met_teacher3:
+			var locked_lib_seq: Array = [
+				{"speaker": "Dharmaganja Library", "text": "The inner archives are currently restricted.
+Complete the Stupa chapter and assist more scholars and villagers to earn access."}
+			]
+			dialogue_manager.start_dialogue(locked_lib_seq, _on_dialogue_finished)
+			return
 
-	# 4. Vihara Living Quarters Narrative Chapter
-	if point_name == "Vihara Living Quarters" and GameState and GameState.has_met_teacher3:
-		if GameState.vihara_scroll_earned:
+	# 4. Vihara Living Quarters Narrative Chapter (Gated by vihara_unlocked)
+	if point_name == "Vihara Living Quarters" and GameState:
+		if GameState.is_vihara_completed():
 			var vih_done_seq: Array = [
 				{"speaker": "Vihara Living Quarters", "text": "The Vihara residential quarters thrive in warmth and scholarly peace under your balanced allocation plan."}
 			]
 			dialogue_manager.start_dialogue(vih_done_seq, _on_dialogue_finished)
 			return
-		else:
+		elif GameState.vihara_unlocked:
 			var n_ui = _get_narrative_ui()
 			if n_ui:
 				n_ui.open_chapter("vihara", _on_chapter_completed)
 				return
+		elif GameState.has_met_teacher3:
+			var locked_vih_seq: Array = [
+				{"speaker": "Vihara Living Quarters", "text": "The living quarters require further recommendation.
+Complete the Library chapter and assist the Nalanda community to unlock the Vihara trial."}
+			]
+			dialogue_manager.start_dialogue(locked_vih_seq, _on_dialogue_finished)
+			return
 			
 	if not dialogue_lines.is_empty():
 		dialogue_manager.start_dialogue(dialogue_lines, _on_dialogue_finished)

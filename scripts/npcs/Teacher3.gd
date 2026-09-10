@@ -111,14 +111,14 @@ func _start_teacher3_interaction() -> void:
 		dialogue_manager.start_dialogue(locked_seq, _on_dialogue_finished)
 		return
 		
-	# First Introduction Dialogue — Detroit-Inspired Story Intro
+	# First Introduction Dialogue — Detroit-Inspired Story Intro with NPC EXP Gating
 	if GameState and not GameState.has_met_teacher3:
 		var intro_seq: Array = [
 			{"speaker": "Mastery Mentor", "text": "Tumne gyan seekha."},
 			{"speaker": "Mastery Mentor", "text": "Phir tumne uska prayog kiya."},
 			{"speaker": "Mastery Mentor", "text": "Ab Nalanda tumse ek aur cheez maangta hai — nirnay."},
-			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara mein tumhe aisi paristhitiyon ka saamna karna hoga jahan har jawab sirf sahi ya galat nahi hoga."},
-			{"speaker": "Mastery Mentor", "text": "Tumhe dekhna hoga, samajhna hoga, prashn karna hoga aur phir nirnay lena hoga."},
+			{"speaker": "Mastery Mentor", "text": "Lekin Stupa, Library aur Vihara ke dharohar sthalon tak pahunchne ke liye tumhe pehle Nalanda ke logon aur aangan ki sewa karni hogi."},
+			{"speaker": "Mastery Mentor", "text": "Gaon ke kisaan, lekhak, vidyarthi aur vidwanon ki sahayata karke anubhav prapt karo. Jaise-jaise tumhara anubhav badhega, ek-ek karke dharohar sthal khulte jayenge."},
 			{"speaker": "Mastery Mentor", "text": "Tumhare nirnay hi tumhari asli pariksha honge."}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
@@ -187,7 +187,7 @@ func _start_teacher3_interaction() -> void:
 
 	# State A: Player does NOT have all three Scrolls yet
 	var reminder_seq: Array = [
-		{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara — in teen sthanon par jao, paristhitiyon ko samjho aur vivekpurna nirnay lo.\nApni teenon Scrolls lekar mere paas wapas aao."}
+		{"speaker": "Mastery Mentor", "text": "Nalanda ke logon ki sahayata karo aur anubhav prapt karo.\nStupa, Library aur Vihara ki teenon Scrolls lekar mere paas wapas aana."}
 	]
 	dialogue_manager.start_dialogue(reminder_seq, _on_dialogue_finished)
 
