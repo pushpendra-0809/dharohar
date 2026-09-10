@@ -2,10 +2,10 @@ class_name QuestUI
 extends CanvasLayer
 
 @onready var panel_box: Control = $PanelBox
-@onready var title_label: Label = $PanelBox/TitleLabel
-@onready var objective_label: Label = $PanelBox/ObjectiveLabel
-@onready var reward_label: Label = get_node_or_null("PanelBox/RewardLabel")
-@onready var exp_stats_label: Label = get_node_or_null("PanelBox/ExpStatsLabel")
+@onready var title_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/TitleLabel") if has_node("PanelBox/MarginContainer/VBox/TitleLabel") else get_node_or_null("PanelBox/TitleLabel")
+@onready var objective_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/ObjectiveLabel") if has_node("PanelBox/MarginContainer/VBox/ObjectiveLabel") else get_node_or_null("PanelBox/ObjectiveLabel")
+@onready var reward_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/RewardLabel") if has_node("PanelBox/MarginContainer/VBox/RewardLabel") else get_node_or_null("PanelBox/RewardLabel")
+@onready var exp_stats_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/ExpStatsLabel") if has_node("PanelBox/MarginContainer/VBox/ExpStatsLabel") else get_node_or_null("PanelBox/ExpStatsLabel")
 @onready var completion_timer: Timer = $CompletionTimer
 
 @onready var exp_toast: Control = get_node_or_null("ExpToast")
@@ -82,34 +82,34 @@ func update_quest_ui() -> void:
 		if objective_label:
 			var stupa_count: int = GameState.get_stupa_hard_completed_count() if GameState.has_method("get_stupa_hard_completed_count") else 0
 			var stupa_done: bool = GameState.stupa_scroll_earned or GameState.stupa_mastery_completed
-			var stupa_str: String = "Stupa: Complete ✓" if stupa_done else "Stupa: " + str(stupa_count) + "/4 Hard"
+			var stupa_str: String = "Stupa: Done ✓" if stupa_done else "Stupa: " + str(stupa_count) + "/4"
 				
 			var lib_count: int = GameState.get_library_hard_completed_count() if GameState.has_method("get_library_hard_completed_count") else 0
 			var lib_done: bool = GameState.library_scroll_earned or GameState.library_mastery_completed or GameState.library_complete
-			var lib_str: String = "Library: Complete ✓" if lib_done else "Library: " + str(lib_count) + "/4 Hard"
+			var lib_str: String = "Library: Done ✓" if lib_done else "Library: " + str(lib_count) + "/4"
 				
 			var vih_count: int = GameState.get_vihara_hard_completed_count() if GameState.has_method("get_vihara_hard_completed_count") else 0
 			var vih_done: bool = GameState.vihara_scroll_earned or GameState.vihara_mastery_completed or GameState.vihara_complete
-			var vih_str: String = "Vihara: Complete ✓" if vih_done else "Vihara: " + str(vih_count) + "/4 Hard"
+			var vih_str: String = "Vihara: Done ✓" if vih_done else "Vihara: " + str(vih_count) + "/4"
 			
 			var scrolls_count: int = (1 if stupa_done else 0) + (1 if lib_done else 0) + (1 if vih_done else 0)
 			
 			var headline: String = ""
 			if GameState.nalanda_complete:
-				headline = "Nalanda Experience Complete! (All Disciplines & Landmarks Mastered)"
+				headline = "Nalanda Complete! All disciplines mastered."
 			elif GameState.final_mastery_complete:
-				headline = "Nalanda Domain Mastery Complete! Speak with Teacher 3."
+				headline = "Mastery Complete! Speak with Teacher 3."
 			elif GameState.final_mastery_unlocked:
 				var comp_stages: int = GameState.get_final_mastery_completed_count() if GameState.has_method("get_final_mastery_completed_count") else 0
-				headline = "Complete Final Mastery with Teacher 3 (" + str(comp_stages) + "/5 stages complete)."
+				headline = "Final Mastery: " + str(comp_stages) + "/5 stages complete."
 			elif scrolls_count >= 3:
-				headline = "Return to Teacher 3 with the three Scrolls."
+				headline = "Return to Teacher 3 with the 3 Scrolls."
 			elif scrolls_count > 0:
-				headline = "Complete the remaining mastery challenges."
+				headline = "Collect remaining Scrolls (" + str(scrolls_count) + "/3 collected)."
 			else:
-				headline = "Complete the mastery challenges in the Stupa, Library and Vihara."
+				headline = "Complete challenges in Stupa, Library & Vihara."
 				
-			objective_label.text = headline + "\n• " + stupa_str + "  • " + lib_str + "  • " + vih_str
+			objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
 		if reward_label:
 			reward_label.visible = false
 		if exp_stats_label:

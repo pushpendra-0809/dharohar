@@ -80,7 +80,7 @@ func _find_dialogue_manager() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_in_range:
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("interact") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E):
 			get_viewport().set_input_as_handled()
 			_start_teacher3_interaction()
 
@@ -234,7 +234,8 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var can_act: bool = dialogue_manager != null and not dialogue_manager.is_active()
+	_find_dialogue_manager()
+	var can_act: bool = dialogue_manager == null or not dialogue_manager.is_active()
 	var show_prompt: bool = _player_in_range and can_act
 	if indicator_label:
 		indicator_label.visible = show_prompt

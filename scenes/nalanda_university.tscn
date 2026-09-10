@@ -51,7 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
 [ext_resource type="PackedScene" uid="uid://biob8wae51661" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
-[ext_resource type="Texture2D" uid="uid://bjf4d00samjms" path="res://assets/Dharohar_Character_Sprite_Pack/teacher/teacher3.png" id="58_mc6dv"]
+[ext_resource type="PackedScene" uid="uid://cex2h1i3mlxrk" path="res://scenes/npcs/Teacher3.tscn" id="53_teacher3scene"]
 [ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
 [ext_resource type="Texture2D" uid="uid://cp663m1a2u6ge" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
 [ext_resource type="Texture2D" uid="uid://bxyemd7ow3xpy" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]
@@ -788,7 +788,5 @@ quest_id = "vihara_supplies"
 sprite_texture = ExtResource("78_vihararope")
 sprite_scale = Vector2(0.035, 0.035)
 
-[node name="Teacher3" type="Sprite2D" parent="." unique_id=611318122]
+[node name="Teacher3" parent="." unique_id=611318122 instance=ExtResource("53_teacher3scene")]
 position = Vector2(737.6719, 456)
-scale = Vector2(0.047515705, 0.044270825)
-texture = ExtResource("58_mc6dv")

@@ -33,10 +33,10 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 18.0
+offset_left = -370.0
+offset_top = 16.0
 offset_right = -16.0
-offset_bottom = 145.0
+offset_bottom = 172.0
 grow_horizontal = 0
 
 [node name="Panel" type="Panel" parent="PanelBox"]
@@ -48,65 +48,49 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_quest_bg")
 
-[node name="TitleLabel" type="Label" parent="PanelBox"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelBox"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_left = 16.0
-offset_top = 10.0
-offset_right = -16.0
-offset_bottom = 28.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="PanelBox/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
+layout_mode = 2
 theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 14
 text = "OBJECTIVE"
 
-[node name="ObjectiveLabel" type="Label" parent="PanelBox"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 16.0
-offset_top = 28.0
-offset_right = -16.0
-offset_bottom = 68.0
-grow_horizontal = 2
+[node name="ObjectiveLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.2, 0.12, 0.06, 1)
 theme_override_fonts/font = ExtResource("4_pixel_med")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 text = "Complete side quests to gain EXP."
 autowrap_mode = 3
 
-[node name="RewardLabel" type="Label" parent="PanelBox"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -54.0
-offset_right = -16.0
-offset_bottom = -34.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="RewardLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
+visible = false
+layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.35, 0.1, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Reward: +50 EXP"
 
-[node name="ExpStatsLabel" type="Label" parent="PanelBox"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = -32.0
-offset_right = -16.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0.35, 0.22, 0.12, 1)
+[node name="ExpStatsLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.24, 0.12, 1)
 theme_override_fonts/font = ExtResource("5_pixel_reg")
 theme_override_font_sizes/font_size = 12
 text = "Level: 1   EXP: 0 / 100"
