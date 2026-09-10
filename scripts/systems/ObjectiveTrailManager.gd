@@ -311,27 +311,35 @@ func _sync_side_quest(q_id: String) -> void:
 		"scribe_manuscript":
 			var is_deliv: bool = GameState.is_manuscript_delivered()
 			if not is_deliv:
-				# Deliver to Library desk / InteractionPoint_Library
-				var lib_desk: Node2D = get_node_or_null("../InteractionPoint_Library")
+				# 1. Inside innerLibrary.tscn -> Deliver to Library Desk
+				var lib_desk: Node2D = get_node_or_null("../InteractionPoint_LibraryDesk")
 				if not lib_desk:
-					lib_desk = get_node_or_null("../InteractionPoint_WritingArea")
+					lib_desk = get_node_or_null("../InteractionPoint_Library")
 				if lib_desk:
 					set_objective("deliver_manuscript", lib_desk.global_position, "Deliver manuscript to Library Desk", lib_desk)
 				else:
-					var univ_gate: Node2D = get_node_or_null("../UniversityEntrance")
-					if not univ_gate:
-						univ_gate = get_node_or_null("../InteractionPoint_Gate")
-					var gate_pos: Vector2 = univ_gate.global_position if univ_gate else Vector2(1098, 191)
-					set_objective("go_to_library", gate_pos, "Enter University towards Library", univ_gate)
+					# 2. In nalanda_university.tscn -> Lead to Library Entrance
+					var lib_ent: Node2D = get_node_or_null("../LibraryEntrance")
+					if lib_ent:
+						set_objective("enter_library", lib_ent.global_position, "Enter Library to Deliver Manuscript", lib_ent)
+					else:
+						# 3. In village nalanda.tscn -> Lead to University Entrance
+						var univ_gate: Node2D = get_node_or_null("../UniversityEntrance")
+						var gate_pos: Vector2 = univ_gate.global_position if univ_gate else Vector2(1098, 191)
+						set_objective("go_to_library", gate_pos, "Enter University towards Library", univ_gate)
 			else:
 				# Return to Scribe
-				var scribe: Node2D = get_node_or_null("../NPC_Scribe")
-				if scribe:
-					set_objective("return_scribe", scribe.global_position, "Return to the Scribe", scribe)
+				var lib_exit: Node2D = get_node_or_null("../LibraryExit")
+				if lib_exit:
+					set_objective("exit_library", lib_exit.global_position, "Exit Library to Return to Scribe", lib_exit)
 				else:
-					var exit_node: Node2D = get_node_or_null("../UniversityExit")
-					var exit_pos: Vector2 = exit_node.global_position if exit_node else Vector2(347, 566)
-					set_objective("exit_to_scribe", exit_pos, "Return to Scribe via Gate Exit", exit_node)
+					var scribe: Node2D = get_node_or_null("../NPC_Scribe")
+					if scribe:
+						set_objective("return_scribe", scribe.global_position, "Return to the Scribe", scribe)
+					else:
+						var exit_node: Node2D = get_node_or_null("../UniversityExit")
+						var exit_pos: Vector2 = exit_node.global_position if exit_node else Vector2(347, 566)
+						set_objective("exit_to_scribe", exit_pos, "Return to Scribe via Gate Exit", exit_node)
 
 		"stupa_caretaker":
 			var q: Dictionary = GameState.side_quests["stupa_caretaker"]
@@ -380,8 +388,16 @@ func _sync_side_quest(q_id: String) -> void:
 
 		"scholar_question":
 			var scholar: Node2D = get_node_or_null("../NPC_Scholar")
-			var sch_pos: Vector2 = scholar.global_position if scholar else Vector2(681.7, 280.5)
-			set_objective("talk_scholar", sch_pos, "Talk to the Scholar", scholar)
+			if scholar:
+				set_objective("talk_scholar", scholar.global_position, "Talk to the Scholar", scholar)
+			else:
+				var lib_ent: Node2D = get_node_or_null("../LibraryEntrance")
+				if lib_ent:
+					set_objective("enter_library_scholar", lib_ent.global_position, "Enter Library to meet Scholar", lib_ent)
+				else:
+					var univ_gate: Node2D = get_node_or_null("../UniversityEntrance")
+					var gate_pos: Vector2 = univ_gate.global_position if univ_gate else Vector2(1098, 191)
+					set_objective("go_to_library_scholar", gate_pos, "Enter University towards Library", univ_gate)
 
 func _find_nearest_quest_item(q_id: String) -> Node2D:
 	_check_player_node()

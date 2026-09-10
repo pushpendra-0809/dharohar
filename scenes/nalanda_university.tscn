@@ -52,6 +52,12 @@
 [ext_resource type="PackedScene" uid="uid://scholarreasoninguipopup" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
 [ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="51_prog_ui"]
 
+[ext_resource type="Texture2D" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
+[ext_resource type="Texture2D" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
+[ext_resource type="Texture2D" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]
+[ext_resource type="Texture2D" path="res://assets/items/item_vihara_wood.png" id="76_viharawood"]
+[ext_resource type="Texture2D" path="res://assets/items/item_vihara_stone.png" id="77_viharastone"]
+[ext_resource type="Texture2D" path="res://assets/items/item_vihara_rope.png" id="78_vihararope"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_build2"]
 size = Vector2(125, 156)
 
@@ -718,14 +724,6 @@ dialogue_lines = [{
 "text": "Yeh stupa Nalanda ke pavitra aur mahatvapurn sthalon mein se ek hai."
 }]
 
-[node name="InteractionPoint_Library" parent="." unique_id=987812 instance=ExtResource("48_interactpt")]
-position = Vector2(770.5, 136)
-point_name = "Dharmaganja Library"
-prompt_text = "[Press E to Examine Texts]"
-dialogue_lines = [{
-"speaker": "Dharmaganja Library",
-"text": "Yahan granthon aur hastlikhit pustakon ka adhyayan aur sanrakshan kiya jata tha."
-}]
 
 [node name="InteractionPoint_Vihara" parent="." unique_id=987813 instance=ExtResource("48_interactpt")]
 position = Vector2(342, 240)
@@ -751,46 +749,41 @@ position = Vector2(912, 312)
 item_id = "stupa_lamp"
 item_name = "Oil Lamp"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("73_stupalamp")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_StupaCloth" parent="." unique_id=987912 instance=ExtResource("49_pickupitem")]
 position = Vector2(818, 412)
 item_id = "stupa_cloth"
 item_name = "Prayer Cloth"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("74_stupacloth")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_StupaFlowers" parent="." unique_id=987913 instance=ExtResource("49_pickupitem")]
 position = Vector2(782, 248)
 item_id = "stupa_flowers"
 item_name = "Lotus Flowers"
 quest_id = "stupa_caretaker"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("75_stupaflowers")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_ViharaWood" parent="." unique_id=987914 instance=ExtResource("49_pickupitem")]
 position = Vector2(162, 202)
 item_id = "vihara_wood"
 item_name = "Timber Plank"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("76_viharawood")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_ViharaStone" parent="." unique_id=987915 instance=ExtResource("49_pickupitem")]
 position = Vector2(302, 138)
 item_id = "vihara_stone"
 item_name = "Carved Stone"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
-
+sprite_texture = ExtResource("77_viharastone")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_ViharaRope" parent="." unique_id=987916 instance=ExtResource("49_pickupitem")]
 position = Vector2(172, 368)
 item_id = "vihara_rope"
 item_name = "Hemp Rope"
 quest_id = "vihara_supplies"
-sprite_texture = ExtResource("45_iojbb")
-sprite_scale = Vector2(0.008, 0.008)
+sprite_texture = ExtResource("78_vihararope")
+sprite_scale = Vector2(0.035, 0.035)
 

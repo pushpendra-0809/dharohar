@@ -61,6 +61,9 @@
 [ext_resource type="PackedScene" uid="uid://pickupitemscene001" path="res://scenes/objects/PickupItem.tscn" id="61_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://playerprogressui001" path="res://scenes/ui/PlayerProgressUI.tscn" id="62_prog_ui"]
 
+[ext_resource type="Texture2D" path="res://assets/items/item_grain_sack.png" id="70_grainsack"]
+[ext_resource type="Texture2D" path="res://assets/items/item_veg_basket.png" id="71_vegbasket"]
+[ext_resource type="Texture2D" path="res://assets/items/item_food_pot.png" id="72_foodpot"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icd5h"]
 size = Vector2(70, 56)
 
@@ -753,22 +756,20 @@ position = Vector2(415, 505)
 item_id = "provision_grain"
 item_name = "Grain Sack"
 quest_id = "farmer_provisions"
-sprite_texture = ExtResource("58_lp60u")
-sprite_scale = Vector2(0.006, 0.006)
-
+sprite_texture = ExtResource("70_grainsack")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_VegBasket" parent="." unique_id=987902 instance=ExtResource("61_pickupitem")]
 position = Vector2(615, 475)
 item_id = "provision_veg"
 item_name = "Vegetable Basket"
 quest_id = "farmer_provisions"
-sprite_texture = ExtResource("58_lp60u")
-sprite_scale = Vector2(0.006, 0.006)
-
+sprite_texture = ExtResource("71_vegbasket")
+sprite_scale = Vector2(0.035, 0.035)
 [node name="Item_FoodPot" parent="." unique_id=987903 instance=ExtResource("61_pickupitem")]
 position = Vector2(728, 312)
 item_id = "provision_pot"
 item_name = "Provisions Pot"
 quest_id = "farmer_provisions"
-sprite_texture = ExtResource("58_lp60u")
-sprite_scale = Vector2(0.006, 0.006)
+sprite_texture = ExtResource("72_foodpot")
+sprite_scale = Vector2(0.035, 0.035)
 
