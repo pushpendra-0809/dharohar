@@ -1,0 +1,511 @@
+[gd_scene format=3 uid="uid://y1jbmoh7h40g"]
+
+[ext_resource type="FontFile" uid="uid://chv6xwtkplxfg" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="1_oswaldbold"]
+[ext_resource type="FontFile" uid="uid://c41oenw302iit" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswaldreg"]
+[ext_resource type="Script" path="res://scenes/ui/FinalMasteryUI.gd" id="3_finalmasterygd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.12, 0.09, 0.07, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.65, 0.25, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.22, 0.16, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.55, 0.2, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.35, 0.24, 0.15, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feedback"]
+bg_color = Color(0.08, 0.06, 0.05, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.65, 0.25, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="FinalMasteryUI" type="CanvasLayer" unique_id=987654360]
+layer = 60
+visible = false
+script = ExtResource("3_finalmasterygd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="MainPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -280.0
+offset_right = 460.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Header" type="Control" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="MainPanel/Header"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+text = "NALANDA FINAL DOMAIN MASTERY"
+horizontal_alignment = 1
+
+[node name="StageIndicators" type="HBoxContainer" parent="MainPanel/Header"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Stage1" type="Label" parent="MainPanel/Header/StageIndicators"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "[ ] 1. Math"
+
+[node name="Stage2" type="Label" parent="MainPanel/Header/StageIndicators"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "[ ] 2. Astro"
+
+[node name="Stage3" type="Label" parent="MainPanel/Header/StageIndicators"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "[ ] 3. Med"
+
+[node name="Stage4" type="Label" parent="MainPanel/Header/StageIndicators"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "[ ] 4. Phil"
+
+[node name="Stage5" type="Label" parent="MainPanel/Header/StageIndicators"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(0.85, 0.85, 0.85, 1)
+text = "[ ] 5. Synthesis"
+
+[node name="CloseButton" type="Button" parent="MainPanel/Header"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_top = 10.0
+offset_right = -14.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "✕"
+
+[node name="ConfirmView" type="Control" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DescLabel" type="Label" parent="MainPanel/ConfirmView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 25.0
+offset_right = -40.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
+text = "Acharya! You have earned the sacred scrolls of the Stupa, Library, and Vihara.\n\nNow you must prove that you can CONNECT and APPLY what you learned across Mathematics, Astronomy, Medicine, and Philosophy in 5 rigorous interconnected stages.\n\nAre you prepared to take the Final Mastery Challenge?"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/ConfirmView"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 160.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="BtnBegin" type="Button" parent="MainPanel/ConfirmView/VBox"]
+layout_mode = 2
+offset_bottom = 48.0
+custom_minimum_size = Vector2(0, 48)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "Begin Final Mastery"
+
+[node name="BtnNotYet" type="Button" parent="MainPanel/ConfirmView/VBox"]
+layout_mode = 2
+offset_bottom = 44.0
+custom_minimum_size = Vector2(0, 44)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+text = "Not Yet / Return"
+
+[node name="TrialView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DomainLabel" type="Label" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 5.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(1, 0.75, 0.3, 1)
+text = "MATHEMATICS APPLICATION"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.75, 0.7, 0.65, 1)
+text = "Stage 1 of 5 — University Planning & Resource Distribution"
+horizontal_alignment = 1
+
+[node name="QuestionScroll" type="ScrollContainer" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 52.0
+offset_right = -30.0
+offset_bottom = 220.0
+grow_horizontal = 2
+
+[node name="QuestionLabel" type="Label" parent="MainPanel/TrialView/QuestionScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.96, 0.94, 0.9, 1)
+text = "Scenario question text goes here..."
+autowrap_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -245.0
+offset_right = -30.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="OptionA" type="Button" parent="MainPanel/TrialView/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "Option A"
+alignment = 0
+autowrap_mode = 2
+
+[node name="OptionB" type="Button" parent="MainPanel/TrialView/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "Option B"
+alignment = 0
+autowrap_mode = 2
+
+[node name="OptionC" type="Button" parent="MainPanel/TrialView/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "Option C"
+alignment = 0
+autowrap_mode = 2
+
+[node name="OptionD" type="Button" parent="MainPanel/TrialView/Options"]
+layout_mode = 2
+custom_minimum_size = Vector2(0, 48)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "Option D"
+alignment = 0
+autowrap_mode = 2
+
+[node name="FeedbackPanel" type="Panel" parent="MainPanel/TrialView"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 5.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_feedback")
+
+[node name="FeedbackTitle" type="Label" parent="MainPanel/TrialView/FeedbackPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+text = "VICHAAR SAHI HAI!"
+horizontal_alignment = 1
+
+[node name="FeedbackExp" type="Label" parent="MainPanel/TrialView/FeedbackPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 45.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+text = "Stage 1 of 5 Completed!"
+horizontal_alignment = 1
+
+[node name="ExplanationScroll" type="ScrollContainer" parent="MainPanel/TrialView/FeedbackPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 75.0
+offset_right = -30.0
+offset_bottom = 290.0
+grow_horizontal = 2
+
+[node name="ExplanationLabel" type="Label" parent="MainPanel/TrialView/FeedbackPanel/ExplanationScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
+text = "Explanation text goes here..."
+autowrap_mode = 2
+
+[node name="HintLabel" type="Label" parent="MainPanel/TrialView/FeedbackPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 30.0
+offset_top = 300.0
+offset_right = -30.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 14
+theme_override_colors/font_color = Color(1, 0.8, 0.4, 1)
+text = "Acharya's Guidance: Hint goes here..."
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="MainPanel/TrialView/FeedbackPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -65.0
+offset_right = 150.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "Proceed to Next Stage →"
+
+[node name="VictoryView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VictoryTitle" type="Label" parent="MainPanel/VictoryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 28
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+text = "MAHA-ACHARYA ATTAINED!"
+horizontal_alignment = 1
+
+[node name="VictorySubtitle" type="Label" parent="MainPanel/VictoryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 62.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+text = "Nalanda's Knowledge Lives Within You"
+horizontal_alignment = 1
+
+[node name="VictoryDesc" type="Label" parent="MainPanel/VictoryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 110.0
+offset_right = -50.0
+offset_bottom = 280.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(0.95, 0.92, 0.88, 1)
+text = "Congratulations, Scholar!\n\nYou have demonstrated profound mastery across Mathematics, Astronomy, Medicine, and Philosophy — uniting all streams into one harmonious worldview.\n\nAwarded: +100 EXP (Nalanda Capstone Mastery)"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnFinish" type="Button" parent="MainPanel/VictoryView"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -100.0
+offset_right = 160.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+text = "Complete & Return to Mentor"

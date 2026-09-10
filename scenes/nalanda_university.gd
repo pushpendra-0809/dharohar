@@ -61,6 +61,14 @@ func _check_domain_cutscene_or_arrival() -> void:
 			GameState.has_played_astro_cutscene = true
 			_play_domain_cutscene("res://assets/videos/video3.ogv")
 			return
+		elif ("med" in domain or "cikitsā" in domain or "ayurveda" in domain) and not GameState.has_played_medicine_cutscene:
+			GameState.has_played_medicine_cutscene = true
+			_play_domain_cutscene("res://assets/videos/video4.ogv")
+			return
+		elif ("phil" in domain or "darśana" in domain or "nyāya" in domain or "hetuvidyā" in domain) and not GameState.has_played_philosophy_cutscene:
+			GameState.has_played_philosophy_cutscene = true
+			_play_domain_cutscene("res://assets/videos/video5.ogv")
+			return
 	_check_pending_arrival_message()
 
 func _play_domain_cutscene(video_path: String) -> void:

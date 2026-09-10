@@ -50,13 +50,30 @@ func _on_quest_state_changed() -> void:
 	_update_quest_marker()
 
 func _update_quest_marker() -> void:
-	if not quest_marker or not GameState:
+	if not GameState:
 		return
 		
-	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
-		quest_marker.visible = true
-	else:
-		quest_marker.visible = false
+	if quest_marker:
+		if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
+			quest_marker.visible = true
+		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and not GameState.library_mastery_completed:
+			quest_marker.visible = true
+		elif point_name == "Great Stupa" and GameState.has_met_teacher3 and not GameState.stupa_mastery_completed:
+			quest_marker.visible = true
+		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3 and not GameState.vihara_mastery_completed:
+			quest_marker.visible = true
+		else:
+			quest_marker.visible = false
+			
+	if press_e_label:
+		if point_name == "Great Stupa" and GameState.has_met_teacher3:
+			press_e_label.text = "[Press E to Enter Stupa Mastery]"
+		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and (not GameState.is_side_quest_active("scribe_manuscript") or GameState.is_manuscript_delivered()):
+			press_e_label.text = "[Press E to Enter Library Mastery]"
+		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3:
+			press_e_label.text = "[Press E to Enter Vihara Mastery]"
+		elif prompt_text != "":
+			press_e_label.text = prompt_text
 
 func setup_manager(d_mgr: DialogueManager) -> void:
 	dialogue_manager = d_mgr
@@ -91,6 +108,18 @@ func _start_interaction() -> void:
 		
 	_update_ui_elements()
 	
+	# Stupa Mastery Challenge Check (Outdoor Nalanda University Stupa)
+	if point_name == "Great Stupa" and GameState and GameState.has_met_teacher3:
+		var stupa_ui = get_tree().get_first_node_in_group("stupa_mastery_ui")
+		if not stupa_ui:
+			var stupa_scene = load("res://scenes/ui/StupaMasteryUI.tscn")
+			if stupa_scene:
+				stupa_ui = stupa_scene.instantiate()
+				get_tree().root.add_child(stupa_ui)
+		if stupa_ui and stupa_ui.has_method("open_ui"):
+			stupa_ui.open_ui()
+			return
+	
 	# Quest 2 Manuscript Delivery Check for Library / Writing points
 	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState:
 		if GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
@@ -103,6 +132,30 @@ func _start_interaction() -> void:
 				GameState.unlock_player_movement()
 				_update_ui_elements()
 			)
+			return
+
+	# Library Mastery Challenge Check (Inside Library Scene)
+	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState and GameState.has_met_teacher3:
+		var lib_ui = get_tree().get_first_node_in_group("library_mastery_ui")
+		if not lib_ui:
+			var lib_scene = load("res://scenes/ui/LibraryMasteryUI.tscn")
+			if lib_scene:
+				lib_ui = lib_scene.instantiate()
+				get_tree().root.add_child(lib_ui)
+		if lib_ui and lib_ui.has_method("open_ui"):
+			lib_ui.open_ui()
+			return
+
+	# Vihara Mastery Challenge Check (Inside Vihara Scene)
+	if point_name == "Vihara Living Quarters" and GameState and GameState.has_met_teacher3:
+		var vih_ui = get_tree().get_first_node_in_group("vihara_mastery_ui")
+		if not vih_ui:
+			var vih_scene = load("res://scenes/ui/ViharaMasteryUI.tscn")
+			if vih_scene:
+				vih_ui = vih_scene.instantiate()
+				get_tree().root.add_child(vih_ui)
+		if vih_ui and vih_ui.has_method("open_ui"):
+			vih_ui.open_ui()
 			return
 			
 	if not dialogue_lines.is_empty():

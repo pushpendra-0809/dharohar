@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://dhjyunf5br2r3" path="res://assets/nalanda_card_transparent.png" id="2_nhqnu"]
 [ext_resource type="Texture2D" uid="uid://cxi1uv172b8ic" path="res://assets/ui/coming sooon.png" id="3_csb"]
 [ext_resource type="Texture2D" uid="uid://dobuuom27seij" path="res://assets/ui/back_button.png" id="5_82vb8"]
+[ext_resource type="FontFile" uid="uid://chv6xwtkplxfg" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="6_oswaldbold"]
+[ext_resource type="FontFile" uid="uid://c41oenw302iit" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="7_oswaldreg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icd5h"]
 texture = ExtResource("2_nhqnu")
@@ -47,6 +49,20 @@ expand_margin_top = 4.0
 expand_margin_right = 4.0
 expand_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toast"]
+bg_color = Color(0.12, 0.08, 0.05, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.68, 0.25, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.6)
+
 [node name="Experiences" type="Control" unique_id=1330819239]
 layout_mode = 3
 anchors_preset = 15
@@ -79,6 +95,22 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_heg7l")
 theme_override_styles/hover = SubResource("StyleBoxTexture_qjbnn")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 
+[node name="NalandaBadge" type="Label" parent="." unique_id=503935344]
+visible = false
+layout_mode = 0
+offset_left = 474.0
+offset_top = 475.0
+offset_right = 676.0
+offset_bottom = 502.0
+theme_override_fonts/font = ExtResource("6_oswaldbold")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "✓ COMPLETE"
+horizontal_alignment = 1
+
 [node name="comingsoon_button1" type="Button" parent="." unique_id=1849201920]
 layout_mode = 0
 offset_left = 261.0
@@ -89,6 +121,22 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_cs_norm")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_cs_press")
 theme_override_styles/hover = SubResource("StyleBoxTexture_cs_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+
+[node name="HampiBadge" type="Label" parent="." unique_id=1849201921]
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 475.0
+offset_right = 450.0
+offset_bottom = 502.0
+theme_override_fonts/font = ExtResource("6_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+text = "🔒 LOCKED"
+horizontal_alignment = 1
 
 [node name="comingsoon_button2" type="Button" parent="." unique_id=1938201921]
 layout_mode = 0
@@ -111,6 +159,44 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_back_norm")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_back_press")
 theme_override_styles/hover = SubResource("StyleBoxTexture_back_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+
+[node name="ToastPanel" type="Panel" parent="." unique_id=2038102930]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -270.0
+offset_top = -105.0
+offset_right = 270.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_toast")
+
+[node name="ToastLabel" type="Label" parent="ToastPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = -15.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("7_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
+text = "Complete the Nalanda experience to unlock this heritage journey."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ToastTimer" type="Timer" parent="." unique_id=2038102931]
+one_shot = true
 
 [connection signal="pressed" from="Nalanda_Button" to="." method="_on_nalanda_button_pressed"]
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

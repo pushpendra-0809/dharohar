@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://bvharscene001"]
 
-[ext_resource type="Script" uid="uid://c3vharcontroller" path="res://scenes/innerVihar.gd" id="1_vihargd"]
+[ext_resource type="Script" uid="uid://drfj5f58y7aa8" path="res://scenes/innerVihar.gd" id="1_vihargd"]
 [ext_resource type="Texture2D" uid="uid://bo5pr84sakp8b" path="res://assets/Elements/buildings/innerVihar.png" id="2_bgpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
-[ext_resource type="PackedScene" uid="uid://dvharexitscene01" path="res://scenes/objects/ViharaExit.tscn" id="4_exit"]
+[ext_resource type="PackedScene" uid="uid://dqgpur8mk37mm" path="res://scenes/objects/ViharaExit.tscn" id="4_exit"]
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="11_student"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="12_scribe"]
 [ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="13_girl"]
-
+[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="14_interactpt"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 100)
 
@@ -59,7 +59,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_bgpng")
 expand_mode = 1
-stretch_mode = 0
 
 [node name="ViharaExit" parent="." unique_id=1992019282 instance=ExtResource("4_exit")]
 position = Vector2(576, 582)
@@ -170,7 +169,7 @@ scale = Vector2(0.038, 0.038)
 texture = ExtResource("9_monk")
 
 [node name="Scholar_Center" type="Sprite2D" parent="." unique_id=1992019312]
-position = Vector2(640, 260)
+position = Vector2(691.00006, 293)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("10_scholar")
 
@@ -193,3 +192,12 @@ texture = ExtResource("9_monk")
 position = Vector2(720, 380)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("13_girl")
+
+[node name="InteractionPoint_ViharaTable" parent="." unique_id=1992019401 instance=ExtResource("14_interactpt")]
+position = Vector2(576, 284)
+point_name = "Vihara Living Quarters"
+prompt_text = "[Press E to Inspect Living Quarters]"
+dialogue_lines = [{
+"speaker": "Vihara Living Quarters",
+"text": "Vihara mein rehne wale vidyarthi aur bhikshu yahan dhyan, adhyayan aur aapas mein vichar-vimarsh karte the."
+}]

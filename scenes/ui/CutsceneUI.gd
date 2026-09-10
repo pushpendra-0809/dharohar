@@ -29,29 +29,23 @@ func start_cutscene(video_resource: VideoStream = null) -> void:
 	
 	if video_resource:
 		video_player.stream = video_resource
-	elif not video_player.stream:
-		var stream_ogv = load("res://assets/videos/video1.ogv")
-		if stream_ogv:
-			video_player.stream = stream_ogv
-		else:
-			var stream_mp4 = load("res://assets/videos/video1.mp4")
-			if stream_mp4:
-				video_player.stream = stream_mp4
+	else:
+		video_player.stream = null
 
 	fade_rect.color.a = 1.0
-	if video_player:
+	if video_player and video_player.stream:
 		video_player.loop = false
 		video_player.play()
+	else:
+		call_deferred("_on_video_finished")
+		return
 	
 	var tween = create_tween()
 	tween.tween_property(fade_rect, "color:a", 0.0, 0.4)
 	await tween.finished
 	_is_transitioning = false
 
-func _process(_delta: float) -> void:
-	if is_playing and not _is_transitioning:
-		if video_player and not video_player.is_playing():
-			_on_video_finished()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_playing and visible:

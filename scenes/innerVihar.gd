@@ -3,6 +3,7 @@ extends Control
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var player = $Player
+@onready var vihara_mastery_ui = get_node_or_null("ViharaMasteryUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null
@@ -19,6 +20,10 @@ func _ready() -> void:
 	if pause_manager and pause_manager.has_method("setup"):
 		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui)
 		
+	for point in get_tree().get_nodes_in_group("interaction_points"):
+		if point.has_method("setup_manager"):
+			point.setup_manager(dialogue_manager)
+			
 	if player:
 		if player.has_method("set_camera_zoom"):
 			player.set_camera_zoom(Vector2(2.35, 2.35))

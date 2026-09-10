@@ -50,7 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
-[ext_resource type="PackedScene" uid="uid://dvharentrancescene01" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
+[ext_resource type="PackedScene" uid="uid://biob8wae51661" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
 [ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
 [ext_resource type="Texture2D" uid="uid://cp663m1a2u6ge" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
 [ext_resource type="Texture2D" uid="uid://bxyemd7ow3xpy" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]

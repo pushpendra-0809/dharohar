@@ -23,7 +23,10 @@ static func play_video(parent: Node, video_path: String = "res://assets/videos/v
 	cutscene_instance.cutscene_finished.connect(finish_wrapper, CONNECT_ONE_SHOT)
 		
 	var video_stream: VideoStream = null
-	if ResourceLoader.exists(video_path):
+	var ogv_path = video_path.replace(".mp4", ".ogv")
+	if ResourceLoader.exists(ogv_path):
+		video_stream = load(ogv_path)
+	elif ResourceLoader.exists(video_path):
 		video_stream = load(video_path)
 		
 	cutscene_instance.start_cutscene(video_stream)

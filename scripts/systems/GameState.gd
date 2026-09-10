@@ -45,6 +45,8 @@ var teacher2_convo_started: bool = false
 var has_played_nalanda_intro_cutscene: bool = false
 var has_played_math_cutscene: bool = false
 var has_played_astro_cutscene: bool = false
+var has_played_medicine_cutscene: bool = false
+var has_played_philosophy_cutscene: bool = false
 var has_shown_nalanda_controls_tutorial: bool = false
 
 # Step 12: Teacher 3 (Mastery Mentor) State
@@ -59,6 +61,452 @@ func mark_teacher3_intro_completed() -> void:
 	has_met_teacher3 = true
 	mastery_challenges_unlocked = true
 	quest_state_changed.emit()
+
+# Step 13: Stupa Building Challenges State
+var stupa_challenges: Dictionary = {
+	"mathematics": {"easy": false, "medium": false, "hard": false},
+	"astronomy": {"easy": false, "medium": false, "hard": false},
+	"medicine": {"easy": false, "medium": false, "hard": false},
+	"philosophy": {"easy": false, "medium": false, "hard": false}
+}
+var stupa_scroll_earned: bool = false
+var stupa_mastery_completed: bool = false
+
+const STUPA_EXP_REWARDS: Dictionary = {
+	"easy": 25,
+	"medium": 35,
+	"hard": 50
+}
+var stupa_exp_claimed: Dictionary = {}
+
+func is_stupa_challenge_completed(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if stupa_challenges.has(dom) and stupa_challenges[dom].has(diff):
+		return stupa_challenges[dom][diff]
+	return false
+
+func is_stupa_difficulty_unlocked(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not stupa_challenges.has(dom):
+		return false
+	if diff == "easy":
+		return true
+	elif diff == "medium":
+		return stupa_challenges[dom].get("easy", false)
+	elif diff == "hard":
+		return stupa_challenges[dom].get("medium", false)
+	return false
+
+func complete_stupa_challenge(domain: String, difficulty: String) -> void:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not stupa_challenges.has(dom) or not stupa_challenges[dom].has(diff):
+		return
+		
+	stupa_challenges[dom][diff] = true
+	
+	# Award EXP once per challenge
+	var reward_key: String = "stupa_" + dom + "_" + diff
+	if not stupa_exp_claimed.get(reward_key, false):
+		stupa_exp_claimed[reward_key] = true
+		var exp_amt: int = STUPA_EXP_REWARDS.get(diff, 25)
+		add_exp(exp_amt)
+		
+	# Check if all 4 domains have completed hard
+	if are_all_stupa_hard_challenges_completed():
+		if not stupa_scroll_earned:
+			stupa_scroll_earned = true
+			stupa_mastery_completed = true
+			
+	quest_state_changed.emit()
+
+func are_all_stupa_hard_challenges_completed() -> bool:
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if not stupa_challenges.get(dom, {}).get("hard", false):
+			return false
+	return true
+
+func get_stupa_completed_count() -> int:
+	var count: int = 0
+	for dom in stupa_challenges:
+		for diff in stupa_challenges[dom]:
+			if stupa_challenges[dom][diff]:
+				count += 1
+	return count
+
+func get_stupa_hard_completed_count() -> int:
+	var count: int = 0
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if stupa_challenges.get(dom, {}).get("hard", false):
+			count += 1
+	return count
+
+# Step 14: Library Building Challenges State
+var library_challenges: Dictionary = {
+	"mathematics": {"easy": false, "medium": false, "hard": false},
+	"astronomy": {"easy": false, "medium": false, "hard": false},
+	"medicine": {"easy": false, "medium": false, "hard": false},
+	"philosophy": {"easy": false, "medium": false, "hard": false}
+}
+var library_scroll_earned: bool = false
+var library_mastery_completed: bool = false
+var library_complete: bool = false
+
+const LIBRARY_EXP_REWARDS: Dictionary = {
+	"easy": 25,
+	"medium": 35,
+	"hard": 50
+}
+var library_exp_claimed: Dictionary = {}
+
+func is_library_challenge_completed(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if library_challenges.has(dom) and library_challenges[dom].has(diff):
+		return library_challenges[dom][diff]
+	return false
+
+func is_library_difficulty_unlocked(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not library_challenges.has(dom):
+		return false
+	if diff == "easy":
+		return true
+	elif diff == "medium":
+		return library_challenges[dom].get("easy", false)
+	elif diff == "hard":
+		return library_challenges[dom].get("medium", false)
+	return false
+
+func complete_library_challenge(domain: String, difficulty: String) -> void:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not library_challenges.has(dom) or not library_challenges[dom].has(diff):
+		return
+		
+	library_challenges[dom][diff] = true
+	
+	# Award EXP once per challenge
+	var reward_key: String = "library_" + dom + "_" + diff
+	if not library_exp_claimed.get(reward_key, false):
+		library_exp_claimed[reward_key] = true
+		var exp_amt: int = LIBRARY_EXP_REWARDS.get(diff, 25)
+		add_exp(exp_amt)
+		
+	# Check if all 4 domains have completed hard
+	if are_all_library_hard_challenges_completed():
+		if not library_scroll_earned:
+			library_scroll_earned = true
+			library_mastery_completed = true
+			library_complete = true
+			
+	quest_state_changed.emit()
+
+func are_all_library_hard_challenges_completed() -> bool:
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if not library_challenges.get(dom, {}).get("hard", false):
+			return false
+	return true
+
+func get_library_completed_count() -> int:
+	var count: int = 0
+	for dom in library_challenges:
+		for diff in library_challenges[dom]:
+			if library_challenges[dom][diff]:
+				count += 1
+	return count
+
+func get_library_hard_completed_count() -> int:
+	var count: int = 0
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if library_challenges.get(dom, {}).get("hard", false):
+			count += 1
+	return count
+
+
+# Step 15: Vihara Building Challenges State
+var vihara_challenges: Dictionary = {
+	"mathematics": {"easy": false, "medium": false, "hard": false},
+	"astronomy": {"easy": false, "medium": false, "hard": false},
+	"medicine": {"easy": false, "medium": false, "hard": false},
+	"philosophy": {"easy": false, "medium": false, "hard": false}
+}
+var vihara_scroll_earned: bool = false
+var vihara_mastery_completed: bool = false
+var vihara_complete: bool = false
+
+const VIHARA_EXP_REWARDS: Dictionary = {
+	"easy": 25,
+	"medium": 35,
+	"hard": 50
+}
+var vihara_exp_claimed: Dictionary = {}
+
+func is_vihara_challenge_completed(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if vihara_challenges.has(dom) and vihara_challenges[dom].has(diff):
+		return vihara_challenges[dom][diff]
+	return false
+
+func is_vihara_difficulty_unlocked(domain: String, difficulty: String) -> bool:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not vihara_challenges.has(dom):
+		return false
+	if diff == "easy":
+		return true
+	elif diff == "medium":
+		return vihara_challenges[dom].get("easy", false)
+	elif diff == "hard":
+		return vihara_challenges[dom].get("medium", false)
+	return false
+
+func complete_vihara_challenge(domain: String, difficulty: String) -> void:
+	var dom = domain.to_lower()
+	var diff = difficulty.to_lower()
+	if not vihara_challenges.has(dom) or not vihara_challenges[dom].has(diff):
+		return
+		
+	vihara_challenges[dom][diff] = true
+	
+	# Award EXP once per challenge
+	var reward_key: String = "vihara_" + dom + "_" + diff
+	if not vihara_exp_claimed.get(reward_key, false):
+		vihara_exp_claimed[reward_key] = true
+		var exp_amt: int = VIHARA_EXP_REWARDS.get(diff, 25)
+		add_exp(exp_amt)
+		
+	# Check if all 4 domains have completed hard
+	if are_all_vihara_hard_challenges_completed():
+		if not vihara_scroll_earned:
+			vihara_scroll_earned = true
+			vihara_mastery_completed = true
+			vihara_complete = true
+			
+	quest_state_changed.emit()
+
+func are_all_vihara_hard_challenges_completed() -> bool:
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if not vihara_challenges.get(dom, {}).get("hard", false):
+			return false
+	return true
+
+func get_vihara_completed_count() -> int:
+	var count: int = 0
+	for dom in vihara_challenges:
+		for diff in vihara_challenges[dom]:
+			if vihara_challenges[dom][diff]:
+				count += 1
+	return count
+
+func get_vihara_hard_completed_count() -> int:
+	var count: int = 0
+	for dom in ["mathematics", "astronomy", "medicine", "philosophy"]:
+		if vihara_challenges.get(dom, {}).get("hard", false):
+			count += 1
+	return count
+
+# Step 16: Overall Building Progression & Mastery Helpers
+func get_total_scrolls_earned() -> int:
+	var count: int = 0
+	if stupa_scroll_earned or stupa_mastery_completed:
+		count += 1
+	if library_scroll_earned or library_mastery_completed or library_complete:
+		count += 1
+	if vihara_scroll_earned or vihara_mastery_completed or vihara_complete:
+		count += 1
+	return count
+
+func has_all_three_scrolls() -> bool:
+	return get_total_scrolls_earned() >= 3
+
+func is_building_complete(building: String) -> bool:
+	match building.to_lower().strip_edges():
+		"stupa":
+			return are_all_stupa_hard_challenges_completed()
+		"library":
+			return are_all_library_hard_challenges_completed()
+		"vihara":
+			return are_all_vihara_hard_challenges_completed()
+		_:
+			return false
+
+func get_building_hard_count(building: String) -> int:
+	match building.to_lower().strip_edges():
+		"stupa":
+			return get_stupa_hard_completed_count()
+		"library":
+			return get_library_hard_completed_count()
+		"vihara":
+			return get_vihara_hard_completed_count()
+		_:
+			return 0
+
+func is_building_scroll_earned(building: String) -> bool:
+	match building.to_lower().strip_edges():
+		"stupa":
+			return stupa_scroll_earned or stupa_mastery_completed
+		"library":
+			return library_scroll_earned or library_mastery_completed or library_complete
+		"vihara":
+			return vihara_scroll_earned or vihara_mastery_completed or vihara_complete
+		_:
+			return false
+
+# Step 17: Three Scrolls & Final Mastery Unlock State
+var three_scrolls_collected: bool = false
+var final_mastery_unlocked: bool = false
+
+func unlock_final_mastery() -> void:
+	if has_all_three_scrolls():
+		three_scrolls_collected = true
+		final_mastery_unlocked = true
+		quest_state_changed.emit()
+
+# Step 18: Final Mastery Progression State
+var final_mastery_complete: bool = false
+var final_mastery_exp_claimed: bool = false
+var nalanda_complete: bool = false
+var nalanda_completion_reward_claimed: bool = false
+
+var final_mastery_stages: Dictionary = {
+	"mathematics": false,
+	"astronomy": false,
+	"medicine": false,
+	"philosophy": false,
+	"integrated": false
+}
+
+func is_final_mastery_stage_complete(stage_id: String) -> bool:
+	return final_mastery_stages.get(stage_id.to_lower(), false)
+
+func complete_final_mastery_stage(stage_id: String) -> void:
+	var s_id = stage_id.to_lower()
+	if final_mastery_stages.has(s_id):
+		final_mastery_stages[s_id] = true
+		
+	if are_all_final_mastery_stages_complete():
+		complete_final_mastery()
+	else:
+		quest_state_changed.emit()
+
+func get_final_mastery_completed_count() -> int:
+	var count: int = 0
+	for s_id in final_mastery_stages:
+		if final_mastery_stages[s_id]:
+			count += 1
+	return count
+
+func are_all_final_mastery_stages_complete() -> bool:
+	for s_id in ["mathematics", "astronomy", "medicine", "philosophy", "integrated"]:
+		if not final_mastery_stages.get(s_id, false):
+			return false
+	return true
+
+func is_experience_unlocked(exp_id: String) -> bool:
+	match exp_id.to_lower().strip_edges():
+		"nalanda", "1", "experience_1":
+			return true
+		"hampi", "2", "experience_2":
+			return nalanda_complete
+		_:
+			return false
+
+func complete_nalanda_experience() -> void:
+	nalanda_complete = true
+	if not nalanda_completion_reward_claimed:
+		nalanda_completion_reward_claimed = true
+		add_exp(150) # Final Nalanda Grand Experience Completion Reward
+	quest_state_changed.emit()
+
+func complete_final_mastery() -> void:
+	final_mastery_complete = true
+	if not final_mastery_exp_claimed:
+		final_mastery_exp_claimed = true
+		add_exp(100) # Final Mastery Capstone Reward
+	quest_state_changed.emit()
+
+
+func serialize_building_progression() -> Dictionary:
+	return {
+		"stupa": {
+			"challenges": stupa_challenges.duplicate(true),
+			"scroll_earned": stupa_scroll_earned,
+			"mastery_completed": stupa_mastery_completed,
+			"exp_claimed": stupa_exp_claimed.duplicate(true)
+		},
+		"library": {
+			"challenges": library_challenges.duplicate(true),
+			"scroll_earned": library_scroll_earned,
+			"mastery_completed": library_mastery_completed,
+			"complete": library_complete,
+			"exp_claimed": library_exp_claimed.duplicate(true)
+		},
+		"vihara": {
+			"challenges": vihara_challenges.duplicate(true),
+			"scroll_earned": vihara_scroll_earned,
+			"mastery_completed": vihara_mastery_completed,
+			"complete": vihara_complete,
+			"exp_claimed": vihara_exp_claimed.duplicate(true)
+		},
+		"three_scrolls_collected": three_scrolls_collected,
+		"final_mastery_unlocked": final_mastery_unlocked,
+		"final_mastery_complete": final_mastery_complete,
+		"final_mastery_exp_claimed": final_mastery_exp_claimed,
+		"nalanda_complete": nalanda_complete,
+		"nalanda_completion_reward_claimed": nalanda_completion_reward_claimed,
+		"final_mastery_stages": final_mastery_stages.duplicate(true),
+		"player_exp": player_exp,
+		"player_level": player_level,
+		"total_accumulated_exp": total_accumulated_exp
+	}
+
+func deserialize_building_progression(data: Dictionary) -> void:
+	if data.has("stupa"):
+		var s = data["stupa"]
+		stupa_challenges = s.get("challenges", stupa_challenges)
+		stupa_scroll_earned = s.get("scroll_earned", false)
+		stupa_mastery_completed = s.get("mastery_completed", false)
+		stupa_exp_claimed = s.get("exp_claimed", {})
+		
+	if data.has("library"):
+		var l = data["library"]
+		library_challenges = l.get("challenges", library_challenges)
+		library_scroll_earned = l.get("scroll_earned", false)
+		library_mastery_completed = l.get("mastery_completed", false)
+		library_complete = l.get("complete", false)
+		library_exp_claimed = l.get("exp_claimed", {})
+		
+	if data.has("vihara"):
+		var v = data["vihara"]
+		vihara_challenges = v.get("challenges", vihara_challenges)
+		vihara_scroll_earned = v.get("scroll_earned", false)
+		vihara_mastery_completed = v.get("mastery_completed", false)
+		vihara_complete = v.get("complete", false)
+		vihara_exp_claimed = v.get("exp_claimed", {})
+		
+	three_scrolls_collected = data.get("three_scrolls_collected", false)
+	final_mastery_unlocked = data.get("final_mastery_unlocked", false)
+	final_mastery_complete = data.get("final_mastery_complete", false)
+	final_mastery_exp_claimed = data.get("final_mastery_exp_claimed", false)
+	nalanda_complete = data.get("nalanda_complete", false)
+	nalanda_completion_reward_claimed = data.get("nalanda_completion_reward_claimed", false)
+	final_mastery_stages = data.get("final_mastery_stages", final_mastery_stages)
+		
+	if data.has("player_exp"):
+		player_exp = data["player_exp"]
+	if data.has("player_level"):
+		player_level = data["player_level"]
+	if data.has("total_accumulated_exp"):
+		total_accumulated_exp = data["total_accumulated_exp"]
+		
+	quest_state_changed.emit()
+
+
 
 # Scene Transition & Target Spawn Data
 var target_spawn_position: Vector2 = Vector2.ZERO
@@ -274,7 +722,18 @@ func is_scholar_question_solved() -> bool:
 func are_teacher2_tasks_completed() -> bool:
 	var dev = get_node_or_null("/root/DevModeManager")
 	var is_dev: bool = dev != null and dev.dev_mode_enabled
-	return is_dev or math_puzzle_completed or medicine_puzzle_completed or astronomy_puzzle_completed or philosophy_puzzle_completed or teacher2_convo_started
+	if is_dev:
+		return true
+	var dom: String = selected_domain.to_lower().strip_edges()
+	if "math" in dom or "gaṇita" in dom:
+		return math_puzzle_completed
+	elif "astro" in dom or "jyotiṣa" in dom:
+		return astronomy_puzzle_completed
+	elif "med" in dom or "cikitsā" in dom or "ayur" in dom:
+		return medicine_puzzle_completed
+	elif "phil" in dom or "darśana" in dom or "nyāya" in dom or "hetuvidyā" in dom:
+		return philosophy_puzzle_completed
+	return math_puzzle_completed or medicine_puzzle_completed or astronomy_puzzle_completed or philosophy_puzzle_completed
 
 const SIDE_QUEST_EXP_REWARDS: Dictionary = {
 	"farmer_provisions": 50,
@@ -410,6 +869,8 @@ func unlock_all_progression() -> void:
 	has_played_nalanda_intro_cutscene = true
 	has_played_math_cutscene = true
 	has_played_astro_cutscene = true
+	has_played_medicine_cutscene = true
+	has_played_philosophy_cutscene = true
 	has_shown_nalanda_controls_tutorial = true
 	
 	for q_id in side_quests:
@@ -460,6 +921,38 @@ func reset_test_progression() -> void:
 	teacher2_convo_started = false
 	has_met_teacher3 = false
 	mastery_challenges_unlocked = false
+	stupa_scroll_earned = false
+	stupa_mastery_completed = false
+	stupa_exp_claimed.clear()
+	for dom in stupa_challenges:
+		stupa_challenges[dom]["easy"] = false
+		stupa_challenges[dom]["medium"] = false
+		stupa_challenges[dom]["hard"] = false
+	library_scroll_earned = false
+	library_mastery_completed = false
+	library_complete = false
+	library_exp_claimed.clear()
+	for dom in library_challenges:
+		library_challenges[dom]["easy"] = false
+		library_challenges[dom]["medium"] = false
+		library_challenges[dom]["hard"] = false
+	vihara_scroll_earned = false
+	vihara_mastery_completed = false
+	vihara_complete = false
+	vihara_exp_claimed.clear()
+	for dom in vihara_challenges:
+		vihara_challenges[dom]["easy"] = false
+		vihara_challenges[dom]["medium"] = false
+		vihara_challenges[dom]["hard"] = false
+	three_scrolls_collected = false
+	final_mastery_unlocked = false
+	final_mastery_complete = false
+	final_mastery_exp_claimed = false
+	nalanda_complete = false
+	nalanda_completion_reward_claimed = false
+	for s_id in final_mastery_stages:
+		final_mastery_stages[s_id] = false
+
 	session_exp = 0
 	
 	use_target_spawn = false
@@ -469,6 +962,8 @@ func reset_test_progression() -> void:
 	has_played_nalanda_intro_cutscene = false
 	has_played_math_cutscene = false
 	has_played_astro_cutscene = false
+	has_played_medicine_cutscene = false
+	has_played_philosophy_cutscene = false
 	has_shown_nalanda_controls_tutorial = false
 	
 	player_level = 1

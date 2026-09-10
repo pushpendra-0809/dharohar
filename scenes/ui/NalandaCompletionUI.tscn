@@ -1,0 +1,309 @@
+[gd_scene format=3 uid="uid://beesf2ij5hq4s"]
+
+[ext_resource type="FontFile" uid="uid://chv6xwtkplxfg" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="1_oswaldbold"]
+[ext_resource type="FontFile" uid="uid://c41oenw302iit" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswaldreg"]
+[ext_resource type="Script" path="res://scenes/ui/NalandaCompletionUI.gd" id="3_completiongd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.1, 0.07, 0.05, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9, 0.7, 0.25, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pillar_box"]
+bg_color = Color(0.18, 0.13, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.55, 0.2, 0.7)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_gold"]
+bg_color = Color(0.35, 0.24, 0.12, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.48, 0.32, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.95, 0.55, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_sec"]
+bg_color = Color(0.2, 0.16, 0.14, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.6, 0.55, 0.7)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="NalandaCompletionUI" type="CanvasLayer" unique_id=987654370]
+layer = 65
+visible = false
+script = ExtResource("3_completiongd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+
+[node name="MainPanel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -275.0
+offset_right = 440.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Header" type="Control" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="TitleLabel" type="Label" parent="MainPanel/Header"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+text = "NALANDA COMPLETE"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainPanel/Header"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 44.0
+offset_bottom = 68.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 1)
+text = "The Journey of Knowledge"
+horizontal_alignment = 1
+
+[node name="PillarsBox" type="Panel" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 35.0
+offset_top = 80.0
+offset_right = -35.0
+offset_bottom = 200.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pillar_box")
+
+[node name="GridContainer" type="GridContainer" parent="MainPanel/PillarsBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 25
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Pillar1" type="Label" parent="MainPanel/PillarsBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "✓ Knowledge (Teacher 1 & Book)"
+
+[node name="Pillar2" type="Label" parent="MainPanel/PillarsBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "✓ Practice (Teacher 2 Tasks)"
+
+[node name="Pillar3" type="Label" parent="MainPanel/PillarsBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "✓ Exploration (Campus & Quests)"
+
+[node name="Pillar4" type="Label" parent="MainPanel/PillarsBox/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+text = "✓ Mastery (Stupa, Library, Vihara & Final)"
+
+[node name="SummaryBox" type="Panel" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 35.0
+offset_top = 212.0
+offset_right = -35.0
+offset_bottom = 360.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pillar_box")
+
+[node name="SummaryGrid" type="GridContainer" parent="MainPanel/SummaryBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 15.0
+offset_right = -20.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 30
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Item1" type="Label" parent="MainPanel/SummaryBox/SummaryGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+text = "• Nalanda Mastery: Math, Astro, Med, Phil ✓"
+
+[node name="Item2" type="Label" parent="MainPanel/SummaryBox/SummaryGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+text = "• Building Mastery: Stupa, Library, Vihara ✓"
+
+[node name="Item3" type="Label" parent="MainPanel/SummaryBox/SummaryGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+text = "• Sacred Scrolls: 3 / 3 Collected ✓"
+
+[node name="Item4" type="Label" parent="MainPanel/SummaryBox/SummaryGrid"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+text = "• Final Mastery: Maha-Acharya Synthesis ✓"
+
+[node name="ClosingMessage" type="Label" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 40.0
+offset_top = 372.0
+offset_right = -40.0
+offset_bottom = 422.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
+text = "Your journey through Nalanda is complete. The heritage of ancient wisdom now lives within you."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RewardBox" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 425.0
+offset_bottom = 450.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="RewardAmount" type="Label" parent="MainPanel/RewardBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+text = "+150 EXP (Nalanda Grand Completion)"
+
+[node name="ButtonContainer" type="HBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -80.0
+offset_right = 220.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="BtnContinue" type="Button" parent="MainPanel/ButtonContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 48)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_gold")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+text = "Return to Campus"
+
+[node name="BtnHub" type="Button" parent="MainPanel/ButtonContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(200, 48)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_sec")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_colors/font_color = Color(0.9, 0.85, 0.8, 1)
+text = "Experience Hub"

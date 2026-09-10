@@ -3,6 +3,8 @@ extends StaticBody2D
 
 var _player_in_range: bool = false
 var dialogue_manager: DialogueManager = null
+var final_mastery_ui: FinalMasteryUI = null
+var nalanda_completion_ui: NalandaCompletionUI = null
 
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var indicator_label: Label = $IndicatorLabel
@@ -12,8 +14,12 @@ var dialogue_manager: DialogueManager = null
 var _anim_time: float = 0.0
 var _marker_base_y: float = -68.0
 
-func setup_manager(d_mgr: DialogueManager) -> void:
+func setup_manager(d_mgr: DialogueManager, f_ui: FinalMasteryUI = null, comp_ui: NalandaCompletionUI = null) -> void:
 	dialogue_manager = d_mgr
+	if f_ui:
+		final_mastery_ui = f_ui
+	if comp_ui:
+		nalanda_completion_ui = comp_ui
 	if dialogue_manager:
 		if not dialogue_manager.dialogue_cancelled.is_connected(_on_interaction_cancelled):
 			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
@@ -49,7 +55,16 @@ func _update_quest_marker() -> void:
 		return
 	var can_unlock: bool = GameState.are_teacher2_tasks_completed()
 	var already_met: bool = GameState.has_met_teacher3
-	quest_marker.visible = can_unlock and not already_met
+	if not already_met:
+		quest_marker.visible = can_unlock
+	elif GameState.nalanda_complete:
+		quest_marker.visible = false
+	elif GameState.final_mastery_complete:
+		quest_marker.visible = true
+	elif GameState.has_all_three_scrolls():
+		quest_marker.visible = true
+	else:
+		quest_marker.visible = false
 
 func _find_dialogue_manager() -> void:
 	if dialogue_manager:
@@ -106,12 +121,95 @@ func _start_teacher3_interaction() -> void:
 				GameState.mark_teacher3_intro_completed()
 			_on_dialogue_finished()
 		)
-	else:
-		# Re-interaction Short Reminder
-		var reminder_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara ki chunautiyan poori karo.\nTeen Scroll lekar mere paas wapas aao."}
+		return
+
+	# Step 19: Replay / Post-completion state
+	if GameState and GameState.nalanda_complete:
+		var post_comp_seq: Array = [
+			{"speaker": "Mastery Mentor", "text": "Nalanda ki gyan-yatra tumne safaltapoorvak poori kar li hai."},
+			{"speaker": "Mastery Mentor", "text": "Yahan ka gyan aur dharohar sada tumhare sath rahegi."}
 		]
-		dialogue_manager.start_dialogue(reminder_seq, _on_dialogue_finished)
+		dialogue_manager.start_dialogue(post_comp_seq, _on_dialogue_finished)
+		return
+
+	# Step 19: Final Story & Completion Sequence
+	if GameState and GameState.final_mastery_complete:
+		var final_story_seq: Array = [
+			{"speaker": "Mastery Mentor", "text": "Bahut achha."},
+			{"speaker": "Mastery Mentor", "text": "Tumne Nalanda mein keval pustakon se gyan nahi paaya."},
+			{"speaker": "Mastery Mentor", "text": "Tumne seekha, prashn kiya, prayog kiya aur apni soch se samasyaon ka samadhan kiya."},
+			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara ki teenon chunautiyon ne tumhari seekh ko alag-alag roop mein parakha."},
+			{"speaker": "Mastery Mentor", "text": "Phir antim mastery mein tumne in sabhi gyan ko ek saath joda."},
+			{"speaker": "Mastery Mentor", "text": "Yahi Nalanda ki asli parampara hai."},
+			{"speaker": "Mastery Mentor", "text": "Yahan gyan sirf yaad karne ke liye nahi tha."},
+			{"speaker": "Mastery Mentor", "text": "Use samajhne, us par vichar karne aur duniya mein prayog karne ke liye tha."},
+			{"speaker": "Mastery Mentor", "text": "Ab tum bhi Nalanda ki is gyan-yatra ka ek hissa ban chuke ho."},
+			{"speaker": "Player", "text": "Main samajh gaya hoon ki gyan ki yatra kabhi sirf ek uttar par khatam nahi hoti."}
+		]
+		dialogue_manager.start_dialogue(final_story_seq, func():
+			if GameState:
+				GameState.complete_nalanda_experience()
+			_on_dialogue_finished()
+			_show_nalanda_completion_sequence()
+		)
+		return
+
+	# State B: Player has all three Scrolls
+	if GameState and GameState.has_all_three_scrolls():
+		if not GameState.final_mastery_unlocked:
+			var completion_seq: Array = [
+				{"speaker": "Mastery Mentor", "text": "Ah, tum teenon Scrolls lekar laut aaye ho."},
+				{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara — teenon ne tumhari seekh ko alag-alag tareekon se parakha."},
+				{"speaker": "Mastery Mentor", "text": "Ab tumne jo seekha hai, usse ek saath prayog karne ka samay aa gaya hai."},
+				{"speaker": "Mastery Mentor", "text": "Ab tumhari antim mastery challenge tumhara intezaar kar rahi hai."}
+			]
+			dialogue_manager.start_dialogue(completion_seq, func():
+				if GameState:
+					GameState.unlock_final_mastery()
+				_on_dialogue_finished()
+				_open_final_mastery_challenge()
+			)
+			return
+		else:
+			var post_unlock_seq: Array = [
+				{"speaker": "Mastery Mentor", "text": "Ab samay hai antim chunauti ka. Yeh pariksha tumhare saare gyan ko ek saath jodegi."},
+				{"speaker": "Mastery Mentor", "text": "Ganit, Khagol, Chikitsa aur Darshan — charo vishayon ka samavesh karke hi tum Antim Mastery prapt kar sakte ho."}
+			]
+			dialogue_manager.start_dialogue(post_unlock_seq, func():
+				_on_dialogue_finished()
+				_open_final_mastery_challenge()
+			)
+			return
+
+	# State A: Player does NOT have all three Scrolls yet
+	var reminder_seq: Array = [
+		{"speaker": "Mastery Mentor", "text": "Tumne Stupa, Library aur Vihara ki chunautiyon ka saamna kiya hai.\nApni teenon Scrolls lekar mere paas wapas aao."}
+	]
+	dialogue_manager.start_dialogue(reminder_seq, _on_dialogue_finished)
+
+func _open_final_mastery_challenge() -> void:
+	var uis = get_tree().get_nodes_in_group("final_mastery_ui")
+	if uis.size() > 0:
+		final_mastery_ui = uis[0]
+	if not final_mastery_ui or not is_instance_valid(final_mastery_ui):
+		var fm_scene = load("res://scenes/ui/FinalMasteryUI.tscn")
+		if fm_scene:
+			final_mastery_ui = fm_scene.instantiate()
+			get_tree().root.add_child(final_mastery_ui)
+	if final_mastery_ui and final_mastery_ui.has_method("open_ui"):
+		final_mastery_ui.open_ui()
+
+func _show_nalanda_completion_sequence() -> void:
+	var uis = get_tree().get_nodes_in_group("nalanda_completion_ui")
+	if uis.size() > 0:
+		nalanda_completion_ui = uis[0]
+	if not nalanda_completion_ui or not is_instance_valid(nalanda_completion_ui):
+		var comp_scene = load("res://scenes/ui/NalandaCompletionUI.tscn")
+		if comp_scene:
+			nalanda_completion_ui = comp_scene.instantiate()
+			get_tree().root.add_child(nalanda_completion_ui)
+	if nalanda_completion_ui and nalanda_completion_ui.has_method("open_completion_sequence"):
+		nalanda_completion_ui.open_completion_sequence()
 
 func _on_dialogue_finished() -> void:
 	if GameState:

@@ -711,7 +711,7 @@ dialogue_lines = [{
 }]
 
 [node name="NPC_Villager" parent="." unique_id=987704 instance=ExtResource("59_explornpc")]
-position = Vector2(680.3, 258.9)
+position = Vector2(662, 224)
 sprite_texture = ExtResource("53_guh1u")
 sprite_scale = Vector2(0.023, 0.023)
 dialogue_lines = [{

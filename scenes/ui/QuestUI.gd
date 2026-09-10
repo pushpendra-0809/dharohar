@@ -80,33 +80,75 @@ func update_quest_ui() -> void:
 		if title_label:
 			title_label.text = "MASTERY CHALLENGES"
 		if objective_label:
-			objective_label.text = "Complete the mastery challenges in the Stupa, Library and Vihara.\n• Stupa: 0/3  • Library: 0/3  • Vihara: 0/3"
+			var stupa_count: int = GameState.get_stupa_hard_completed_count() if GameState.has_method("get_stupa_hard_completed_count") else 0
+			var stupa_done: bool = GameState.stupa_scroll_earned or GameState.stupa_mastery_completed
+			var stupa_str: String = "Stupa: Complete ✓" if stupa_done else "Stupa: " + str(stupa_count) + "/4 Hard"
+				
+			var lib_count: int = GameState.get_library_hard_completed_count() if GameState.has_method("get_library_hard_completed_count") else 0
+			var lib_done: bool = GameState.library_scroll_earned or GameState.library_mastery_completed or GameState.library_complete
+			var lib_str: String = "Library: Complete ✓" if lib_done else "Library: " + str(lib_count) + "/4 Hard"
+				
+			var vih_count: int = GameState.get_vihara_hard_completed_count() if GameState.has_method("get_vihara_hard_completed_count") else 0
+			var vih_done: bool = GameState.vihara_scroll_earned or GameState.vihara_mastery_completed or GameState.vihara_complete
+			var vih_str: String = "Vihara: Complete ✓" if vih_done else "Vihara: " + str(vih_count) + "/4 Hard"
+			
+			var scrolls_count: int = (1 if stupa_done else 0) + (1 if lib_done else 0) + (1 if vih_done else 0)
+			
+			var headline: String = ""
+			if GameState.nalanda_complete:
+				headline = "Nalanda Experience Complete! (All Disciplines & Landmarks Mastered)"
+			elif GameState.final_mastery_complete:
+				headline = "Nalanda Domain Mastery Complete! Speak with Teacher 3."
+			elif GameState.final_mastery_unlocked:
+				var comp_stages: int = GameState.get_final_mastery_completed_count() if GameState.has_method("get_final_mastery_completed_count") else 0
+				headline = "Complete Final Mastery with Teacher 3 (" + str(comp_stages) + "/5 stages complete)."
+			elif scrolls_count >= 3:
+				headline = "Return to Teacher 3 with the three Scrolls."
+			elif scrolls_count > 0:
+				headline = "Complete the remaining mastery challenges."
+			else:
+				headline = "Complete the mastery challenges in the Stupa, Library and Vihara."
+				
+			objective_label.text = headline + "\n• " + stupa_str + "  • " + lib_str + "  • " + vih_str
 		if reward_label:
 			reward_label.visible = false
 		if exp_stats_label:
 			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 			exp_stats_label.visible = true
 	elif GameState.has_visited_university:
-		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
-			# University Exploration Mode -> Show side quest invitation with EXP stats
-			if panel_box:
-				panel_box.visible = true
-			if title_label:
-				title_label.text = "NALANDA EXPLORATION"
-			if objective_label:
-				objective_label.text = "Complete side quests to gain EXP."
-			if reward_label:
-				reward_label.visible = false
-			if exp_stats_label:
-				exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-				exp_stats_label.visible = true
+		if GameState.are_teacher2_tasks_completed():
+			if not GameState.has_met_teacher3:
+				if panel_box:
+					panel_box.visible = true
+				if title_label:
+					title_label.text = "OBJECTIVE"
+				if objective_label:
+					objective_label.text = "Speak with the Mastery Mentor (Teacher 3)."
+				if reward_label:
+					reward_label.visible = false
+				if exp_stats_label:
+					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
+					exp_stats_label.visible = true
+			else:
+				# University Exploration Mode -> Show side quest invitation with EXP stats
+				if panel_box:
+					panel_box.visible = true
+				if title_label:
+					title_label.text = "NALANDA EXPLORATION"
+				if objective_label:
+					objective_label.text = "Complete side quests to gain EXP."
+				if reward_label:
+					reward_label.visible = false
+				if exp_stats_label:
+					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
+					exp_stats_label.visible = true
 		else:
 			if panel_box:
 				panel_box.visible = true
 			if title_label:
 				title_label.text = "OBJECTIVE"
 			if objective_label:
-				objective_label.text = "Meet the Teacher"
+				objective_label.text = "Meet Acharya (Teacher 2) & Complete Hands-on Task"
 			if reward_label:
 				reward_label.visible = false
 			if exp_stats_label:

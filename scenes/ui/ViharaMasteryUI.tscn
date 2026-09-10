@@ -1,0 +1,819 @@
+[gd_scene format=3 uid="uid://cny81qv8feq80"]
+
+[ext_resource type="Script" path="res://scenes/ui/ViharaMasteryUI.gd" id="1_stupagd"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_oswald_reg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.12, 0.08, 0.06, 0.96)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85, 0.65, 0.3, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.18, 0.12, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.75, 0.55, 0.25, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_hov"]
+bg_color = Color(0.26, 0.17, 0.12, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_dis"]
+bg_color = Color(0.1, 0.08, 0.07, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.35, 0.3, 0.25, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="StupaMasteryUI" type="CanvasLayer" unique_id=987654350]
+layer = 15
+visible = false
+script = ExtResource("1_stupagd")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=987654351]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="MainPanel" type="Control" parent="." unique_id=987654352]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -240.0
+offset_right = 340.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainPanel" unique_id=987654353]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="Header" type="Control" parent="MainPanel" unique_id=987654354]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="MainPanel/Header" unique_id=987654355]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 20
+text = "STUPA MASTERY CHALLENGES"
+horizontal_alignment = 1
+
+[node name="ProgressLabel" type="Label" parent="MainPanel/Header" unique_id=987654356]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 34.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 13
+text = "Vihara Trials Completed: 0 / 12"
+horizontal_alignment = 1
+
+[node name="ScrollStatusLabel" type="Label" parent="MainPanel/Header" unique_id=987654357]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 52.0
+offset_bottom = 72.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 12
+text = "🔒 Vihara Scroll: Complete all 4 Hard Challenges"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="MainPanel/Header" unique_id=987654358]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_top = 8.0
+offset_right = -10.0
+offset_bottom = 36.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "✕"
+
+[node name="DomainView" type="Control" parent="MainPanel" unique_id=987654359]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="GridContainer" parent="MainPanel/DomainView" unique_id=987654360]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -170.0
+offset_right = 300.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="BtnMath" type="Button" parent="MainPanel/DomainView/Grid" unique_id=987654361]
+custom_minimum_size = Vector2(290, 160)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+
+[node name="Title" type="Label" parent="MainPanel/DomainView/Grid/BtnMath" unique_id=987654362]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 17
+text = "1. MATHEMATICS"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="MainPanel/DomainView/Grid/BtnMath" unique_id=987654363]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 42.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "“Tapping Number Tiles”\nArithmetic calculation & pattern sequence trials."
+horizontal_alignment = 1
+
+[node name="MathStatus" type="Label" parent="MainPanel/DomainView/Grid/BtnMath" unique_id=987654364]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.45, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Easy: —  |  Med: —  |  Hard: —"
+horizontal_alignment = 1
+
+[node name="BtnAstro" type="Button" parent="MainPanel/DomainView/Grid" unique_id=987654365]
+custom_minimum_size = Vector2(290, 160)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+
+[node name="Title" type="Label" parent="MainPanel/DomainView/Grid/BtnAstro" unique_id=987654366]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 17
+text = "2. ASTRONOMY"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="MainPanel/DomainView/Grid/BtnAstro" unique_id=987654367]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 42.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "“Shadow of the Sun”\nSun, shadow lengths, time and observation deduction."
+horizontal_alignment = 1
+
+[node name="AstroStatus" type="Label" parent="MainPanel/DomainView/Grid/BtnAstro" unique_id=987654368]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.45, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Easy: —  |  Med: —  |  Hard: —"
+horizontal_alignment = 1
+
+[node name="BtnMed" type="Button" parent="MainPanel/DomainView/Grid" unique_id=987654369]
+custom_minimum_size = Vector2(290, 160)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+
+[node name="Title" type="Label" parent="MainPanel/DomainView/Grid/BtnMed" unique_id=987654370]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 17
+text = "3. MEDICINE"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="MainPanel/DomainView/Grid/BtnMed" unique_id=987654371]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 42.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "“Combination Game”\nTraditional Ayurvedic herbs & preparation sequences."
+horizontal_alignment = 1
+
+[node name="MedStatus" type="Label" parent="MainPanel/DomainView/Grid/BtnMed" unique_id=987654372]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.45, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Easy: —  |  Med: —  |  Hard: —"
+horizontal_alignment = 1
+
+[node name="BtnPhil" type="Button" parent="MainPanel/DomainView/Grid" unique_id=987654373]
+custom_minimum_size = Vector2(290, 160)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+
+[node name="Title" type="Label" parent="MainPanel/DomainView/Grid/BtnPhil" unique_id=987654374]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 12.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 17
+text = "4. PHILOSOPHY"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="MainPanel/DomainView/Grid/BtnPhil" unique_id=987654375]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 42.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "“Logic Tiles”\nNyaya syllogisms, consistency & fallacy analysis."
+horizontal_alignment = 1
+
+[node name="PhilStatus" type="Label" parent="MainPanel/DomainView/Grid/BtnPhil" unique_id=987654376]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.45, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Easy: —  |  Med: —  |  Hard: —"
+horizontal_alignment = 1
+
+[node name="DifficultyView" type="Control" parent="MainPanel" unique_id=987654377]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="MainPanel/DifficultyView" unique_id=987654378]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 8.0
+offset_right = 140.0
+offset_bottom = 36.0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 13
+text = "❮ Back to Domains"
+
+[node name="DomainTitle" type="Label" parent="MainPanel/DifficultyView" unique_id=987654379]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 35.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 18
+text = "MATHEMATICS CHALLENGES"
+horizontal_alignment = 1
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/DifficultyView" unique_id=987654380]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -140.0
+offset_right = 260.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+
+[node name="BtnEasy" type="Button" parent="MainPanel/DifficultyView/VBox" unique_id=987654381]
+custom_minimum_size = Vector2(520, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+
+[node name="Title" type="Label" parent="MainPanel/DifficultyView/VBox/BtnEasy" unique_id=987654382]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -24.0
+offset_right = 260.0
+offset_bottom = 0.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "EASY TIER"
+
+[node name="Subtitle" type="Label" parent="MainPanel/DifficultyView/VBox/BtnEasy" unique_id=987654383]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Foundational mechanic trial."
+
+[node name="EasyStatus" type="Label" parent="MainPanel/DifficultyView/VBox/BtnEasy" unique_id=987654384]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -12.0
+offset_right = -20.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 13
+text = "READY (+25 EXP)"
+horizontal_alignment = 2
+
+[node name="BtnMedium" type="Button" parent="MainPanel/DifficultyView/VBox" unique_id=987654385]
+custom_minimum_size = Vector2(520, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_card_dis")
+
+[node name="Title" type="Label" parent="MainPanel/DifficultyView/VBox/BtnMedium" unique_id=987654386]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -24.0
+offset_right = 260.0
+offset_bottom = 0.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "MEDIUM TIER"
+
+[node name="Subtitle" type="Label" parent="MainPanel/DifficultyView/VBox/BtnMedium" unique_id=987654387]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Pattern deduction with distractors."
+
+[node name="MedStatus" type="Label" parent="MainPanel/DifficultyView/VBox/BtnMedium" unique_id=987654388]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -12.0
+offset_right = -20.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 13
+text = "LOCKED 🔒"
+horizontal_alignment = 2
+
+[node name="BtnHard" type="Button" parent="MainPanel/DifficultyView/VBox" unique_id=987654389]
+custom_minimum_size = Vector2(520, 80)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_card_dis")
+
+[node name="Title" type="Label" parent="MainPanel/DifficultyView/VBox/BtnHard" unique_id=987654390]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -24.0
+offset_right = 260.0
+offset_bottom = 0.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "HARD TIER (SCROLL TRIAL)"
+
+[node name="Subtitle" type="Label" parent="MainPanel/DifficultyView/VBox/BtnHard" unique_id=987654391]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = 2.0
+offset_right = 260.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Multi-step complex reasoning."
+
+[node name="HardStatus" type="Label" parent="MainPanel/DifficultyView/VBox/BtnHard" unique_id=987654392]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -12.0
+offset_right = -20.0
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 13
+text = "LOCKED 🔒"
+horizontal_alignment = 2
+
+[node name="TrialView" type="Control" parent="MainPanel" unique_id=987654393]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="Button" parent="MainPanel/TrialView" unique_id=987654394]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 6.0
+offset_right = 130.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 12
+text = "❮ Difficulties"
+
+[node name="DomainLabel" type="Label" parent="MainPanel/TrialView" unique_id=987654395]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 6.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "MATHEMATICS TRIAL"
+horizontal_alignment = 1
+
+[node name="MechanicLabel" type="Label" parent="MainPanel/TrialView" unique_id=987654396]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.8, 0.65, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 12
+text = "Tier: EASY — Basic Arithmetic"
+horizontal_alignment = 1
+
+[node name="QuestionBox" type="Panel" parent="MainPanel/TrialView" unique_id=987654397]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -140.0
+offset_right = 300.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="QuestionLabel" type="Label" parent="MainPanel/TrialView/QuestionBox" unique_id=987654398]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 15
+text = "Calculate the following ancient expression..."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Options" type="VBoxContainer" parent="MainPanel/TrialView" unique_id=987654399]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -18.0
+offset_right = 300.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="OptionA" type="Button" parent="MainPanel/TrialView/Options" unique_id=987654400]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+text = "Option A"
+
+[node name="OptionB" type="Button" parent="MainPanel/TrialView/Options" unique_id=987654401]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+text = "Option B"
+
+[node name="OptionC" type="Button" parent="MainPanel/TrialView/Options" unique_id=987654402]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+text = "Option C"
+
+[node name="OptionD" type="Button" parent="MainPanel/TrialView/Options" unique_id=987654403]
+custom_minimum_size = Vector2(0, 42)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+text = "Option D"
+
+[node name="FeedbackPanel" type="Panel" parent="MainPanel/TrialView" unique_id=987654404]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -120.0
+offset_right = 280.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="FeedbackTitle" type="Label" parent="MainPanel/TrialView/FeedbackPanel" unique_id=987654405]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 16.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.3, 0.9, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 20
+text = "✨ CORRECT!"
+horizontal_alignment = 1
+
+[node name="FeedbackExp" type="Label" parent="MainPanel/TrialView/FeedbackPanel" unique_id=987654406]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 46.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.25, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "+50 EXP Earned!"
+horizontal_alignment = 1
+
+[node name="ExplanationLabel" type="Label" parent="MainPanel/TrialView/FeedbackPanel" unique_id=987654407]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -60.0
+offset_right = 240.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.95, 0.9, 0.8, 1)
+theme_override_fonts/font = ExtResource("3_oswald_reg")
+theme_override_font_sizes/font_size = 14
+text = "Historical explanation text here."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ContinueButton" type="Button" parent="MainPanel/TrialView/FeedbackPanel" unique_id=987654408]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -54.0
+offset_right = 90.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_card")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hov")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_hov")
+text = "Continue"
