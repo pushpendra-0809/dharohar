@@ -59,6 +59,7 @@
 [ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="59_explornpc"]
 [ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="60_interactpt"]
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="61_pickupitem"]
+[ext_resource type="Texture2D" uid="uid://b1l12qlpttnir" path="res://assets/Dharohar_Character_Sprite_Pack/Builder/standing.png" id="63_oy1o8"]
 [ext_resource type="Texture2D" uid="uid://vcc4qtiatk2p" path="res://assets/items/item_grain_sack.png" id="70_grainsack"]
 [ext_resource type="Texture2D" uid="uid://bgmea33u0f3y2" path="res://assets/items/item_veg_basket.png" id="71_vegbasket"]
 [ext_resource type="Texture2D" uid="uid://dbuijs4xbc8w5" path="res://assets/items/item_food_pot.png" id="72_foodpot"]
@@ -259,21 +260,6 @@ position = Vector2(965, 235)
 scale = Vector2(0.014, 0.014)
 texture = ExtResource("58_lp60u")
 
-[node name="RoadMatka1" type="Sprite2D" parent="Decorations" unique_id=1849904903]
-position = Vector2(1040, 168)
-scale = Vector2(0.032, 0.036)
-texture = ExtResource("42_matka")
-
-[node name="GatePillarNorth" type="Sprite2D" parent="Decorations" unique_id=98765401]
-position = Vector2(1090, 150)
-scale = Vector2(0.032, 0.038)
-texture = ExtResource("50_villmon3")
-
-[node name="GatePillarSouth" type="Sprite2D" parent="Decorations" unique_id=98765402]
-position = Vector2(1090, 235)
-scale = Vector2(0.032, 0.038)
-texture = ExtResource("50_villmon3")
-
 [node name="RoadStone3" type="Sprite2D" parent="Decorations" unique_id=98765403]
 position = Vector2(1065, 195)
 scale = Vector2(0.015, 0.015)
@@ -293,11 +279,6 @@ texture = ExtResource("35_bush3")
 position = Vector2(960, 515)
 scale = Vector2(0.02, 0.02)
 texture = ExtResource("58_lp60u")
-
-[node name="TeacherMatka" type="Sprite2D" parent="Decorations" unique_id=98765408]
-position = Vector2(1030, 480)
-scale = Vector2(0.035, 0.04)
-texture = ExtResource("42_matka")
 
 [node name="TeacherGroveBush" type="Sprite2D" parent="Decorations" unique_id=98765409]
 position = Vector2(950, 475)
@@ -575,7 +556,7 @@ position = Vector2(849.219, 314.156)
 position = Vector2(28, 311)
 
 [node name="Teacher" parent="." unique_id=1511617067 instance=ExtResource("4_teacher")]
-position = Vector2(998, 497)
+position = Vector2(993, 498)
 
 [node name="Merchant" parent="." unique_id=628373084 instance=ExtResource("5_merchant")]
 position = Vector2(487, 109)
@@ -587,7 +568,7 @@ position = Vector2(196, 453)
 position = Vector2(1098, 125)
 
 [node name="UniversityEntrance" parent="." unique_id=548852281 instance=ExtResource("8_entrance")]
-position = Vector2(1110, 194)
+position = Vector2(1123, 185)
 
 [node name="ObjectiveTrailManager" parent="." unique_id=106089675 instance=ExtResource("9_trail")]
 
@@ -760,3 +741,8 @@ item_name = "Provisions Pot"
 quest_id = "farmer_provisions"
 sprite_texture = ExtResource("72_foodpot")
 sprite_scale = Vector2(0.035, 0.035)
+
+[node name="Standing" type="Sprite2D" parent="." unique_id=1414948890]
+position = Vector2(726.3125, 121.875)
+scale = Vector2(0.024780272, 0.02360026)
+texture = ExtResource("63_oy1o8")
