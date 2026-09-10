@@ -37,6 +37,8 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 			
 	if quest_marker:
 		_marker_base_y = quest_marker.position.y
@@ -45,6 +47,9 @@ func _ready() -> void:
 	_find_scholar_ui()
 	_update_ui_elements()
 	_update_quest_marker()
+
+func _on_movement_locked(_locked: bool) -> void:
+	_update_ui_elements()
 
 func _process(delta: float) -> void:
 	_anim_time += delta
@@ -440,8 +445,9 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var show_prompt: bool = _player_in_range and _can_interact()
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	var show_prompt: bool = _player_in_range and _can_interact() and not in_dialogue
 	if indicator:
-		indicator.visible = show_prompt
+		indicator.visible = false
 	if press_e_label:
 		press_e_label.visible = show_prompt

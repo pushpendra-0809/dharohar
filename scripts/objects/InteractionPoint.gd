@@ -1,12 +1,13 @@
 extends Area2D
 
 @export var point_name: String = "Environment Point"
-@export var prompt_text: String = "[Press E to Inspect]"
+@export var prompt_text: String = "E"
 @export var dialogue_lines: Array = []
 @export var interaction_radius: float = 40.0
 
 var _player_in_range: bool = false
 var dialogue_manager: DialogueManager = null
+var narrative_choice_ui: NarrativeChoiceUI = null
 
 @onready var indicator: Label = $InteractionIndicator
 @onready var press_e_label: Label = $PressELabel
@@ -30,16 +31,21 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 			
 	if quest_marker:
 		_marker_base_y = quest_marker.position.y
 		
 	if press_e_label:
-		press_e_label.text = prompt_text
+		press_e_label.text = "E"
 		
 	_find_dialogue_manager()
 	_update_ui_elements()
 	_update_quest_marker()
+
+func _on_movement_locked(_locked: bool) -> void:
+	_update_ui_elements()
 
 func _process(delta: float) -> void:
 	_anim_time += delta
@@ -56,24 +62,14 @@ func _update_quest_marker() -> void:
 	if quest_marker:
 		if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
 			quest_marker.visible = true
-		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and not GameState.library_mastery_completed:
+		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and not GameState.library_scroll_earned:
 			quest_marker.visible = true
-		elif point_name == "Great Stupa" and GameState.has_met_teacher3 and not GameState.stupa_mastery_completed:
+		elif point_name == "Great Stupa" and GameState.has_met_teacher3 and not GameState.stupa_scroll_earned:
 			quest_marker.visible = true
-		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3 and not GameState.vihara_mastery_completed:
+		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3 and not GameState.vihara_scroll_earned:
 			quest_marker.visible = true
 		else:
 			quest_marker.visible = false
-			
-	if press_e_label:
-		if point_name == "Great Stupa" and GameState.has_met_teacher3:
-			press_e_label.text = "[Press E to Enter Stupa Mastery]"
-		elif (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState.has_met_teacher3 and (not GameState.is_side_quest_active("scribe_manuscript") or GameState.is_manuscript_delivered()):
-			press_e_label.text = "[Press E to Enter Library Mastery]"
-		elif point_name == "Vihara Living Quarters" and GameState.has_met_teacher3:
-			press_e_label.text = "[Press E to Enter Vihara Mastery]"
-		elif prompt_text != "":
-			press_e_label.text = prompt_text
 
 func setup_manager(d_mgr: DialogueManager) -> void:
 	dialogue_manager = d_mgr
@@ -90,15 +86,30 @@ func _find_dialogue_manager() -> void:
 				dialogue_manager = child
 				break
 
+func _get_narrative_ui() -> NarrativeChoiceUI:
+	if narrative_choice_ui and is_instance_valid(narrative_choice_ui):
+		return narrative_choice_ui
+	var uis = get_tree().get_nodes_in_group("narrative_choice_ui")
+	if uis.size() > 0:
+		narrative_choice_ui = uis[0]
+		return narrative_choice_ui
+	var scene_res = load("res://scenes/ui/NarrativeChoiceUI.tscn")
+	if scene_res:
+		narrative_choice_ui = scene_res.instantiate()
+		get_tree().root.add_child(narrative_choice_ui)
+		return narrative_choice_ui
+	return null
+
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_in_range and _can_interact():
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("interact") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E):
 			get_viewport().set_input_as_handled()
 			_start_interaction()
 
 func _can_interact() -> bool:
 	_find_dialogue_manager()
-	return dialogue_manager != null and not dialogue_manager.is_active()
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	return not in_dialogue
 
 func _start_interaction() -> void:
 	if not dialogue_manager:
@@ -108,19 +119,21 @@ func _start_interaction() -> void:
 		
 	_update_ui_elements()
 	
-	# Stupa Mastery Challenge Check (Outdoor Nalanda University Stupa)
+	# 1. Great Stupa Narrative Chapter
 	if point_name == "Great Stupa" and GameState and GameState.has_met_teacher3:
-		var stupa_ui = get_tree().get_first_node_in_group("stupa_mastery_ui")
-		if not stupa_ui:
-			var stupa_scene = load("res://scenes/ui/StupaMasteryUI.tscn")
-			if stupa_scene:
-				stupa_ui = stupa_scene.instantiate()
-				get_tree().root.add_child(stupa_ui)
-		if stupa_ui and stupa_ui.has_method("open_ui"):
-			stupa_ui.open_ui()
+		if GameState.stupa_scroll_earned:
+			var stupa_done_seq: Array = [
+				{"speaker": "Great Stupa", "text": "The Great Stupa stands in balanced harmony, protected and revered according to your wise decision."}
+			]
+			dialogue_manager.start_dialogue(stupa_done_seq, _on_dialogue_finished)
 			return
+		else:
+			var n_ui = _get_narrative_ui()
+			if n_ui:
+				n_ui.open_chapter("stupa", _on_chapter_completed)
+				return
 	
-	# Quest 2 Manuscript Delivery Check for Library / Writing points
+	# 2. Scribe Side Quest Manuscript Delivery
 	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState:
 		if GameState.is_side_quest_active("scribe_manuscript") and not GameState.is_manuscript_delivered():
 			var deliver_seq: Array = [
@@ -134,32 +147,42 @@ func _start_interaction() -> void:
 			)
 			return
 
-	# Library Mastery Challenge Check (Inside Library Scene)
+	# 3. Dharmaganja Library Narrative Chapter
 	if (point_name == "Dharmaganja Library" or point_name == "Writing & Study Desk") and GameState and GameState.has_met_teacher3:
-		var lib_ui = get_tree().get_first_node_in_group("library_mastery_ui")
-		if not lib_ui:
-			var lib_scene = load("res://scenes/ui/LibraryMasteryUI.tscn")
-			if lib_scene:
-				lib_ui = lib_scene.instantiate()
-				get_tree().root.add_child(lib_ui)
-		if lib_ui and lib_ui.has_method("open_ui"):
-			lib_ui.open_ui()
+		if GameState.library_scroll_earned:
+			var lib_done_seq: Array = [
+				{"speaker": "Dharmaganja Library", "text": "The Ratnasagara manuscript archives remain preserved and accurately catalogued through evidence and dialogue."}
+			]
+			dialogue_manager.start_dialogue(lib_done_seq, _on_dialogue_finished)
 			return
+		else:
+			var n_ui = _get_narrative_ui()
+			if n_ui:
+				n_ui.open_chapter("library", _on_chapter_completed)
+				return
 
-	# Vihara Mastery Challenge Check (Inside Vihara Scene)
+	# 4. Vihara Living Quarters Narrative Chapter
 	if point_name == "Vihara Living Quarters" and GameState and GameState.has_met_teacher3:
-		var vih_ui = get_tree().get_first_node_in_group("vihara_mastery_ui")
-		if not vih_ui:
-			var vih_scene = load("res://scenes/ui/ViharaMasteryUI.tscn")
-			if vih_scene:
-				vih_ui = vih_scene.instantiate()
-				get_tree().root.add_child(vih_ui)
-		if vih_ui and vih_ui.has_method("open_ui"):
-			vih_ui.open_ui()
+		if GameState.vihara_scroll_earned:
+			var vih_done_seq: Array = [
+				{"speaker": "Vihara Living Quarters", "text": "The Vihara residential quarters thrive in warmth and scholarly peace under your balanced allocation plan."}
+			]
+			dialogue_manager.start_dialogue(vih_done_seq, _on_dialogue_finished)
 			return
+		else:
+			var n_ui = _get_narrative_ui()
+			if n_ui:
+				n_ui.open_chapter("vihara", _on_chapter_completed)
+				return
 			
 	if not dialogue_lines.is_empty():
 		dialogue_manager.start_dialogue(dialogue_lines, _on_dialogue_finished)
+
+func _on_chapter_completed() -> void:
+	if GameState:
+		GameState.unlock_player_movement()
+	_update_ui_elements()
+	_update_quest_marker()
 
 func _on_dialogue_finished() -> void:
 	if GameState:
@@ -177,8 +200,9 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var show_prompt: bool = _player_in_range and _can_interact()
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	var show_prompt: bool = _player_in_range and not in_dialogue
 	if indicator:
-		indicator.visible = show_prompt
+		indicator.visible = false
 	if press_e_label:
 		press_e_label.visible = show_prompt

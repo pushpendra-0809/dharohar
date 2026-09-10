@@ -52,7 +52,13 @@ func _ready() -> void:
 			current_state = State.WATER_QUEST_ACTIVE
 		elif GameState.merchant_passed:
 			current_state = State.PASSED
+		
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 
+	_update_ui_elements()
+
+func _on_movement_locked(_locked: bool) -> void:
 	_update_ui_elements()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -221,9 +227,10 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var show_prompt: bool = _player_in_range and _can_interact()
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	var show_prompt: bool = _player_in_range and _can_interact() and not in_dialogue
 	
 	if indicator:
-		indicator.visible = show_prompt
+		indicator.visible = false
 	if press_e_label:
 		press_e_label.visible = show_prompt

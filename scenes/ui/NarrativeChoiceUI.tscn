@@ -1,16 +1,16 @@
-[gd_scene format=3 uid="uid://y1jbmoh7h40g"]
+[gd_scene format=3 uid="uid://narrativechoiceui001"]
 
-[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="1_oswaldbold"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswaldreg"]
-[ext_resource type="Script" path="res://scenes/ui/FinalMasteryUI.gd" id="3_finalmasterygd"]
+[ext_resource type="Script" path="res://scenes/ui/NarrativeChoiceUI.gd" id="1_narrativeui"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_oswald_reg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
-bg_color = Color(0.08, 0.06, 0.04, 0.98)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.85, 0.65, 0.25, 1)
+bg_color = Color(0.08, 0.06, 0.04, 0.97)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.68, 0.35, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -30,7 +30,7 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn"]
 bg_color = Color(0.18, 0.13, 0.08, 0.95)
 border_width_left = 1
 border_width_top = 1
@@ -54,10 +54,9 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="FinalMasteryUI" type="CanvasLayer"]
-layer = 60
-visible = false
-script = ExtResource("3_finalmasterygd")
+[node name="NarrativeChoiceUI" type="CanvasLayer"]
+layer = 15
+script = ExtResource("1_narrativeui")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -65,7 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.75)
+color = Color(0, 0, 0, 0.7)
 
 [node name="MainPanel" type="Panel" parent="."]
 anchors_preset = 8
@@ -73,10 +72,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -460.0
-offset_top = -260.0
-offset_right = 460.0
-offset_bottom = 260.0
+offset_left = -440.0
+offset_top = -250.0
+offset_right = 440.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
@@ -85,7 +84,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 56.0
+offset_bottom = 54.0
 grow_horizontal = 2
 
 [node name="TitleLabel" type="Label" parent="MainPanel/Header"]
@@ -96,12 +95,12 @@ offset_top = 8.0
 offset_bottom = 32.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
-text = "FINAL MASTERY TRIAL"
+text = "THE GREAT STUPA — FOUNDATION & ALIGNMENT DILEMMA"
 horizontal_alignment = 1
 
-[node name="SubtitleLabel" type="Label" parent="MainPanel/Header"]
+[node name="LocationLabel" type="Label" parent="MainPanel/Header"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -109,9 +108,9 @@ offset_top = 31.0
 offset_bottom = 50.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
-text = "Demonstrate Mastery of Your Chosen Domain"
+text = "📍 Great Stupa of Nalanda"
 horizontal_alignment = 1
 
 [node name="CloseButton" type="Button" parent="MainPanel/Header"]
@@ -125,129 +124,123 @@ offset_right = -12.0
 offset_bottom = 36.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 text = "✕"
 
-[node name="TrialView" type="Control" parent="MainPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="DossierPanel" type="Panel" parent="MainPanel/TrialView"]
+[node name="InvestigationBox" type="Panel" parent="MainPanel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 20.0
-offset_top = 4.0
+offset_top = 58.0
 offset_right = -20.0
-offset_bottom = 224.0
+offset_bottom = 285.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
 
-[node name="NarrativeText" type="RichTextLabel" parent="MainPanel/TrialView"]
+[node name="IntroText" type="RichTextLabel" parent="MainPanel/InvestigationBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 32.0
-offset_top = 12.0
-offset_right = -32.0
+offset_left = 12.0
+offset_top = 10.0
+offset_right = -12.0
 offset_bottom = 85.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.95, 0.9, 0.82, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_fonts/normal_font = ExtResource("3_oswald_reg")
+theme_override_fonts/bold_font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 13
 bbcode_enabled = true
-text = "Narrative introduction..."
+text = "Intro dialogue goes here..."
 
-[node name="CluesText" type="RichTextLabel" parent="MainPanel/TrialView"]
+[node name="CluesText" type="RichTextLabel" parent="MainPanel/InvestigationBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 32.0
-offset_top = 90.0
-offset_right = -32.0
-offset_bottom = 195.0
+offset_left = 12.0
+offset_top = 88.0
+offset_right = -12.0
+offset_bottom = 168.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.88, 0.85, 0.75, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_fonts/normal_font = ExtResource("3_oswald_reg")
+theme_override_fonts/bold_font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
-text = "Clues text..."
+text = "Investigation clues go here..."
 
-[node name="PromptLabel" type="Label" parent="MainPanel/TrialView"]
+[node name="DomainInsightLabel" type="RichTextLabel" parent="MainPanel/InvestigationBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 32.0
-offset_top = 200.0
-offset_right = -32.0
-offset_bottom = 222.0
+offset_left = 12.0
+offset_top = 172.0
+offset_right = -12.0
+offset_bottom = 220.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/font_size = 13
-text = "Formulate the comprehensive plan:"
+theme_override_colors/default_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/normal_font = ExtResource("3_oswald_reg")
+theme_override_fonts/bold_font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[color=#ffd700][b]💡 [Domain Insight][/b][/color]"
 
-[node name="OptionsContainer" type="VBoxContainer" parent="MainPanel/TrialView"]
+[node name="ChoicesContainer" type="VBoxContainer" parent="MainPanel"]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = -230.0
+offset_top = -205.0
 offset_right = -20.0
-offset_bottom = -12.0
+offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 8
 
-[node name="OptionA" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="OptionA" type="Button" parent="MainPanel/ChoicesContainer"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
 theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option A"
+text = "Option A description"
 autowrap_mode = 2
 
-[node name="OptionB" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="OptionB" type="Button" parent="MainPanel/ChoicesContainer"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
 theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option B"
+text = "Option B description"
 autowrap_mode = 2
 
-[node name="OptionC" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
+[node name="OptionC" type="Button" parent="MainPanel/ChoicesContainer"]
+custom_minimum_size = Vector2(0, 54)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
 theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option C"
+text = "Option C description"
 autowrap_mode = 2
 
-[node name="FeedbackView" type="Control" parent="MainPanel"]
+[node name="ConsequenceBox" type="Panel" parent="MainPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -259,83 +252,73 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="FeedbackPanel" type="Panel" parent="MainPanel/FeedbackView"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
 
-[node name="FeedbackStatus" type="Label" parent="MainPanel/FeedbackView"]
+[node name="ConsequenceTitle" type="Label" parent="MainPanel/ConsequenceBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 18.0
-offset_bottom = 45.0
+offset_top = 15.0
+offset_bottom = 40.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/font_size = 18
-text = "★ MASTER SYNTHESIS ACHIEVED ★"
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_oswald_bold")
+theme_override_font_sizes/font_size = 16
+text = "DECISION OUTCOME & CONSEQUENCE"
 horizontal_alignment = 1
 
-[node name="FeedbackText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+[node name="ConsequenceText" type="RichTextLabel" parent="MainPanel/ConsequenceBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_top = 55.0
-offset_right = -24.0
-offset_bottom = 110.0
+offset_left = 20.0
+offset_top = 50.0
+offset_right = -20.0
+offset_bottom = 220.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_fonts/normal_font = ExtResource("3_oswald_reg")
+theme_override_fonts/bold_font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/normal_font_size = 14
 theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
-text = "Feedback text..."
+text = "Consequence text..."
 
-[node name="ExplanationText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+[node name="ReactionText" type="RichTextLabel" parent="MainPanel/ConsequenceBox"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_top = 120.0
-offset_right = -24.0
-offset_bottom = 330.0
+offset_left = 20.0
+offset_top = 230.0
+offset_right = -20.0
+offset_bottom = 310.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.88, 0.82, 0.7, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
-theme_override_fonts/italics_font = ExtResource("2_oswaldreg")
+theme_override_colors/default_color = Color(0.85, 0.75, 0.55, 1)
+theme_override_fonts/normal_font = ExtResource("3_oswald_reg")
+theme_override_fonts/italics_font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/normal_font_size = 13
-theme_override_font_sizes/bold_font_size = 13
 theme_override_font_sizes/italics_font_size = 13
 bbcode_enabled = true
-text = "Explanation text..."
+text = "Reaction text..."
 
-[node name="BtnAction" type="Button" parent="MainPanel/FeedbackView"]
-custom_minimum_size = Vector2(340, 50)
+[node name="BtnClaimScroll" type="Button" parent="MainPanel/ConsequenceBox"]
+custom_minimum_size = Vector2(300, 48)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -170.0
-offset_top = -68.0
-offset_right = 170.0
-offset_bottom = -18.0
+offset_left = -160.0
+offset_top = -65.0
+offset_right = 160.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "🏆 Conclude Mastery & Present to Council"
+text = "📜 Claim Scroll & Conclude"

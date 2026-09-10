@@ -21,6 +21,20 @@ outline_color = Color(0.1, 0.05, 0, 0.95)
 shadow_size = 2
 shadow_color = Color(0, 0, 0, 0.7)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebubble"]
+bg_color = Color(0.12, 0.08, 0.04, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.65)
+shadow_size = 3
+
 [node name="Teacher3" type="StaticBody2D" unique_id=987654331]
 script = ExtResource("1_t3script")
 
@@ -55,6 +69,7 @@ theme_override_font_sizes/font_size = 15
 text = "Mastery Mentor"
 horizontal_alignment = 1
 
+
 [node name="PressELabel" type="Label" parent="." unique_id=987654337]
 visible = false
 anchors_preset = 7
@@ -62,17 +77,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -75.0
-offset_top = -40.0
-offset_right = 75.0
-offset_bottom = -20.0
+offset_left = -12.0
+offset_top = -42.0
+offset_right = 12.0
+offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
-theme_override_fonts/font = ExtResource("4_oswald_reg")
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 14
-text = "[Press E to Talk]"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ebubble")
+text = "E"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="QuestMarker" type="Label" parent="." unique_id=987654338]
 visible = false

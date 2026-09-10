@@ -34,6 +34,8 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 			
 	if quest_marker:
 		_marker_base_y = quest_marker.position.y
@@ -41,6 +43,9 @@ func _ready() -> void:
 	_find_dialogue_manager()
 	_update_ui_elements()
 	_update_quest_marker()
+
+func _on_movement_locked(_locked: bool) -> void:
+	_update_ui_elements()
 
 func _process(delta: float) -> void:
 	_anim_time += delta
@@ -106,15 +111,15 @@ func _start_teacher3_interaction() -> void:
 		dialogue_manager.start_dialogue(locked_seq, _on_dialogue_finished)
 		return
 		
-	# First Introduction Dialogue
+	# First Introduction Dialogue — Detroit-Inspired Story Intro
 	if GameState and not GameState.has_met_teacher3:
 		var intro_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Tumne gyan ko padha, uska abhyas kiya aur Nalanda ke jeevan ko nazdeek se samjha hai."},
-			{"speaker": "Mastery Mentor", "text": "Ab samay hai apni seekh ko karya mein badalne ka."},
-			{"speaker": "Mastery Mentor", "text": "Nalanda ki teen mahatvapurn jagahon par tumhe alag-alag chunautiyon ka saamna karna hoga."},
-			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara — har jagah tumhari soch aur seekh ko alag tareeke se parakha jayega."},
-			{"speaker": "Mastery Mentor", "text": "Har building ki teen kathinaiyan hongi. Sabse kathin star ko poora karne par tumhe ek Scroll milega."},
-			{"speaker": "Mastery Mentor", "text": "Teen Scroll lekar mere paas wapas aana. Tab tumhari antim mastery challenge shuru hogi."}
+			{"speaker": "Mastery Mentor", "text": "Tumne gyan seekha."},
+			{"speaker": "Mastery Mentor", "text": "Phir tumne uska prayog kiya."},
+			{"speaker": "Mastery Mentor", "text": "Ab Nalanda tumse ek aur cheez maangta hai — nirnay."},
+			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara mein tumhe aisi paristhitiyon ka saamna karna hoga jahan har jawab sirf sahi ya galat nahi hoga."},
+			{"speaker": "Mastery Mentor", "text": "Tumhe dekhna hoga, samajhna hoga, prashn karna hoga aur phir nirnay lena hoga."},
+			{"speaker": "Mastery Mentor", "text": "Tumhare nirnay hi tumhari asli pariksha honge."}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			if GameState:
@@ -123,27 +128,26 @@ func _start_teacher3_interaction() -> void:
 		)
 		return
 
-	# Step 19: Replay / Post-completion state
+	# Replay / Post-completion state
 	if GameState and GameState.nalanda_complete:
 		var post_comp_seq: Array = [
 			{"speaker": "Mastery Mentor", "text": "Nalanda ki gyan-yatra tumne safaltapoorvak poori kar li hai."},
-			{"speaker": "Mastery Mentor", "text": "Yahan ka gyan aur dharohar sada tumhare sath rahegi."}
+			{"speaker": "Mastery Mentor", "text": "Yahan ka gyan, vivek aur dharohar sada tumhare sath rahegi."}
 		]
 		dialogue_manager.start_dialogue(post_comp_seq, _on_dialogue_finished)
 		return
 
-	# Step 19: Final Story & Completion Sequence
+	# Final Story & Completion Sequence
 	if GameState and GameState.final_mastery_complete:
 		var final_story_seq: Array = [
 			{"speaker": "Mastery Mentor", "text": "Bahut achha."},
 			{"speaker": "Mastery Mentor", "text": "Tumne Nalanda mein keval pustakon se gyan nahi paaya."},
 			{"speaker": "Mastery Mentor", "text": "Tumne seekha, prashn kiya, prayog kiya aur apni soch se samasyaon ka samadhan kiya."},
-			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara ki teenon chunautiyon ne tumhari seekh ko alag-alag roop mein parakha."},
-			{"speaker": "Mastery Mentor", "text": "Phir antim mastery mein tumne in sabhi gyan ko ek saath joda."},
+			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara ki chunautiyon mein tumne vivekpurna nirnay liye."},
+			{"speaker": "Mastery Mentor", "text": "Phir antim mastery mein tumne apne chune hue vishay ka sarvashrestha pradarshan kiya."},
 			{"speaker": "Mastery Mentor", "text": "Yahi Nalanda ki asli parampara hai."},
-			{"speaker": "Mastery Mentor", "text": "Yahan gyan sirf yaad karne ke liye nahi tha."},
-			{"speaker": "Mastery Mentor", "text": "Use samajhne, us par vichar karne aur duniya mein prayog karne ke liye tha."},
-			{"speaker": "Mastery Mentor", "text": "Ab tum bhi Nalanda ki is gyan-yatra ka ek hissa ban chuke ho."},
+			{"speaker": "Mastery Mentor", "text": "Yahan gyan sirf yaad karne ke liye nahi tha — use samajhne, us par vichar karne aur duniya mein prayog karne ke liye tha."},
+			{"speaker": "Mastery Mentor", "text": "Ab tum bhi Nalanda ki is gyan-yatra ka ek gauravshali hissa ban chuke ho."},
 			{"speaker": "Player", "text": "Main samajh gaya hoon ki gyan ki yatra kabhi sirf ek uttar par khatam nahi hoti."}
 		]
 		dialogue_manager.start_dialogue(final_story_seq, func():
@@ -158,10 +162,10 @@ func _start_teacher3_interaction() -> void:
 	if GameState and GameState.has_all_three_scrolls():
 		if not GameState.final_mastery_unlocked:
 			var completion_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "Ah, tum teenon Scrolls lekar laut aaye ho."},
-				{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara — teenon ne tumhari seekh ko alag-alag tareekon se parakha."},
-				{"speaker": "Mastery Mentor", "text": "Ab tumne jo seekha hai, usse ek saath prayog karne ka samay aa gaya hai."},
-				{"speaker": "Mastery Mentor", "text": "Ab tumhari antim mastery challenge tumhara intezaar kar rahi hai."}
+				{"speaker": "Mastery Mentor", "text": "Teen sthanon se tum teen scroll lekar aaye ho."},
+				{"speaker": "Mastery Mentor", "text": "Lekin in scrolls ki asli keemat unmein nahi hai."},
+				{"speaker": "Mastery Mentor", "text": "Tumne jo nirnay liye, jo galtiyan ki, jo prashn pooche aur jo seekha — wahi tumhari asli pariksha hai."},
+				{"speaker": "Mastery Mentor", "text": "Ab tumhari antim mastery shuru hogi."}
 			]
 			dialogue_manager.start_dialogue(completion_seq, func():
 				if GameState:
@@ -172,8 +176,8 @@ func _start_teacher3_interaction() -> void:
 			return
 		else:
 			var post_unlock_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "Ab samay hai antim chunauti ka. Yeh pariksha tumhare saare gyan ko ek saath jodegi."},
-				{"speaker": "Mastery Mentor", "text": "Ganit, Khagol, Chikitsa aur Darshan — charo vishayon ka samavesh karke hi tum Antim Mastery prapt kar sakte ho."}
+				{"speaker": "Mastery Mentor", "text": "Ab samay hai antim mastery trial ka. Yeh trial tumhare chune hue vishay par adharit hai."},
+				{"speaker": "Mastery Mentor", "text": "Dossier ka dhyan se adhyayan karo aur sabse santulit yojana ka chayan karo."}
 			]
 			dialogue_manager.start_dialogue(post_unlock_seq, func():
 				_on_dialogue_finished()
@@ -183,7 +187,7 @@ func _start_teacher3_interaction() -> void:
 
 	# State A: Player does NOT have all three Scrolls yet
 	var reminder_seq: Array = [
-		{"speaker": "Mastery Mentor", "text": "Tumne Stupa, Library aur Vihara ki chunautiyon ka saamna kiya hai.\nApni teenon Scrolls lekar mere paas wapas aao."}
+		{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara — in teen sthanon par jao, paristhitiyon ko samjho aur vivekpurna nirnay lo.\nApni teenon Scrolls lekar mere paas wapas aao."}
 	]
 	dialogue_manager.start_dialogue(reminder_seq, _on_dialogue_finished)
 
@@ -197,7 +201,10 @@ func _open_final_mastery_challenge() -> void:
 			final_mastery_ui = fm_scene.instantiate()
 			get_tree().root.add_child(final_mastery_ui)
 	if final_mastery_ui and final_mastery_ui.has_method("open_ui"):
-		final_mastery_ui.open_ui()
+		final_mastery_ui.open_ui(_on_final_mastery_completed)
+
+func _on_final_mastery_completed() -> void:
+	_start_teacher3_interaction()
 
 func _show_nalanda_completion_sequence() -> void:
 	var uis = get_tree().get_nodes_in_group("nalanda_completion_ui")
@@ -235,9 +242,9 @@ func _on_body_exited(body: Node2D) -> void:
 
 func _update_ui_elements() -> void:
 	_find_dialogue_manager()
-	var can_act: bool = dialogue_manager == null or not dialogue_manager.is_active()
-	var show_prompt: bool = _player_in_range and can_act
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	var show_prompt: bool = _player_in_range and not in_dialogue
 	if indicator_label:
-		indicator_label.visible = show_prompt
+		indicator_label.visible = false
 	if press_e_label:
 		press_e_label.visible = show_prompt

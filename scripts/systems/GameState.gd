@@ -71,6 +71,19 @@ var stupa_challenges: Dictionary = {
 }
 var stupa_scroll_earned: bool = false
 var stupa_mastery_completed: bool = false
+var stupa_story_choice: String = ""
+var stupa_story_exp_claimed: bool = false
+
+func complete_stupa_story_chapter(choice_id: String = "") -> void:
+	stupa_story_choice = choice_id
+	stupa_scroll_earned = true
+	stupa_mastery_completed = true
+	if not stupa_story_exp_claimed:
+		stupa_story_exp_claimed = true
+		add_exp(100)
+	_check_and_update_three_scrolls()
+	quest_state_changed.emit()
+
 
 const STUPA_EXP_REWARDS: Dictionary = {
 	"easy": 25,
@@ -153,6 +166,20 @@ var library_challenges: Dictionary = {
 var library_scroll_earned: bool = false
 var library_mastery_completed: bool = false
 var library_complete: bool = false
+var library_story_choice: String = ""
+var library_story_exp_claimed: bool = false
+
+func complete_library_story_chapter(choice_id: String = "") -> void:
+	library_story_choice = choice_id
+	library_scroll_earned = true
+	library_mastery_completed = true
+	library_complete = true
+	if not library_story_exp_claimed:
+		library_story_exp_claimed = true
+		add_exp(100)
+	_check_and_update_three_scrolls()
+	quest_state_changed.emit()
+
 
 const LIBRARY_EXP_REWARDS: Dictionary = {
 	"easy": 25,
@@ -237,6 +264,24 @@ var vihara_challenges: Dictionary = {
 var vihara_scroll_earned: bool = false
 var vihara_mastery_completed: bool = false
 var vihara_complete: bool = false
+var vihara_story_choice: String = ""
+var vihara_story_exp_claimed: bool = false
+
+func complete_vihara_story_chapter(choice_id: String = "") -> void:
+	vihara_story_choice = choice_id
+	vihara_scroll_earned = true
+	vihara_mastery_completed = true
+	vihara_complete = true
+	if not vihara_story_exp_claimed:
+		vihara_story_exp_claimed = true
+		add_exp(100)
+	_check_and_update_three_scrolls()
+	quest_state_changed.emit()
+
+func _check_and_update_three_scrolls() -> void:
+	if has_all_three_scrolls():
+		three_scrolls_collected = true
+
 
 const VIHARA_EXP_REWARDS: Dictionary = {
 	"easy": 25,
@@ -322,7 +367,10 @@ func get_total_scrolls_earned() -> int:
 	return count
 
 func has_all_three_scrolls() -> bool:
-	return get_total_scrolls_earned() >= 3
+	var s_done = stupa_scroll_earned or stupa_mastery_completed
+	var l_done = library_scroll_earned or library_mastery_completed or library_complete
+	var v_done = vihara_scroll_earned or vihara_mastery_completed or vihara_complete
+	return s_done and l_done and v_done
 
 func is_building_complete(building: String) -> bool:
 	match building.to_lower().strip_edges():
@@ -437,12 +485,16 @@ func serialize_building_progression() -> Dictionary:
 			"challenges": stupa_challenges.duplicate(true),
 			"scroll_earned": stupa_scroll_earned,
 			"mastery_completed": stupa_mastery_completed,
+			"story_choice": stupa_story_choice,
+			"story_exp_claimed": stupa_story_exp_claimed,
 			"exp_claimed": stupa_exp_claimed.duplicate(true)
 		},
 		"library": {
 			"challenges": library_challenges.duplicate(true),
 			"scroll_earned": library_scroll_earned,
 			"mastery_completed": library_mastery_completed,
+			"story_choice": library_story_choice,
+			"story_exp_claimed": library_story_exp_claimed,
 			"complete": library_complete,
 			"exp_claimed": library_exp_claimed.duplicate(true)
 		},
@@ -450,6 +502,8 @@ func serialize_building_progression() -> Dictionary:
 			"challenges": vihara_challenges.duplicate(true),
 			"scroll_earned": vihara_scroll_earned,
 			"mastery_completed": vihara_mastery_completed,
+			"story_choice": vihara_story_choice,
+			"story_exp_claimed": vihara_story_exp_claimed,
 			"complete": vihara_complete,
 			"exp_claimed": vihara_exp_claimed.duplicate(true)
 		},
@@ -471,6 +525,8 @@ func deserialize_building_progression(data: Dictionary) -> void:
 		stupa_challenges = s.get("challenges", stupa_challenges)
 		stupa_scroll_earned = s.get("scroll_earned", false)
 		stupa_mastery_completed = s.get("mastery_completed", false)
+		stupa_story_choice = s.get("story_choice", "")
+		stupa_story_exp_claimed = s.get("story_exp_claimed", false)
 		stupa_exp_claimed = s.get("exp_claimed", {})
 		
 	if data.has("library"):
@@ -478,6 +534,8 @@ func deserialize_building_progression(data: Dictionary) -> void:
 		library_challenges = l.get("challenges", library_challenges)
 		library_scroll_earned = l.get("scroll_earned", false)
 		library_mastery_completed = l.get("mastery_completed", false)
+		library_story_choice = l.get("story_choice", "")
+		library_story_exp_claimed = l.get("story_exp_claimed", false)
 		library_complete = l.get("complete", false)
 		library_exp_claimed = l.get("exp_claimed", {})
 		
@@ -486,6 +544,8 @@ func deserialize_building_progression(data: Dictionary) -> void:
 		vihara_challenges = v.get("challenges", vihara_challenges)
 		vihara_scroll_earned = v.get("scroll_earned", false)
 		vihara_mastery_completed = v.get("mastery_completed", false)
+		vihara_story_choice = v.get("story_choice", "")
+		vihara_story_exp_claimed = v.get("story_exp_claimed", false)
 		vihara_complete = v.get("complete", false)
 		vihara_exp_claimed = v.get("exp_claimed", {})
 		
@@ -986,6 +1046,3 @@ func reset_test_progression() -> void:
 	merchant_state_changed.emit()
 	teacher_state_changed.emit()
 	quest_state_changed.emit()
-
-
-

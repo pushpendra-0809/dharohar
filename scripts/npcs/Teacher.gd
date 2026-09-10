@@ -142,9 +142,12 @@ func _ready() -> void:
 			current_state = State.ADMITTED
 		if not GameState.merchant_state_changed.is_connected(_on_merchant_state_changed):
 			GameState.merchant_state_changed.connect(_on_merchant_state_changed)
-		if not GameState.quest_state_changed.is_connected(_on_merchant_state_changed):
-			GameState.quest_state_changed.connect(_on_merchant_state_changed)
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 
+	_update_ui_elements()
+
+func _on_movement_locked(_locked: bool) -> void:
 	_update_ui_elements()
 
 # ==================================================
@@ -447,11 +450,11 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
 	var is_available: bool = _is_dev_mode() or (current_state == State.AVAILABLE and GameState.teacher_retry_available and is_teacher_unlocked())
-	var show_indicator: bool = _player_in_range and is_available
-	var show_press_e: bool = _player_in_range and is_available
+	var show_press_e: bool = _player_in_range and is_available and not in_dialogue
 	
 	if indicator:
-		indicator.visible = show_indicator
+		indicator.visible = false
 	if press_e_label:
 		press_e_label.visible = show_press_e

@@ -20,6 +20,8 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
 		if GameState.has_signal("exp_awarded") and not GameState.exp_awarded.is_connected(_on_exp_awarded):
 			GameState.exp_awarded.connect(_on_exp_awarded)
 		if GameState.has_signal("side_quest_completed") and not GameState.side_quest_completed.is_connected(_on_side_quest_completed):
@@ -36,8 +38,20 @@ func _ready() -> void:
 		
 	update_quest_ui()
 
+func _on_movement_locked(locked: bool) -> void:
+	if locked:
+		if panel_box:
+			panel_box.visible = false
+	else:
+		update_quest_ui()
+
 func update_quest_ui() -> void:
 	if not GameState:
+		if panel_box:
+			panel_box.visible = false
+		return
+		
+	if GameState.is_movement_locked:
 		if panel_box:
 			panel_box.visible = false
 		return
@@ -78,36 +92,28 @@ func update_quest_ui() -> void:
 		if panel_box:
 			panel_box.visible = true
 		if title_label:
-			title_label.text = "MASTERY CHALLENGES"
+			title_label.text = "STORY MASTERY"
 		if objective_label:
-			var stupa_count: int = GameState.get_stupa_hard_completed_count() if GameState.has_method("get_stupa_hard_completed_count") else 0
 			var stupa_done: bool = GameState.stupa_scroll_earned or GameState.stupa_mastery_completed
-			var stupa_str: String = "Stupa: Done ✓" if stupa_done else "Stupa: " + str(stupa_count) + "/4"
+			var stupa_str: String = "Stupa: 📜 Claimed" if stupa_done else "Stupa: Explore"
 				
-			var lib_count: int = GameState.get_library_hard_completed_count() if GameState.has_method("get_library_hard_completed_count") else 0
 			var lib_done: bool = GameState.library_scroll_earned or GameState.library_mastery_completed or GameState.library_complete
-			var lib_str: String = "Library: Done ✓" if lib_done else "Library: " + str(lib_count) + "/4"
+			var lib_str: String = "Library: 📜 Claimed" if lib_done else "Library: Explore"
 				
-			var vih_count: int = GameState.get_vihara_hard_completed_count() if GameState.has_method("get_vihara_hard_completed_count") else 0
 			var vih_done: bool = GameState.vihara_scroll_earned or GameState.vihara_mastery_completed or GameState.vihara_complete
-			var vih_str: String = "Vihara: Done ✓" if vih_done else "Vihara: " + str(vih_count) + "/4"
+			var vih_str: String = "Vihara: 📜 Claimed" if vih_done else "Vihara: Explore"
 			
 			var scrolls_count: int = (1 if stupa_done else 0) + (1 if lib_done else 0) + (1 if vih_done else 0)
 			
 			var headline: String = ""
 			if GameState.nalanda_complete:
-				headline = "Nalanda Complete! All disciplines mastered."
+				headline = "Nalanda Journey Complete! Wisdom preserved."
 			elif GameState.final_mastery_complete:
 				headline = "Mastery Complete! Speak with Teacher 3."
-			elif GameState.final_mastery_unlocked:
-				var comp_stages: int = GameState.get_final_mastery_completed_count() if GameState.has_method("get_final_mastery_completed_count") else 0
-				headline = "Final Mastery: " + str(comp_stages) + "/5 stages complete."
-			elif scrolls_count >= 3:
-				headline = "Return to Teacher 3 with the 3 Scrolls."
-			elif scrolls_count > 0:
-				headline = "Collect remaining Scrolls (" + str(scrolls_count) + "/3 collected)."
+			elif GameState.final_mastery_unlocked or scrolls_count >= 3:
+				headline = "Return to Teacher 3 for Final Mastery."
 			else:
-				headline = "Complete challenges in Stupa, Library & Vihara."
+				headline = "Explore the Stupa, Library and Vihara (" + str(scrolls_count) + "/3 Scrolls)"
 				
 			objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
 		if reward_label:

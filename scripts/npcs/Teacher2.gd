@@ -28,6 +28,13 @@ func _ready() -> void:
 		if not interaction_area.body_exited.is_connected(_on_body_exited):
 			interaction_area.body_exited.connect(_on_body_exited)
 			
+	if GameState:
+		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
+			GameState.player_movement_locked.connect(_on_movement_locked)
+			
+	_update_ui_elements()
+
+func _on_movement_locked(_locked: bool) -> void:
 	_update_ui_elements()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -207,8 +214,9 @@ func _on_body_exited(body: Node2D) -> void:
 		_update_ui_elements()
 
 func _update_ui_elements() -> void:
-	var show_prompt: bool = _player_in_range
+	var in_dialogue: bool = (dialogue_manager != null and dialogue_manager.is_active()) or (GameState != null and GameState.is_movement_locked)
+	var show_prompt: bool = _player_in_range and not in_dialogue
 	if indicator_label:
-		indicator_label.visible = show_prompt
+		indicator_label.visible = false
 	if press_e_label:
 		press_e_label.visible = show_prompt
