@@ -47,8 +47,17 @@ var has_played_math_cutscene: bool = false
 var has_played_astro_cutscene: bool = false
 var has_shown_nalanda_controls_tutorial: bool = false
 
+# Step 12: Teacher 3 (Mastery Mentor) State
+var has_met_teacher3: bool = false
+var mastery_challenges_unlocked: bool = false
+
 func mark_teacher2_convo_started() -> void:
 	teacher2_convo_started = true
+	quest_state_changed.emit()
+
+func mark_teacher3_intro_completed() -> void:
+	has_met_teacher3 = true
+	mastery_challenges_unlocked = true
 	quest_state_changed.emit()
 
 # Scene Transition & Target Spawn Data
@@ -449,6 +458,8 @@ func reset_test_progression() -> void:
 	has_visited_university = false
 	has_returned_to_nalanda = false
 	teacher2_convo_started = false
+	has_met_teacher3 = false
+	mastery_challenges_unlocked = false
 	session_exp = 0
 	
 	use_target_spawn = false

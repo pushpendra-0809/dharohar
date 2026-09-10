@@ -262,7 +262,13 @@ func _sync_with_game_state() -> void:
 				
 	# 2. Main Storyline Progression Flow
 	if GameState.has_visited_university:
-		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
+		if GameState.has_met_teacher3:
+			clear_objective()
+		elif GameState.are_teacher2_tasks_completed():
+			var t3: Node2D = get_node_or_null("../Teacher3")
+			var t3_pos: Vector2 = t3.global_position if t3 else Vector2(534, 330)
+			set_objective("meet_teacher3", t3_pos, "Meet the Mastery Mentor", t3)
+		elif GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
 			clear_objective()
 		else:
 			var t2: Node2D = get_node_or_null("../Teacher2")

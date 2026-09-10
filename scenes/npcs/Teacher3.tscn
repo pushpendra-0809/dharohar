@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cex2h1i3mlxrk"]
+
+[ext_resource type="Script" path="res://scripts/npcs/Teacher3.gd" id="1_t3script"]
+[ext_resource type="Texture2D" uid="uid://d3m03s3mvyq65" path="res://assets/Dharohar_Character_Sprite_Pack/special_npc/1npc_standing.png" id="2_t3png"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixelify_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="4_oswald_reg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t3body"]
+radius = 12.0
+height = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t3area"]
+radius = 42.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_qmark"]
+font = ExtResource("3_pixelify_bold")
+font_size = 20
+font_color = Color(1, 0.88, 0.2, 1)
+outline_size = 4
+outline_color = Color(0.1, 0.05, 0, 0.95)
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.7)
+
+[node name="Teacher3" type="StaticBody2D" unique_id=987654331]
+script = ExtResource("1_t3script")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987654332]
+scale = Vector2(0.042, 0.042)
+texture = ExtResource("2_t3png")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=987654333]
+shape = SubResource("CapsuleShape2D_t3body")
+
+[node name="InteractionArea" type="Area2D" parent="." unique_id=987654334]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=987654335]
+shape = SubResource("CircleShape2D_t3area")
+
+[node name="IndicatorLabel" type="Label" parent="." unique_id=987654336]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -62.0
+offset_right = 85.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("3_pixelify_bold")
+theme_override_font_sizes/font_size = 15
+text = "Mastery Mentor"
+horizontal_alignment = 1
+
+[node name="PressELabel" type="Label" parent="." unique_id=987654337]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_top = -40.0
+offset_right = 75.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("4_oswald_reg")
+theme_override_font_sizes/font_size = 14
+text = "[Press E to Talk]"
+horizontal_alignment = 1
+
+[node name="QuestMarker" type="Label" parent="." unique_id=987654338]
+visible = false
+offset_left = -14.0
+offset_top = -68.0
+offset_right = 14.0
+offset_bottom = -38.0
+text = "!"
+label_settings = SubResource("LabelSettings_qmark")
+horizontal_alignment = 1

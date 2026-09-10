@@ -74,7 +74,19 @@ func update_quest_ui() -> void:
 		return
 		
 	# 2. Main Storyline Progression / Idle State
-	if GameState.has_visited_university:
+	if GameState.has_met_teacher3:
+		if panel_box:
+			panel_box.visible = true
+		if title_label:
+			title_label.text = "MASTERY CHALLENGES"
+		if objective_label:
+			objective_label.text = "Complete the mastery challenges in the Stupa, Library and Vihara.\n• Stupa: 0/3  • Library: 0/3  • Vihara: 0/3"
+		if reward_label:
+			reward_label.visible = false
+		if exp_stats_label:
+			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
+			exp_stats_label.visible = true
+	elif GameState.has_visited_university:
 		if GameState.teacher2_convo_started or GameState.math_puzzle_completed or GameState.medicine_puzzle_completed or GameState.astronomy_puzzle_completed or GameState.philosophy_puzzle_completed:
 			# University Exploration Mode -> Show side quest invitation with EXP stats
 			if panel_box:
