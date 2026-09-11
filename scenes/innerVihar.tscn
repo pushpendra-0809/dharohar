@@ -7,13 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
 [ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
-[ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="8_trail"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="9_monk"]
 [ext_resource type="Texture2D" uid="uid://c1nw7ll537q4t" path="res://assets/Dharohar_Character_Sprite_Pack/Scholar/standing2.png" id="10_scholar"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="11_student"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="12_scribe"]
 [ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="13_girl"]
-[ext_resource type="PackedScene" uid="uid://cinteractionpointscene" path="res://scenes/objects/InteractionPoint.tscn" id="14_interactpt"]
+[ext_resource type="PackedScene" uid="uid://cviharataskpoint001" path="res://scenes/objects/ViharaTaskInteractable.tscn" id="14_interactable"]
+[ext_resource type="PackedScene" uid="uid://viharahudscene001" path="res://scenes/ui/ViharaObjectiveHUD.tscn" id="15_hud"]
+[ext_resource type="PackedScene" uid="uid://viharacompletionscene001" path="res://scenes/ui/ViharaCompletionUI.tscn" id="16_comp"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 100)
 
@@ -64,19 +66,21 @@ expand_mode = 1
 position = Vector2(576, 582)
 
 [node name="Player" parent="." unique_id=1992019283 instance=ExtResource("3_player")]
-position = Vector2(597, 393)
+position = Vector2(576, 480)
 
 [node name="Camera2D2" type="Camera2D" parent="Player" unique_id=1992019284]
 position = Vector2(0, 4)
 zoom = Vector2(2.35, 2.35)
-
-[node name="ObjectiveTrailManager" parent="." unique_id=1992019285 instance=ExtResource("8_trail")]
 
 [node name="DialogueUI" parent="." unique_id=1992019286 instance=ExtResource("5_dlgui")]
 
 [node name="QuestUI" parent="." unique_id=1992019287 instance=ExtResource("6_questui")]
 
 [node name="PauseMenuUI" parent="." unique_id=1992019288 instance=ExtResource("7_pauseui")]
+
+[node name="ViharaObjectiveHUD" parent="." unique_id=1992019279 instance=ExtResource("15_hud")]
+
+[node name="ViharaCompletionUI" parent="." unique_id=1992019278 instance=ExtResource("16_comp")]
 
 [node name="Collisions" type="StaticBody2D" parent="." unique_id=1992019289]
 
@@ -164,8 +168,9 @@ shape = SubResource("RectangleShape2D_pillar")
 position = Vector2(932, 440)
 shape = SubResource("RectangleShape2D_pillar")
 
-[node name="Monk_Shrine" type="Sprite2D" parent="." unique_id=1992019311]
-position = Vector2(513, 155)
+# --- CHARACTERS & NPCS ---
+[node name="Warden_Entrance" type="Sprite2D" parent="." unique_id=1992019311]
+position = Vector2(513, 440)
 scale = Vector2(0.038, 0.038)
 texture = ExtResource("9_monk")
 
@@ -174,8 +179,8 @@ position = Vector2(656, 229.00003)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("10_scholar")
 
-[node name="Student_Study" type="Sprite2D" parent="." unique_id=1992019313]
-position = Vector2(721.00006, 149)
+[node name="Student_Astro" type="Sprite2D" parent="." unique_id=1992019313]
+position = Vector2(780, 130)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("11_student")
 
@@ -184,21 +189,129 @@ position = Vector2(350, 280)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("12_scribe")
 
-[node name="Monk_Courtyard" type="Sprite2D" parent="." unique_id=1992019315]
-position = Vector2(430, 380)
+[node name="Monk_WaterHelper" type="Sprite2D" parent="." unique_id=1992019315]
+position = Vector2(295, 405)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("9_monk")
 
-[node name="Student_Girl" type="Sprite2D" parent="." unique_id=1992019316]
-position = Vector2(720, 380)
+[node name="Student_Junior" type="Sprite2D" parent="." unique_id=1992019316]
+position = Vector2(856, 405)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("13_girl")
 
-[node name="InteractionPoint_ViharaTable" parent="." unique_id=1992019401 instance=ExtResource("14_interactpt")]
+[node name="Student_LampRecipient" type="Sprite2D" parent="." unique_id=1992019317]
+position = Vector2(846, 275)
+scale = Vector2(0.036, 0.036)
+texture = ExtResource("11_student")
+
+# --- VISUAL PROPS (ACTIVATED UPON TASK COMPLETION) ---
+[node name="Prop_LampLit" type="Label" parent="." unique_id=1992019350]
+visible = false
+layout_mode = 0
+offset_left = 835.0
+offset_top = 260.0
+offset_right = 865.0
+offset_bottom = 285.0
+theme_override_font_sizes/font_size = 18
+text = "🪔✨"
+
+[node name="Prop_ManuscriptPlaced" type="Label" parent="." unique_id=1992019351]
+visible = false
+layout_mode = 0
+offset_left = 768.0
+offset_top = 115.0
+offset_right = 798.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 18
+text = "📜✨"
+
+[node name="Prop_WaterVesselsPlaced" type="Label" parent="." unique_id=1992019352]
+visible = false
+layout_mode = 0
+offset_left = 565.0
+offset_top = 270.0
+offset_right = 600.0
+offset_bottom = 295.0
+theme_override_font_sizes/font_size = 18
+text = "🏺🏺"
+
+[node name="Prop_WritingKitPlaced" type="Label" parent="." unique_id=1992019353]
+visible = false
+layout_mode = 0
+offset_left = 845.0
+offset_top = 390.0
+offset_right = 880.0
+offset_bottom = 415.0
+theme_override_font_sizes/font_size = 18
+text = "📋🖋️"
+
+# --- INTERACTIVE TASK POINTS WITH VISUAL BADGES ---
+[node name="Interact_Warden" parent="." unique_id=1992019400 instance=ExtResource("14_interactable")]
+position = Vector2(513, 440)
+interactable_id = "warden"
+station_title = "Vihara Warden"
+station_icon = "🏛️"
+
+[node name="Interact_LampStation" parent="." unique_id=1992019401 instance=ExtResource("14_interactable")]
+position = Vector2(371, 142)
+interactable_id = "lamp_station"
+station_title = "Oil Lamps Depot"
+station_icon = "🪔"
+
+[node name="Interact_StudyRoomLamp" parent="." unique_id=1992019402 instance=ExtResource("14_interactable")]
+position = Vector2(846, 282)
+interactable_id = "study_room_lamp"
+station_title = "Study Room Desk"
+station_icon = "💡"
+associated_prop_path = NodePath("../Prop_LampLit")
+
+[node name="Interact_ScribeStation" parent="." unique_id=1992019403 instance=ExtResource("14_interactable")]
+position = Vector2(350, 280)
+interactable_id = "scribe_station"
+station_title = "Scribe (Astronomy Log)"
+station_icon = "📜"
+
+[node name="Interact_AstronomyStudent" parent="." unique_id=1992019404 instance=ExtResource("14_interactable")]
+position = Vector2(780, 142)
+interactable_id = "astronomy_student"
+station_title = "Astronomy Scholar"
+station_icon = "⭐"
+associated_prop_path = NodePath("../Prop_ManuscriptPlaced")
+
+[node name="Interact_WaterStation" parent="." unique_id=1992019405 instance=ExtResource("14_interactable")]
+position = Vector2(295, 405)
+interactable_id = "water_station"
+station_title = "Fresh Water Depot"
+station_icon = "🏺"
+
+[node name="Interact_CourtyardWater" parent="." unique_id=1992019406 instance=ExtResource("14_interactable")]
 position = Vector2(576, 284)
-point_name = "Vihara Living Quarters"
-prompt_text = "[Press E to Inspect Living Quarters]"
-dialogue_lines = [{
-"speaker": "Vihara Living Quarters",
-"text": "Vihara mein rehne wale vidyarthi aur bhikshu yahan dhyan, adhyayan aur aapas mein vichar-vimarsh karte the."
-}]
+interactable_id = "courtyard_water"
+station_title = "Courtyard Water Stand"
+station_icon = "💧"
+associated_prop_path = NodePath("../Prop_WaterVesselsPlaced")
+
+[node name="Interact_WritingKitStation" parent="." unique_id=1992019407 instance=ExtResource("14_interactable")]
+position = Vector2(305, 282)
+interactable_id = "writing_kit_station"
+station_title = "Writing Supplies Shelf"
+station_icon = "✍️"
+
+[node name="Interact_JuniorStudentDesk" parent="." unique_id=1992019408 instance=ExtResource("14_interactable")]
+position = Vector2(856, 405)
+interactable_id = "junior_student_desk"
+station_title = "Junior Student Desk"
+station_icon = "📋"
+associated_prop_path = NodePath("../Prop_WritingKitPlaced")
+
+[node name="Interact_EveningBell" parent="." unique_id=1992019409 instance=ExtResource("14_interactable")]
+position = Vector2(576, 165)
+interactable_id = "evening_bell"
+station_title = "Sandhya Ghanta (Evening Bell)"
+station_icon = "🔔"
+
+[node name="Interact_AmbientScholar" parent="." unique_id=1992019410 instance=ExtResource("14_interactable")]
+position = Vector2(656, 229)
+interactable_id = "ambient_scholar"
+station_title = "Resident Scholar"
+station_icon = "👤"

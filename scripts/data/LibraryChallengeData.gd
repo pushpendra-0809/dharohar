@@ -1,186 +1,466 @@
 class_name LibraryChallengeData
-extends RefCounted
+extends Node
 
-const CHALLENGES: Dictionary = {
+const DOMAIN_INFO: Dictionary = {
 	"mathematics": {
-		"title": "Mathematics — Missing Manuscript Cipher",
-		"description": "Reconstruct lost numbers and symbols on ancient palm-leaf mathematical treatises.",
-		"easy": {
-			"title": "Missing Sequence Cipher",
-			"mechanic": "Arithmetic Sequence Completion",
-			"question": "An ancient mathematical palm-leaf fragment records a fundamental arithmetic progression:\n\n2,  4,  6,  ?,  10\n\nWhich number completes the cipher?",
-			"options": [
-				"A) 7",
-				"B) 8",
-				"C) 9",
-				"D) 12"
-			],
-			"correct": 1,
-			"explanation": "In an arithmetic progression with a common difference of +2 (Dvicaya), the value following 6 is 6 + 2 = 8."
-		},
-		"medium": {
-			"title": "Pattern & Clue Deduction",
-			"mechanic": "Recursive Series with Distractor Clues",
-			"question": "A damaged arithmetic manuscript reveals the recursive sequence:\n\n3  →  7  →  15  →  ?  →  63\n\nManuscript Clue: 'At every step, double the prior quantity and add unity (2x + 1).'\n\nWhich value restores the missing leaf?",
-			"options": [
-				"A) 31",
-				"B) 29",
-				"C) 30",
-				"D) 35"
-			],
-			"correct": 0,
-			"explanation": "Applying the recursive rule (2n + 1): 15 × 2 + 1 = 31. Verifying the next term: 31 × 2 + 1 = 63."
-		},
-		"hard": {
-			"title": "Multi-Clue Cipher Reconstruction",
-			"mechanic": "System of Number Theoretic Clues",
-			"question": "Reconstruct the lost numeral 'N' from Nalanda's astronomy treatise using three palm-leaf rules:\n\n1. 'N' is between 40 and 80, and is divisible by both 6 and 8.\n2. Subtracting 12 from 'N' yields a perfect square.\n3. Dividing 'N' by 4 yields the 12 sacred months of the solar year.\n\nWhat is the value of 'N'?",
-			"options": [
-				"A) 48",
-				"B) 72",
-				"C) 56",
-				"D) 64"
-			],
-			"correct": 0,
-			"explanation": "Multiples of LCM(6,8)=24 between 40 and 80 are 48 and 72. 48 - 12 = 36 = 6² (perfect square). 48 / 4 = 12. Thus N = 48."
-		}
+		"name": "Mathematics",
+		"hindi_name": "Ganita (Mathematics)",
+		"title": "MATHEMATICS — THE LOST ARYABHATIYA FOLIO",
+		"subject": "Mathematics & Astronomy Calculations",
+		"symbol": "🔢",
+		"target_title": "Aryabhatiya: Ganitapada",
+		"scholar_clue": "Search for the classical treatise on place-value progression (Sthanat Sthanam Dasha-gunam) and zero authored in the Kusumapura tradition.",
+		"description": "Investigate ancient mathematical folios on decimal place-value, geometry, and root extractions."
 	},
 	"astronomy": {
-		"title": "Astronomy — Ancient Calendar Reconstruction",
-		"description": "Reconstruct ancient calendar manuscripts, seasonal cycles (Ritu Chakra), and astronomical observation records.",
-		"easy": {
-			"title": "Seasonal Cycle (Ritu Chakra)",
-			"mechanic": "Canonical Season Sequence",
-			"question": "Reconstruct the canonical chronological sequence of the Indian seasonal cycle (Ritu Chakra) starting immediately after Spring (Vasanta):",
-			"options": [
-				"A) Grīṣma (Summer) → Varṣā (Monsoon) → Śarat (Autumn) → Hemanta (Pre-winter)",
-				"B) Varṣā (Monsoon) → Grīṣma (Summer) → Śarat (Autumn) → Śiśira (Winter)",
-				"C) Śarat (Autumn) → Grīṣma (Summer) → Varṣā (Monsoon) → Hemanta (Pre-winter)",
-				"D) Hemanta (Pre-winter) → Śiśira (Winter) → Grīṣma (Summer) → Varṣā (Monsoon)"
-			],
-			"correct": 0,
-			"explanation": "The 6 classical Ritus proceed in strict order: Vasanta (Spring) → Grīṣma (Summer) → Varṣā (Monsoon) → Śarat (Autumn) → Hemanta (Pre-winter) → Śiśira (Winter)."
-		},
-		"medium": {
-			"title": "Lunar Month Chronology",
-			"mechanic": "Contextual Lunar Calendar Ordering",
-			"question": "An astronomical manuscript fragment records three consecutive lunar months (Māsa):\n\n• Clue 1: 'The harvest observations occur in Kārtika, exactly following the autumnal equinox month of Āśvina.'\n• Clue 2: 'Mārgaśīrṣa immediately succeeds Kārtika as early frost sets in.'\n\nArrange these three months in correct chronological order:",
-			"options": [
-				"A) Āśvina → Kārtika → Mārgaśīrṣa",
-				"B) Kārtika → Āśvina → Mārgaśīrṣa",
-				"C) Mārgaśīrṣa → Āśvina → Kārtika",
-				"D) Āśvina → Mārgaśīrṣa → Kārtika"
-			],
-			"correct": 0,
-			"explanation": "The standard calendar sequence runs: Āśvina (7th month) → Kārtika (8th month) → Mārgaśīrṣa (9th month)."
-		},
-		"hard": {
-			"title": "Solstitial Ayana Deduction",
-			"mechanic": "Deduction of Missing Solar Cardinal Points",
-			"question": "Reconstruct a torn astronomical ledger documenting the solstitial year (Ayanas):\n\n• Clue 1: 'The Uttarāyana (Northern solar progress) commences at the Winter Solstice in month α and spans 6 solar months.'\n• Clue 2: 'The Dakṣiṇāyana (Southern solar progress) commences at the Summer Solstice in month β.'\n• Clue 3: 'Month α coincides with the winter month Māgha, while Month β precedes the heavy monsoons in Āṣāḍha.'\n\nWhich deduction correctly restores the lost solar turning points?",
-			"options": [
-				"A) α = Māgha (Winter Solstice), β = Āṣāḍha (Summer Solstice); each Ayana spans 3 Ritus (6 months)",
-				"B) α = Caitra (Spring Equinox), β = Āśvina (Autumn Equinox); each Ayana spans 2 Ritus (4 months)",
-				"C) α = Śravaṇa (Monsoon), β = Phālguna (Spring); each Ayana spans 4 Ritus (8 months)",
-				"D) α = Vaiśākha (Summer), β = Kārtika (Autumn); each Ayana spans 1 Ritu (2 months)"
-			],
-			"correct": 0,
-			"explanation": "Classical Indian astronomy divides the year into two Ayanas of 6 months each: Uttarāyana begins at the Winter Solstice (Māgha) and Dakṣiṇāyana begins at the Summer Solstice (Āṣāḍha)."
-		}
+		"name": "Astronomy",
+		"hindi_name": "Khagola (Astronomy)",
+		"title": "ASTRONOMY — THE LOST GNOMON SHADOW RECORD",
+		"subject": "Astronomical Timekeeping & Solar Observation",
+		"symbol": "☀️",
+		"target_title": "Ghati-Chhaya Vivarana",
+		"scholar_clue": "Search for the Nalanda observational record on vertical gnomon (Shanku) shadow progression from dawn to midday.",
+		"description": "Investigate celestial observation folios on planetary orbits, solar timekeeping, and lunar mansions."
 	},
 	"medicine": {
-		"title": "Medicine — Physician's Kit",
-		"description": "Historical apparatus, manuscript preservation, and classical herbal preparation sequences.",
-		"easy": {
-			"title": "Dispensary Apparatus Selection",
-			"mechanic": "Historical Tool Identification",
-			"question": "In Nalanda's Chikitsa (medical) hall, a Vaidya needs to pulverize dry medicinal barks and roots into a fine therapeutic powder (Churna). Which classical tool is used?",
-			"options": [
-				"A) Shalaka (Metallic probe for ocular diagnostics)",
-				"B) Khalva Yantra (Stone/Bronze Mortar and Pestle)",
-				"C) Shringa (Suction horn)",
-				"D) Sandamsha Yantra (Surgical forceps)"
-			],
-			"correct": 1,
-			"explanation": "The Khalva Yantra (mortar and pestle) is the foundational Ayurvedic apparatus for grinding raw botanical substances into fine Churna."
-		},
-		"medium": {
-			"title": "Manuscript Preservation Kit",
-			"mechanic": "Tool Assembly with Distractors",
-			"question": "A student in the medical archive must assemble the 3 core items for writing and safeguarding palm-leaf medical texts (Taadpatra Granthas):",
-			"options": [
-				"A) Seasoned palm leaves, iron stylus (Lekhani), and natural neem/turmeric anti-insect preservative oil",
-				"B) Copper needles, sheepskin parchment, and acidic gall ink",
-				"C) Wet clay tablets, wooden wedge, and beeswax coating",
-				"D) Woven papyrus, goose quill, and animal bone adhesive"
-			],
-			"correct": 0,
-			"explanation": "Taadpatra manuscripts were inscribed using an iron stylus (Lekhani) upon seasoned Palmyra leaves and coated with neem and turmeric oils to repel pests and moisture."
-		},
-		"hard": {
-			"title": "Classical Formulation Sequence",
-			"mechanic": "Multi-Step Process Arrangement",
-			"question": "Reconstruct the historical 4-step preparation and preservation sequence for a classical herbal medicated oil (Sneha Kalpana / Taila Paka):",
-			"options": [
-				"A) 1. Grind herbs into Kalka paste → 2. Combine with liquid (Drava) and base oil → 3. Gentle boiling until moisture evaporates (Paka Siddhi) → 4. Filter and seal in clean jar",
-				"B) 1. Boil raw oil at high heat → 2. Add dry roots directly → 3. Freeze mixture → 4. Strain immediately",
-				"C) 1. Sun-dry raw leaves → 2. Pack in unwashed cloth → 3. Submerge in river water → 4. Boil with honey",
-				"D) 1. Mix herbs with charcoal → 2. Dissolve in hot milk → 3. Filter through sand → 4. Store in open sunlight"
-			],
-			"correct": 0,
-			"explanation": "Classical Sneha Kalpana strictly follows the 4-step ratio: Kalka (herb paste) + Drava (decoction/water) + Sneha (oil), simmered gently until moisture completely evaporates (Paka Siddhi), followed by fine filtration."
-		}
+		"name": "Medicine",
+		"hindi_name": "Ayurveda (Medicine)",
+		"title": "MEDICINE — THE LOST TRIPHALA RASAYANA FOLIO",
+		"subject": "Classical Ayurvedic Herbal Formulations",
+		"symbol": "🌿",
+		"target_title": "Rasayana Tantra: Triphala Kalpana",
+		"scholar_clue": "Search for the Charaka tradition manuscript on the three sacred rejuvenating fruits (Amalaki, Haritaki, Bibhitaki).",
+		"description": "Investigate ancient Ayurvedic folios on herbal combinations, dosha balancing, and rasayana rejuvenation."
 	},
 	"philosophy": {
-		"title": "Philosophy — Contradictory Manuscript",
-		"description": "Analyze arguments, identify logical fallacies (Hetvābhāsa), and resolve philosophical contradictions.",
-		"easy": {
-			"title": "Direct Contradiction Identification",
-			"mechanic": "Premise Inconsistency Check",
-			"question": "Examine two conflicting statements from a debate scroll:\n\n• Statement 1: 'All knowledge obtained through direct perception (Pratyaksha) is eternal and changeless.'\n• Statement 2: 'All physical objects perceived in the world are impermanent (Anitya) and constantly changing.'\n\nWhat is the logical contradiction?",
-			"options": [
-				"A) Statement 1 claims perception produces unchanging knowledge, whereas Statement 2 asserts perceived objects are continually changing",
-				"B) Both statements agree that knowledge cannot be attained",
-				"C) Statement 1 relates only to sound while Statement 2 relates only to taste",
-				"D) There is no contradiction; both statements assert identical truths"
-			],
-			"correct": 0,
-			"explanation": "If the perceived world is intrinsically impermanent and changing (Anitya), direct perception of changing objects cannot produce eternal, changeless knowledge."
-		},
-		"medium": {
-			"title": "Conflicting Premise in Argument",
-			"mechanic": "Argument Evaluation & Conflict Detection",
-			"question": "Analyze the three premises in a debater's thesis on causality:\n\n1. 'Every effect requires an antecedent material and efficient cause (Satkāryavāda).'\n2. 'Clay, water, and the potter's wheel are necessary causes for creating a clay pot.'\n3. 'A finished clay pot can spontaneously materialize out of void without any prior causes.'\n\nWhich premise creates an irreconcilable logical conflict?",
-			"options": [
-				"A) Premise 3 directly violates Premise 1 by asserting an uncaused spontaneous effect",
-				"B) Premise 2 conflicts with Premise 1 by identifying physical tools",
-				"C) Premise 1 is faulty because causes never precede effects",
-				"D) All three premises are logically harmonious and valid"
-			],
-			"correct": 0,
-			"explanation": "Premise 3 asserts that an effect can arise without any prior cause, directly contradicting the core axiom of Premise 1."
-		},
-		"hard": {
-			"title": "Fallacy Identification & Rectification",
-			"mechanic": "Hetvābhāsa (Fallacy) & Syllogistic Correction",
-			"question": "Examine the fallacious thesis: 'Sound is eternal because it is produced by clapping two wooden blocks together.'\n\nIdentify the formal flaw (Hetvābhāsa) and select the correct philosophical resolution:",
-			"options": [
-				"A) Flaw: Contradictory Reason (Viruddha)—production by action proves impermanence, not eternity. Resolution: Sound is impermanent because it is a created effect (Kṛtakatva).",
-				"B) Flaw: Irrelevant Subject (Asiddha). Resolution: Wooden blocks cannot generate audible sound.",
-				"C) Flaw: Circular Reasoning (Ātmāśraya). Resolution: Sound is eternal simply because it is sound.",
-				"D) Flaw: Unproven Example (Sādhyasama). Resolution: Clapping proves sound exists without creation."
-			],
-			"correct": 0,
-			"explanation": "In Indian logic (Nyāya/Buddhist Hetuvidyā), citing 'produced by effort' (Kṛtakatva) to prove 'eternity' is a Viruddha fallacy, because being produced invariably proves impermanence (Anityatva)."
-		}
+		"name": "Philosophy",
+		"hindi_name": "Nyaya (Logic & Epistemology)",
+		"title": "PHILOSOPHY — THE LOST NYAYA SUTRA VARTTIKA",
+		"subject": "Deductive Syllogism & Epistemology",
+		"symbol": "⚖️",
+		"target_title": "Nyaya Sutra Varttika",
+		"scholar_clue": "Search for the Gautama tradition manuscript establishing the 5-limbed syllogism (Pancha-Avayava) and invariable concomitance (Vyapti).",
+		"description": "Investigate philosophical treatises on valid knowledge (Pramana), deduction, and debate rules."
 	}
 }
 
-static func get_challenge(domain: String, difficulty: String) -> Dictionary:
-	var dom = domain.to_lower().strip_edges()
-	var diff = difficulty.to_lower().strip_edges()
-	if CHALLENGES.has(dom):
-		var dom_dict = CHALLENGES[dom]
-		if dom_dict.has(diff):
-			return dom_dict[diff]
-	return {}
+const LEVEL1_MANUSCRIPTS: Dictionary = {
+	"mathematics": [
+		{
+			"id": "m_math_correct",
+			"is_correct": true,
+			"title": "Aryabhatiya: Ganitapada",
+			"author": "Acharya Aryabhata (Kusumapura)",
+			"subject": "Mathematics — Decimal Place-Value & Arithmetic",
+			"symbol": "🔢",
+			"clues": "• Mentions: 'Sthanat sthanam dasha-gunam syat' (tenfold place-value)\n• Outlines square root extraction across even and odd digits\n• Defines circumference ratio approximation 62,832 / 20,000",
+			"excerpt": "“Sthanat sthanam dasha-gunam syat.”\nFrom one place to the next, the numerical value increases tenfold. Herein lies the foundation of positional decimal reckoning, calculation of roots, and the geometry of spheres."
+		},
+		{
+			"id": "m_math_dist1",
+			"is_correct": false,
+			"title": "Sulba Sutras of Baudhayana",
+			"author": "Vedic Altar Geometer Tradition",
+			"subject": "Geometry — Sacred Altar Construction",
+			"symbol": "📐",
+			"clues": "• Focuses on rope measurements (Sulba) for sacrificial hearths\n• Geometric transformation of squares into circles\n• No mention of decimal place-value or zero",
+			"excerpt": "“The diagonal cord of an oblong produces both areas that its horizontal and vertical sides make separately.” (Focuses on altar geometry, not decimal arithmetic)."
+		},
+		{
+			"id": "m_math_dist2",
+			"is_correct": false,
+			"title": "Pingala Chhandah-shastra",
+			"author": "Acharya Pingala",
+			"subject": "Combinatorics — Poetic Meter Permutations",
+			"symbol": "📜",
+			"clues": "• Binary classification of long (Guru) and short (Laghu) syllables\n• Meru Prastara combinatoric mountain\n• Does not cover planetary arithmetic or root extraction",
+			"excerpt": "“Binary expansions of Vedic meters produce structured combinatorial arrays known as the Meru Prastara.”"
+		}
+	],
+	"astronomy": [
+		{
+			"id": "m_astro_correct",
+			"is_correct": true,
+			"title": "Ghati-Chhaya Vivarana",
+			"author": "Nalanda Jyotisha Parishad",
+			"subject": "Astronomy — Gnomon Shadow & Solar Timekeeping",
+			"symbol": "☀️",
+			"clues": "• Outlines vertical Shanku shadow progression across 60 Ghatikas\n• Shortest shadow occurs at exact solar midday (Madhyahna)\n• Cardinal East-West orientation via circular solar bisectors",
+			"excerpt": "“A vertical pillar placed at the center of a circular platform reveals solar time. As the sun reaches zenith at midday, the shadow attains its shortest length.”"
+		},
+		{
+			"id": "m_astro_dist1",
+			"is_correct": false,
+			"title": "Graha-Sphuta Charita",
+			"author": "Surya Siddhanta Epicycle Lineage",
+			"subject": "Astronomy — Epicyclic Planetary Longitudes",
+			"symbol": "🪐",
+			"clues": "• Mathematical epicycles of Jupiter, Mars, and Saturn\n• Focuses on planetary speed deviations rather than gnomon shadows\n• Lacks daily shadow timekeeping tables",
+			"excerpt": "“Planetary velocity varies as celestial spheres traverse mandaparidhi and shighraparidhi epicycles in the high heavens.”"
+		},
+		{
+			"id": "m_astro_dist2",
+			"is_correct": false,
+			"title": "Nakshatra Purana Gatha",
+			"author": "Mythological Narrative Tradition",
+			"subject": "Cosmology — Mythological Lunar Mansions",
+			"symbol": "🌌",
+			"clues": "• Poetic stories of the 27 sisters of Chandra\n• Mythological allegories rather than astronomical measurement\n• No observational calculations",
+			"excerpt": "“King Daksha blessed his twenty-seven daughters, the Nakshatras, to dwell forever in the starry expanse with the Moon.”"
+		}
+	],
+	"medicine": [
+		{
+			"id": "m_med_correct",
+			"is_correct": true,
+			"title": "Rasayana Tantra: Triphala Kalpana",
+			"author": "Charaka Chikitsa Tradition",
+			"subject": "Ayurveda — Rejuvenation & Three Sacred Fruits",
+			"symbol": "🌿",
+			"clues": "• Triphala: Amalaki (Pitta-cooling), Haritaki (Vata-calming), Bibhitaki (Kapha-clearing)\n• Classical decoction (Kwatha) preparation and dosage\n• Cellular vitality and respiratory balance",
+			"excerpt": "“Amalaki, Haritaki, and Bibhitaki in harmonious combination balance the three doshas, cleanse bodily channels, and bestow longevity as a supreme Rasayana.”"
+		},
+		{
+			"id": "m_med_dist1",
+			"is_correct": false,
+			"title": "Shalya Tantra Samhita",
+			"author": "Acharya Sushruta School",
+			"subject": "Surgery — Surgical Incisions & Instruments",
+			"symbol": "✂️",
+			"clues": "• 101 blunt and 20 sharp surgical instruments (Yantras & Shastras)\n• Cauterization and wound suturing techniques\n• Does not cover daily herbal Rasayana tonics",
+			"excerpt": "“The surgeon must master incision, excision, scraping, puncturing, and probing with steady hands and sterile steel.”"
+		},
+		{
+			"id": "m_med_dist2",
+			"is_correct": false,
+			"title": "Agada Tantra: Visha Vijnana",
+			"author": "Toxicology Lineage",
+			"subject": "Toxicology — Poison Antidotes",
+			"symbol": "🐍",
+			"clues": "• Antidotes for venomous serpent bites and scorpion stings\n• Emergency mineral preparations\n• Focuses on acute poisoning, not daily rejuvenation",
+			"excerpt": "“Immediate application of herbal tourniquets and specific antidotes neutralizes serpent venom in the bloodstream.”"
+		}
+	],
+	"philosophy": [
+		{
+			"id": "m_phil_correct",
+			"is_correct": true,
+			"title": "Nyaya Sutra Varttika",
+			"author": "Aksapada Gautama Tradition",
+			"subject": "Philosophy — Deductive Syllogism & Inference",
+			"symbol": "⚖️",
+			"clues": "• 5-Limbed Syllogism: Pratijna, Hetu, Udaharana, Upanaya, Nigamana\n• Establishes Vyapti (invariable concomitance) between smoke and fire\n• Refutation of self-contradiction (Vyaghata) in debate",
+			"excerpt": "“Anumana (inference) derives its validity from Vyapti — the universal and unconditional concomitance between the sign (Hetu) and the sign-bearer (Sadhya).”"
+		},
+		{
+			"id": "m_phil_dist1",
+			"is_correct": false,
+			"title": "Lokayata Tattva",
+			"author": "Charvaka Materialist Lineage",
+			"subject": "Materialism — Denial of Inference",
+			"symbol": "🌾",
+			"clues": "• Asserts only direct sense perception (Pratyaksha) is valid\n• Denies inference and invisible cause-and-effect\n• Directly opposes the 5-limbed Nyaya method",
+			"excerpt": "“Only that which can be directly touched and seen with the eye is real. Inference is merely unproven imagination.”"
+		},
+		{
+			"id": "m_phil_dist2",
+			"is_correct": false,
+			"title": "Mimamsa Karma Deepika",
+			"author": "Jaimini Ritual Lineage",
+			"subject": "Ritualism — Vedic Injunctions & Sacrifices",
+			"symbol": "🔥",
+			"clues": "• Performance rules for seasonal fire offerings\n• Focuses on ritual duty (Dharma) rather than logic proofs\n• Lacks syllogistic debate epistemology",
+			"excerpt": "“Vedic ritual injunctions are eternal commands that must be executed with exact procedural fidelity.”"
+		}
+	]
+}
+
+const LEVEL2_STUDY_DATA: Dictionary = {
+	"mathematics": {
+		"title": "Aryabhata's Place-Value & Mathematical Principles",
+		"study_text": "“Sthanat sthanam dasha-gunam syat” — from one place to the next, the numerical value increases tenfold.\n\nIn our classical treatise, digits are classified strictly into odd (Vishma) and even (Sama) places for calculating square roots (Vargamula).\n\nFurthermore, for a circle with a diameter of 20,000 units, the circumference is established as approximately 62,832 units (giving Pi ≈ 3.1416 as an approximate value).\n\nMultiplication by zero yields zero, and zero added to a quantity leaves it unchanged.",
+		"questions": [
+			{
+				"question": "According to the studied manuscript, what rule defines place-value progression across successive columns?",
+				"options": [
+					"Each successive place increases the numerical value tenfold (Dasha-gunam).",
+					"Values increase in powers of 60 only.",
+					"Values double from left to right.",
+					"Values remain constant across all columns."
+				],
+				"correct": 0
+			},
+			{
+				"question": "What circumference did Aryabhata specify for a circle with a diameter of 20,000 units?",
+				"options": [
+					"62,832 units (approximating Pi as 3.1416)",
+					"22,000 units (approximating Pi as 3.1428)",
+					"31,416 units exactly",
+					"60,000 units without remainder"
+				],
+				"correct": 0
+			}
+		]
+	},
+	"astronomy": {
+		"title": "Principles of Gnomon Shadow Observation (Shanku-Yantra)",
+		"study_text": "A level circular platform is marked with concentric circles (Vritta).\n\nAt exact solar midday (Madhyahna), the sun attains its highest celestial altitude, casting the shortest shadow of the entire day.\n\nThe line connecting the morning shadow touch point on the circle to the afternoon touch point establishes the exact East-West axis (Prachi-Pratichi).\n\nOne full solar day (Ahoratra) is divided into exactly 60 Ghatikas (each Ghatika equal to 24 modern minutes).",
+		"questions": [
+			{
+				"question": "According to the manuscript, when is the vertical gnomon's shadow at its absolute shortest?",
+				"options": [
+					"At exact solar midday (Madhyahna) when the sun reaches zenith.",
+					"At early dawn before the sun rises above the horizon.",
+					"At midnight.",
+					"At evening twilight (Sandhya)."
+				],
+				"correct": 0
+			},
+			{
+				"question": "How is one full day (Ahoratra) divided into classical time units in this text?",
+				"options": [
+					"Into 60 Ghatikas (24 minutes each).",
+					"Into 24 modern hours only.",
+					"Into 100 Ghati units.",
+					"Into 12 solar months."
+				],
+				"correct": 0
+			}
+		]
+	},
+	"medicine": {
+		"title": "The Three Sacred Fruits (Triphala) in Classical Ayurveda",
+		"study_text": "Triphala combines three fruits in balanced harmony:\n\n1. Amalaki (Emblica officinalis) — cooling in potency (Shita-virya), supremely effective for pacifying Pitta dosha, and rich in rejuvenating Rasayana vitality.\n2. Haritaki (Terminalia chebula) — warming, pacifies Vata, cleanses bodily channels, and supports longevity.\n3. Bibhitaki (Terminalia bellirica) — astringent, pacifies Kapha, and clears respiratory channels.\n\nFor daily vitality, the classical texts advise taking the fine powder with warm honey or ghee in the morning, or with warm water at bedtime.",
+		"questions": [
+			{
+				"question": "Which specific fruit in Triphala is noted for its cooling nature and efficacy in pacifying Pitta dosha?",
+				"options": [
+					"Amalaki (Emblica officinalis)",
+					"Bibhitaki",
+					"Haritaki",
+					"Neem bark"
+				],
+				"correct": 0
+			},
+			{
+				"question": "Which triad of fruits constitutes the authentic classical Triphala formulation?",
+				"options": [
+					"Amalaki, Haritaki, and Bibhitaki",
+					"Tulsi, Neem, and Ashwagandha",
+					"Ginger, Black Pepper, and Pippali (Trikatu)",
+					"Brahmi, Shankhpushpi, and Gotu Kola"
+				],
+				"correct": 0
+			}
+		]
+	},
+	"philosophy": {
+		"title": "The Five-Limbed Nyaya Syllogism (Pancha-Avayava)",
+		"study_text": "Valid philosophical inference (Anumana) requires five interconnected limbs:\n\n1. Pratijna — the initial proposition or thesis to be proved.\n2. Hetu — the reason or ground that indicates the thesis.\n3. Udaharana — the universal rule illustrated by a familiar example (as in a kitchen hearth).\n4. Upanaya — the application of that universal rule to the subject.\n5. Nigamana — the concluding certainty that confirms the thesis.\n\nThe inviolable foundation of all inference is Vyapti — the universal, unconditional concomitance between the sign (Hetu: smoke) and the sign-bearer (Sadhya: fire).",
+		"questions": [
+			{
+				"question": "What is the term for the universal, unconditional relationship between Hetu (smoke) and Sadhya (fire)?",
+				"options": [
+					"Vyapti (Invariable Concomitance)",
+					"Pratijna",
+					"Hetvabhasa",
+					"Samsaya"
+				],
+				"correct": 0
+			},
+			{
+				"question": "What is the third limb in the classical 5-limbed Nyaya syllogism?",
+				"options": [
+					"Udaharana (Universal Rule & Example)",
+					"Nigamana (Conclusion)",
+					"Hetu (Reason)",
+					"Pratijna (Thesis)"
+				],
+				"correct": 0
+			}
+		]
+	}
+}
+
+const LEVEL3_MYSTERY_DATA: Dictionary = {
+	"mathematics": {
+		"fragments": [
+			{
+				"id": "f_math_1",
+				"text": "Fragment 1: '...Sthanat sthanam dasha-gunam syat... (Place value tenfold progression)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_math_2",
+				"text": "Fragment 2: '...Vargamula vibhaga vishma sama sthana... (Square root odd-even places)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_math_3",
+				"text": "Fragment 3: '...Khadira wood altar dimensions 36 paces... (Sulba fire altar geometry)'",
+				"is_genuine": false
+			},
+			{
+				"id": "f_math_4",
+				"text": "Fragment 4: '...Three doshas aggravated during Varsha ritu... (Ayurvedic seasonal rain)'",
+				"is_genuine": false
+			}
+		],
+		"scholar_prompt": "Two transcribed scrolls claim to contain the lost Aryabhatiya folio on circumference and diameter. One preserves the true approximation while the other contains an interpolation error.",
+		"candidates": [
+			{
+				"id": "cand_correct",
+				"title": "Folio A — Authentic Aryabhata Transmission",
+				"is_correct": true,
+				"text": "Specifies circumference ratio 62,832 / 20,000 as an approximate (Asanna) value for circular perimeter calculation.",
+				"explanation": "Correct. Aryabhata explicitly termed this value 'Asanna' (approximated ratio ≈ 3.1416)."
+			},
+			{
+				"id": "cand_flawed",
+				"title": "Folio B — Interpolated Crude Approximation",
+				"is_correct": false,
+				"text": "Claims circumference is exactly 3 times the diameter without remainder.",
+				"explanation": "Flawed. A crude integer ratio of 3 ignores Aryabhata's high-precision calculation."
+			}
+		]
+	},
+	"astronomy": {
+		"fragments": [
+			{
+				"id": "f_astro_1",
+				"text": "Fragment 1: '...Madhyahna chhaya laghutama... (Midday shadow is shortest)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_astro_2",
+				"text": "Fragment 2: '...Vritta madhye prachi pratichi nirdharana... (East-West axis on circle)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_astro_3",
+				"text": "Fragment 3: '...Triphala kwatha filtration using fine cotton cloth... (Herbal filter)'",
+				"is_genuine": false
+			},
+			{
+				"id": "f_astro_4",
+				"text": "Fragment 4: '...Nyaya syllogism fourth step Upanaya application... (Logic card)'",
+				"is_genuine": false
+			}
+		],
+		"scholar_prompt": "Two candidate folios describe gnomon shadow calculation. One accounts for true celestial orientation using equal-altitude bisectors, while the other contradicts empirical sky observation.",
+		"candidates": [
+			{
+				"id": "cand_correct",
+				"title": "Folio A — Empirical Gnomon Observation",
+				"is_correct": true,
+				"text": "Accurately determines true North-South meridian using equal-altitude gnomon bisectors on the circular platform.",
+				"explanation": "Correct. The equal-altitude shadow method provides true cardinal orientation."
+			},
+			{
+				"id": "cand_flawed",
+				"title": "Folio B — Uncalibrated Rough Shadow Record",
+				"is_correct": false,
+				"text": "Assumes midday shadows at all latitudes fall identically regardless of solar declination.",
+				"explanation": "Flawed. Shadow length varies with solar declination and observer latitude."
+			}
+		]
+	},
+	"medicine": {
+		"fragments": [
+			{
+				"id": "f_med_1",
+				"text": "Fragment 1: '...Amalaki shita-virya pitta-shamaka... (Amalaki cooling nature)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_med_2",
+				"text": "Fragment 2: '...Haritaki bibhitaki samatva rasayana... (Triphala balanced formulation)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_med_3",
+				"text": "Fragment 3: '...Epicycle radius of Mars at apogee in Jyotisha... (Astronomy table)'",
+				"is_genuine": false
+			},
+			{
+				"id": "f_med_4",
+				"text": "Fragment 4: '...Square root calculation digit division... (Mathematics root)'",
+				"is_genuine": false
+			}
+		],
+		"scholar_prompt": "Two manuscript folios describe the preparation of herbal Rasayana formulations. One maintains classical Charaka purity, while the other incorporates unpurified mineral toxins.",
+		"candidates": [
+			{
+				"id": "cand_correct",
+				"title": "Folio A — Pure Charaka Botanical Formulation",
+				"is_correct": true,
+				"text": "Specifies pure plant-based Triphala decoction with honey and clarified butter according to Charaka Samhita.",
+				"explanation": "Correct. Preserves authentic classical herbal formulation without adulteration."
+			},
+			{
+				"id": "cand_flawed",
+				"title": "Folio B — Adulterated Alchemical Note",
+				"is_correct": false,
+				"text": "Advocates raw unrefined heavy mineral powders without classical Shodhana detoxification.",
+				"explanation": "Flawed. Unpurified mineral compounds are hazardous and contradict classical herbal rasayana safety."
+			}
+		]
+	},
+	"philosophy": {
+		"fragments": [
+			{
+				"id": "f_phil_1",
+				"text": "Fragment 1: '...Pancha-avayava pramana vishleshana... (Five-limbed proof analysis)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_phil_2",
+				"text": "Fragment 2: '...Vyapti sahachara niyamena anumana... (Inference through universal concomitance)'",
+				"is_genuine": true
+			},
+			{
+				"id": "f_phil_3",
+				"text": "Fragment 3: '...Copper gnomon shadow zenith calculation... (Astronomy shadow)'",
+				"is_genuine": false
+			},
+			{
+				"id": "f_phil_4",
+				"text": "Fragment 4: '...Haritaki fruit decoction for kapha... (Medicine herb)'",
+				"is_genuine": false
+			}
+		],
+		"scholar_prompt": "Two philosophical texts address debate methodology (Vada). One adheres strictly to rigorous evidence and refutation of self-contradiction (Vyaghata), while the other allows subjective assertion without proof.",
+		"candidates": [
+			{
+				"id": "cand_correct",
+				"title": "Folio A — Classical Nyaya Vada Shastra",
+				"is_correct": true,
+				"text": "Mandates rigorous 5-limbed demonstration and rejects self-refuting statements (Vyaghata).",
+				"explanation": "Correct. Upholds disciplined epistemological standards of the Nalanda councils."
+			},
+			{
+				"id": "cand_flawed",
+				"title": "Folio B — Sophist Tractate",
+				"is_correct": false,
+				"text": "Claims subjective assertion alone without Vyapti is sufficient in philosophical assembly.",
+				"explanation": "Flawed. Subjective belief without invariable concomitance fails Nyaya standards of valid knowledge."
+			}
+		]
+	}
+}
+
+static func get_domain_info(domain: String) -> Dictionary:
+	var dom = domain.to_lower()
+	return DOMAIN_INFO.get(dom, DOMAIN_INFO["mathematics"])
+
+static func get_level1_manuscripts(domain: String) -> Array:
+	var dom = domain.to_lower()
+	return LEVEL1_MANUSCRIPTS.get(dom, LEVEL1_MANUSCRIPTS["mathematics"])
+
+static func get_level2_study(domain: String) -> Dictionary:
+	var dom = domain.to_lower()
+	return LEVEL2_STUDY_DATA.get(dom, LEVEL2_STUDY_DATA["mathematics"])
+
+static func get_level3_mystery(domain: String) -> Dictionary:
+	var dom = domain.to_lower()
+	return LEVEL3_MYSTERY_DATA.get(dom, LEVEL3_MYSTERY_DATA["mathematics"])

@@ -679,10 +679,10 @@ sprite_texture = ExtResource("51_ok3o3")
 sprite_scale = Vector2(0.042, 0.039)
 dialogue_lines = [{
 "speaker": "Village Elder",
-"text": "Nalanda sirf apne vidwanon se nahi, aas-paas ke gaon ke logon se bhi juda hua hai."
+"text": "Nalanda is connected not only to its scholars, but deeply to the villagers living in the surrounding settlements."
 }, {
 "speaker": "Village Elder",
-"text": "Gaon ke khet aur upaj hi is vishwavidyalaya ke hazaron vidyarthiyon ka ahar bante hain."
+"text": "The produce and harvests from nearby village farms nourish the thousands of scholars residing at this university."
 }]
 quest_id = "farmer_provisions"
 
@@ -693,10 +693,10 @@ sprite_texture = ExtResource("54_lp60u")
 sprite_scale = Vector2(0.029, 0.027)
 dialogue_lines = [{
 "speaker": "Scribe",
-"text": "Yahan ek granth ko ek sthaan se doosre sthaan tak pahunchana bhi gyan ki yatra ka hissa hai."
+"text": "Carrying and delivering manuscripts between courtyards is an integral part of the journey of knowledge."
 }, {
 "speaker": "Scribe",
-"text": "Taadpatra par likhe har akshar ko surakshit rakhna hamara kartavya hai."
+"text": "It is our sacred duty to protect and preserve every single letter inscribed upon these palm leaves."
 }]
 quest_id = "scribe_manuscript"
 
@@ -707,7 +707,7 @@ sprite_texture = ExtResource("52_14dm2")
 sprite_scale = Vector2(0.032, 0.032)
 dialogue_lines = [{
 "speaker": "Fisherman",
-"text": "Is jalashay ka shant jal poore gaon ko jeevan deta hai."
+"text": "The serene waters of this reservoir bring life and sustenance to the entire settlement."
 }]
 
 [node name="NPC_Villager" parent="." unique_id=987704 instance=ExtResource("59_explornpc")]
@@ -716,7 +716,7 @@ sprite_texture = ExtResource("53_guh1u")
 sprite_scale = Vector2(0.023, 0.023)
 dialogue_lines = [{
 "speaker": "Villager",
-"text": "Nalanda Mahavihara ki chhavi door-door tak prasiddh hai."
+"text": "The renown and intellectual legacy of Nalanda Mahavihara shine across distant lands."
 }]
 
 [node name="InteractionPoint_Pond" parent="." unique_id=987802 instance=ExtResource("60_interactpt")]
@@ -725,7 +725,7 @@ point_name = "Village Reservoir"
 prompt_text = "[Press E to Inspect Water]"
 dialogue_lines = [{
 "speaker": "Village Reservoir",
-"text": "Paani Nalanda ke jeevan ka ek mahatvapurn hissa tha. Jal ke bina itni badi basti ka jeevan sambhav nahi tha."
+"text": "Water was essential to daily life at Nalanda. Without abundant fresh water, a monastic community of this scale could not thrive."
 }]
 
 [node name="InteractionPoint_Market" parent="." unique_id=987803 instance=ExtResource("60_interactpt")]
@@ -734,7 +734,7 @@ point_name = "Settlement Market"
 prompt_text = "[Press E to Observe Market]"
 dialogue_lines = [{
 "speaker": "Settlement",
-"text": "Nalanda ka jeevan keval Vishwavidyalaya tak simit nahi tha. Aas-paas ki basti bhi is jeevan ka ek hissa thi."
+"text": "Life at Nalanda extended beyond the university walls. The vibrant neighboring settlement was an inseparable part of this living ecosystem."
 }]
 
 [node name="Item_GrainSack" parent="." unique_id=987901 instance=ExtResource("61_pickupitem")]

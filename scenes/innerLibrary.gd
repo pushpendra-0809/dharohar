@@ -4,6 +4,7 @@ extends Control
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var player = $Player
 @onready var library_mastery_ui = get_node_or_null("LibraryMasteryUI")
+@onready var library_challenge_ui = get_node_or_null("LibraryChallengeUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null

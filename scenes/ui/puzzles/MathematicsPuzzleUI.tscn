@@ -34,7 +34,6 @@ corner_radius_bottom_left = 6
 visible = false
 layer = 10
 script = ExtResource("1_mathscript")
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=987654351]
 visible = false
 anchors_preset = 15
@@ -43,7 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.65)
-
 [node name="PanelContainer" type="Control" parent="." unique_id=987654352]
 visible = false
 layout_mode = 3
@@ -58,7 +56,6 @@ offset_right = 340.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654353]
 layout_mode = 1
 anchors_preset = 15
@@ -67,7 +64,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_parchment_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654354]
 layout_mode = 1
 anchors_preset = 5
@@ -83,7 +79,6 @@ theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 26
 text = "NALANDA NUMBER CHALLENGE"
 horizontal_alignment = 1
-
 [node name="CategoryLabel" type="Label" parent="PanelContainer" unique_id=987654355]
 layout_mode = 0
 offset_left = 32.0
@@ -94,7 +89,6 @@ theme_override_colors/font_color = Color(0.85, 0.68, 0.42, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 17
 text = "Question 1 of 5 — Multiplication"
-
 [node name="QuestionBox" type="Panel" parent="PanelContainer" unique_id=987654365]
 layout_mode = 0
 offset_left = 28.0
@@ -102,7 +96,6 @@ offset_top = 88.0
 offset_right = 652.0
 offset_bottom = 175.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_question_bg")
-
 [node name="QuestionLabel" type="Label" parent="PanelContainer/QuestionBox" unique_id=987654356]
 layout_mode = 1
 anchors_preset = 15
@@ -120,7 +113,6 @@ theme_override_font_sizes/font_size = 19
 text = "A scholar has 4 bundles of manuscripts. Each bundle contains 12 manuscripts. How many manuscripts does the scholar have in total?"
 autowrap_mode = 2
 vertical_alignment = 1
-
 [node name="AnswerSlotsContainer" type="HBoxContainer" parent="PanelContainer" unique_id=987654357]
 layout_mode = 1
 anchors_preset = 8
@@ -135,7 +127,6 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-
 [node name="TilesGridContainer" type="GridContainer" parent="PanelContainer" unique_id=987654358]
 layout_mode = 1
 anchors_preset = 8
@@ -152,7 +143,6 @@ grow_vertical = 2
 theme_override_constants/h_separation = 8
 theme_override_constants/v_separation = 8
 columns = 10
-
 [node name="OperatorsContainer" type="HBoxContainer" parent="PanelContainer" unique_id=987654359]
 layout_mode = 1
 anchors_preset = 8
@@ -168,7 +158,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 14
 alignment = 1
-
 [node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654360]
 layout_mode = 1
 anchors_preset = 7
@@ -185,6 +174,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 18
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654361]
 layout_mode = 1
@@ -203,7 +194,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 18
 text = "Submit"
-
 [node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654362]
 layout_mode = 1
 anchors_preset = 7
@@ -221,7 +211,6 @@ theme_override_colors/font_color = Color(0.82, 0.38, 0.22, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 18
 text = "Reset"
-
 [node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654363]
 layout_mode = 1
 anchors_preset = 1
@@ -236,7 +225,6 @@ theme_override_colors/font_color = Color(0.82, 0.38, 0.22, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 20
 text = "X"
-
 [node name="InfoButton" type="Button" parent="PanelContainer" unique_id=987654364]
 layout_mode = 1
 offset_left = 16.0
@@ -247,6 +235,5 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("3_pixelify_bold")
 theme_override_font_sizes/font_size = 18
 text = "i"
-
 [node name="PuzzleInfoPanel" parent="." instance=ExtResource("4_infoui")]
 visible = false

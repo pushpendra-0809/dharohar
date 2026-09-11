@@ -67,7 +67,7 @@ func _start_teacher2_interaction() -> void:
 		if GameState and GameState.philosophy_puzzle_completed:
 			var seq: Array = [
 				{"speaker": "Acharya", "text": "Outstanding work! You have demonstrated thoughtful reasoning and scholarly wisdom."},
-				{"speaker": "Acharya", "text": "Aapka abhyas safal raha. Ab courtyard mein jakar Mastery Mentor (Teacher 3) se milein aur apni building challenges shuru karein."}
+				{"speaker": "Acharya", "text": "Your foundational study is complete. Proceed to the central courtyard, speak with the Mastery Mentor, and undertake your trials across Nalanda."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -86,7 +86,7 @@ func _start_teacher2_interaction() -> void:
 		if GameState and GameState.astronomy_puzzle_completed:
 			var seq: Array = [
 				{"speaker": "Acharya", "text": "Outstanding work! You have proven your skill in tracking the stars."},
-				{"speaker": "Acharya", "text": "Aapka abhyas safal raha. Ab courtyard mein jakar Mastery Mentor (Teacher 3) se milein aur apni building challenges shuru karein."}
+				{"speaker": "Acharya", "text": "Your foundational study is complete. Proceed to the central courtyard, speak with the Mastery Mentor, and undertake your trials across Nalanda."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -105,7 +105,7 @@ func _start_teacher2_interaction() -> void:
 		if GameState and GameState.medicine_puzzle_completed:
 			var seq: Array = [
 				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of traditional herbal knowledge."},
-				{"speaker": "Acharya", "text": "Aapka abhyas safal raha. Ab courtyard mein jakar Mastery Mentor (Teacher 3) se milein aur apni building challenges shuru karein."}
+				{"speaker": "Acharya", "text": "Your foundational study is complete. Proceed to the central courtyard, speak with the Mastery Mentor, and undertake your trials across Nalanda."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:
@@ -124,7 +124,7 @@ func _start_teacher2_interaction() -> void:
 		if GameState and GameState.math_puzzle_completed:
 			var seq: Array = [
 				{"speaker": "Acharya", "text": "Outstanding work! You have proven your mastery of numbers."},
-				{"speaker": "Acharya", "text": "Aapka abhyas safal raha. Ab courtyard mein jakar Mastery Mentor (Teacher 3) se milein aur apni building challenges shuru karein."}
+				{"speaker": "Acharya", "text": "Your foundational study is complete. Proceed to the central courtyard, speak with the Mastery Mentor, and undertake your trials across Nalanda."}
 			]
 			dialogue_manager.start_dialogue(seq, _on_dialogue_finished)
 		else:

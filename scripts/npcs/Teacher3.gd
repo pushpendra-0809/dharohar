@@ -106,20 +106,20 @@ func _start_teacher3_interaction() -> void:
 	# Check unlock condition
 	if GameState and not GameState.are_teacher2_tasks_completed():
 		var locked_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Pehle Acharya ke sath apne vishay ka abhyas poora karo, tab yahan aana."}
+			{"speaker": "Mastery Mentor", "text": "Complete your foundational study with the Acharya first, then return here to begin your mastery trials."}
 		]
 		dialogue_manager.start_dialogue(locked_seq, _on_dialogue_finished)
 		return
 		
-	# First Introduction Dialogue — Detroit-Inspired Story Intro with NPC EXP Gating
+	# First Introduction Dialogue — Story Intro with NPC EXP Gating
 	if GameState and not GameState.has_met_teacher3:
 		var intro_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Tumne gyan seekha."},
-			{"speaker": "Mastery Mentor", "text": "Phir tumne uska prayog kiya."},
-			{"speaker": "Mastery Mentor", "text": "Ab Nalanda tumse ek aur cheez maangta hai — nirnay."},
-			{"speaker": "Mastery Mentor", "text": "Lekin Stupa, Library aur Vihara ke dharohar sthalon tak pahunchne ke liye tumhe pehle Nalanda ke logon aur aangan ki sewa karni hogi."},
-			{"speaker": "Mastery Mentor", "text": "Gaon ke kisaan, lekhak, vidyarthi aur vidwanon ki sahayata karke anubhav prapt karo. Jaise-jaise tumhara anubhav badhega, ek-ek karke dharohar sthal khulte jayenge."},
-			{"speaker": "Mastery Mentor", "text": "Tumhare nirnay hi tumhari asli pariksha honge."}
+			{"speaker": "Mastery Mentor", "text": "You have acquired foundational knowledge."},
+			{"speaker": "Mastery Mentor", "text": "You have put it into practice."},
+			{"speaker": "Mastery Mentor", "text": "Now Nalanda asks one further virtue of you — discernment and decision."},
+			{"speaker": "Mastery Mentor", "text": "Before you may enter the inner heritage sanctums of the Stupa, Library, and Vihara, you must first serve Nalanda's community."},
+			{"speaker": "Mastery Mentor", "text": "Assist the village farmers, scribes, students, and scholars across the campus. As your experience grows, each heritage sanctuary will open to you."},
+			{"speaker": "Mastery Mentor", "text": "Your choices and discernment will be your true test."}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			if GameState:
@@ -131,8 +131,8 @@ func _start_teacher3_interaction() -> void:
 	# Replay / Post-completion state
 	if GameState and GameState.nalanda_complete:
 		var post_comp_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Nalanda ki gyan-yatra tumne safaltapoorvak poori kar li hai."},
-			{"speaker": "Mastery Mentor", "text": "Yahan ka gyan, vivek aur dharohar sada tumhare sath rahegi."}
+			{"speaker": "Mastery Mentor", "text": "You have successfully completed the scholarly journey of Nalanda."},
+			{"speaker": "Mastery Mentor", "text": "May the wisdom, discernment, and heritage of this great sanctuary forever guide your path."}
 		]
 		dialogue_manager.start_dialogue(post_comp_seq, _on_dialogue_finished)
 		return
@@ -140,15 +140,15 @@ func _start_teacher3_interaction() -> void:
 	# Final Story & Completion Sequence
 	if GameState and GameState.final_mastery_complete:
 		var final_story_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Bahut achha."},
-			{"speaker": "Mastery Mentor", "text": "Tumne Nalanda mein keval pustakon se gyan nahi paaya."},
-			{"speaker": "Mastery Mentor", "text": "Tumne seekha, prashn kiya, prayog kiya aur apni soch se samasyaon ka samadhan kiya."},
-			{"speaker": "Mastery Mentor", "text": "Stupa, Library aur Vihara ki chunautiyon mein tumne vivekpurna nirnay liye."},
-			{"speaker": "Mastery Mentor", "text": "Phir antim mastery mein tumne apne chune hue vishay ka sarvashrestha pradarshan kiya."},
-			{"speaker": "Mastery Mentor", "text": "Yahi Nalanda ki asli parampara hai."},
-			{"speaker": "Mastery Mentor", "text": "Yahan gyan sirf yaad karne ke liye nahi tha — use samajhne, us par vichar karne aur duniya mein prayog karne ke liye tha."},
-			{"speaker": "Mastery Mentor", "text": "Ab tum bhi Nalanda ki is gyan-yatra ka ek gauravshali hissa ban chuke ho."},
-			{"speaker": "Player", "text": "Main samajh gaya hoon ki gyan ki yatra kabhi sirf ek uttar par khatam nahi hoti."}
+			{"speaker": "Mastery Mentor", "text": "Magnificent."},
+			{"speaker": "Mastery Mentor", "text": "In Nalanda, you did not merely absorb passive words from scrolls."},
+			{"speaker": "Mastery Mentor", "text": "You learned, questioned, experimented, and reasoned independently to solve problems."},
+			{"speaker": "Mastery Mentor", "text": "Across the Stupa, Library, and Vihara, you made mindful and discerning decisions."},
+			{"speaker": "Mastery Mentor", "text": "And in the Final Mastery Trial, you demonstrated the pinnacle of your chosen discipline."},
+			{"speaker": "Mastery Mentor", "text": "This is the true spirit of Nalanda's eternal tradition."},
+			{"speaker": "Mastery Mentor", "text": "Knowledge here was never for mere recitation — it was to understand, reflect upon, and apply for the welfare of the world."},
+			{"speaker": "Mastery Mentor", "text": "You are now a proud bearer of Nalanda's living heritage."},
+			{"speaker": "Player", "text": "I understand now that the pursuit of truth never ends with a single answer."}
 		]
 		dialogue_manager.start_dialogue(final_story_seq, func():
 			if GameState:
@@ -162,10 +162,10 @@ func _start_teacher3_interaction() -> void:
 	if GameState and GameState.has_all_three_scrolls():
 		if not GameState.final_mastery_unlocked:
 			var completion_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "Teen sthanon se tum teen scroll lekar aaye ho."},
-				{"speaker": "Mastery Mentor", "text": "Lekin in scrolls ki asli keemat unmein nahi hai."},
-				{"speaker": "Mastery Mentor", "text": "Tumne jo nirnay liye, jo galtiyan ki, jo prashn pooche aur jo seekha — wahi tumhari asli pariksha hai."},
-				{"speaker": "Mastery Mentor", "text": "Ab tumhari antim mastery shuru hogi."}
+				{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+				{"speaker": "Mastery Mentor", "text": "Yet the true worth of these scrolls lies not in the parchment itself."},
+				{"speaker": "Mastery Mentor", "text": "The decisions you made, the errors you corrected, the questions you asked, and the insights you earned — that was your true trial."},
+				{"speaker": "Mastery Mentor", "text": "Now, your Final Mastery Trial commences."}
 			]
 			dialogue_manager.start_dialogue(completion_seq, func():
 				if GameState:
@@ -176,8 +176,8 @@ func _start_teacher3_interaction() -> void:
 			return
 		else:
 			var post_unlock_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "Ab samay hai antim mastery trial ka. Yeh trial tumhare chune hue vishay par adharit hai."},
-				{"speaker": "Mastery Mentor", "text": "Dossier ka dhyan se adhyayan karo aur sabse santulit yojana ka chayan karo."}
+				{"speaker": "Mastery Mentor", "text": "The hour has arrived for the Final Mastery Trial based upon your chosen discipline."},
+				{"speaker": "Mastery Mentor", "text": "Examine the dossier carefully and formulate the most balanced and enlightened plan."}
 			]
 			dialogue_manager.start_dialogue(post_unlock_seq, func():
 				_on_dialogue_finished()
@@ -187,7 +187,7 @@ func _start_teacher3_interaction() -> void:
 
 	# State A: Player does NOT have all three Scrolls yet
 	var reminder_seq: Array = [
-		{"speaker": "Mastery Mentor", "text": "Nalanda ke logon ki sahayata karo aur anubhav prapt karo.\nStupa, Library aur Vihara ki teenon Scrolls lekar mere paas wapas aana."}
+		{"speaker": "Mastery Mentor", "text": "Assist the people of Nalanda and gain experience.\nReturn to me once you have gathered all three Heritage Scrolls of the Stupa, Library, and Vihara."}
 	]
 	dialogue_manager.start_dialogue(reminder_seq, _on_dialogue_finished)
 

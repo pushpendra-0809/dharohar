@@ -1,4 +1,4 @@
-class_name StupaMasteryUI
+class_name StupaChallengeUI
 extends CanvasLayer
 
 signal challenge_completed(domain: String, difficulty: String)
@@ -81,7 +81,6 @@ var phil_slots_container: HBoxContainer = null
 var phil_feedback_label: Label = null
 
 func _ready() -> void:
-	add_to_group("stupa_mastery_ui")
 	add_to_group("stupa_challenge_ui")
 	visible = false
 	if color_rect:

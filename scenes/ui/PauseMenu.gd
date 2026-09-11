@@ -14,6 +14,8 @@ enum PendingAction {
 var _pending_action: PendingAction = PendingAction.NONE
 
 @onready var menu_box: Control = $MenuBox
+@onready var volume_slider: HSlider = $MenuBox/VBoxContainer/VolumeContainer/VolumeSlider
+@onready var volume_value_label: Label = $MenuBox/VBoxContainer/VolumeContainer/Header/VolValue
 @onready var btn_resume: Button = $MenuBox/VBoxContainer/BtnResume
 @onready var btn_experiences: Button = $MenuBox/VBoxContainer/BtnExperiences
 @onready var btn_main_menu: Button = $MenuBox/VBoxContainer/BtnMainMenu
@@ -24,6 +26,13 @@ func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	if menu_box:
 		menu_box.visible = false
+		
+	if volume_slider:
+		var current_vol: float = AudioManager.get_volume_percent() if AudioManager else 100.0
+		volume_slider.value = current_vol
+		_update_volume_label(current_vol)
+		if not volume_slider.value_changed.is_connected(_on_volume_changed):
+			volume_slider.value_changed.connect(_on_volume_changed)
 		
 	var buttons: Array[Button] = [btn_resume, btn_experiences, btn_main_menu, btn_exit_game]
 	for btn in buttons:
@@ -54,6 +63,10 @@ func is_confirmation_open() -> bool:
 func open_pause_menu() -> void:
 	get_tree().paused = true
 	GameState.lock_player_movement()
+	if volume_slider and AudioManager:
+		var current_vol: float = AudioManager.get_volume_percent()
+		volume_slider.value = current_vol
+		_update_volume_label(current_vol)
 	if menu_box:
 		menu_box.visible = true
 	if btn_resume:
@@ -130,3 +143,12 @@ func _on_button_hover(btn: Control, zoom_in: bool) -> void:
 	var tw := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	var target_scale := Vector2(1.05, 1.05) if zoom_in else Vector2(1.0, 1.0)
 	tw.tween_property(btn, "scale", target_scale, 0.1)
+
+func _on_volume_changed(val: float) -> void:
+	if AudioManager:
+		AudioManager.set_volume_percent(val)
+	_update_volume_label(val)
+
+func _update_volume_label(val: float) -> void:
+	if volume_value_label:
+		volume_value_label.text = "%d%%" % int(round(val))

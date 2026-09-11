@@ -58,7 +58,6 @@ corner_radius_bottom_left = 6
 layer = 60
 visible = false
 script = ExtResource("3_finalmasterygd")
-
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
@@ -66,7 +65,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.75)
-
 [node name="MainPanel" type="Panel" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -80,14 +78,12 @@ offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
-
 [node name="Header" type="Control" parent="MainPanel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 56.0
 grow_horizontal = 2
-
 [node name="TitleLabel" type="Label" parent="MainPanel/Header"]
 layout_mode = 1
 anchors_preset = 10
@@ -100,7 +96,6 @@ theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 18
 text = "FINAL MASTERY TRIAL"
 horizontal_alignment = 1
-
 [node name="SubtitleLabel" type="Label" parent="MainPanel/Header"]
 layout_mode = 1
 anchors_preset = 10
@@ -113,6 +108,8 @@ theme_override_fonts/font = ExtResource("2_oswaldreg")
 theme_override_font_sizes/font_size = 13
 text = "Demonstrate Mastery of Your Chosen Domain"
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="CloseButton" type="Button" parent="MainPanel/Header"]
 layout_mode = 1
@@ -128,7 +125,6 @@ theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 14
 text = "✕"
-
 [node name="TrialView" type="Control" parent="MainPanel"]
 layout_mode = 1
 anchors_preset = 15
@@ -137,7 +133,6 @@ anchor_bottom = 1.0
 offset_top = 56.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="DossierPanel" type="Panel" parent="MainPanel/TrialView"]
 layout_mode = 1
 anchors_preset = 10
@@ -148,7 +143,6 @@ offset_right = -20.0
 offset_bottom = 224.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
-
 [node name="NarrativeText" type="RichTextLabel" parent="MainPanel/TrialView"]
 layout_mode = 1
 anchors_preset = 10
@@ -165,7 +159,6 @@ theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 13
 bbcode_enabled = true
 text = "Narrative introduction..."
-
 [node name="CluesText" type="RichTextLabel" parent="MainPanel/TrialView"]
 layout_mode = 1
 anchors_preset = 10
@@ -182,7 +175,6 @@ theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 12
 bbcode_enabled = true
 text = "Clues text..."
-
 [node name="PromptLabel" type="Label" parent="MainPanel/TrialView"]
 layout_mode = 1
 anchors_preset = 10
@@ -196,7 +188,6 @@ theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
 theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 13
 text = "Formulate the comprehensive plan:"
-
 [node name="OptionsContainer" type="VBoxContainer" parent="MainPanel/TrialView"]
 layout_mode = 1
 anchors_preset = 12
@@ -210,7 +201,6 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 8
-
 [node name="OptionA" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -222,7 +212,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "Option A"
 autowrap_mode = 2
-
 [node name="OptionB" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -234,7 +223,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "Option B"
 autowrap_mode = 2
-
 [node name="OptionC" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 2
@@ -246,7 +234,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "Option C"
 autowrap_mode = 2
-
 [node name="FeedbackView" type="Control" parent="MainPanel"]
 visible = false
 layout_mode = 1
@@ -259,7 +246,6 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="FeedbackPanel" type="Panel" parent="MainPanel/FeedbackView"]
 layout_mode = 1
 anchors_preset = 15
@@ -268,7 +254,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
-
 [node name="FeedbackStatus" type="Label" parent="MainPanel/FeedbackView"]
 layout_mode = 1
 anchors_preset = 10
@@ -281,7 +266,6 @@ theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 18
 text = "★ MASTER SYNTHESIS ACHIEVED ★"
 horizontal_alignment = 1
-
 [node name="FeedbackText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
 layout_mode = 1
 anchors_preset = 10
@@ -298,7 +282,6 @@ theme_override_font_sizes/normal_font_size = 14
 theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
 text = "Feedback text..."
-
 [node name="ExplanationText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
 layout_mode = 1
 anchors_preset = 10
@@ -317,7 +300,6 @@ theme_override_font_sizes/bold_font_size = 13
 theme_override_font_sizes/italics_font_size = 13
 bbcode_enabled = true
 text = "Explanation text..."
-
 [node name="BtnAction" type="Button" parent="MainPanel/FeedbackView"]
 custom_minimum_size = Vector2(340, 50)
 layout_mode = 1

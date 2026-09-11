@@ -13,6 +13,7 @@ const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
 @onready var teacher3 = get_node_or_null("Teacher3")
 @onready var player = $Player
 @onready var scholar_reasoning_ui = get_node_or_null("ScholarReasoningUI")
+@onready var stupa_challenge_ui = get_node_or_null("StupaChallengeUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null

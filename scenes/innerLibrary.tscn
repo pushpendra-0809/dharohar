@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="15_explornpc"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="16_scholar_ui"]
 [ext_resource type="PackedScene" uid="uid://cq2kfu4o8w8vc" path="res://scenes/ui/PlayerProgressUI.tscn" id="17_prog_ui"]
+[ext_resource type="PackedScene" uid="uid://dhulax1pnt6ez" path="res://scenes/ui/LibraryChallengeUI.tscn" id="18_librarychallengeui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 130)
@@ -218,7 +219,7 @@ point_name = "Dharmaganja Library"
 prompt_text = "[Press E to Deliver Manuscript]"
 dialogue_lines = [{
 "speaker": "Dharmaganja Library",
-"text": "Yahan granthon aur hastlikhit pustakon ka adhyayan aur sanrakshan kiya jata tha."
+"text": "Here, sacred manuscripts and hand-copied texts were studied and preserved with profound care."
 }]
 
 [node name="NPC_Scholar" parent="." unique_id=1892019402 instance=ExtResource("15_explornpc")]
@@ -229,3 +230,5 @@ quest_id = "scholar_question"
 [node name="ScholarReasoningUI" parent="." unique_id=1892019403 instance=ExtResource("16_scholar_ui")]
 
 [node name="PlayerProgressUI" parent="." unique_id=1892019404 instance=ExtResource("17_prog_ui")]
+[node name="LibraryChallengeUI" parent="." unique_id=987654395 instance=ExtResource("18_librarychallengeui")]
+

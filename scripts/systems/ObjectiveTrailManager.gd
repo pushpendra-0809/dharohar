@@ -46,7 +46,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_passed += delta
-	if not is_active:
+	if not is_active or (GameState and GameState.is_movement_locked):
 		visible = false
 		return
 		
@@ -253,6 +253,13 @@ func _sync_with_game_state() -> void:
 	if not GameState:
 		return
 		
+	# Disable trails inside inner Vihara / landmark exploration buildings
+	var cur_scene = get_tree().current_scene if get_tree() else null
+	if cur_scene and (cur_scene.name == "InnerVihar" or cur_scene.name == "innerVihar" or "vihar" in cur_scene.name.to_lower()):
+		clear_objective()
+		visible = false
+		return
+
 	# 1. Check for Active Side Quests First
 	if GameState.has_method("is_side_quest_active"):
 		for q_id in ["farmer_provisions", "scribe_manuscript", "stupa_caretaker", "vihara_supplies", "missing_student", "scholar_question"]:

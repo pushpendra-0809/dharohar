@@ -87,6 +87,14 @@ func complete_stupa_story_chapter(choice_id: String = "") -> void:
 	check_building_unlocks()
 	quest_state_changed.emit()
 
+func complete_stupa_mastery() -> void:
+	stupa_complete = true
+	stupa_scroll_earned = true
+	stupa_mastery_completed = true
+	check_building_unlocks()
+	quest_state_changed.emit()
+
+
 
 const STUPA_EXP_REWARDS: Dictionary = {
 	"easy": 25,
@@ -180,6 +188,14 @@ func complete_library_story_chapter(choice_id: String = "") -> void:
 	check_building_unlocks()
 	quest_state_changed.emit()
 
+func complete_library_mastery() -> void:
+	library_complete = true
+	library_scroll_earned = true
+	library_mastery_completed = true
+	check_building_unlocks()
+	quest_state_changed.emit()
+
+
 
 const LIBRARY_EXP_REWARDS: Dictionary = {
 	"easy": 25,
@@ -269,6 +285,13 @@ func is_vihara_completed() -> bool:
 
 func complete_vihara_story_chapter(choice_id: String = "") -> void:
 	vihara_story_choice = choice_id
+	vihara_complete = true
+	vihara_scroll_earned = true
+	vihara_mastery_completed = true
+	check_building_unlocks()
+	quest_state_changed.emit()
+
+func complete_vihara_mastery() -> void:
 	vihara_complete = true
 	vihara_scroll_earned = true
 	vihara_mastery_completed = true

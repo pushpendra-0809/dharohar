@@ -3,23 +3,34 @@ extends Control
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var player = $Player
-@onready var vihara_mastery_ui = get_node_or_null("ViharaMasteryUI")
+@onready var objective_hud = get_node_or_null("ViharaObjectiveHUD")
+@onready var completion_ui = get_node_or_null("ViharaCompletionUI")
 
-var dialogue_manager: Node = null
-var pause_manager: Node = null
+var dialogue_manager: DialogueManager = null
+var pause_manager: PauseManager = null
+var vihara_manager: ViharaManager = null
 
 func _ready() -> void:
 	dialogue_manager = DialogueManager.new()
 	pause_manager = PauseManager.new()
+	vihara_manager = ViharaManager.new()
 	
 	add_child(dialogue_manager)
 	add_child(pause_manager)
+	add_child(vihara_manager)
 	
 	if dialogue_ui and dialogue_ui.has_method("setup"):
 		dialogue_ui.setup(dialogue_manager)
 	if pause_manager and pause_manager.has_method("setup"):
 		pause_manager.call("setup", dialogue_manager, null, null, pause_menu_ui)
 		
+	if vihara_manager and vihara_manager.has_method("setup"):
+		vihara_manager.setup(dialogue_manager, objective_hud, completion_ui)
+		
+	for interactable in get_tree().get_nodes_in_group("vihara_interactables"):
+		if interactable.has_method("setup"):
+			interactable.setup(dialogue_manager, vihara_manager)
+			
 	for point in get_tree().get_nodes_in_group("interaction_points"):
 		if point.has_method("setup_manager"):
 			point.setup_manager(dialogue_manager)

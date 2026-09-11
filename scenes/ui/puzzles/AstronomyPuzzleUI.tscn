@@ -34,7 +34,6 @@ corner_radius_bottom_left = 6
 visible = false
 layer = 10
 script = ExtResource("1_astroscript")
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=987654401]
 visible = false
 anchors_preset = 15
@@ -43,7 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.70)
-
 [node name="PanelContainer" type="Control" parent="." unique_id=987654402]
 visible = false
 layout_mode = 3
@@ -58,7 +56,6 @@ offset_right = 360.0
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654403]
 layout_mode = 1
 anchors_preset = 15
@@ -67,7 +64,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_astro_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654404]
 layout_mode = 1
 anchors_preset = 5
@@ -83,7 +79,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 26
 text = "NALANDA SKY WATCH — ASTRONOMY"
 horizontal_alignment = 1
-
 [node name="PuzzleHeaderLabel" type="Label" parent="PanelContainer" unique_id=987654405]
 layout_mode = 0
 offset_left = 32.0
@@ -94,6 +89,8 @@ theme_override_colors/font_color = Color(0.85, 0.78, 0.55, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 16
 text = "PUZZLE 1 / 5 — Triangular Celestial Alignment"
+
+autowrap_mode = 3
 
 [node name="InstructionsLabel" type="Label" parent="PanelContainer" unique_id=987654406]
 layout_mode = 0
@@ -106,6 +103,8 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 text = "Observe the night sky. Select and connect the three main stars that form the scholar's triangle."
 
+autowrap_mode = 3
+
 [node name="SkyPanel" type="Panel" parent="PanelContainer" unique_id=987654407]
 layout_mode = 0
 offset_left = 32.0
@@ -113,7 +112,6 @@ offset_top = 100.0
 offset_right = 412.0
 offset_bottom = 370.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sky_bg")
-
 [node name="CluesBox" type="Panel" parent="PanelContainer" unique_id=987654408]
 layout_mode = 0
 offset_left = 422.0
@@ -121,7 +119,6 @@ offset_top = 100.0
 offset_right = 688.0
 offset_bottom = 370.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_sky_bg")
-
 [node name="CluesTitleLabel" type="Label" parent="PanelContainer/CluesBox" unique_id=987654409]
 layout_mode = 0
 offset_left = 12.0
@@ -132,7 +129,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 text = "OBSERVATION CLUES:"
-
 [node name="CluesContainer" type="VBoxContainer" parent="PanelContainer/CluesBox" unique_id=987654410]
 layout_mode = 1
 anchors_preset = 15
@@ -145,7 +141,6 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 8
-
 [node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654411]
 layout_mode = 1
 anchors_preset = 7
@@ -162,6 +157,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 17
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="ExplanationLabel" type="Label" parent="PanelContainer" unique_id=987654412]
 layout_mode = 1
@@ -181,7 +178,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 autowrap_mode = 2
-
 [node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654413]
 layout_mode = 1
 anchors_preset = 7
@@ -199,7 +195,6 @@ theme_override_colors/font_color = Color(0.45, 0.75, 0.96, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "SUBMIT"
-
 [node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654414]
 layout_mode = 1
 anchors_preset = 7
@@ -217,7 +212,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "RESET"
-
 [node name="HintButton" type="Button" parent="PanelContainer" unique_id=987654415]
 layout_mode = 1
 anchors_preset = 7
@@ -235,7 +229,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "HINT"
-
 [node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654416]
 layout_mode = 1
 anchors_preset = 1
@@ -250,7 +243,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 20
 text = "X"
-
 [node name="InfoButton" type="Button" parent="PanelContainer" unique_id=987654417]
 layout_mode = 1
 offset_left = 16.0
@@ -261,6 +253,5 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "i"
-
 [node name="PuzzleInfoPanel" parent="." instance=ExtResource("3_infoui")]
 visible = false

@@ -32,7 +32,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		if event.keycode == KEY_P or event.keycode == KEY_TAB:
+		if event.keycode == KEY_P:
 			# Check if typing or movement locked by dialogue/quiz
 			var d_active: bool = false
 			var scene = get_tree().current_scene

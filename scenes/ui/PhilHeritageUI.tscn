@@ -33,7 +33,6 @@ corner_radius_bottom_left = 6
 visible = false
 layer = 10
 script = ExtResource("1_philheritagescript")
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=987654901]
 visible = false
 anchors_preset = 15
@@ -42,7 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.65)
-
 [node name="PanelContainer" type="Control" parent="." unique_id=987654902]
 visible = false
 layout_mode = 3
@@ -57,7 +55,6 @@ offset_right = 370.0
 offset_bottom = 260.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654903]
 layout_mode = 1
 anchors_preset = 15
@@ -66,7 +63,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_phil_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654904]
 layout_mode = 1
 anchors_preset = 5
@@ -82,7 +78,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 24
 text = "PHILOSOPHY"
 horizontal_alignment = 1
-
 [node name="SubtitleLabel" type="Label" parent="PanelContainer" unique_id=987654905]
 layout_mode = 1
 anchors_preset = 5
@@ -99,6 +94,8 @@ theme_override_font_sizes/font_size = 16
 text = "Anvīkṣikī — The Search for Knowledge & Wisdom"
 horizontal_alignment = 1
 
+autowrap_mode = 3
+
 [node name="CardCounterLabel" type="Label" parent="PanelContainer" unique_id=987654906]
 layout_mode = 0
 offset_left = 30.0
@@ -109,7 +106,6 @@ theme_override_colors/font_color = Color(0.95, 0.75, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 text = "PHILOSOPHY LESSON 1 / 10"
-
 [node name="CardBox" type="Panel" parent="PanelContainer" unique_id=987654907]
 layout_mode = 0
 offset_left = 30.0
@@ -117,7 +113,6 @@ offset_top = 80.0
 offset_right = 710.0
 offset_bottom = 356.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="CardTitleLabel" type="Label" parent="PanelContainer/CardBox" unique_id=987654908]
 layout_mode = 1
 anchors_preset = 10
@@ -131,7 +126,6 @@ theme_override_colors/font_color = Color(0.96, 0.88, 0.55, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "THE SEARCH FOR KNOWLEDGE"
-
 [node name="CardContentLabel" type="Label" parent="PanelContainer/CardBox" unique_id=987654909]
 layout_mode = 1
 anchors_preset = 15
@@ -147,7 +141,6 @@ theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 autowrap_mode = 2
-
 [node name="TeacherBox" type="Panel" parent="PanelContainer" unique_id=987654910]
 layout_mode = 0
 offset_left = 30.0
@@ -155,7 +148,6 @@ offset_top = 364.0
 offset_right = 710.0
 offset_bottom = 444.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="TeacherLabel" type="Label" parent="PanelContainer/TeacherBox" unique_id=987654911]
 layout_mode = 1
 anchors_preset = 15
@@ -171,7 +163,6 @@ theme_override_colors/font_color = Color(0.95, 0.65, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 13.5
 autowrap_mode = 2
-
 [node name="BackButton" type="Button" parent="PanelContainer" unique_id=987654912]
 layout_mode = 1
 anchors_preset = 2
@@ -186,7 +177,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "BACK"
-
 [node name="SkipButton" type="Button" parent="PanelContainer" unique_id=987654914]
 layout_mode = 1
 anchors_preset = 2
@@ -201,7 +191,6 @@ theme_override_colors/font_color = Color(0.85, 0.65, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "SKIP"
-
 [node name="ContinueButton" type="Button" parent="PanelContainer" unique_id=987654913]
 layout_mode = 1
 anchors_preset = 3

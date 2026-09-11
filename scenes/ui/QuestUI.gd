@@ -14,9 +14,15 @@ extends CanvasLayer
 @onready var exp_toast_amount: Label = get_node_or_null("ExpToast/VBox/ToastAmount")
 @onready var exp_timer: Timer = get_node_or_null("ExpToast/ExpTimer")
 
+var _is_objective_active: bool = false
+var _show_on_quest_update: bool = false
+
 func _ready() -> void:
 	add_to_group("quest_ui")
 	
+	if panel_box:
+		panel_box.visible = false # Hidden by default when opening game
+		
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
@@ -35,23 +41,78 @@ func _ready() -> void:
 		
 	if exp_toast:
 		exp_toast.visible = false
+
+func _process(_delta: float) -> void:
+	if not panel_box:
+		return
 		
-	update_quest_ui()
+	if _is_any_popup_or_dialog_active():
+		if panel_box.visible:
+			panel_box.visible = false
+	else:
+		if _show_on_quest_update and not panel_box.visible:
+			panel_box.visible = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		if event.keycode == KEY_O: # Press 'O' to toggle objective HUD
+			if not _is_any_popup_or_dialog_active():
+				get_viewport().set_input_as_handled()
+				_toggle_objective_display()
+
+func _toggle_objective_display() -> void:
+	if not panel_box:
+		return
+	if panel_box.visible:
+		panel_box.visible = false
+		_show_on_quest_update = false
+	else:
+		_show_on_quest_update = true
+		update_quest_ui()
+		panel_box.visible = true
+
+func _is_any_popup_or_dialog_active() -> bool:
+	if not GameState:
+		return true
+	if GameState.is_movement_locked:
+		return true
+		
+	var dev = get_node_or_null("/root/DevModeManager")
+	if dev and "is_menu_open" in dev and dev.is_menu_open:
+		return true
+		
+	var popup_groups := [
+		"dialogue_ui", "pause_menu", "pause_menu_ui",
+		"stupa_challenge_ui", "library_challenge_ui", "vihara_challenge_ui",
+		"final_mastery_ui", "quiz_ui", "scholar_reasoning_ui",
+		"cutscene_ui", "nalanda_completion_ui", "astro_heritage_ui",
+		"math_heritage_ui", "med_heritage_ui", "phil_heritage_ui",
+		"logic_heritage_ui", "knowledge_book_ui", "confirmation_dialog"
+	]
+	
+	for g in popup_groups:
+		var nodes = get_tree().get_nodes_in_group(g)
+		for n in nodes:
+			if is_instance_valid(n) and n.visible:
+				if n.has_node("MainPanel") and n.get_node("MainPanel").visible:
+					return true
+				if n.has_node("ColorRect") and n.get_node("ColorRect").visible:
+					return true
+				if not n.has_node("MainPanel") and not n.has_node("ColorRect") and n.visible:
+					return true
+					
+	return false
 
 func _on_movement_locked(locked: bool) -> void:
 	if locked:
 		if panel_box:
 			panel_box.visible = false
 	else:
-		update_quest_ui()
+		if _show_on_quest_update:
+			update_quest_ui()
 
 func update_quest_ui() -> void:
-	if not GameState:
-		if panel_box:
-			panel_box.visible = false
-		return
-		
-	if GameState.is_movement_locked:
+	if not GameState or _is_any_popup_or_dialog_active():
 		if panel_box:
 			panel_box.visible = false
 		return
@@ -73,7 +134,7 @@ func update_quest_ui() -> void:
 		var q_reward: int = GameState.SIDE_QUEST_EXP_REWARDS.get(active_q_id, 50)
 		var obj_text: String = GameState.get_active_side_quest_objective()
 		
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = q_title.to_upper()
@@ -89,7 +150,7 @@ func update_quest_ui() -> void:
 		
 	# 2. Main Storyline Progression / Idle State
 	if GameState.has_met_teacher3:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "STORY MASTERY"
@@ -133,7 +194,7 @@ func update_quest_ui() -> void:
 	elif GameState.has_visited_university:
 		if GameState.are_teacher2_tasks_completed():
 			if not GameState.has_met_teacher3:
-				if panel_box:
+				if panel_box and _show_on_quest_update:
 					panel_box.visible = true
 				if title_label:
 					title_label.text = "OBJECTIVE"
@@ -145,8 +206,7 @@ func update_quest_ui() -> void:
 					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 					exp_stats_label.visible = true
 			else:
-				# University Exploration Mode -> Show side quest invitation with EXP stats
-				if panel_box:
+				if panel_box and _show_on_quest_update:
 					panel_box.visible = true
 				if title_label:
 					title_label.text = "NALANDA EXPLORATION"
@@ -158,7 +218,7 @@ func update_quest_ui() -> void:
 					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 					exp_stats_label.visible = true
 		else:
-			if panel_box:
+			if panel_box and _show_on_quest_update:
 				panel_box.visible = true
 			if title_label:
 				title_label.text = "OBJECTIVE"
@@ -170,7 +230,7 @@ func update_quest_ui() -> void:
 				exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 				exp_stats_label.visible = true
 	elif GameState.teacher_admitted:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "OBJECTIVE"
@@ -182,7 +242,7 @@ func update_quest_ui() -> void:
 			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 			exp_stats_label.visible = true
 	elif GameState.water_quest_completed or GameState.university_location_revealed:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "OBJECTIVE"
@@ -194,7 +254,7 @@ func update_quest_ui() -> void:
 			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 			exp_stats_label.visible = true
 	elif GameState.has_water:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "OBJECTIVE"
@@ -206,7 +266,7 @@ func update_quest_ui() -> void:
 			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 			exp_stats_label.visible = true
 	elif GameState.merchant_water_quest_started:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "OBJECTIVE"
@@ -218,7 +278,7 @@ func update_quest_ui() -> void:
 			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
 			exp_stats_label.visible = true
 	else:
-		if panel_box:
+		if panel_box and _show_on_quest_update:
 			panel_box.visible = true
 		if title_label:
 			title_label.text = "OBJECTIVE"
@@ -249,6 +309,7 @@ func _on_side_quest_completed(quest_id: String) -> void:
 		if exp_timer:
 			exp_timer.start(3.2)
 			
+	_show_on_quest_update = true
 	update_quest_ui()
 
 func _on_exp_awarded(amount: int, _current_exp: int, _req: int, did_level_up: bool) -> void:

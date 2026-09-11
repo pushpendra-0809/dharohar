@@ -1,4 +1,4 @@
-class_name LibraryMasteryUI
+class_name LibraryChallengeUI
 extends CanvasLayer
 
 signal challenge_completed(domain: String, difficulty: String)
@@ -52,8 +52,8 @@ signal ui_closed()
 @onready var btn_l3_verify_frags: Button = $MainPanel/Views/Level3View/BtnVerifyFrags
 @onready var l3_decision_panel: Control = $MainPanel/Views/Level3View/DecisionPanel
 @onready var l3_decision_prompt: Label = $MainPanel/Views/Level3View/DecisionPanel/PromptLabel
-@onready var l3_cand_a_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidateA
-@onready var l3_cand_b_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidateB
+@onready var l3_cand_a_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidatesBox/CandidateA
+@onready var l3_cand_b_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidatesBox/CandidateB
 
 @onready var level_complete_view: Control = $MainPanel/Views/LevelCompleteView
 @onready var lvl_comp_title: Label = $MainPanel/Views/LevelCompleteView/Title
@@ -290,7 +290,9 @@ func _setup_level1() -> void:
 		
 	var dom_info = LibraryChallengeData.get_domain_info(current_domain)
 	if l1_clue_label:
-		l1_clue_label.text = "🔍 SCHOLAR'S INQUIRY:\n" + dom_info.get("scholar_clue", "") + "\n(Symbol: " + dom_info.get("symbol", "") + " | Subject: " + dom_info.get("subject", "") + ")"
+		l1_clue_label.text = "🔍 SCHOLAR'S INQUIRY:
+" + dom_info.get("scholar_clue", "") + "
+(Symbol: " + dom_info.get("symbol", "") + " | Subject: " + dom_info.get("subject", "") + ")"
 		
 	for child in l1_shelf_container.get_children():
 		child.queue_free()
@@ -300,25 +302,72 @@ func _setup_level1() -> void:
 	
 	for m in manuscripts:
 		var m_btn = Button.new()
-		m_btn.custom_minimum_size = Vector2(170, 110)
-		m_btn.text = "📜 " + m.get("symbol", "") + "\n" + m.get("title", "") + "\n[" + m.get("author", "") + "]"
-		m_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		m_btn.add_theme_font_size_override("font_size", 12)
+		m_btn.custom_minimum_size = Vector2(205, 160)
 		m_btn.set_meta("manuscript_data", m)
 		
 		var sb = StyleBoxFlat.new()
-		sb.bg_color = Color(0.22, 0.14, 0.1, 0.95)
-		sb.border_color = Color(0.75, 0.55, 0.25)
+		sb.bg_color = Color(0.2, 0.13, 0.09, 0.95)
+		sb.border_color = Color(0.8, 0.62, 0.3)
 		sb.border_width_bottom = 3
 		sb.border_width_top = 2
 		sb.border_width_left = 2
 		sb.border_width_right = 2
-		sb.corner_radius_top_left = 6
-		sb.corner_radius_top_right = 6
-		sb.corner_radius_bottom_left = 6
-		sb.corner_radius_bottom_right = 6
+		sb.corner_radius_top_left = 8
+		sb.corner_radius_top_right = 8
+		sb.corner_radius_bottom_left = 8
+		sb.corner_radius_bottom_right = 8
+		sb.content_margin_left = 10
+		sb.content_margin_right = 10
+		sb.content_margin_top = 8
+		sb.content_margin_bottom = 8
 		m_btn.add_theme_stylebox_override("normal", sb)
 		
+		var hover_sb = sb.duplicate()
+		hover_sb.bg_color = Color(0.28, 0.18, 0.12, 0.98)
+		hover_sb.border_color = Color(1.0, 0.85, 0.45)
+		m_btn.add_theme_stylebox_override("hover", hover_sb)
+		
+		var card_vbox = VBoxContainer.new()
+		card_vbox.set_anchors_preset(Control.PRESET_FULL_RECT)
+		card_vbox.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_vbox.add_theme_constant_override("separation", 6)
+		card_vbox.alignment = BoxContainer.ALIGNMENT_CENTER
+		
+		var icon_lbl = Label.new()
+		icon_lbl.text = "📜 " + m.get("symbol", "")
+		icon_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		icon_lbl.add_theme_font_size_override("font_size", 18)
+		icon_lbl.add_theme_color_override("font_color", Color(1.0, 0.85, 0.35))
+		icon_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_vbox.add_child(icon_lbl)
+		
+		var title_lbl = Label.new()
+		title_lbl.text = m.get("title", "")
+		title_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		title_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		title_lbl.add_theme_font_size_override("font_size", 13)
+		title_lbl.add_theme_color_override("font_color", Color(1.0, 0.95, 0.85))
+		title_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_vbox.add_child(title_lbl)
+		
+		var author_lbl = Label.new()
+		author_lbl.text = "[" + m.get("author", "") + "]"
+		author_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		author_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		author_lbl.add_theme_font_size_override("font_size", 11)
+		author_lbl.add_theme_color_override("font_color", Color(0.85, 0.75, 0.6))
+		author_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_vbox.add_child(author_lbl)
+		
+		var hint_lbl = Label.new()
+		hint_lbl.text = "✦ Click to Inspect ✦"
+		hint_lbl.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		hint_lbl.add_theme_font_size_override("font_size", 10)
+		hint_lbl.add_theme_color_override("font_color", Color(0.7, 0.65, 0.55))
+		hint_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		card_vbox.add_child(hint_lbl)
+		
+		m_btn.add_child(card_vbox)
 		m_btn.pressed.connect(_on_l1_inspect_manuscript.bind(m))
 		_setup_hover(m_btn)
 		l1_shelf_container.add_child(m_btn)

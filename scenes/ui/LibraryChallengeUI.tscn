@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dhulax1pnt6ez"]
+[gd_scene format=3 uid="uid://dhulax1pnt6e0"]
 
-[ext_resource type="Script" path="res://scenes/ui/LibraryMasteryUI.gd" id="1_librarychallenge"]
+[ext_resource type="Script" path="res://scenes/ui/LibraryChallengeUI.gd" id="1_librarychallenge"]
 [ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_oswald_reg"]
 
@@ -62,10 +62,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -340.0
-offset_top = -240.0
-offset_right = 340.0
-offset_bottom = 240.0
+offset_left = -350.0
+offset_top = -230.0
+offset_right = 350.0
+offset_bottom = 230.0
 grow_horizontal = 2
 grow_vertical = 2
 [node name="Panel" type="Panel" parent="MainPanel" unique_id=987654398]
@@ -129,7 +129,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -220.0
 offset_top = 46.0
-offset_right = -50.0
+offset_right = -20.0
 offset_bottom = 66.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(1, 0.4, 0.4, 1)
@@ -241,7 +241,7 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 60.0
+offset_bottom = 74.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_box")
 [node name="ClueLabel" type="Label" parent="MainPanel/Views/Level1View/ClueBox" unique_id=987654415]
@@ -264,8 +264,8 @@ autowrap_mode = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 70.0
-offset_bottom = 90.0
+offset_top = 84.0
+offset_bottom = 104.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
@@ -278,8 +278,8 @@ autowrap_mode = 3
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 95.0
-offset_bottom = 220.0
+offset_top = 110.0
+offset_bottom = 285.0
 grow_horizontal = 2
 alignment = 1
 theme_override_constants/separation = 20

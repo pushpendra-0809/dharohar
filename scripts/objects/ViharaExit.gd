@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if _player_in_range and not _is_transitioning:
-		if event.is_action_pressed("interact"):
+		if event.is_action_pressed("interact") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E):
 			get_viewport().set_input_as_handled()
 			_trigger_university_return()
 

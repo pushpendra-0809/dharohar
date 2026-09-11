@@ -50,6 +50,7 @@
 [ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
+[ext_resource type="PackedScene" uid="uid://dhulax1pnt6ey" path="res://scenes/ui/StupaChallengeUI.tscn" id="51_stupachallengeui"]
 [ext_resource type="PackedScene" uid="uid://biob8wae51661" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
 [ext_resource type="PackedScene" uid="uid://cex2h1i3mlxrk" path="res://scenes/npcs/Teacher3.tscn" id="53_teacher3scene"]
 [ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
@@ -652,10 +653,10 @@ sprite_texture = ExtResource("40_monk")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
 "speaker": "Stupa Caretaker",
-"text": "Yeh stupa keval pathar ki rachna nahi. Yeh yahan ke jeevan aur parampara ka ek mahatvapurn hissa hai."
+"text": "This Stupa is not merely a stone monument. It is a living sanctuary of tradition, prayer, and monastic devotion."
 }, {
 "speaker": "Stupa Caretaker",
-"text": "Yahan prarthana aur shanti ka vatavaran vidyarthiyon ko ekagratha pradan karta hai."
+"text": "The atmosphere of serenity and contemplative prayer here grants students deep focus and inner calm."
 }]
 quest_id = "stupa_caretaker"
 
@@ -666,10 +667,10 @@ sprite_texture = ExtResource("43_qsrvs")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
 "speaker": "Vihara Worker",
-"text": "Vihara mein rehne wale vidyarthiyon aur bhikshuson ke liye har din bahut saare kaam sambhalne padte hain."
+"text": "Dozens of daily tasks must be coordinated to support the monks and scholars living in the Vihara."
 }, {
 "speaker": "Vihara Worker",
-"text": "Nalanda ki yeh sundar eetain aur kothriyan sadiyon ki mehnat se bani hain."
+"text": "These magnificent brick courtyards and monastic cells were crafted through centuries of dedicated labor."
 }]
 quest_id = "vihara_supplies"
 
@@ -680,10 +681,10 @@ sprite_texture = ExtResource("41_8td27")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
 "speaker": "Senior Student",
-"text": "Nalanda mein har din naye logon aur naye vicharon se milne ka mauka milta hai."
+"text": "Every single day at Nalanda brings opportunities to meet diverse minds and engage with fresh perspectives."
 }, {
 "speaker": "Senior Student",
-"text": "Tarka aur samvad hi yahan ke shastra-arth ka mool aadhar hain."
+"text": "Rigorous logic and open debate (Shastrartha) form the true foundation of philosophical inquiry here."
 }]
 quest_id = "missing_student"
 
@@ -694,10 +695,10 @@ sprite_texture = ExtResource("42_qsrvs")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
 "speaker": "Scholar",
-"text": "Ek achha vidwan keval jo padhta hai usse yaad nahi rakhta. Woh us par prashn bhi karta hai."
+"text": "A true scholar does not merely memorize what is read. One must critically question, analyze, and verify it."
 }, {
 "speaker": "Scholar",
-"text": "Dharmaganja ke teeno bhawan gyan ka anant sagar hain."
+"text": "The three majestic library towers of Dharmaganja house an endless ocean of timeless wisdom."
 }]
 quest_id = "scholar_question"
 
@@ -708,7 +709,7 @@ sprite_texture = ExtResource("45_0kcse")
 sprite_scale = Vector2(0.036, 0.036)
 dialogue_lines = [{
 "speaker": "Student",
-"text": "Acharya Silabhadra aur Acharya Dharmapala ke path anmol hain."
+"text": "The teachings of Acharya Silabhadra and Acharya Dharmapala are priceless treasures for all seekers."
 }]
 
 [node name="InteractionPoint_Stupa" parent="." unique_id=987811 instance=ExtResource("48_interactpt")]
@@ -717,7 +718,7 @@ point_name = "Great Stupa"
 prompt_text = "[Press E to Contemplate]"
 dialogue_lines = [{
 "speaker": "Great Stupa",
-"text": "Yeh stupa Nalanda ke pavitra aur mahatvapurn sthalon mein se ek hai."
+"text": "This Stupa is one of the most sacred and revered monuments across all of Nalanda."
 }]
 
 [node name="InteractionPoint_Vihara" parent="." unique_id=987813 instance=ExtResource("48_interactpt")]
@@ -726,7 +727,7 @@ point_name = "Vihara Monastic Cells"
 prompt_text = "[Press E to Observe Cells]"
 dialogue_lines = [{
 "speaker": "Vihara",
-"text": "Vihara vidyarthiyon aur bhikshuson ke rehne, padhne aur charcha karne ke sthaan the."
+"text": "Viharas served as living quarters, study halls, and assembly spaces for scholars and resident monks."
 }]
 
 [node name="InteractionPoint_WritingArea" parent="." unique_id=987814 instance=ExtResource("48_interactpt")]
@@ -735,10 +736,12 @@ point_name = "Manuscript Scribe Station"
 prompt_text = "[Press E to Examine Scribe Desk]"
 dialogue_lines = [{
 "speaker": "Manuscript Desk",
-"text": "Ek granth ko likhna, padhna aur sambhal kar rakhna gyan ki parampara ko aage badhana tha."
+"text": "Inscribing, studying, and preserving sacred manuscripts carries forward the eternal continuum of wisdom."
 }]
 
 [node name="ScholarReasoningUI" parent="." unique_id=987920 instance=ExtResource("50_scholarui")]
+
+[node name="StupaChallengeUI" parent="." unique_id=987654350 instance=ExtResource("51_stupachallengeui")]
 
 [node name="Item_StupaLamp" parent="." unique_id=987911 instance=ExtResource("49_pickupitem")]
 position = Vector2(955, 348)

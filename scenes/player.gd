@@ -17,6 +17,7 @@ var last_flip_h: bool = false
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 func _ready() -> void:
+	add_to_group("player")
 	if GameState:
 		if not GameState.player_movement_locked.is_connected(_on_movement_locked):
 			GameState.player_movement_locked.connect(_on_movement_locked)

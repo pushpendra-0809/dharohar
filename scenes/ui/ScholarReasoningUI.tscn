@@ -57,7 +57,6 @@ corner_radius_bottom_left = 4
 visible = false
 layer = 15
 script = ExtResource("1_scholarui")
-
 [node name="PanelBox" type="Control" parent="."]
 visible = false
 layout_mode = 3
@@ -72,7 +71,6 @@ offset_right = 340.0
 offset_bottom = 225.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="Background" type="Panel" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 15
@@ -81,7 +79,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 5
@@ -97,6 +94,8 @@ theme_override_font_sizes/font_size = 18
 theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
 text = "A SCHOLAR'S QUESTION — MANUSCRIPT CLASSIFICATION"
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="StoryDesc" type="Label" parent="PanelBox"]
 layout_mode = 1
@@ -114,6 +113,8 @@ theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 1)
 text = "Match these three classical treatises to their respective branches of learning:"
 horizontal_alignment = 1
 
+autowrap_mode = 3
+
 [node name="CardsContainer" type="HBoxContainer" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 5
@@ -125,23 +126,19 @@ offset_right = 315.0
 offset_bottom = 166.0
 grow_horizontal = 2
 theme_override_constants/separation = 12
-
 [node name="Card1" type="PanelContainer" parent="PanelBox/CardsContainer"]
 custom_minimum_size = Vector2(202, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
-
 [node name="Margin" type="MarginContainer" parent="PanelBox/CardsContainer/Card1"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
-
 [node name="VBox" type="VBoxContainer" parent="PanelBox/CardsContainer/Card1/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 2
-
 [node name="Name" type="Label" parent="PanelBox/CardsContainer/Card1/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -149,7 +146,6 @@ theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 text = "1. Āryabhaṭīya"
 horizontal_alignment = 1
-
 [node name="Author" type="Label" parent="PanelBox/CardsContainer/Card1/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -157,7 +153,6 @@ theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
 text = "Author: Āryabhaṭa"
 horizontal_alignment = 1
-
 [node name="Subject" type="Label" parent="PanelBox/CardsContainer/Card1/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -165,23 +160,19 @@ theme_override_font_sizes/font_size = 11
 theme_override_colors/font_color = Color(0.75, 0.7, 0.6, 1)
 text = "Topic: Mathematics & Stars"
 horizontal_alignment = 1
-
 [node name="Card2" type="PanelContainer" parent="PanelBox/CardsContainer"]
 custom_minimum_size = Vector2(202, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
-
 [node name="Margin" type="MarginContainer" parent="PanelBox/CardsContainer/Card2"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
-
 [node name="VBox" type="VBoxContainer" parent="PanelBox/CardsContainer/Card2/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 2
-
 [node name="Name" type="Label" parent="PanelBox/CardsContainer/Card2/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -189,7 +180,6 @@ theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 text = "2. Caraka Saṁhitā"
 horizontal_alignment = 1
-
 [node name="Author" type="Label" parent="PanelBox/CardsContainer/Card2/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -197,7 +187,6 @@ theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
 text = "Author: Ācārya Caraka"
 horizontal_alignment = 1
-
 [node name="Subject" type="Label" parent="PanelBox/CardsContainer/Card2/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -205,23 +194,19 @@ theme_override_font_sizes/font_size = 11
 theme_override_colors/font_color = Color(0.75, 0.7, 0.6, 1)
 text = "Topic: Healing & Āyurveda"
 horizontal_alignment = 1
-
 [node name="Card3" type="PanelContainer" parent="PanelBox/CardsContainer"]
 custom_minimum_size = Vector2(202, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card")
-
 [node name="Margin" type="MarginContainer" parent="PanelBox/CardsContainer/Card3"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 6
-
 [node name="VBox" type="VBoxContainer" parent="PanelBox/CardsContainer/Card3/Margin"]
 layout_mode = 2
 theme_override_constants/separation = 2
-
 [node name="Name" type="Label" parent="PanelBox/CardsContainer/Card3/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -229,7 +214,6 @@ theme_override_font_sizes/font_size = 14
 theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
 text = "3. Nyāya Sūtra"
 horizontal_alignment = 1
-
 [node name="Author" type="Label" parent="PanelBox/CardsContainer/Card3/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -237,7 +221,6 @@ theme_override_font_sizes/font_size = 12
 theme_override_colors/font_color = Color(0.85, 0.8, 0.7, 1)
 text = "Author: Akṣapāda Gautama"
 horizontal_alignment = 1
-
 [node name="Subject" type="Label" parent="PanelBox/CardsContainer/Card3/Margin/VBox"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_oswald")
@@ -245,7 +228,6 @@ theme_override_font_sizes/font_size = 11
 theme_override_colors/font_color = Color(0.75, 0.7, 0.6, 1)
 text = "Topic: Logic & Debate"
 horizontal_alignment = 1
-
 [node name="FeedbackLabel" type="Label" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 5
@@ -262,6 +244,8 @@ theme_override_colors/font_color = Color(1, 0.9, 0.6, 1)
 text = "Select the correct canonical classification for the manuscripts above:"
 horizontal_alignment = 1
 
+autowrap_mode = 3
+
 [node name="OptionsContainer" type="VBoxContainer" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 7
@@ -276,7 +260,6 @@ offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 8
-
 [node name="OptionA" type="Button" parent="PanelBox/OptionsContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -287,7 +270,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
 text = "A.  1: Gaṇita & Jyotiṣa   •   2: Āyurveda   •   3: Tarka & Nyāya"
-
 [node name="OptionB" type="Button" parent="PanelBox/OptionsContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -298,7 +280,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
 text = "B.  1: Āyurveda   •   2: Gaṇita   •   3: Sāhitya"
-
 [node name="OptionC" type="Button" parent="PanelBox/OptionsContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -309,7 +290,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
 text = "C.  1: Śilpakalā   •   2: Nāṭyaśāstra   •   3: Dhanurveda"
-
 [node name="OptionD" type="Button" parent="PanelBox/OptionsContainer"]
 custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
@@ -320,7 +300,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_hover")
 text = "D.  1: Rāja-nīti   •   2: Saṅgīta   •   3: Jyotiṣa"
-
 [node name="CloseButton" type="Button" parent="PanelBox"]
 layout_mode = 1
 anchors_preset = 7

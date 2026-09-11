@@ -20,7 +20,13 @@ func setup(manager: DialogueManager) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dialogue_box and dialogue_box.visible and _dialogue_manager and _dialogue_manager.is_active():
-		if event.is_action_pressed("interact") or event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("interact") or event.is_action_pressed("ui_accept") or (event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_E or event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE)):
+			get_viewport().set_input_as_handled()
+			_dialogue_manager.advance_dialogue()
+
+func _input(event: InputEvent) -> void:
+	if dialogue_box and dialogue_box.visible and _dialogue_manager and _dialogue_manager.is_active():
+		if event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_E or event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE):
 			get_viewport().set_input_as_handled()
 			_dialogue_manager.advance_dialogue()
 
@@ -34,7 +40,7 @@ func _on_dialogue_step_changed(speaker: String, text: String) -> void:
 	if text_label:
 		text_label.text = text
 	if continue_label:
-		continue_label.text = "[Press E to Continue]"
+		continue_label.text = "[Press E / Enter to Continue]"
 
 func _on_dialogue_ended() -> void:
 	hide_dialogue()

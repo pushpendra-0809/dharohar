@@ -1,0 +1,235 @@
+[gd_scene format=3 uid="uid://dprymppmyo02w"]
+
+[ext_resource type="Script" path="res://scenes/ui/ViharaObjectiveHUD.gd" id="1_hud"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_reg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+bg_color = Color(0.12, 0.08, 0.05, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.65, 0.3, 0.9)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info_btn"]
+bg_color = Color(0.25, 0.16, 0.08, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.85, 0.4, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
+bg_color = Color(0.11, 0.08, 0.05, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.75, 0.35, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 14
+shadow_color = Color(0, 0, 0, 0.8)
+
+[node name="ViharaObjectiveHUD" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_hud")
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -380.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 205.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 8
+[node name="VBox" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+[node name="HeaderHBox" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+alignment = 1
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBox/HeaderHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 13
+text = "✦ VIHARA — THE EVENING BELL ✦"
+horizontal_alignment = 1
+[node name="DevInfoBtn" type="Button" parent="PanelContainer/MarginContainer/VBox/HeaderHBox"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+tooltip_text = "Dev Guide: How to Play Vihara"
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_info_btn")
+text = "i"
+[node name="HeldItemLabel" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.7, 0.7, 1)
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "🎒 CARRYING: (Hands free)"
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+[node name="Task1Label" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "[ ] 1. Light the Study Lamps"
+[node name="Task2Label" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "[ ] 2. Deliver Astronomy Manuscript"
+[node name="Task3Label" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "[ ] 3. Arrange Water Vessels"
+[node name="Task4Label" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "[ ] 4. Prepare Junior Study Space"
+[node name="Task5Label" type="Label" parent="PanelContainer/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_reg")
+theme_override_font_sizes/font_size = 11
+text = "🔒 [ ] 5. Evening Bell (Prepare Vihara first)"
+
+autowrap_mode = 3
+
+[node name="GuideModal" type="Control" parent="."]
+visible = false
+z_index = 50
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+[node name="Overlay" type="ColorRect" parent="GuideModal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.75)
+[node name="Panel" type="PanelContainer" parent="GuideModal"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -340.0
+offset_top = -240.0
+offset_right = 340.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_modal")
+[node name="Margin" type="MarginContainer" parent="GuideModal/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
+[node name="VBox" type="VBoxContainer" parent="GuideModal/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 10
+[node name="TopBar" type="HBoxContainer" parent="GuideModal/Panel/Margin/VBox"]
+layout_mode = 2
+[node name="GuideTitle" type="Label" parent="GuideModal/Panel/Margin/VBox/TopBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 16
+text = "ℹ️ DEV GUIDE — HOW TO PLAY VIHARA (THE EVENING BELL)"
+
+autowrap_mode = 3
+
+[node name="BtnCloseModal" type="Button" parent="GuideModal/Panel/Margin/VBox/TopBar"]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 2
+text = "✕"
+[node name="HSeparator" type="HSeparator" parent="GuideModal/Panel/Margin/VBox"]
+layout_mode = 2
+[node name="Scroll" type="ScrollContainer" parent="GuideModal/Panel/Margin/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+[node name="ContentVBox" type="VBoxContainer" parent="GuideModal/Panel/Margin/VBox/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+[node name="OverviewLabel" type="RichTextLabel" parent="GuideModal/Panel/Margin/VBox/Scroll/ContentVBox"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_reg")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+text = "[color=#f0d080][b]EXPERIENCE GOAL:[/b][/color]
+Prepare Nalanda's residential monastery before the evening prayer & study bell rings. Complete all 4 community preparation tasks to unlock and ring the Evening Bell."
+[node name="TasksLabel" type="RichTextLabel" parent="GuideModal/Panel/Margin/VBox/Scroll/ContentVBox"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("3_reg")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+fit_content = true
+text = "[color=#ffd700][b]TASKS & LOCATIONS:[/b][/color]
+
+[color=#ffaa44]🪔 1. Light the Study Lamps[/color]
+• Go to [b]Oil Lamps Depot[/b] (North-East) → Pick up brass oil lamp.
+• Deliver to [b]Study Room Desk[/b] (East room) for Student Jinamitra.
+
+[color=#ffaa44]📜 2. Deliver Astronomy Manuscript[/color]
+• Go to [b]Senior Scribe Bodhiruchi[/b] (North terrace) → Pick up manuscript.
+• Deliver to [b]Astronomy Scholar Varaha[/b] (North-West cell).
+
+[color=#ffaa44]🏺 3. Arrange Water Vessels[/color]
+• Go to [b]Water Depot[/b] (South-West) → Pick up fresh water vessels.
+• Place on [b]Courtyard Water Stand[/b] (Center courtyard).
+
+[color=#ffaa44]✍️ 4. Prepare Junior Study Space[/color]
+• Go to [b]Writing Supplies Shelf[/b] (West corridor) → Pick up writing board & ink.
+• Deliver to [b]Junior Student Desk[/b] (South-East room) for Student Soma.
+
+[color=#ffdd44]🔔 5. Ring the Evening Bell (Sandhya Ghanta)[/color]
+• Unlocks once all 4 tasks are complete!
+• Ring the [b]Evening Bell[/b] (South courtyard near shrine) to finish the Vihara chapter.
+
+[color=#88ff88][b]REWARDS:[/b][/color]
+• 📜 Exactly 1 Vihara Scroll earned.
+• 0 EXP awarded (EXP is reserved for NPC side quests)."
+[node name="BtnBottomClose" type="Button" parent="GuideModal/Panel/Margin/VBox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 13
+text = "CLOSE GUIDE (✕)"

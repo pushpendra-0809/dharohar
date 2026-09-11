@@ -34,7 +34,6 @@ corner_radius_bottom_left = 6
 visible = false
 layer = 10
 script = ExtResource("1_medscript")
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=987654381]
 visible = false
 anchors_preset = 15
@@ -43,7 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.65)
-
 [node name="PanelContainer" type="Control" parent="." unique_id=987654382]
 visible = false
 layout_mode = 3
@@ -58,7 +56,6 @@ offset_right = 360.0
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654383]
 layout_mode = 1
 anchors_preset = 15
@@ -67,7 +64,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_medicine_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654384]
 layout_mode = 1
 anchors_preset = 5
@@ -83,7 +79,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 26
 text = "HERBAL DIAGNOSIS — MEDICINE"
 horizontal_alignment = 1
-
 [node name="CaseHeaderLabel" type="Label" parent="PanelContainer" unique_id=987654385]
 layout_mode = 0
 offset_left = 36.0
@@ -94,7 +89,6 @@ theme_override_colors/font_color = Color(0.85, 0.78, 0.55, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 17
 text = "CASE 1 / 5 — Sun Travel & Fatigue"
-
 [node name="CaseBox" type="Panel" parent="PanelContainer" unique_id=987654386]
 layout_mode = 0
 offset_left = 32.0
@@ -102,7 +96,6 @@ offset_top = 84.0
 offset_right = 440.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_case_bg")
-
 [node name="CaseDescriptionLabel" type="Label" parent="PanelContainer/CaseBox" unique_id=987654387]
 layout_mode = 1
 anchors_preset = 15
@@ -120,7 +113,6 @@ theme_override_font_sizes/font_size = 16
 text = "A traveller has been walking under the intense afternoon sun for many hours. He feels overheated, parched, and fatigued."
 autowrap_mode = 2
 vertical_alignment = 1
-
 [node name="CluesBox" type="Panel" parent="PanelContainer" unique_id=987654388]
 layout_mode = 0
 offset_left = 450.0
@@ -128,7 +120,6 @@ offset_top = 84.0
 offset_right = 688.0
 offset_bottom = 200.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_case_bg")
-
 [node name="CluesTitleLabel" type="Label" parent="PanelContainer/CluesBox" unique_id=987654389]
 layout_mode = 0
 offset_left = 10.0
@@ -139,7 +130,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 text = "CLUES:"
-
 [node name="CluesContainer" type="VBoxContainer" parent="PanelContainer/CluesBox" unique_id=987654390]
 layout_mode = 1
 anchors_preset = 15
@@ -151,7 +141,6 @@ offset_right = -10.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="HerbsGridContainer" type="GridContainer" parent="PanelContainer" unique_id=987654391]
 layout_mode = 1
 anchors_preset = 8
@@ -168,7 +157,6 @@ grow_vertical = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 6
-
 [node name="SelectedHerbsLabel" type="Label" parent="PanelContainer" unique_id=987654392]
 layout_mode = 1
 anchors_preset = 8
@@ -187,7 +175,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 text = "SELECTED REMEDIES:"
 horizontal_alignment = 1
-
 [node name="SlotsContainer" type="HBoxContainer" parent="PanelContainer" unique_id=987654393]
 layout_mode = 1
 anchors_preset = 8
@@ -203,7 +190,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 12
 alignment = 1
-
 [node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654394]
 layout_mode = 1
 anchors_preset = 7
@@ -220,6 +206,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 17
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="ExplanationLabel" type="Label" parent="PanelContainer" unique_id=987654395]
 layout_mode = 1
@@ -239,7 +227,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 autowrap_mode = 2
-
 [node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654396]
 layout_mode = 1
 anchors_preset = 7
@@ -257,7 +244,6 @@ theme_override_colors/font_color = Color(0.55, 0.85, 0.45, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "SUBMIT"
-
 [node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654397]
 layout_mode = 1
 anchors_preset = 7
@@ -275,7 +261,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "RESET"
-
 [node name="HintButton" type="Button" parent="PanelContainer" unique_id=987654398]
 layout_mode = 1
 anchors_preset = 7
@@ -293,7 +278,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "HINT"
-
 [node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654399]
 layout_mode = 1
 anchors_preset = 1
@@ -308,7 +292,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 20
 text = "X"
-
 [node name="InfoButton" type="Button" parent="PanelContainer" unique_id=987654400]
 layout_mode = 1
 offset_left = 16.0
@@ -319,6 +302,5 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "i"
-
 [node name="PuzzleInfoPanel" parent="." instance=ExtResource("3_infoui")]
 visible = false

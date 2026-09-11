@@ -34,7 +34,6 @@ corner_radius_bottom_left = 6
 visible = false
 layer = 10
 script = ExtResource("1_philscript")
-
 [node name="ColorRect" type="ColorRect" parent="." unique_id=987654421]
 visible = false
 anchors_preset = 15
@@ -43,7 +42,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.65)
-
 [node name="PanelContainer" type="Control" parent="." unique_id=987654422]
 visible = false
 layout_mode = 3
@@ -58,7 +56,6 @@ offset_right = 370.0
 offset_bottom = 270.0
 grow_horizontal = 2
 grow_vertical = 2
-
 [node name="BackgroundPanel" type="Panel" parent="PanelContainer" unique_id=987654423]
 layout_mode = 1
 anchors_preset = 15
@@ -67,7 +64,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_phil_bg")
-
 [node name="TitleLabel" type="Label" parent="PanelContainer" unique_id=987654424]
 layout_mode = 1
 anchors_preset = 5
@@ -83,7 +79,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 26
 text = "DEBATE OF IDEAS — PHILOSOPHY"
 horizontal_alignment = 1
-
 [node name="RoundHeaderLabel" type="Label" parent="PanelContainer" unique_id=987654425]
 layout_mode = 0
 offset_left = 30.0
@@ -94,7 +89,6 @@ theme_override_colors/font_color = Color(0.85, 0.72, 0.52, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 16
 text = "ROUND 1 / 5 — Value of Knowledge"
-
 [node name="QuestionBox" type="Panel" parent="PanelContainer" unique_id=987654426]
 layout_mode = 0
 offset_left = 30.0
@@ -102,7 +96,6 @@ offset_top = 76.0
 offset_right = 710.0
 offset_bottom = 148.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="QuestionLabel" type="Label" parent="PanelContainer/QuestionBox" unique_id=987654427]
 layout_mode = 1
 anchors_preset = 10
@@ -117,7 +110,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 16
 text = "QUESTION: What makes knowledge valuable?"
 autowrap_mode = 2
-
 [node name="ClaimLabel" type="Label" parent="PanelContainer/QuestionBox" unique_id=987654428]
 layout_mode = 1
 anchors_preset = 12
@@ -135,7 +127,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 text = "CLAIM: Knowledge is most valuable when it guides right action and benefits living beings."
 autowrap_mode = 2
-
 [node name="ArgumentsBox" type="Panel" parent="PanelContainer" unique_id=987654429]
 layout_mode = 0
 offset_left = 30.0
@@ -143,7 +134,6 @@ offset_top = 154.0
 offset_right = 362.0
 offset_bottom = 415.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="LayoutVBox" type="VBoxContainer" parent="PanelContainer/ArgumentsBox"]
 layout_mode = 1
 anchors_preset = 15
@@ -156,19 +146,16 @@ offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
-
 [node name="ArgumentsTitleLabel" type="Label" parent="PanelContainer/ArgumentsBox/LayoutVBox" unique_id=987654430]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 15
 text = "CHOOSE YOUR ARGUMENT:"
-
 [node name="ArgumentsContainer" type="VBoxContainer" parent="PanelContainer/ArgumentsBox/LayoutVBox" unique_id=987654431]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 4
-
 [node name="CounterargumentBox" type="Panel" parent="PanelContainer" unique_id=987654432]
 layout_mode = 0
 offset_left = 372.0
@@ -176,7 +163,6 @@ offset_top = 154.0
 offset_right = 710.0
 offset_bottom = 239.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="LayoutVBox" type="VBoxContainer" parent="PanelContainer/CounterargumentBox"]
 layout_mode = 1
 anchors_preset = 15
@@ -189,14 +175,12 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 2
-
 [node name="CounterTitleLabel" type="Label" parent="PanelContainer/CounterargumentBox/LayoutVBox" unique_id=987654433]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.55, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 text = "COUNTERARGUMENT:"
-
 [node name="CounterargumentLabel" type="Label" parent="PanelContainer/CounterargumentBox/LayoutVBox" unique_id=987654434]
 layout_mode = 2
 size_flags_vertical = 3
@@ -204,7 +188,6 @@ theme_override_colors/font_color = Color(0.92, 0.88, 0.78, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 13
 autowrap_mode = 2
-
 [node name="ResponsesBox" type="Panel" parent="PanelContainer" unique_id=987654435]
 layout_mode = 0
 offset_left = 372.0
@@ -212,7 +195,6 @@ offset_top = 245.0
 offset_right = 710.0
 offset_bottom = 415.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_box_bg")
-
 [node name="LayoutVBox" type="VBoxContainer" parent="PanelContainer/ResponsesBox"]
 layout_mode = 1
 anchors_preset = 15
@@ -225,19 +207,16 @@ offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 4
-
 [node name="ResponsesTitleLabel" type="Label" parent="PanelContainer/ResponsesBox/LayoutVBox" unique_id=987654436]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 text = "CHOOSE YOUR RESPONSE:"
-
 [node name="ResponsesContainer" type="VBoxContainer" parent="PanelContainer/ResponsesBox/LayoutVBox" unique_id=987654437]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 4
-
 [node name="FeedbackLabel" type="Label" parent="PanelContainer" unique_id=987654438]
 layout_mode = 1
 anchors_preset = 7
@@ -254,6 +233,8 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 17
 horizontal_alignment = 1
+
+autowrap_mode = 3
 
 [node name="ExplanationLabel" type="Label" parent="PanelContainer" unique_id=987654439]
 layout_mode = 1
@@ -273,7 +254,6 @@ theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 14
 horizontal_alignment = 1
 autowrap_mode = 2
-
 [node name="SubmitButton" type="Button" parent="PanelContainer" unique_id=987654440]
 layout_mode = 1
 anchors_preset = 7
@@ -291,7 +271,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "SUBMIT"
-
 [node name="ResetButton" type="Button" parent="PanelContainer" unique_id=987654441]
 layout_mode = 1
 anchors_preset = 7
@@ -309,7 +288,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "RESET"
-
 [node name="HintButton" type="Button" parent="PanelContainer" unique_id=987654442]
 layout_mode = 1
 anchors_preset = 7
@@ -327,7 +305,6 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "HINT"
-
 [node name="CloseButton" type="Button" parent="PanelContainer" unique_id=987654443]
 layout_mode = 1
 anchors_preset = 1
@@ -342,7 +319,6 @@ theme_override_colors/font_color = Color(0.85, 0.45, 0.35, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 20
 text = "X"
-
 [node name="InfoButton" type="Button" parent="PanelContainer" unique_id=987654444]
 layout_mode = 1
 offset_left = 16.0
@@ -353,6 +329,5 @@ theme_override_colors/font_color = Color(0.96, 0.78, 0.28, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 18
 text = "i"
-
 [node name="PuzzleInfoPanel" parent="." instance=ExtResource("3_infoui")]
 visible = false

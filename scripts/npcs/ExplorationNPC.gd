@@ -186,8 +186,8 @@ func _start_interaction() -> void:
 	if name == "NPC_YoungStudent" or npc_name == "Student":
 		if GameState and GameState.is_side_quest_active("missing_student") and not GameState.is_missing_student_found():
 			var found_seq: Array = [
-				{"speaker": "Student", "text": "Main yahan purani shilalekh aur gyan ki charcha sunne mein khoya hua tha!"},
-				{"speaker": "Student", "text": "Main abhi turant Senior Student ke paas vapis jaata hoon. Dhanyavaad!"}
+				{"speaker": "Student", "text": "I was completely engrossed here listening to discussions of ancient stone inscriptions and scholarly wisdom!"},
+				{"speaker": "Student", "text": "I will return immediately to the Senior Student. Thank you for finding me!"}
 			]
 			dialogue_manager.start_dialogue(found_seq, func():
 				if GameState:
@@ -227,9 +227,9 @@ func _start_interaction() -> void:
 func _handle_farmer_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Village Elder", "text": "Nalanda sirf apne vidwanon se nahi, aas-paas ke gaon ke logon se bhi juda hua hai."},
-			{"speaker": "Village Elder", "text": "Gaon ke khet aur upaj hi is vishwavidyalaya ke hazaron vidyarthiyon ka ahar bante hain."},
-			{"speaker": "Village Elder", "text": "Kya tum gaon se 3 anaj aur ahar ke thal ikattha karne mein sahayata kar sakte ho?"}
+			{"speaker": "Village Elder", "text": "Nalanda is connected not only with its revered scholars, but deeply with the people of the surrounding villages."},
+			{"speaker": "Village Elder", "text": "The harvest and produce from our fields sustain the thousands of resident scholars studying here."},
+			{"speaker": "Village Elder", "text": "Could you assist us by gathering 3 grain and provision bundles from around the village?"}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("farmer_provisions")
@@ -241,12 +241,12 @@ func _handle_farmer_quest(state: int) -> void:
 		var prog: int = q.get("progress", 0)
 		if prog < 3:
 			var active_seq: Array = [
-				{"speaker": "Village Elder", "text": "Kripya gaon se 3 anaj aur ahar ke thal dhoondkar lao. (Abhi tak " + str(prog) + "/3)"}
+				{"speaker": "Village Elder", "text": "Please locate 3 grain and food provision bundles from around the village. (Collected: " + str(prog) + "/3)"}
 			]
 			dialogue_manager.start_dialogue(active_seq, _on_dialogue_finished)
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Village Elder", "text": "Tumne samay par sahayata ki. Nalanda ka jeevan aas-paas ke gaon se gahra juda tha."}
+				{"speaker": "Village Elder", "text": "You have assisted us in good time. Nalanda's daily life was deeply intertwined with the prosperity of its neighboring villages."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("farmer_provisions")
@@ -255,16 +255,16 @@ func _handle_farmer_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Village Elder", "text": "Tumne samay par sahayata ki. Nalanda ka jeevan aas-paas ke gaon se gahra juda tha."}
+			{"speaker": "Village Elder", "text": "You have assisted us in good time. Nalanda's daily life was deeply intertwined with the prosperity of its neighboring villages."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
 func _handle_scribe_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Scribe", "text": "Yahan ek granth ko ek sthaan se doosre sthaan tak pahunchana bhi gyan ki yatra ka hissa hai."},
-			{"speaker": "Scribe", "text": "Taadpatra par likhe har akshar ko surakshit rakhna hamara kartavya hai."},
-			{"speaker": "Scribe", "text": "Yeh mahatvapurn pandulipi Dharmaganja Pustakalaya ke adhyayan kaksh tak pahuncha do."}
+			{"speaker": "Scribe", "text": "Carrying a sacred treatise safely from one hall to another is an essential part of the journey of knowledge."},
+			{"speaker": "Scribe", "text": "Preserving every letter inscribed upon these palm leaves is our solemn duty."},
+			{"speaker": "Scribe", "text": "Please deliver this vital manuscript bundle to the study chambers of the Dharmaganja Library."}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("scribe_manuscript")
@@ -275,12 +275,12 @@ func _handle_scribe_quest(state: int) -> void:
 		var is_deliv: bool = GameState.is_manuscript_delivered()
 		if not is_deliv:
 			var active_seq: Array = [
-				{"speaker": "Scribe", "text": "Yeh pandulipi Dharmaganja Pustakalaya ke adhyayan kaksh mein vidwanon tak pahuncha do."}
+				{"speaker": "Scribe", "text": "Please deliver this palm-leaf manuscript to the scholars in the Dharmaganja Library study hall."}
 			]
 			dialogue_manager.start_dialogue(active_seq, _on_dialogue_finished)
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Scribe", "text": "Ek granth ka sahi vidwan tak pahunchna bhi gyan ki yatra ka hissa hai."}
+				{"speaker": "Scribe", "text": "A sacred treatise delivered safely to its scholar sustains the great tradition of learning."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("scribe_manuscript")
@@ -289,16 +289,16 @@ func _handle_scribe_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Scribe", "text": "Ek granth ka sahi vidwan tak pahunchna bhi gyan ki yatra ka hissa hai."}
+			{"speaker": "Scribe", "text": "A sacred treatise delivered safely to its scholar sustains the great tradition of learning."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
 func _handle_stupa_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Stupa Caretaker", "text": "Yeh stupa keval pathar ki rachna nahi, yeh yahan ke jeevan aur parampara ka ek mahatvapurn hissa hai."},
-			{"speaker": "Stupa Caretaker", "text": "Prarthana aur dekhbhal ke liye mujhe 3 samagriyon ki zaroorat hai: Deep, Vastra, aur Pushpa."},
-			{"speaker": "Stupa Caretaker", "text": "Kya tum Stupa ke aaspas se yeh 3 samagriyan laa sakte ho?"}
+			{"speaker": "Stupa Caretaker", "text": "This Great Stupa is not merely a monument of brick and stone; it is the spiritual heart of devotion and mindfulness in Nalanda."},
+			{"speaker": "Stupa Caretaker", "text": "For our daily offerings and care, I require 3 sacred items: an Oil Lamp (Deepa), Sacred Cloth (Vastra), and Fresh Flowers (Pushpa)."},
+			{"speaker": "Stupa Caretaker", "text": "Could you gather these 3 offering items from around the Stupa grounds?"}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("stupa_caretaker")
@@ -310,12 +310,12 @@ func _handle_stupa_quest(state: int) -> void:
 		var prog: int = q.get("progress", 0)
 		if prog < 3:
 			var active_seq: Array = [
-				{"speaker": "Stupa Caretaker", "text": "Stupa ke aaspas se deep, vastra aur pushpa dhoond kar lao. (Abhi tak " + str(prog) + "/3)"}
+				{"speaker": "Stupa Caretaker", "text": "Please locate the oil lamp, sacred cloth, and fresh flowers around the Stupa. (Collected: " + str(prog) + "/3)"}
 			]
 			dialogue_manager.start_dialogue(active_seq, _on_dialogue_finished)
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Stupa Caretaker", "text": "Dhanyavaad. Aise chhote prayas hi in sthalon ki parampara ko jeevit rakhte hain."}
+				{"speaker": "Stupa Caretaker", "text": "Thank you. Such acts of mindfulness and service keep the sacred heritage of these monuments alive."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("stupa_caretaker")
@@ -324,16 +324,16 @@ func _handle_stupa_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Stupa Caretaker", "text": "Dhanyavaad. Aise chhote prayas hi in sthalon ki parampara ko jeevit rakhte hain."}
+			{"speaker": "Stupa Caretaker", "text": "Thank you. Such acts of mindfulness and service keep the sacred heritage of these monuments alive."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
 func _handle_vihara_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Vihara Worker", "text": "Vihara mein rehne wale vidyarthiyon aur bhikshuson ke liye har din bahut saare kaam sambhalne padte hain."},
-			{"speaker": "Vihara Worker", "text": "Kothriyon ki marammat ke liye mujhe Lakdi, Pathar aur Rassi ki zaroorat hai."},
-			{"speaker": "Vihara Worker", "text": "Kya tum Vihara ke aaspas se yeh 3 samagriyan laa sakte ho?"}
+			{"speaker": "Vihara Worker", "text": "Maintaining the living quarters for thousands of resident monks and students requires continuous dedication."},
+			{"speaker": "Vihara Worker", "text": "For repairing the student cells, I require 3 essential supplies: Timber Wood, Building Stone, and Strong Rope."},
+			{"speaker": "Vihara Worker", "text": "Could you gather these 3 materials from around the Vihara grounds?"}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("vihara_supplies")
@@ -345,12 +345,12 @@ func _handle_vihara_quest(state: int) -> void:
 		var prog: int = q.get("progress", 0)
 		if prog < 3:
 			var active_seq: Array = [
-				{"speaker": "Vihara Worker", "text": "Vihara ke aaspas se lakdi, pathar aur rassi laa do. (Abhi tak " + str(prog) + "/3)"}
+				{"speaker": "Vihara Worker", "text": "Please bring wood, stone, and rope from around the Vihara area. (Collected: " + str(prog) + "/3)"}
 			]
 			dialogue_manager.start_dialogue(active_seq, _on_dialogue_finished)
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Vihara Worker", "text": "Vihara ko sambhalna bhi Nalanda ke jeevan ka ek zaroori hissa hai."}
+				{"speaker": "Vihara Worker", "text": "Caring for the monastic living quarters is an essential pillar of life here at Nalanda."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("vihara_supplies")
@@ -359,16 +359,16 @@ func _handle_vihara_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Vihara Worker", "text": "Vihara ko sambhalna bhi Nalanda ke jeevan ka ek zaroori hissa hai."}
+			{"speaker": "Vihara Worker", "text": "Caring for the monastic living quarters is an essential pillar of life here at Nalanda."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
 func _handle_senior_student_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Senior Student", "text": "Nalanda mein har din naye logon aur naye vicharon se milne ka mauka milta hai."},
-			{"speaker": "Senior Student", "text": "Lekin hamara ek chhota saathi vidyarthi aangan se kahi door bhatak gaya hai."},
-			{"speaker": "Senior Student", "text": "Kya tum use campus mein dhoondkar baat kar sakte ho?"}
+			{"speaker": "Senior Student", "text": "Every day at Nalanda brings encounters with brilliant thinkers and new ideas."},
+			{"speaker": "Senior Student", "text": "However, a young junior scholar has wandered away from our courtyard group."},
+			{"speaker": "Senior Student", "text": "Could you search the campus grounds and speak with him?"}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("missing_student")
@@ -379,12 +379,12 @@ func _handle_senior_student_quest(state: int) -> void:
 		var is_found: bool = GameState.is_missing_student_found()
 		if not is_found:
 			var active_seq: Array = [
-				{"speaker": "Senior Student", "text": "Kripya us chhote vidyarthi ko dhoondo, woh campus ke aaspas hi hoga."}
+				{"speaker": "Senior Student", "text": "Please look for the young student; he should be somewhere nearby exploring the campus grounds."}
 			]
 			dialogue_manager.start_dialogue(active_seq, _on_dialogue_finished)
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Senior Student", "text": "Achha hua tumne use dhoond liya. Nalanda mein vidya ke saath ek-doosre ka saath dena bhi zaroori tha."}
+				{"speaker": "Senior Student", "text": "I am glad you found him safely. In Nalanda, looking after fellow scholars is just as important as scholarly learning."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("missing_student")
@@ -393,16 +393,16 @@ func _handle_senior_student_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Senior Student", "text": "Achha hua tumne use dhoond liya. Nalanda mein vidya ke saath ek-doosre ka saath dena bhi zaroori tha."}
+			{"speaker": "Senior Student", "text": "I am glad you found him safely. In Nalanda, looking after fellow scholars is just as important as scholarly learning."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
 func _handle_scholar_quest(state: int) -> void:
 	if state == GameState.QuestStatus.NOT_STARTED:
 		var intro_seq: Array = [
-			{"speaker": "Scholar", "text": "Ek achha vidwan keval jo padhta hai usse yaad nahi rakhta. Woh sambandh bhi samajhta hai."},
-			{"speaker": "Scholar", "text": "Main Dharmaganja ke granthon ko unke vishayon ke anusar vyavasthit kar raha hoon."},
-			{"speaker": "Scholar", "text": "Is prashn ka uttar dekar meri sahayata karo."}
+			{"speaker": "Scholar", "text": "A true scholar does not merely memorize facts; they understand the deeper connections between ideas."},
+			{"speaker": "Scholar", "text": "I am cataloguing manuscripts across the Dharmaganja library according to their epistemological subjects."},
+			{"speaker": "Scholar", "text": "Assist me by answering this philosophical question."}
 		]
 		dialogue_manager.start_dialogue(intro_seq, func():
 			GameState.start_side_quest("scholar_question")
@@ -414,7 +414,7 @@ func _handle_scholar_quest(state: int) -> void:
 			_open_scholar_challenge()
 		else:
 			var complete_seq: Array = [
-				{"speaker": "Scholar", "text": "Tumne dhyan se socha. Ek achha vidwan keval yaad nahi rakhta, woh sambandh bhi samajhta hai."}
+				{"speaker": "Scholar", "text": "You have reasoned with great clarity. A disciplined thinker perceives harmony and principles across knowledge."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("scholar_question")
@@ -423,7 +423,7 @@ func _handle_scholar_quest(state: int) -> void:
 			)
 	else:
 		var done_seq: Array = [
-			{"speaker": "Scholar", "text": "Tumne dhyan se socha. Ek achha vidwan keval yaad nahi rakhta, woh sambandh bhi samajhta hai."}
+			{"speaker": "Scholar", "text": "You have reasoned with great clarity. A disciplined thinker perceives harmony and principles across knowledge."}
 		]
 		dialogue_manager.start_dialogue(done_seq, _on_dialogue_finished)
 
@@ -432,7 +432,7 @@ func _open_scholar_challenge() -> void:
 	if scholar_reasoning_ui:
 		scholar_reasoning_ui.show_challenge(func():
 			var complete_seq: Array = [
-				{"speaker": "Scholar", "text": "Tumne dhyan se socha. Ek achha vidwan keval yaad nahi rakhta, woh sambandh bhi samajhta hai."}
+				{"speaker": "Scholar", "text": "You have reasoned with great clarity. A disciplined thinker perceives harmony and principles across knowledge."}
 			]
 			dialogue_manager.start_dialogue(complete_seq, func():
 				GameState.complete_side_quest("scholar_question")
@@ -444,7 +444,7 @@ func _open_scholar_challenge() -> void:
 		# Fallback if UI not yet mapped
 		GameState.solve_scholar_question()
 		var complete_seq: Array = [
-			{"speaker": "Scholar", "text": "Tumne dhyan se socha. Ek achha vidwan keval yaad nahi rakhta, woh sambandh bhi samajhta hai."}
+			{"speaker": "Scholar", "text": "You have reasoned with great clarity. A disciplined thinker perceives harmony and principles across knowledge."}
 		]
 		dialogue_manager.start_dialogue(complete_seq, func():
 			GameState.complete_side_quest("scholar_question")
