@@ -1,13 +1,23 @@
 [gd_scene format=3 uid="uid://cquestuiscene"]
 
 [ext_resource type="Script" path="res://scenes/ui/QuestUI.gd" id="1_questscript"]
-[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/panels/confirmation_panel.svg" id="2_questpanel"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_pixel_med"]
 [ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="5_pixel_reg"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_quest_bg"]
-texture = ExtResource("2_questpanel")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quest_bg"]
+bg_color = Color(0.92, 0.81, 0.60, 0.94)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.52, 0.26, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_toast_bg"]
 bg_color = Color(0.1, 0.07, 0.04, 0.95)
@@ -28,15 +38,14 @@ layer = 20
 script = ExtResource("1_questscript")
 
 [node name="PanelBox" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -370.0
-offset_top = 16.0
-offset_right = -16.0
-offset_bottom = 172.0
+offset_left = -290.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 118.0
 grow_horizontal = 0
 
 [node name="Panel" type="Panel" parent="PanelBox"]
@@ -46,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_quest_bg")
+theme_override_styles/panel = SubResource("StyleBoxFlat_quest_bg")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelBox"]
 layout_mode = 1
@@ -55,20 +64,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 8
 
 [node name="VBox" type="VBoxContainer" parent="PanelBox/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 2
 
 [node name="TitleLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 text = "OBJECTIVE"
 
 [node name="ObjectiveLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
@@ -76,7 +85,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.2, 0.12, 0.06, 1)
 theme_override_fonts/font = ExtResource("4_pixel_med")
-theme_override_font_sizes/font_size = 13
+theme_override_font_sizes/font_size = 12
 text = "Complete side quests to gain EXP."
 autowrap_mode = 3
 
@@ -85,14 +94,14 @@ visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(0.65, 0.35, 0.1, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "Reward: +50 EXP"
 
 [node name="ExpStatsLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.38, 0.24, 0.12, 1)
 theme_override_fonts/font = ExtResource("5_pixel_reg")
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 11
 text = "Level: 1   EXP: 0 / 100"
 
 [node name="CompletionTimer" type="Timer" parent="."]

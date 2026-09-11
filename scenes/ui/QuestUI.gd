@@ -14,20 +14,23 @@ extends CanvasLayer
 @onready var exp_toast_amount: Label = get_node_or_null("ExpToast/VBox/ToastAmount")
 @onready var exp_timer: Timer = get_node_or_null("ExpToast/ExpTimer")
 
-var _is_objective_active: bool = false
-var _show_on_quest_update: bool = false
+var _is_objective_active: bool = true
+var _show_on_quest_update: bool = true
+var _is_hovered: bool = false
 
 func _ready() -> void:
 	add_to_group("quest_ui")
+	_show_on_quest_update = true
 	
 	if panel_box:
-		panel_box.visible = false # Hidden by default when opening game
+		if not panel_box.mouse_entered.is_connected(_on_panel_mouse_entered):
+			panel_box.mouse_entered.connect(_on_panel_mouse_entered)
+		if not panel_box.mouse_exited.is_connected(_on_panel_mouse_exited):
+			panel_box.mouse_exited.connect(_on_panel_mouse_exited)
 		
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
-		if GameState.has_signal("player_movement_locked") and not GameState.player_movement_locked.is_connected(_on_movement_locked):
-			GameState.player_movement_locked.connect(_on_movement_locked)
 		if GameState.has_signal("exp_awarded") and not GameState.exp_awarded.is_connected(_on_exp_awarded):
 			GameState.exp_awarded.connect(_on_exp_awarded)
 		if GameState.has_signal("side_quest_completed") and not GameState.side_quest_completed.is_connected(_on_side_quest_completed):
@@ -42,11 +45,25 @@ func _ready() -> void:
 	if exp_toast:
 		exp_toast.visible = false
 
+	update_quest_ui()
+	pop_objective()
+
+func pop_objective() -> void:
+	if not panel_box:
+		return
+	if _is_fullscreen_puzzle_active():
+		panel_box.visible = false
+		return
+	panel_box.visible = true
+	var tw := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	panel_box.modulate.a = 0.2
+	tw.tween_property(panel_box, "modulate:a", 1.0, 0.25)
+
 func _process(_delta: float) -> void:
 	if not panel_box:
 		return
 		
-	if _is_any_popup_or_dialog_active():
+	if _is_fullscreen_puzzle_active():
 		if panel_box.visible:
 			panel_box.visible = false
 	else:
@@ -54,9 +71,9 @@ func _process(_delta: float) -> void:
 			panel_box.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+	if event is InputEventKey and event.is_pressed() and not event.echo:
 		if event.keycode == KEY_O: # Press 'O' to toggle objective HUD
-			if not _is_any_popup_or_dialog_active():
+			if not _is_fullscreen_puzzle_active():
 				get_viewport().set_input_as_handled()
 				_toggle_objective_display()
 
@@ -69,12 +86,10 @@ func _toggle_objective_display() -> void:
 	else:
 		_show_on_quest_update = true
 		update_quest_ui()
-		panel_box.visible = true
+		pop_objective()
 
-func _is_any_popup_or_dialog_active() -> bool:
+func _is_fullscreen_puzzle_active() -> bool:
 	if not GameState:
-		return true
-	if GameState.is_movement_locked:
 		return true
 		
 	var dev = get_node_or_null("/root/DevModeManager")
@@ -82,10 +97,10 @@ func _is_any_popup_or_dialog_active() -> bool:
 		return true
 		
 	var popup_groups := [
-		"dialogue_ui", "pause_menu", "pause_menu_ui",
+		"pause_menu", "pause_menu_ui",
 		"stupa_challenge_ui", "library_challenge_ui", "vihara_challenge_ui",
 		"final_mastery_ui", "quiz_ui", "scholar_reasoning_ui",
-		"cutscene_ui", "nalanda_completion_ui", "astro_heritage_ui",
+		"nalanda_completion_ui", "astro_heritage_ui",
 		"math_heritage_ui", "med_heritage_ui", "phil_heritage_ui",
 		"logic_heritage_ui", "knowledge_book_ui", "confirmation_dialog"
 	]
@@ -103,16 +118,8 @@ func _is_any_popup_or_dialog_active() -> bool:
 					
 	return false
 
-func _on_movement_locked(locked: bool) -> void:
-	if locked:
-		if panel_box:
-			panel_box.visible = false
-	else:
-		if _show_on_quest_update:
-			update_quest_ui()
-
 func update_quest_ui() -> void:
-	if not GameState or _is_any_popup_or_dialog_active():
+	if not GameState or _is_fullscreen_puzzle_active():
 		if panel_box:
 			panel_box.visible = false
 		return
@@ -185,7 +192,14 @@ func update_quest_ui() -> void:
 			else:
 				headline = "Explore Nalanda and complete building chapters."
 				
-			objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
+			if _is_hovered:
+				objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
+				if panel_box:
+					panel_box.offset_bottom = 140.0
+			else:
+				objective_label.text = headline
+				if panel_box:
+					panel_box.offset_bottom = 118.0
 		if reward_label:
 			reward_label.visible = false
 		if exp_stats_label:
@@ -335,8 +349,18 @@ func _on_exp_timeout() -> void:
 		exp_toast.visible = false
 
 func _on_quest_state_changed() -> void:
+	_show_on_quest_update = true
 	update_quest_ui()
+	pop_objective()
 
 func _on_completion_timeout() -> void:
 	if panel_box:
 		panel_box.visible = false
+
+func _on_panel_mouse_entered() -> void:
+	_is_hovered = true
+	update_quest_ui()
+
+func _on_panel_mouse_exited() -> void:
+	_is_hovered = false
+	update_quest_ui()
