@@ -1,0 +1,203 @@
+[gd_scene format=3 uid="uid://bpov6iw5yut3m"]
+
+[ext_resource type="Script" path="res://scenes/ui/NalandaIntroNarrationUI.gd" id="1_narrationscript"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/ornaments/lotus.svg" id="2_lotus"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_normal.svg" id="3_btnnorm"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_hover.svg" id="4_btnhover"]
+[ext_resource type="Texture2D" path="res://assets/Escape_Sequence_UI_Pack/buttons/button_pressed.svg" id="5_btnpressed"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="6_oswald_bold"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="7_oswald_med"]
+[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="8_oswald_reg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_parchment_bg"]
+bg_color = Color(0.93, 0.84, 0.68, 0.98)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.42, 0.24, 0.12, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.75)
+shadow_size = 14
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_divider"]
+color = Color(0.65, 0.45, 0.22, 0.8)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_content_inner"]
+bg_color = Color(0.88, 0.78, 0.60, 0.65)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.68, 0.50, 0.28, 0.5)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_norm"]
+texture = ExtResource("3_btnnorm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_hover"]
+texture = ExtResource("4_btnhover")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn_pressed"]
+texture = ExtResource("5_btnpressed")
+
+[node name="NalandaIntroNarrationUI" type="CanvasLayer"]
+process_mode = 3
+layer = 45
+script = ExtResource("1_narrationscript")
+
+[node name="DimOverlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="MainPanel" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -440.0
+offset_top = -280.0
+offset_right = 440.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundPanel" type="Panel" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_parchment_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 18
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeaderBox" type="VBoxContainer" parent="MainPanel/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="LotusIcon" type="TextureRect" parent="MainPanel/MarginContainer/VBox/HeaderBox"]
+custom_minimum_size = Vector2(36, 26)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_lotus")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="MainPanel/MarginContainer/VBox/HeaderBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.32, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("6_oswald_bold")
+theme_override_font_sizes/font_size = 26
+text = "NALANDA MAHAVIHARA"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="MainPanel/MarginContainer/VBox/HeaderBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.55, 0.32, 0.15, 1)
+theme_override_fonts/font = ExtResource("7_oswald_med")
+theme_override_font_sizes/font_size = 15
+text = "“A Journey into the Ancient Seat of Learning”"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="MainPanel/MarginContainer/VBox/HeaderBox"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_divider")
+
+[node name="ContentBox" type="PanelContainer" parent="MainPanel/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_content_inner")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainPanel/MarginContainer/VBox/ContentBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="MainPanel/MarginContainer/VBox/ContentBox/MarginContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MainPanel/MarginContainer/VBox/ContentBox/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 1
+
+[node name="TextMargin" type="MarginContainer" parent="MainPanel/MarginContainer/VBox/ContentBox/MarginContainer/VBox/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 14
+
+[node name="NarrationText" type="RichTextLabel" parent="MainPanel/MarginContainer/VBox/ContentBox/MarginContainer/VBox/ScrollContainer/TextMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/default_color = Color(0.2, 0.12, 0.06, 1)
+theme_override_fonts/normal_font = ExtResource("8_oswald_reg")
+theme_override_fonts/bold_font = ExtResource("6_oswald_bold")
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "More than a thousand years ago, in the ancient land of Bihar, stood one of the world's great centres of learning.\n\nThis place was known as Nalanda Mahavihara.\n\nNalanda was not simply a collection of buildings. It was a living community of students, teachers, scholars, monks, and travellers who came together in the pursuit of knowledge.\n\nStudents came to Nalanda from different regions, carrying with them different ideas, traditions, and experiences.\n\nHere, learning went far beyond a single subject.\n\nStudents studied subjects such as mathematics, astronomy, medicine, philosophy, and logic. They also discussed ideas, debated with one another, and learned from their teachers and fellow scholars.\n\nNalanda became famous far beyond the Indian subcontinent.\n\nOne of the most famous visitors was the Chinese scholar Xuanzang, who spent several years studying at Nalanda and later described his experiences there.\n\nDuring his time at Nalanda, the renowned teacher and abbot Shilabhadra was one of the scholars associated with his studies.\n\nThe life of Nalanda was built around learning, discussion, discipline, and community.\n\nStudents lived, studied, read manuscripts, attended teachings, discussed ideas, and helped maintain the university around them.\n\nEvery building had a purpose.\n\nThe Stupas were places of reflection and spiritual practice.\n\nThe Library preserved and housed knowledge.\n\nThe Viharas were places where students lived, studied, and shared their daily lives.\n\nAs you explore Nalanda, remember that you are not simply walking through an ancient site.\n\nYou are stepping into a world built around the pursuit of knowledge.\n\nLook carefully.\n\nTalk to the people you meet.\n\nObserve your surroundings.\n\nAnd most importantly, stay curious.\n\nYour journey through Nalanda begins now."
+fit_content = true
+scroll_active = false
+autowrap_mode = 3
+
+[node name="BottomBar" type="HBoxContainer" parent="MainPanel/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="ScrollHintLabel" type="Label" parent="MainPanel/MarginContainer/VBox/BottomBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.48, 0.32, 0.18, 0.85)
+theme_override_fonts/font = ExtResource("8_oswald_reg")
+theme_override_font_sizes/font_size = 13
+text = "↓ Scroll to continue reading"
+
+[node name="ContinueBtn" type="Button" parent="MainPanel/MarginContainer/VBox/BottomBar"]
+custom_minimum_size = Vector2(170, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_hover_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_colors/font_focus_color = Color(0.22, 0.14, 0.07, 1)
+theme_override_fonts/font = ExtResource("6_oswald_bold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn_pressed")
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn_norm")
+text = "CONTINUE"

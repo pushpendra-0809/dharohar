@@ -63,6 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://vcc4qtiatk2p" path="res://assets/items/item_grain_sack.png" id="70_grainsack"]
 [ext_resource type="Texture2D" uid="uid://bgmea33u0f3y2" path="res://assets/items/item_veg_basket.png" id="71_vegbasket"]
 [ext_resource type="Texture2D" uid="uid://dbuijs4xbc8w5" path="res://assets/items/item_food_pot.png" id="72_foodpot"]
+[ext_resource type="PackedScene" uid="uid://nalandaintroui" path="res://scenes/ui/NalandaIntroNarrationUI.tscn" id="73_intronarration"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icd5h"]
 size = Vector2(70, 56)
@@ -599,6 +600,8 @@ position = Vector2(1123, 185)
 [node name="LogicHeritageUI" parent="." unique_id=1677529968 instance=ExtResource("19_logicheritui")]
 
 [node name="NalandaInfoUI" parent="." unique_id=1823560840 instance=ExtResource("20_infoui")]
+
+[node name="NalandaIntroNarrationUI" parent="." instance=ExtResource("73_intronarration")]
 
 [node name="City Collisions" type="StaticBody2D" parent="." unique_id=1561436524]
 

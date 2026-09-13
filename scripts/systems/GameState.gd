@@ -43,6 +43,7 @@ var has_visited_university: bool = false
 var has_returned_to_nalanda: bool = false
 var teacher2_convo_started: bool = false
 var has_played_nalanda_intro_cutscene: bool = false
+var nalanda_intro_seen: bool = false
 var has_played_math_cutscene: bool = false
 var has_played_astro_cutscene: bool = false
 var has_played_medicine_cutscene: bool = false
@@ -1071,6 +1072,7 @@ func reset_test_progression() -> void:
 	pending_arrival_message = []
 	is_movement_locked = false
 	has_played_nalanda_intro_cutscene = false
+	nalanda_intro_seen = false
 	has_played_math_cutscene = false
 	has_played_astro_cutscene = false
 	has_played_medicine_cutscene = false

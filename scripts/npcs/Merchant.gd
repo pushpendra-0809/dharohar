@@ -72,9 +72,19 @@ func _is_dev_mode() -> bool:
 	return dev != null and dev.dev_mode_enabled
 
 func _can_interact() -> bool:
-	return dialogue_manager != null and not dialogue_manager.is_active()
+	if dialogue_manager == null or dialogue_manager.is_active():
+		return false
+	if quiz_manager != null and quiz_manager.is_active():
+		return false
+	if GameState != null and GameState.is_movement_locked:
+		return false
+	if current_state == State.INTRO_DIALOGUE or current_state == State.QUIZ:
+		return false
+	return true
 
 func _start_merchant_interaction() -> void:
+	if not _can_interact():
+		return
 	if not dialogue_manager:
 		push_error("Merchant: DialogueManager not assigned.")
 		return
@@ -91,12 +101,30 @@ func _start_merchant_interaction() -> void:
 			]
 			dialogue_manager.start_dialogue(complete_seq, _on_water_completion_dialogue_finished)
 			return
+		elif GameState and (GameState.water_quest_completed or GameState.university_location_revealed or GameState.merchant_passed):
+			current_state = State.UNIVERSITY_REVEALED
+			_update_ui_elements()
+			var repeat_seq: Array = [
+				{"speaker": "Merchant", "text": "Nalanda lies beyond these roads. Follow the path ahead."}
+			]
+			dialogue_manager.start_dialogue(repeat_seq, _on_repeat_dialogue_finished)
+			return
+		elif GameState and GameState.merchant_water_quest_started:
+			current_state = State.WATER_QUEST_ACTIVE
+			_update_ui_elements()
+			var reminder_seq: Array = [
+				{"speaker": "Merchant", "text": "Bring me some water from the nearby pond."}
+			]
+			dialogue_manager.start_dialogue(reminder_seq, _on_reminder_dialogue_finished)
+			return
 		else:
 			current_state = State.INTRO_DIALOGUE
 			_update_ui_elements()
 			var intro_seq: Array = [
-				{"speaker": "Merchant", "text": "Greetings traveller! I sell wares and share knowledge of Nalanda."},
-				{"speaker": "Merchant", "text": "Answer my questions about Nalanda to unlock your path ahead."}
+				{"speaker": "Merchant", "text": "Ah, a new traveller."},
+				{"speaker": "Merchant", "text": "Before you continue toward Nalanda, let us see what you have learned about this ancient place."},
+				{"speaker": "Merchant", "text": "Do not worry. These are simple questions."},
+				{"speaker": "Merchant", "text": "You may have already heard some of the answers on your journey here."}
 			]
 			dialogue_manager.start_dialogue(intro_seq, _start_merchant_quiz)
 			return
@@ -137,8 +165,10 @@ func _start_merchant_interaction() -> void:
 	current_state = State.INTRO_DIALOGUE
 	_update_ui_elements()
 	var intro_seq: Array = [
-		{"speaker": "Merchant", "text": "Greetings traveller! I sell wares and share knowledge of Nalanda."},
-		{"speaker": "Merchant", "text": "Answer my questions about Nalanda to unlock your path ahead."}
+		{"speaker": "Merchant", "text": "Ah, a new traveller."},
+		{"speaker": "Merchant", "text": "Before you continue toward Nalanda, let us see what you have learned about this ancient place."},
+		{"speaker": "Merchant", "text": "Do not worry. These are simple questions."},
+		{"speaker": "Merchant", "text": "You may have already heard some of the answers on your journey here."}
 	]
 	dialogue_manager.start_dialogue(intro_seq, _start_merchant_quiz)
 
@@ -161,7 +191,8 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		_update_ui_elements()
 		
 		var pass_seq: Array = [
-			{"speaker": "Merchant", "text": "You have some knowledge of the land you seek. Nalanda lies beyond these roads. Follow the path ahead."}
+			{"speaker": "Merchant", "text": "Well done. You understand the basics of Nalanda."},
+			{"speaker": "Merchant", "text": "Nalanda lies beyond these roads. Follow the path ahead."}
 		]
 		dialogue_manager.start_dialogue(pass_seq, _on_pass_dialogue_finished)
 	else:
@@ -169,7 +200,7 @@ func _on_quiz_completed(score: int, _total: int, passed: bool) -> void:
 		_update_ui_elements()
 		
 		var fail_seq: Array = [
-			{"speaker": "Merchant", "text": "Knowledge opens many doors, but you have much to learn. Help me first."},
+			{"speaker": "Merchant", "text": "It seems you need a little more time to understand Nalanda."},
 			{"speaker": "Merchant", "text": "Collect water from the nearby pond and bring it to me."}
 		]
 		dialogue_manager.start_dialogue(fail_seq, _on_fail_dialogue_finished)

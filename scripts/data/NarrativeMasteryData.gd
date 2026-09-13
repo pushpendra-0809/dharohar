@@ -61,7 +61,7 @@ const CHAPTER_LIBRARY: Dictionary = {
 		{"speaker": "Resident Scholar", "text": "Nonsense! That treatise was copied hastily during the winter famine and omitted foundational commentary!"}
 	],
 	"clues": [
-		"• Folio Markings: The northern manuscript has newer ink marginalia added in a different handwriting.",
+		"• Manuscript Markings: The northern manuscript has newer ink marginalia added in a different handwriting.",
 		"• Calculation Method: The resident treatise uses Aryabhata's sine tables; the northern copy uses simplified approximations.",
 		"• Cross-Reference: A third ancient commentary by Acharya Varahamihira resides in the lower vault."
 	],

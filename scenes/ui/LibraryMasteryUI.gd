@@ -52,8 +52,8 @@ signal ui_closed()
 @onready var btn_l3_verify_frags: Button = $MainPanel/Views/Level3View/BtnVerifyFrags
 @onready var l3_decision_panel: Control = $MainPanel/Views/Level3View/DecisionPanel
 @onready var l3_decision_prompt: Label = $MainPanel/Views/Level3View/DecisionPanel/PromptLabel
-@onready var l3_cand_a_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidateA
-@onready var l3_cand_b_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidateB
+@onready var l3_cand_a_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidatesBox/CandidateA
+@onready var l3_cand_b_btn: Button = $MainPanel/Views/Level3View/DecisionPanel/CandidatesBox/CandidateB
 
 @onready var level_complete_view: Control = $MainPanel/Views/LevelCompleteView
 @onready var lvl_comp_title: Label = $MainPanel/Views/LevelCompleteView/Title
@@ -300,24 +300,34 @@ func _setup_level1() -> void:
 	
 	for m in manuscripts:
 		var m_btn = Button.new()
-		m_btn.custom_minimum_size = Vector2(170, 110)
+		m_btn.custom_minimum_size = Vector2(185, 120)
 		m_btn.text = "📜 " + m.get("symbol", "") + "\n" + m.get("title", "") + "\n[" + m.get("author", "") + "]"
 		m_btn.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		m_btn.add_theme_font_size_override("font_size", 12)
+		m_btn.add_theme_constant_override("line_spacing", 2)
 		m_btn.set_meta("manuscript_data", m)
 		
 		var sb = StyleBoxFlat.new()
-		sb.bg_color = Color(0.22, 0.14, 0.1, 0.95)
-		sb.border_color = Color(0.75, 0.55, 0.25)
+		sb.bg_color = Color(0.24, 0.15, 0.09, 0.95)
+		sb.border_color = Color(0.85, 0.65, 0.25, 1.0)
 		sb.border_width_bottom = 3
 		sb.border_width_top = 2
 		sb.border_width_left = 2
 		sb.border_width_right = 2
-		sb.corner_radius_top_left = 6
-		sb.corner_radius_top_right = 6
-		sb.corner_radius_bottom_left = 6
-		sb.corner_radius_bottom_right = 6
+		sb.corner_radius_top_left = 8
+		sb.corner_radius_top_right = 8
+		sb.corner_radius_bottom_left = 8
+		sb.corner_radius_bottom_right = 8
+		sb.shadow_color = Color(0, 0, 0, 0.45)
+		sb.shadow_size = 4
 		m_btn.add_theme_stylebox_override("normal", sb)
+
+		var sb_hov = sb.duplicate()
+		sb_hov.bg_color = Color(0.38, 0.24, 0.13, 0.98)
+		sb_hov.border_color = Color(1.0, 0.88, 0.45, 1.0)
+		sb_hov.shadow_color = Color(1.0, 0.7, 0.2, 0.3)
+		sb_hov.shadow_size = 6
+		m_btn.add_theme_stylebox_override("hover", sb_hov)
 		
 		m_btn.pressed.connect(_on_l1_inspect_manuscript.bind(m))
 		_setup_hover(m_btn)
@@ -449,6 +459,8 @@ func _on_l2_option_selected(idx: int) -> void:
 func _setup_level3() -> void:
 	if level3_view:
 		level3_view.visible = true
+	if l3_instruction:
+		l3_instruction.visible = true
 	if l3_decision_panel:
 		l3_decision_panel.visible = false
 	if l3_fragments_container:
@@ -458,7 +470,7 @@ func _setup_level3() -> void:
 		
 	var mystery_data = LibraryChallengeData.get_level3_mystery(current_domain)
 	if l3_instruction:
-		l3_instruction.text = "Select all genuine fragments that belong to the lost manuscript, then assemble the reconstructed folio."
+		l3_instruction.text = "Select all genuine fragments that belong to the lost manuscript, then assemble the reconstructed manuscript."
 		
 	for child in l3_fragments_container.get_children():
 		child.queue_free()
@@ -530,7 +542,7 @@ func _on_l3_verify_fragments() -> void:
 	else:
 		_lose_life("Selected invalid or incomplete fragments")
 		if l3_instruction:
-			l3_instruction.text = "❌ Fragment reconstruction flawed. Ensure you select only genuine folios of your subject."
+			l3_instruction.text = "❌ Fragment reconstruction flawed. Ensure you select only genuine fragments of your subject."
 			l3_instruction.add_theme_color_override("font_color", Color(1.0, 0.35, 0.35))
 
 func _show_l3_decision_phase() -> void:
@@ -540,17 +552,19 @@ func _show_l3_decision_phase() -> void:
 		btn_l3_verify_frags.visible = false
 	if l3_decision_panel:
 		l3_decision_panel.visible = true
+	if l3_instruction:
+		l3_instruction.visible = false
 		
 	var mystery_data = LibraryChallengeData.get_level3_mystery(current_domain)
 	if l3_decision_prompt:
-		l3_decision_prompt.text = "“Both manuscripts appear related to the same subject, yet there is a critical distinction between them.”\n\n" + mystery_data.get("scholar_prompt", "") + "\n\nWhich reconstructed manuscript should be returned to the Scholar?"
+		l3_decision_prompt.text = "“Both manuscripts appear related to the same subject, yet there is a critical distinction between them.”\n" + mystery_data.get("scholar_prompt", "") + "\n\n✦ Which reconstructed manuscript should be returned to the Scholar? ✦"
 		
 	var candidates: Array = mystery_data.get("candidates", [])
 	if candidates.size() >= 2:
 		if l3_cand_a_btn:
-			l3_cand_a_btn.text = candidates[0].get("title", "") + "\n" + candidates[0].get("text", "")
+			l3_cand_a_btn.text = "📜 " + candidates[0].get("title", "") + "\n\n" + candidates[0].get("text", "")
 		if l3_cand_b_btn:
-			l3_cand_b_btn.text = candidates[1].get("title", "") + "\n" + candidates[1].get("text", "")
+			l3_cand_b_btn.text = "📜 " + candidates[1].get("title", "") + "\n\n" + candidates[1].get("text", "")
 
 func _on_l3_candidate_selected(idx: int) -> void:
 	var mystery_data = LibraryChallengeData.get_level3_mystery(current_domain)

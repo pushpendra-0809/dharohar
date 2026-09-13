@@ -13,6 +13,7 @@ extends Control
 
 const HAMPI_TEX = preload("res://assets/hampi/hampi button.png")
 const COMING_SOON_TEX = preload("res://assets/ui/coming sooon.png")
+const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
 
 var _toast_tween: Tween = null
 
@@ -106,6 +107,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_back_pressed()
 
 func _on_nalanda_button_pressed() -> void:
+	if GameState and not GameState.has_played_nalanda_intro_cutscene:
+		GameState.has_played_nalanda_intro_cutscene = true
+		CutscenePlayer.play_video(self, "res://assets/videos/video1.ogv", _transition_to_nalanda)
+	else:
+		_transition_to_nalanda()
+
+func _transition_to_nalanda() -> void:
 	if ResourceLoader.exists("res://scenes/nalanda/nalanda.tscn"):
 		get_tree().change_scene_to_file("res://scenes/nalanda/nalanda.tscn")
 	else:

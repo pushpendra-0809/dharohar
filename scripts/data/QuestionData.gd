@@ -8,53 +8,38 @@ const DOMAINS: Dictionary = {
 		"questions": [
 			{
 				"question": "What was Nalanda primarily known for?",
-				"options": ["A military fort", "A center of higher learning", "A large marketplace", "A royal palace"],
+				"options": ["Military training", "Learning and education", "Trading", "Farming"],
 				"answer": 1
 			},
 			{
 				"question": "Nalanda Mahavihara was located in which present-day Indian state?",
-				"options": ["Uttar Pradesh", "Bihar", "Madhya Pradesh", "Odisha"],
+				"options": ["Uttar Pradesh", "Bihar", "Odisha", "Gujarat"],
 				"answer": 1
 			},
 			{
-				"question": "Which of these was an important part of life at Nalanda?",
-				"options": ["Learning and scholarly debate", "Training large armies", "Shipbuilding", "Mining"],
+				"question": "What was an important part of life at Nalanda?",
+				"options": ["Sports competitions", "Learning and scholarly discussion", "Military training", "Farming"],
+				"answer": 1
+			},
+			{
+				"question": "Which subjects were studied at Nalanda?",
+				"options": ["Mathematics, Astronomy, Medicine, Philosophy and Logic", "Only warfare", "Only trading", "Only agriculture"],
 				"answer": 0
 			},
 			{
-				"question": "Which ancient Indian scholar is strongly associated with mathematics and astronomy?",
-				"options": ["Aryabhata", "Kalidasa", "Sushruta", "Panini"],
-				"answer": 0
-			},
-			{
-				"question": "What was one important feature of Nalanda?",
-				"options": ["It attracted scholars and students from different regions", "It was only open to kings", "It was primarily a military academy", "It was a major seaport"],
-				"answer": 0
-			},
-			{
-				"question": "What was the name of the great library at Nalanda?",
-				"options": ["Dharmaganja", "Takshashila", "Vikramashila", "Sanchi"],
-				"answer": 0
+				"question": "Where did many students and scholars at Nalanda come from?",
+				"options": ["Only from Bihar", "Only from royal families", "Different regions", "Only from one village"],
+				"answer": 2
 			},
 			{
 				"question": "Which famous Chinese scholar spent several years studying at Nalanda?",
-				"options": ["Xuanzang", "Confucius", "Laozi", "Sun Tzu"],
-				"answer": 0
+				"options": ["Confucius", "Laozi", "Xuanzang", "Sun Tzu"],
+				"answer": 2
 			},
 			{
-				"question": "What role did the Gatekeeper Scholar (Dvārapāla) play at Nalanda?",
-				"options": ["Tested applicants in debate before admission", "Collected road taxes", "Guarded royal treasures", "Trained horses"],
-				"answer": 0
-			},
-			{
-				"question": "Who was the renowned Abbot and teacher of Xuanzang at Nalanda?",
-				"options": ["Shilabhadra", "Chanakya", "Varahamihira", "Patanjali"],
-				"answer": 0
-			},
-			{
-				"question": "Which subjects were studied alongside philosophy at Nalanda?",
-				"options": ["Mathematics, Medicine, Astronomy, and Logic", "Archery, Sailing, and Blacksmithing", "Gladiator fighting only", "Mining and Carpentry only"],
-				"answer": 0
+				"question": "Who was the renowned teacher and abbot associated with Xuanzang's studies at Nalanda?",
+				"options": ["Chanakya", "Shilabhadra", "Kalidasa", "Sushruta"],
+				"answer": 1
 			}
 		]
 	},

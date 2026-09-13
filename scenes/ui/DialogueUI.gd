@@ -24,12 +24,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			_dialogue_manager.advance_dialogue()
 
-func _input(event: InputEvent) -> void:
-	if dialogue_box and dialogue_box.visible and _dialogue_manager and _dialogue_manager.is_active():
-		if event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_E or event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE):
-			get_viewport().set_input_as_handled()
-			_dialogue_manager.advance_dialogue()
-
 func _on_dialogue_started() -> void:
 	if dialogue_box:
 		dialogue_box.visible = true

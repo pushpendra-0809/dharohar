@@ -306,18 +306,18 @@ const LEVEL3_MYSTERY_DATA: Dictionary = {
 				"is_genuine": false
 			}
 		],
-		"scholar_prompt": "Two transcribed scrolls claim to contain the lost Aryabhatiya folio on circumference and diameter. One preserves the true approximation while the other contains an interpolation error.",
+		"scholar_prompt": "Two transcribed scrolls claim to contain the lost Aryabhatiya manuscript on circumference and diameter. One preserves the true approximation while the other contains an interpolation error.",
 		"candidates": [
 			{
 				"id": "cand_correct",
-				"title": "Folio A — Authentic Aryabhata Transmission",
+				"title": "Manuscript A — Authentic Aryabhata Transmission",
 				"is_correct": true,
 				"text": "Specifies circumference ratio 62,832 / 20,000 as an approximate (Asanna) value for circular perimeter calculation.",
 				"explanation": "Correct. Aryabhata explicitly termed this value 'Asanna' (approximated ratio ≈ 3.1416)."
 			},
 			{
 				"id": "cand_flawed",
-				"title": "Folio B — Interpolated Crude Approximation",
+				"title": "Manuscript B — Interpolated Crude Approximation",
 				"is_correct": false,
 				"text": "Claims circumference is exactly 3 times the diameter without remainder.",
 				"explanation": "Flawed. A crude integer ratio of 3 ignores Aryabhata's high-precision calculation."
@@ -347,18 +347,18 @@ const LEVEL3_MYSTERY_DATA: Dictionary = {
 				"is_genuine": false
 			}
 		],
-		"scholar_prompt": "Two candidate folios describe gnomon shadow calculation. One accounts for true celestial orientation using equal-altitude bisectors, while the other contradicts empirical sky observation.",
+		"scholar_prompt": "Two candidate manuscripts describe gnomon shadow calculation. One accounts for true celestial orientation using equal-altitude bisectors, while the other contradicts empirical sky observation.",
 		"candidates": [
 			{
 				"id": "cand_correct",
-				"title": "Folio A — Empirical Gnomon Observation",
+				"title": "Manuscript A — Empirical Gnomon Observation",
 				"is_correct": true,
 				"text": "Accurately determines true North-South meridian using equal-altitude gnomon bisectors on the circular platform.",
 				"explanation": "Correct. The equal-altitude shadow method provides true cardinal orientation."
 			},
 			{
 				"id": "cand_flawed",
-				"title": "Folio B — Uncalibrated Rough Shadow Record",
+				"title": "Manuscript B — Uncalibrated Rough Shadow Record",
 				"is_correct": false,
 				"text": "Assumes midday shadows at all latitudes fall identically regardless of solar declination.",
 				"explanation": "Flawed. Shadow length varies with solar declination and observer latitude."
@@ -388,18 +388,18 @@ const LEVEL3_MYSTERY_DATA: Dictionary = {
 				"is_genuine": false
 			}
 		],
-		"scholar_prompt": "Two manuscript folios describe the preparation of herbal Rasayana formulations. One maintains classical Charaka purity, while the other incorporates unpurified mineral toxins.",
+		"scholar_prompt": "Two candidate manuscripts describe the preparation of herbal Rasayana formulations. One maintains classical Charaka purity, while the other incorporates unpurified mineral toxins.",
 		"candidates": [
 			{
 				"id": "cand_correct",
-				"title": "Folio A — Pure Charaka Botanical Formulation",
+				"title": "Manuscript A — Pure Charaka Botanical Formulation",
 				"is_correct": true,
 				"text": "Specifies pure plant-based Triphala decoction with honey and clarified butter according to Charaka Samhita.",
 				"explanation": "Correct. Preserves authentic classical herbal formulation without adulteration."
 			},
 			{
 				"id": "cand_flawed",
-				"title": "Folio B — Adulterated Alchemical Note",
+				"title": "Manuscript B — Adulterated Alchemical Note",
 				"is_correct": false,
 				"text": "Advocates raw unrefined heavy mineral powders without classical Shodhana detoxification.",
 				"explanation": "Flawed. Unpurified mineral compounds are hazardous and contradict classical herbal rasayana safety."
@@ -433,14 +433,14 @@ const LEVEL3_MYSTERY_DATA: Dictionary = {
 		"candidates": [
 			{
 				"id": "cand_correct",
-				"title": "Folio A — Classical Nyaya Vada Shastra",
+				"title": "Manuscript A — Classical Nyaya Vada Shastra",
 				"is_correct": true,
 				"text": "Mandates rigorous 5-limbed demonstration and rejects self-refuting statements (Vyaghata).",
 				"explanation": "Correct. Upholds disciplined epistemological standards of the Nalanda councils."
 			},
 			{
 				"id": "cand_flawed",
-				"title": "Folio B — Sophist Tractate",
+				"title": "Manuscript B — Sophist Tractate",
 				"is_correct": false,
 				"text": "Claims subjective assertion alone without Vyapti is sufficient in philosophical assembly.",
 				"explanation": "Flawed. Subjective belief without invariable concomitance fails Nyaya standards of valid knowledge."

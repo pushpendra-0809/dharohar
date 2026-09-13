@@ -37,8 +37,15 @@ func _ready() -> void:
 func _on_movement_locked(_locked: bool) -> void:
 	_update_ui_elements()
 
+func _can_interact() -> bool:
+	if dialogue_manager == null or dialogue_manager.is_active():
+		return false
+	if GameState != null and GameState.is_movement_locked:
+		return false
+	return true
+
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_in_range:
+	if _player_in_range and _can_interact():
 		if event.is_action_pressed("interact"):
 			get_viewport().set_input_as_handled()
 			_start_teacher2_interaction()
@@ -48,6 +55,8 @@ func _is_dev_mode() -> bool:
 	return dev != null and dev.dev_mode_enabled
 
 func _start_teacher2_interaction() -> void:
+	if not _can_interact():
+		return
 	if not dialogue_manager:
 		push_error("Teacher2: DialogueManager not assigned.")
 		return

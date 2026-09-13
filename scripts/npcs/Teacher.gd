@@ -235,13 +235,26 @@ func _stop_voice_audio() -> void:
 # ==================================================
 # INTERACTION & DIALOGUE FLOW
 # ==================================================
+func _can_interact() -> bool:
+	if dialogue_manager == null or dialogue_manager.is_active():
+		return false
+	if quiz_manager != null and quiz_manager.is_active():
+		return false
+	if GameState != null and GameState.is_movement_locked:
+		return false
+	if current_state != State.AVAILABLE and not _is_dev_mode():
+		return false
+	return is_teacher_unlocked()
+
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_in_range and (_is_dev_mode() or current_state == State.AVAILABLE) and is_teacher_unlocked():
+	if _player_in_range and _can_interact():
 		if event.is_action_pressed("interact"):
 			get_viewport().set_input_as_handled()
 			_start_teacher_interaction()
 
 func _start_teacher_interaction() -> void:
+	if not _can_interact():
+		return
 	if not dialogue_manager:
 		push_error("Silabhadra: DialogueManager not assigned.")
 		return

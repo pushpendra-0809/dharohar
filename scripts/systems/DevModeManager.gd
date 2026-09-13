@@ -396,28 +396,28 @@ func _build_domain_matrix_view() -> VBoxContainer:
 			"title": "📐 MATHEMATICS (GAṆITA)",
 			"subtitle": "Decimal place value, Zero, Arithmetic progressions, Geometry",
 			"stupa_desc": "Stupa: Piano-Tiles Number Stream Calculation Challenge",
-			"lib_desc": "Library: Aryabhatiya Folio Search & Circumference Reconstruction"
+			"lib_desc": "Library: Aryabhatiya Search & Circumference Reconstruction"
 		},
 		{
 			"id": "astronomy",
 			"title": "⭐ ASTRONOMY (JYOTIṢA)",
 			"subtitle": "27 Nakshatras, Gnomon shadow timekeeping, Planetary orbits",
 			"stupa_desc": "Stupa: Constellation Pattern Alignment & Star Coordination",
-			"lib_desc": "Library: Ghati-Chhaya Gnomon Timekeeping Folio & Meridian Clues"
+			"lib_desc": "Library: Ghati-Chhaya Gnomon Timekeeping Manuscript & Meridian Clues"
 		},
 		{
 			"id": "medicine",
 			"title": "🌿 MEDICINE (ĀYURVEDA)",
 			"subtitle": "Tridosha balance, Botanical pharmacopoeia, Triphala preparations",
 			"stupa_desc": "Stupa: Herbal Botanical Mahjong Matching Trial",
-			"lib_desc": "Library: Triphala Kalpana Botanical Formulation Folio"
+			"lib_desc": "Library: Triphala Kalpana Botanical Formulation Manuscript"
 		},
 		{
 			"id": "philosophy",
 			"title": "📜 PHILOSOPHY (NYĀYA / VĀDA)",
 			"subtitle": "5-limbed syllogism (Pañcāvayava), Epistemic pramana, Vyapti logic",
 			"stupa_desc": "Stupa: 5-Step Logic Syllogism Construction Trial",
-			"lib_desc": "Library: Nyaya Sutra Varttika Dialectic Folio"
+			"lib_desc": "Library: Nyaya Sutra Varttika Dialectic Manuscript"
 		}
 	]
 	

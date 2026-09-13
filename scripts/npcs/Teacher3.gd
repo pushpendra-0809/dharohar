@@ -83,13 +83,23 @@ func _find_dialogue_manager() -> void:
 				dialogue_manager = child
 				break
 
+func _can_interact() -> bool:
+	_find_dialogue_manager()
+	if dialogue_manager == null or dialogue_manager.is_active():
+		return false
+	if GameState != null and GameState.is_movement_locked:
+		return false
+	return true
+
 func _unhandled_input(event: InputEvent) -> void:
-	if _player_in_range:
+	if _player_in_range and _can_interact():
 		if event.is_action_pressed("interact") or (event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_E):
 			get_viewport().set_input_as_handled()
 			_start_teacher3_interaction()
 
 func _start_teacher3_interaction() -> void:
+	if not _can_interact():
+		return
 	_find_dialogue_manager()
 	if not dialogue_manager:
 		push_error("Teacher3: DialogueManager not assigned.")

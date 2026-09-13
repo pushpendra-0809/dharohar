@@ -57,12 +57,34 @@ func _ready() -> void:
 		
 	call_deferred("_check_cutscene_or_arrival")
 
+@onready var intro_narration_ui = get_node_or_null("NalandaIntroNarrationUI")
+
 func _check_cutscene_or_arrival() -> void:
-	if GameState and not GameState.has_played_nalanda_intro_cutscene:
-		GameState.has_played_nalanda_intro_cutscene = true
-		_play_intro_cutscene()
+	if GameState and not GameState.nalanda_intro_seen:
+		_show_intro_narration()
 	else:
 		_check_pending_arrival_message()
+
+func _show_intro_narration() -> void:
+	if intro_narration_ui == null:
+		intro_narration_ui = get_node_or_null("NalandaIntroNarrationUI")
+	if intro_narration_ui == null:
+		var scene_res = load("res://scenes/ui/NalandaIntroNarrationUI.tscn")
+		if scene_res:
+			intro_narration_ui = scene_res.instantiate()
+			add_child(intro_narration_ui)
+	
+	if intro_narration_ui and intro_narration_ui.has_method("open_narration"):
+		if not intro_narration_ui.narration_completed.is_connected(_on_intro_narration_finished):
+			intro_narration_ui.narration_completed.connect(_on_intro_narration_finished)
+		intro_narration_ui.open_narration()
+	else:
+		if GameState:
+			GameState.nalanda_intro_seen = true
+		_check_pending_arrival_message()
+
+func _on_intro_narration_finished() -> void:
+	_check_pending_arrival_message()
 
 func _play_intro_cutscene() -> void:
 	if GameState:

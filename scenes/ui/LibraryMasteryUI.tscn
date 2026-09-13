@@ -42,6 +42,46 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_norm"]
+bg_color = Color(0.24, 0.15, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(0.85, 0.65, 0.25, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_hover"]
+bg_color = Color(0.38, 0.24, 0.13, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 3
+border_color = Color(1, 0.88, 0.45, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(1, 0.7, 0.2, 0.3)
+shadow_size = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_pressed"]
+bg_color = Color(0.16, 0.1, 0.06, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.7, 0.5, 0.2, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [node name="LibraryChallengeUI" type="CanvasLayer" unique_id=987654395]
 layer = 15
 visible = false
@@ -241,48 +281,50 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 60.0
+offset_bottom = 82.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
 [node name="ClueLabel" type="Label" parent="MainPanel/Views/Level1View/ClueBox" unique_id=987654415]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 12.0
+offset_left = 14.0
 offset_top = 6.0
-offset_right = -12.0
+offset_right = -14.0
 offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.4, 1)
+theme_override_colors/font_color = Color(1, 0.92, 0.5, 1)
+theme_override_constants/line_spacing = 1
 theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 12
 text = "Scholar Clue..."
 autowrap_mode = 3
+
 [node name="ShelfHeader" type="Label" parent="MainPanel/Views/Level1View" unique_id=987654416]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 70.0
-offset_bottom = 90.0
+offset_top = 96.0
+offset_bottom = 118.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 13
 text = "📚 MANUSCRIPT SHELVES (Click to inspect contents):"
-
 autowrap_mode = 3
 
 [node name="ShelfContainer" type="HBoxContainer" parent="MainPanel/Views/Level1View" unique_id=987654417]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 95.0
-offset_bottom = 220.0
+offset_top = 126.0
+offset_bottom = 265.0
 grow_horizontal = 2
 alignment = 1
-theme_override_constants/separation = 20
+theme_override_constants/separation = 22
 [node name="InspectorPanel" type="Panel" parent="MainPanel/Views/Level1View" unique_id=987654418]
 visible = false
 layout_mode = 1
@@ -377,7 +419,7 @@ theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_fonts/font = ExtResource("2_oswald_bold")
 theme_override_font_sizes/font_size = 13
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn")
-text = "IDENTIFY AS LOST FOLIO ✦"
+text = "IDENTIFY AS LOST MANUSCRIPT ✦"
 [node name="BtnCloseInsp" type="Button" parent="MainPanel/Views/Level1View/InspectorPanel" unique_id=987654425]
 layout_mode = 1
 anchors_preset = 7
@@ -550,7 +592,7 @@ grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
 theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
-text = "Select genuine fragments to reconstruct the lost folio:"
+text = "Select genuine fragments to reconstruct the lost manuscript:"
 horizontal_alignment = 1
 autowrap_mode = 3
 [node name="FragmentsContainer" type="HFlowContainer" parent="MainPanel/Views/Level3View" unique_id=987654441]
@@ -597,44 +639,56 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 20.0
-offset_top = 15.0
+offset_top = 8.0
 offset_right = -20.0
-offset_bottom = 115.0
+offset_bottom = 120.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.95, 0.9, 0.8, 1)
+theme_override_colors/font_color = Color(0.96, 0.92, 0.82, 1)
+theme_override_constants/line_spacing = 1
 theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 13
 text = "Scholar's Contradiction prompt..."
 horizontal_alignment = 1
 autowrap_mode = 3
+
 [node name="CandidatesBox" type="HBoxContainer" parent="MainPanel/Views/Level3View/DecisionPanel" unique_id=987654445]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 125.0
+offset_top = 130.0
 offset_right = -20.0
-offset_bottom = -20.0
+offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 alignment = 1
+
 [node name="CandidateA" type="Button" parent="MainPanel/Views/Level3View/DecisionPanel/CandidatesBox" unique_id=987654446]
-custom_minimum_size = Vector2(280, 110)
+custom_minimum_size = Vector2(260, 95)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.45, 1)
 theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 12
-text = "Folio A"
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_norm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_pressed")
+text = "Manuscript A"
 autowrap_mode = 3
+
 [node name="CandidateB" type="Button" parent="MainPanel/Views/Level3View/DecisionPanel/CandidatesBox" unique_id=987654447]
-custom_minimum_size = Vector2(280, 110)
+custom_minimum_size = Vector2(260, 95)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.88, 0.45, 1)
 theme_override_fonts/font = ExtResource("3_oswald_reg")
 theme_override_font_sizes/font_size = 12
-text = "Folio B"
+theme_override_styles/normal = SubResource("StyleBoxFlat_card_norm")
+theme_override_styles/hover = SubResource("StyleBoxFlat_card_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_card_pressed")
+text = "Manuscript B"
 autowrap_mode = 3
 [node name="LevelCompleteView" type="Control" parent="MainPanel/Views" unique_id=987654448]
 visible = false
@@ -755,7 +809,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -70.0
+offset_top = -115.0
+offset_bottom = -50.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1

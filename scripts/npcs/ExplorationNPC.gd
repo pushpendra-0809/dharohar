@@ -171,9 +171,13 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _can_interact() -> bool:
 	_find_dialogue_manager()
+	if GameState != null and GameState.is_movement_locked:
+		return false
 	return dialogue_manager != null and not dialogue_manager.is_active()
 
 func _start_interaction() -> void:
+	if not _can_interact():
+		return
 	if not dialogue_manager:
 		_find_dialogue_manager()
 	_find_scholar_ui()
