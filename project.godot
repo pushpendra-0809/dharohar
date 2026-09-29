@@ -22,20 +22,13 @@ config/icon="res://icon.svg"
 GameState="*res://scripts/systems/GameState.gd"
 DevModeManager="*res://scripts/systems/DevModeManager.gd"
 AudioManager="*res://scripts/systems/AudioManager.gd"
-MobileTouchControls="*res://scenes/ui/MobileTouchControls.tscn"
 
 [display]
 
 window/size/mode=2
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep"
+window/stretch/aspect="ignore"
 window/size/mode.windows=2
-window/handheld/orientation=5
-
-[input_devices]
-
-pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=true
 
 [input]
 
