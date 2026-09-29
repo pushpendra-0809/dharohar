@@ -27,10 +27,9 @@ export default function GameDemo() {
   };
 
   const controlsMapping = [
-    { key: "TOUCH / D-PAD", action: "On-Screen Joystick (Mobile / Tablet)" },
-    { key: "WASD / ARROWS", action: "Navigate Historical World (PC / Mac)" },
-    { key: "TAP / [ E ] / SPACE", action: "Interact & Inspect Artifacts" },
-    { key: "TAB / J / ESC", action: "Codex, Journal & Pause Menu" }
+    { key: "WASD / ARROWS", action: "Navigate Historical World" },
+    { key: "E / SPACE", action: "Interact, Inspect Artifacts & NPCs" },
+    { key: "ESC", action: "World Map & Architectural Pause" }
   ];
 
   return (
@@ -163,7 +162,7 @@ export default function GameDemo() {
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {controlsMapping.map((ctrl) => (
                 <div 
                   key={ctrl.key}
