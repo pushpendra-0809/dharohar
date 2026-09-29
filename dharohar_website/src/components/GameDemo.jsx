@@ -29,7 +29,7 @@ export default function GameDemo() {
   const controlsMapping = [
     { key: "WASD / ARROWS", action: "Navigate Historical World" },
     { key: "E / SPACE", action: "Interact, Inspect Artifacts & NPCs" },
-    { key: "ESC", action: "World Map & Architectural Pause" }
+    { key: "ESC", action: "Pause & Settings Menu" }
   ];
 
   return (
