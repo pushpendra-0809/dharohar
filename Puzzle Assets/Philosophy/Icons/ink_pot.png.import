@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/ink_pot.png-df07bfe3df08fafca47762680d25f4f8.
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

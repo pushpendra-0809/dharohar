@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/puzzle_panel.png-111732c0587eb4e65e13b24dae9e
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/top_crest.png-7caf21f17c233f311df05a3a6fc4848
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

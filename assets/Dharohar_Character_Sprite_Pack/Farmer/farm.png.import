@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/farm.png-cb6bc58857604a4c1fe64b36b32b026a.cte
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

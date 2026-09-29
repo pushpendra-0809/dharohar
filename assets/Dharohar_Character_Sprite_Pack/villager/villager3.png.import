@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/villager3.png-703a9b5a42e4231e7adde5c175dc8f2
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -206,6 +206,20 @@ func _on_dialogue_finished() -> void:
 	if GameState:
 		GameState.unlock_player_movement()
 	_update_ui_elements()
+	
+	if OS.has_feature("web") and GameState and GameState.are_teacher2_tasks_completed():
+		_trigger_web_demo_end_popup()
+
+func _trigger_web_demo_end_popup() -> void:
+	var end_uis = get_tree().get_nodes_in_group("web_demo_end_ui")
+	if end_uis.size() > 0:
+		end_uis[0].open_demo_end_popup()
+	else:
+		var scene_res = load("res://scenes/ui/WebDemoEndUI.tscn")
+		if scene_res:
+			var ui = scene_res.instantiate()
+			get_tree().root.add_child(ui)
+			ui.open_demo_end_popup()
 
 func _on_interaction_cancelled() -> void:
 	if GameState:

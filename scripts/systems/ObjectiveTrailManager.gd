@@ -41,6 +41,10 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if not GameState.merchant_state_changed.is_connected(_on_quest_state_changed):
+			GameState.merchant_state_changed.connect(_on_quest_state_changed)
+		if not GameState.teacher_state_changed.is_connected(_on_quest_state_changed):
+			GameState.teacher_state_changed.connect(_on_quest_state_changed)
 			
 	call_deferred("_sync_with_game_state")
 
@@ -293,7 +297,7 @@ func _sync_with_game_state() -> void:
 		var univ_ent: Node2D = get_node_or_null("../UniversityEntrance")
 		var target_pos: Vector2 = univ_ent.global_position if univ_ent else Vector2(1098, 191)
 		set_objective("proceed_to_university", target_pos, "Proceed to Nalanda University", univ_ent)
-	elif GameState.water_quest_completed or GameState.university_location_revealed:
+	elif GameState.merchant_passed or GameState.water_quest_completed or GameState.university_location_revealed:
 		var teacher: Node2D = get_node_or_null("../Teacher")
 		var teacher_pos: Vector2 = teacher.global_position if teacher else Vector2(998, 497)
 		set_objective("meet_teacher", teacher_pos, "Meet the Teacher", teacher)

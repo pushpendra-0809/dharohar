@@ -8,6 +8,10 @@ extends CanvasLayer
 
 var _dialogue_manager: DialogueManager = null
 
+func _ready() -> void:
+	add_to_group("dialogue_ui")
+	hide_dialogue()
+
 func setup(manager: DialogueManager) -> void:
 	_dialogue_manager = manager
 	if not _dialogue_manager.dialogue_started.is_connected(_on_dialogue_started):
@@ -20,6 +24,22 @@ func setup(manager: DialogueManager) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if dialogue_box and dialogue_box.visible and _dialogue_manager and _dialogue_manager.is_active():
+		if event is InputEventKey and event.pressed and not event.echo:
+			if event.keycode == KEY_UP or event.keycode == KEY_W:
+				if text_label is RichTextLabel:
+					var vbar = text_label.get_v_scroll_bar()
+					if vbar:
+						vbar.value -= 36
+						get_viewport().set_input_as_handled()
+						return
+			elif event.keycode == KEY_DOWN or event.keycode == KEY_S:
+				if text_label is RichTextLabel:
+					var vbar = text_label.get_v_scroll_bar()
+					if vbar:
+						vbar.value += 36
+						get_viewport().set_input_as_handled()
+						return
+
 		if event.is_action_pressed("interact") or event.is_action_pressed("ui_accept") or (event is InputEventKey and event.pressed and not event.echo and (event.keycode == KEY_E or event.keycode == KEY_ENTER or event.keycode == KEY_KP_ENTER or event.keycode == KEY_SPACE)):
 			get_viewport().set_input_as_handled()
 			_dialogue_manager.advance_dialogue()
@@ -33,6 +53,10 @@ func _on_dialogue_step_changed(speaker: String, text: String) -> void:
 		speaker_label.text = speaker
 	if text_label:
 		text_label.text = text
+		if text_label is RichTextLabel:
+			var vbar = text_label.get_v_scroll_bar()
+			if vbar:
+				vbar.value = 0
 	if continue_label:
 		continue_label.text = "[Press E / Enter to Continue]"
 

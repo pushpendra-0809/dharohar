@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/stylus_icon.png-05c0597b367ba05fb31efe33060af
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

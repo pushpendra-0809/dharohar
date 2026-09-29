@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://ddsqmr2o2myhb"]
 
-[ext_resource type="Script" uid="uid://c3ggd4hf4wkx2" path="res://scenes/nalanda_university.gd" id="1_univgd"]
+[ext_resource type="Script" path="res://scenes/nalanda_university.gd" id="1_univgd"]
 [ext_resource type="Texture2D" uid="uid://dprhow6282lun" path="res://assets/map/Nalanda University.png" id="2_univpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
 [ext_resource type="Texture2D" uid="uid://b27p6ul63a5x1" path="res://assets/Dharohar_Character_Sprite_Pack/special_npc/1npc_standing.png" id="3_tcrwk"]
 [ext_resource type="PackedScene" uid="uid://pn3r3cl4o08y" path="res://scenes/npcs/Teacher2.tscn" id="4_teacher2"]
-[ext_resource type="PackedScene" uid="uid://cag5r18rcg1f3" path="res://scenes/objects/UniversityExit.tscn" id="5_exit"]
+[ext_resource type="PackedScene" uid="uid://cuniversityexitscene" path="res://scenes/objects/UniversityExit.tscn" id="5_exit"]
 [ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="6_trail"]
-[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
+[ext_resource type="PackedScene" uid="uid://c8d2dialogueui" path="res://scenes/ui/DialogueUI.tscn" id="7_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="8_questui"]
-[ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
-[ext_resource type="PackedScene" uid="uid://cnx5t1vwvicsc" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="10_mathui"]
+[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="9_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cmathpuzzleuiscene" path="res://scenes/ui/puzzles/MathematicsPuzzleUI.tscn" id="10_mathui"]
 [ext_resource type="PackedScene" uid="uid://brdqwb7cycs8e" path="res://scenes/ui/puzzles/MedicinePuzzleUI.tscn" id="11_medui"]
-[ext_resource type="PackedScene" uid="uid://ffgqnjixgoks" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.tscn" id="12_astroui"]
-[ext_resource type="PackedScene" uid="uid://d4hatamymv0qs" path="res://scenes/ui/puzzles/PhilosophyPuzzleUI.tscn" id="13_philui"]
+[ext_resource type="PackedScene" uid="uid://castropuzzleuiscene" path="res://scenes/ui/puzzles/AstronomyPuzzleUI.tscn" id="12_astroui"]
+[ext_resource type="PackedScene" uid="uid://cphilpuzzleuiscene" path="res://scenes/ui/puzzles/PhilosophyPuzzleUI.tscn" id="13_philui"]
 [ext_resource type="Texture2D" uid="uid://ws4isvfcf2jr" path="res://assets/Elements/buildings/build3.png" id="14_build3"]
 [ext_resource type="Texture2D" uid="uid://wrjtjiua7f87" path="res://assets/Elements/buildings/Art library.png" id="15_artlib"]
 [ext_resource type="Texture2D" uid="uid://dcbk8i4r43lrd" path="res://assets/Elements/buildings/nalanda_main.png" id="16_nalmain"]
@@ -33,8 +33,8 @@
 [ext_resource type="Texture2D" uid="uid://bq4g8j7kbmfu2" path="res://assets/Elements/buildings/GrassBush.png" id="31_grassbush"]
 [ext_resource type="PackedScene" uid="uid://dk8r6mj4vn8hu" path="res://scenes/objects/NalandaInfoTrigger.tscn" id="32_infotrigger"]
 [ext_resource type="PackedScene" uid="uid://b372vgn7qnd7k" path="res://scenes/ui/NalandaInfoUI.tscn" id="33_infoui"]
-[ext_resource type="Script" uid="uid://b5pmf2hehdssq" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
-[ext_resource type="PackedScene" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
+[ext_resource type="Script" path="res://scripts/data/LibraryInfoData.gd" id="34_libinfodata"]
+[ext_resource type="PackedScene" uid="uid://cgc2p1m8sfmfy" path="res://scenes/objects/StupaInfoTrigger.tscn" id="36_stupatrigger"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="37_boy1"]
 [ext_resource type="Texture2D" uid="uid://dhqugwmia5jqo" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/standing.png" id="39_girl1"]
 [ext_resource type="Texture2D" uid="uid://dvgxdgc2oe6gv" path="res://assets/Dharohar_Character_Sprite_Pack/monk_bhikshu/standing.png" id="40_monk"]
@@ -50,10 +50,13 @@
 [ext_resource type="PackedScene" uid="uid://ce87cfr5t4hoo" path="res://scenes/objects/InteractionPoint.tscn" id="48_interactpt"]
 [ext_resource type="PackedScene" uid="uid://c8rnkh57g5h7u" path="res://scenes/objects/PickupItem.tscn" id="49_pickupitem"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="50_scholarui"]
-[ext_resource type="PackedScene" uid="uid://dhulax1pnt6ey" path="res://scenes/ui/StupaChallengeUI.tscn" id="51_stupachallengeui"]
+[ext_resource type="PackedScene" uid="uid://ef26okseopsb" path="res://scenes/ui/StupaChallengeUI.tscn" id="51_stupachallengeui"]
 [ext_resource type="PackedScene" uid="uid://biob8wae51661" path="res://scenes/objects/ViharaEntrance.tscn" id="52_vharentrance"]
 [ext_resource type="PackedScene" uid="uid://cex2h1i3mlxrk" path="res://scenes/npcs/Teacher3.tscn" id="53_teacher3scene"]
+[ext_resource type="PackedScene" uid="uid://y1jbmoh7h40g" path="res://scenes/ui/FinalMasteryUI.tscn" id="54_finalmasteryui"]
+[ext_resource type="PackedScene" uid="uid://beesf2ij5hq4s" path="res://scenes/ui/NalandaCompletionUI.tscn" id="55_nalandacompletionui"]
 [ext_resource type="Texture2D" uid="uid://cv0ph12nhw40o" path="res://assets/items/item_stupa_lamp.png" id="73_stupalamp"]
+
 [ext_resource type="Texture2D" uid="uid://cp663m1a2u6ge" path="res://assets/items/item_stupa_cloth.png" id="74_stupacloth"]
 [ext_resource type="Texture2D" uid="uid://bxyemd7ow3xpy" path="res://assets/items/item_stupa_flowers.png" id="75_stupaflowers"]
 [ext_resource type="Texture2D" uid="uid://b8d5j62p3vypw" path="res://assets/items/item_vihara_wood.png" id="76_viharawood"]
@@ -798,3 +801,8 @@ position = Vector2(737.6719, 456)
 position = Vector2(522.00006, 36)
 scale = Vector2(0.044677746, 0.043375652)
 texture = ExtResource("3_tcrwk")
+
+[node name="FinalMasteryUI" parent="." unique_id=987930 instance=ExtResource("54_finalmasteryui")]
+
+[node name="NalandaCompletionUI" parent="." unique_id=987931 instance=ExtResource("55_nalandacompletionui")]
+

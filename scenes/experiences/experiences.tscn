@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://8vyrunj4x0hw"]
 
 [ext_resource type="Texture2D" uid="uid://dce74f8y840h2" path="res://assets/background/experience_screen.png" id="1_474bk"]
-[ext_resource type="Script" uid="uid://cxskn06ouf23g" path="res://scenes/experiences/experiences.gd" id="1_c5vio"]
+[ext_resource type="Script" path="res://scenes/experiences/experiences.gd" id="1_c5vio"]
 [ext_resource type="Texture2D" uid="uid://dhjyunf5br2r3" path="res://assets/nalanda_card_transparent.png" id="2_nhqnu"]
 [ext_resource type="Texture2D" uid="uid://cxi1uv172b8ic" path="res://assets/ui/coming sooon.png" id="3_csb"]
 [ext_resource type="Texture2D" uid="uid://dobuuom27seij" path="res://assets/ui/back_button.png" id="5_82vb8"]
-[ext_resource type="FontFile" uid="uid://chv6xwtkplxfg" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="6_oswaldbold"]
-[ext_resource type="FontFile" uid="uid://c41oenw302iit" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="7_oswaldreg"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="6_oswaldbold"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="7_oswaldreg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_icd5h"]
 texture = ExtResource("2_nhqnu")

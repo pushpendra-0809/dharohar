@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/begin_journey_button_hover.png-91c4558a1555cd
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

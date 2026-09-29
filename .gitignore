@@ -1,3 +1,13 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Node / Web build ignores
+node_modules/
+dharohar_website/node_modules/
+dharohar_website/dist/
+scratch/
+exports/
+*.zip
+.vscode/
+

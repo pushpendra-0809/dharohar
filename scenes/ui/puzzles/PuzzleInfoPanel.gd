@@ -77,6 +77,8 @@ var rules_db: Dictionary = {
 }
 
 func _ready() -> void:
+	add_to_group("puzzle_info_panel")
+	add_to_group("popup_modal")
 	visible = false
 	if close_button and not close_button.pressed.is_connected(hide_info):
 		close_button.pressed.connect(hide_info)

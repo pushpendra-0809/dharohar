@@ -2,6 +2,7 @@ class_name QuestUI
 extends CanvasLayer
 
 @onready var panel_box: Control = $PanelBox
+@onready var minimized_btn: Button = get_node_or_null("MinimizedBtn")
 @onready var title_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/TitleLabel") if has_node("PanelBox/MarginContainer/VBox/TitleLabel") else get_node_or_null("PanelBox/TitleLabel")
 @onready var objective_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/ObjectiveLabel") if has_node("PanelBox/MarginContainer/VBox/ObjectiveLabel") else get_node_or_null("PanelBox/ObjectiveLabel")
 @onready var reward_label: Label = get_node_or_null("PanelBox/MarginContainer/VBox/RewardLabel") if has_node("PanelBox/MarginContainer/VBox/RewardLabel") else get_node_or_null("PanelBox/RewardLabel")
@@ -16,11 +17,17 @@ extends CanvasLayer
 
 var _is_objective_active: bool = true
 var _show_on_quest_update: bool = true
+var _user_manually_opened: bool = false
 var _is_hovered: bool = false
 
 func _ready() -> void:
 	add_to_group("quest_ui")
 	_show_on_quest_update = true
+	_user_manually_opened = false
+	
+	if minimized_btn:
+		if not minimized_btn.pressed.is_connected(_toggle_objective_display):
+			minimized_btn.pressed.connect(_toggle_objective_display)
 	
 	if panel_box:
 		if not panel_box.mouse_entered.is_connected(_on_panel_mouse_entered):
@@ -31,10 +38,16 @@ func _ready() -> void:
 	if GameState:
 		if not GameState.quest_state_changed.is_connected(_on_quest_state_changed):
 			GameState.quest_state_changed.connect(_on_quest_state_changed)
+		if not GameState.merchant_state_changed.is_connected(_on_quest_state_changed):
+			GameState.merchant_state_changed.connect(_on_quest_state_changed)
+		if not GameState.teacher_state_changed.is_connected(_on_quest_state_changed):
+			GameState.teacher_state_changed.connect(_on_quest_state_changed)
 		if GameState.has_signal("exp_awarded") and not GameState.exp_awarded.is_connected(_on_exp_awarded):
 			GameState.exp_awarded.connect(_on_exp_awarded)
 		if GameState.has_signal("side_quest_completed") and not GameState.side_quest_completed.is_connected(_on_side_quest_completed):
 			GameState.side_quest_completed.connect(_on_side_quest_completed)
+		if GameState.has_signal("side_quest_state_changed") and not GameState.side_quest_state_changed.is_connected(_on_side_quest_state_changed):
+			GameState.side_quest_state_changed.connect(_on_side_quest_state_changed)
 			
 	if completion_timer and not completion_timer.timeout.is_connected(_on_completion_timeout):
 		completion_timer.timeout.connect(_on_completion_timeout)
@@ -48,13 +61,39 @@ func _ready() -> void:
 	update_quest_ui()
 	pop_objective()
 
+func _on_side_quest_state_changed(_quest_id: String, _new_state: int) -> void:
+	_show_on_quest_update = true
+	update_quest_ui()
+	pop_objective()
+
+func _is_in_vihara_tasks() -> bool:
+	if not GameState:
+		return false
+	if GameState.is_vihara_completed():
+		return false
+	var cur_scene = get_tree().current_scene
+	if cur_scene and (cur_scene.name == "InnerVihar" or cur_scene.name == "innerVihar"):
+		return true
+	if get_tree().get_nodes_in_group("vihara_objective_hud").size() > 0 or get_tree().get_nodes_in_group("vihara_manager").size() > 0:
+		return true
+	return false
+
 func pop_objective() -> void:
 	if not panel_box:
 		return
 	if _is_fullscreen_puzzle_active():
 		panel_box.visible = false
+		if minimized_btn:
+			minimized_btn.visible = false
+		return
+	if _is_in_vihara_tasks() and not _user_manually_opened:
+		panel_box.visible = false
+		if minimized_btn:
+			minimized_btn.visible = true
 		return
 	panel_box.visible = true
+	if minimized_btn:
+		minimized_btn.visible = false
 	var tw := create_tween().set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 	panel_box.modulate.a = 0.2
 	tw.tween_property(panel_box, "modulate:a", 1.0, 0.25)
@@ -66,9 +105,32 @@ func _process(_delta: float) -> void:
 	if _is_fullscreen_puzzle_active():
 		if panel_box.visible:
 			panel_box.visible = false
+		if minimized_btn and minimized_btn.visible:
+			minimized_btn.visible = false
 	else:
-		if _show_on_quest_update and not panel_box.visible:
-			panel_box.visible = true
+		var in_vihara := _is_in_vihara_tasks()
+		if in_vihara:
+			if _user_manually_opened:
+				if not panel_box.visible:
+					panel_box.visible = true
+				if minimized_btn and minimized_btn.visible:
+					minimized_btn.visible = false
+			else:
+				if panel_box.visible:
+					panel_box.visible = false
+				if minimized_btn and not minimized_btn.visible:
+					minimized_btn.visible = true
+		else:
+			if _show_on_quest_update:
+				if not panel_box.visible:
+					panel_box.visible = true
+				if minimized_btn and minimized_btn.visible:
+					minimized_btn.visible = false
+			else:
+				if panel_box.visible:
+					panel_box.visible = false
+				if minimized_btn and not minimized_btn.visible:
+					minimized_btn.visible = true
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.is_pressed() and not event.echo:
@@ -83,8 +145,14 @@ func _toggle_objective_display() -> void:
 	if panel_box.visible:
 		panel_box.visible = false
 		_show_on_quest_update = false
+		_user_manually_opened = false
+		if minimized_btn:
+			minimized_btn.visible = not _is_fullscreen_puzzle_active()
 	else:
 		_show_on_quest_update = true
+		_user_manually_opened = true
+		if minimized_btn:
+			minimized_btn.visible = false
 		update_quest_ui()
 		pop_objective()
 
@@ -92,30 +160,65 @@ func _is_fullscreen_puzzle_active() -> bool:
 	if not GameState:
 		return true
 		
+	# 1. DevMode overlay check
 	var dev = get_node_or_null("/root/DevModeManager")
 	if dev and "is_menu_open" in dev and dev.is_menu_open:
 		return true
 		
+	# 2. Known popup/challenge/puzzle groups check
 	var popup_groups := [
 		"pause_menu", "pause_menu_ui",
 		"stupa_challenge_ui", "library_challenge_ui", "vihara_challenge_ui",
 		"final_mastery_ui", "quiz_ui", "scholar_reasoning_ui",
-		"nalanda_completion_ui", "astro_heritage_ui",
-		"math_heritage_ui", "med_heritage_ui", "phil_heritage_ui",
-		"logic_heritage_ui", "knowledge_book_ui", "confirmation_dialog"
+		"nalanda_completion_ui", "vihara_completion_ui",
+		"astro_heritage_ui", "math_heritage_ui", "med_heritage_ui", "phil_heritage_ui",
+		"logic_heritage_ui", "knowledge_book_ui", "confirmation_dialog",
+		"puzzle_ui", "math_puzzle_ui", "astro_puzzle_ui", "med_puzzle_ui", "phil_puzzle_ui",
+		"domain_selection", "domain_selection_ui",
+		"nalanda_info_ui", "intro_narration_ui", "narrative_choice_ui",
+		"player_progress_ui", "controls_tutorial_ui", "cutscene_ui",
+		"puzzle_info_panel", "popup_modal"
 	]
 	
 	for g in popup_groups:
 		var nodes = get_tree().get_nodes_in_group(g)
 		for n in nodes:
 			if is_instance_valid(n) and n.visible:
+				if n.has_node("PanelContainer") and n.get_node("PanelContainer").visible:
+					return true
 				if n.has_node("MainPanel") and n.get_node("MainPanel").visible:
 					return true
 				if n.has_node("ColorRect") and n.get_node("ColorRect").visible:
 					return true
-				if not n.has_node("MainPanel") and not n.has_node("ColorRect") and n.visible:
+				if n.has_node("SelectionBox") and n.get_node("SelectionBox").visible:
 					return true
-					
+				if n.has_node("MenuBox") and n.get_node("MenuBox").visible:
+					return true
+				if not n.has_node("MainPanel") and not n.has_node("ColorRect") and not n.has_node("PanelContainer") and not n.has_node("SelectionBox") and not n.has_node("MenuBox") and n.visible:
+					return true
+
+	# 3. Check active scene children for any open CanvasLayer modal
+	var cur_scene = get_tree().current_scene
+	if cur_scene:
+		for child in cur_scene.get_children():
+			if not is_instance_valid(child) or child == self:
+				continue
+			if child.is_in_group("quest_ui") or child.is_in_group("objective_trail") or child.is_in_group("dialogue_ui"):
+				continue
+			if child is DialogueUI:
+				continue
+			if child is ViharaObjectiveHUD:
+				if child.has_node("GuideModal") and child.get_node("GuideModal").visible:
+					return true
+				continue
+			if child is CanvasLayer:
+				if not child.visible:
+					continue
+				# Check if any main modal UI control inside this CanvasLayer is visible
+				for sub in child.get_children():
+					if sub is Control and sub.visible and sub.name != "DialogueBox":
+						return true
+						
 	return false
 
 func update_quest_ui() -> void:
@@ -155,154 +258,116 @@ func update_quest_ui() -> void:
 			exp_stats_label.visible = true
 		return
 		
-	# 2. Main Storyline Progression / Idle State
-	if GameState.has_met_teacher3:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
+	# 2. Main Storyline Progression Flow (State-driven hierarchy)
+	if panel_box and _show_on_quest_update:
+		panel_box.visible = true
+	if reward_label:
+		reward_label.visible = false
+	if exp_stats_label:
+		exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
+		exp_stats_label.visible = true
+
+	var is_merchant_done: bool = GameState.merchant_passed or GameState.water_quest_completed or GameState.university_location_revealed
+	var stupa_done: bool = GameState.is_stupa_completed() if GameState.has_method("is_stupa_completed") else (GameState.stupa_scroll_earned or GameState.stupa_mastery_completed)
+	var lib_done: bool = GameState.is_library_completed() if GameState.has_method("is_library_completed") else (GameState.library_scroll_earned or GameState.library_mastery_completed)
+	var vih_done: bool = GameState.is_vihara_completed() if GameState.has_method("is_vihara_completed") else (GameState.vihara_scroll_earned or GameState.vihara_mastery_completed)
+
+	if GameState.nalanda_complete:
 		if title_label:
-			title_label.text = "STORY MASTERY"
+			title_label.text = "NALANDA MASTERED"
 		if objective_label:
-			var stupa_done: bool = GameState.is_stupa_completed() if GameState.has_method("is_stupa_completed") else (GameState.stupa_scroll_earned or GameState.stupa_mastery_completed)
-			var lib_done: bool = GameState.is_library_completed() if GameState.has_method("is_library_completed") else (GameState.library_scroll_earned or GameState.library_mastery_completed)
-			var vih_done: bool = GameState.is_vihara_completed() if GameState.has_method("is_vihara_completed") else (GameState.vihara_scroll_earned or GameState.vihara_mastery_completed)
-			
-			var stupa_str: String = "Stupa: 📜 Claimed" if stupa_done else ("Stupa: 🔓 Ready" if GameState.stupa_unlocked else "Stupa: 🔒 Locked")
-			var lib_str: String = "Library: 📜 Claimed" if lib_done else ("Library: 🔓 Ready" if GameState.library_unlocked else "Library: 🔒 Locked")
-			var vih_str: String = "Vihara: 📜 Claimed" if vih_done else ("Vihara: 🔓 Ready" if GameState.vihara_unlocked else "Vihara: 🔒 Locked")
-			
-			var headline: String = ""
-			if GameState.nalanda_complete:
-				headline = "Nalanda Journey Complete! Wisdom preserved."
-			elif GameState.final_mastery_complete:
-				headline = "Mastery Complete! Speak with Teacher 3."
-			elif GameState.has_all_three_scrolls():
-				headline = "Return to Teacher 3 with 3 Scrolls for Final Mastery."
-			elif not GameState.stupa_unlocked:
-				headline = "Help villagers & complete NPC tasks to unlock the Stupa."
-			elif not stupa_done:
-				headline = "Visit the Great Stupa and resolve the crisis."
-			elif not GameState.library_unlocked:
-				headline = "Help more NPCs to gain EXP and unlock the Library."
-			elif not lib_done:
-				headline = "Visit the Dharmaganja Library and resolve the dispute."
-			elif not GameState.vihara_unlocked:
-				headline = "Help more NPCs to gain EXP and unlock the Vihara."
-			elif not vih_done:
-				headline = "Visit the Vihara Living Quarters and resolve the dilemma."
+			objective_label.text = "Wisdom preserved for eternity! Explore freely."
+	elif GameState.final_mastery_complete:
+		if title_label:
+			title_label.text = "FINAL MASTERY"
+		if objective_label:
+			objective_label.text = "Mastery Complete! Speak with Teacher 3 to conclude."
+	elif GameState.final_mastery_unlocked or GameState.has_all_three_scrolls():
+		if title_label:
+			title_label.text = "FINAL MASTERY"
+		if objective_label:
+			if GameState.final_mastery_unlocked:
+				var dom: String = GameState.selected_domain.to_lower()
+				if "math" in dom or "gaṇita" in dom:
+					objective_label.text = "Complete Mathematics Mastery."
+				elif "astro" in dom or "jyotiṣa" in dom:
+					objective_label.text = "Complete Astronomy Mastery."
+				elif "med" in dom or "cikitsā" in dom or "ayur" in dom:
+					objective_label.text = "Complete Medicine Mastery."
+				elif "phil" in dom or "darśana" in dom or "nyāya" in dom or "hetuvidyā" in dom:
+					objective_label.text = "Complete Philosophy Mastery."
+				else:
+					objective_label.text = "Complete the Final Mastery Challenge."
 			else:
-				headline = "Explore Nalanda and complete building chapters."
-				
-			if _is_hovered:
-				objective_label.text = headline + "\n" + stupa_str + "  •  " + lib_str + "  •  " + vih_str
-				if panel_box:
-					panel_box.offset_bottom = 140.0
-			else:
-				objective_label.text = headline
-				if panel_box:
-					panel_box.offset_bottom = 118.0
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
-	elif GameState.has_visited_university:
-		if GameState.are_teacher2_tasks_completed():
-			if not GameState.has_met_teacher3:
-				if panel_box and _show_on_quest_update:
-					panel_box.visible = true
-				if title_label:
-					title_label.text = "OBJECTIVE"
-				if objective_label:
-					objective_label.text = "Speak with the Mastery Mentor (Teacher 3)."
-				if reward_label:
-					reward_label.visible = false
-				if exp_stats_label:
-					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-					exp_stats_label.visible = true
-			else:
-				if panel_box and _show_on_quest_update:
-					panel_box.visible = true
-				if title_label:
-					title_label.text = "NALANDA EXPLORATION"
-				if objective_label:
-					objective_label.text = "Complete side quests to gain EXP."
-				if reward_label:
-					reward_label.visible = false
-				if exp_stats_label:
-					exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-					exp_stats_label.visible = true
-		else:
-			if panel_box and _show_on_quest_update:
-				panel_box.visible = true
+				objective_label.text = "Return to Teacher 3 with the 3 Sacred Scrolls."
+	elif GameState.has_met_teacher3:
+		if not stupa_done:
 			if title_label:
-				title_label.text = "OBJECTIVE"
+				title_label.text = "CHAPTER OBJECTIVE"
 			if objective_label:
-				objective_label.text = "Meet Acharya (Teacher 2) & Complete Hands-on Task"
-			if reward_label:
-				reward_label.visible = false
-			if exp_stats_label:
-				exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-				exp_stats_label.visible = true
+				objective_label.text = "Visit the Great Stupa and resolve the crisis."
+		elif not lib_done:
+			if title_label:
+				title_label.text = "CHAPTER OBJECTIVE"
+			if objective_label:
+				objective_label.text = "Visit the Dharmaganja Library and resolve the dispute."
+		elif not vih_done:
+			if title_label:
+				title_label.text = "CHAPTER OBJECTIVE"
+			if objective_label:
+				objective_label.text = "Visit the Vihara Living Quarters and resolve the dilemma."
+		else:
+			if title_label:
+				title_label.text = "NALANDA EXPLORATION"
+			if objective_label:
+				objective_label.text = "Explore Nalanda and complete side quests."
+	elif GameState.are_teacher2_tasks_completed():
+		if OS.has_feature("web"):
+			if title_label:
+				title_label.text = "WEB DEMO COMPLETE"
+			if objective_label:
+				objective_label.text = "Download full game to continue Nalanda journey."
+		else:
+			if title_label:
+				title_label.text = "CURRENT OBJECTIVE"
+			if objective_label:
+				objective_label.text = "Meet the Mastery Mentor at the central plaza."
+	elif GameState.has_visited_university:
+		if title_label:
+			title_label.text = "CURRENT OBJECTIVE"
+		if objective_label:
+			if GameState.teacher2_convo_started:
+				objective_label.text = "Complete the hands-on challenge."
+			else:
+				objective_label.text = "Meet Acharya & complete your domain task."
 	elif GameState.teacher_admitted:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
 		if title_label:
-			title_label.text = "OBJECTIVE"
+			title_label.text = "CURRENT OBJECTIVE"
 		if objective_label:
-			objective_label.text = "Proceed to Nalanda University"
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
-	elif GameState.water_quest_completed or GameState.university_location_revealed:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
+			objective_label.text = "Proceed through the northern gate into Nalanda University."
+	elif is_merchant_done:
 		if title_label:
-			title_label.text = "OBJECTIVE"
+			title_label.text = "CURRENT OBJECTIVE"
 		if objective_label:
-			objective_label.text = "Meet the Teacher"
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
+			if GameState.selected_domain != "" and not GameState.teacher_quiz_completed:
+				objective_label.text = "Complete the Admission Quiz with Teacher 1."
+			else:
+				objective_label.text = "Meet the Teacher at the gate & pass the Admission Quiz."
 	elif GameState.has_water:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
 		if title_label:
-			title_label.text = "OBJECTIVE"
+			title_label.text = "CURRENT OBJECTIVE"
 		if objective_label:
-			objective_label.text = "Return the water to the Merchant"
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
+			objective_label.text = "Return the fresh water bucket to the Merchant."
 	elif GameState.merchant_water_quest_started:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
 		if title_label:
-			title_label.text = "OBJECTIVE"
+			title_label.text = "CURRENT OBJECTIVE"
 		if objective_label:
-			objective_label.text = "Collect water from the nearby pond"
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
+			objective_label.text = "Collect fresh water from the nearby pond."
 	else:
-		if panel_box and _show_on_quest_update:
-			panel_box.visible = true
 		if title_label:
-			title_label.text = "OBJECTIVE"
+			title_label.text = "CURRENT OBJECTIVE"
 		if objective_label:
-			objective_label.text = "Meet the merchant"
-		if reward_label:
-			reward_label.visible = false
-		if exp_stats_label:
-			exp_stats_label.text = "Level: " + str(cur_lvl) + "   EXP: " + str(cur_exp) + " / " + str(req_exp)
-			exp_stats_label.visible = true
+			objective_label.text = "Meet the Merchant."
 
 func _on_side_quest_completed(quest_id: String) -> void:
 	var q_title: String = "Side Quest"
@@ -350,6 +415,7 @@ func _on_exp_timeout() -> void:
 
 func _on_quest_state_changed() -> void:
 	_show_on_quest_update = true
+	_user_manually_opened = false
 	update_quest_ui()
 	pop_objective()
 

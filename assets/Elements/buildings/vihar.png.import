@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/vihar.png-7c4d40096a63f4ea3e1db856e3890c3e.ct
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

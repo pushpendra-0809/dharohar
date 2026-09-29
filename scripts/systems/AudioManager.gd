@@ -9,6 +9,11 @@ func _ready() -> void:
 	_setup_bgm_player()
 	call_deferred("play_bgm")
 
+func _input(event: InputEvent) -> void:
+	if bgm_player and not bgm_player.playing:
+		if (event is InputEventMouseButton and event.is_pressed()) or (event is InputEventKey and event.is_pressed()):
+			play_bgm()
+
 func _setup_bgm_player() -> void:
 	if not bgm_player:
 		bgm_player = AudioStreamPlayer.new()

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<title>$GODOT_PROJECT_NAME — Nalanda</title>
+	
+	<!-- Custom Dharohar Heritage Favicon (Ancient Lamp & Seal Motif) -->
+	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%231a100a' stroke='%23d4af37' stroke-width='3'/%3E%3Cpath d='M32 10 C32 10 38 22 38 28 C38 33 35 36 32 36 C29 36 26 33 26 28 C26 22 32 10 32 10 Z' fill='%23ffb326'/%3E%3Cpath d='M32 16 C32 16 35 23 35 27 C35 30 33 32 32 32 C31 32 29 30 29 27 C29 23 32 16 32 16 Z' fill='%23fff2a3'/%3E%3Cpath d='M16 38 C16 35 48 35 48 38 C48 48 40 52 32 52 C24 52 16 48 16 38 Z' fill='%238b3a1a' stroke='%23d4af37' stroke-width='1.5'/%3E%3Crect x='28' y='52' width='8' height='4' fill='%235a240e'/%3E%3Crect x='22' y='56' width='20' height='3' rx='1.5' fill='%23d4af37'/%3E%3C/svg%3E">
+
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Yatra+One&family=Marcellus&display=swap');
+
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+			user-select: none;
+			-webkit-user-select: none;
+		}
+
+		html, body {
+			width: 100%;
+			height: 100%;
+			background-color: #0d0805;
+			background-image: 
+				radial-gradient(circle at center, rgba(42, 24, 14, 0.8) 0%, rgba(13, 8, 5, 0.98) 100%),
+				radial-gradient(#d4af37 0.75px, transparent 0.75px);
+			background-size: 100% 100%, 24px 24px;
+			color: #e6c875;
+			font-family: 'Marcellus', 'Cinzel', serif;
+			overflow: hidden;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* Main Responsive Game Viewport Frame */
+		#game-wrapper {
+			position: relative;
+			width: 100vw;
+			height: 100vh;
+			max-width: 100%;
+			max-height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #000;
+		}
+
+		#canvas-container {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: contain;
+			outline: none;
+			cursor: default;
+			image-rendering: pixelated;
+			image-rendering: crisp-edges;
+		}
+
+		#canvas:focus {
+			outline: none;
+		}
+
+		/* Floating Top Controls Bar */
+		#floating-bar {
+			position: absolute;
+			top: 10px;
+			right: 14px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			z-index: 50;
+			opacity: 0.65;
+			transition: opacity 0.25s ease;
+		}
+
+		#floating-bar:hover {
+			opacity: 1;
+		}
+
+		.heritage-btn {
+			background: rgba(26, 16, 10, 0.88);
+			border: 1.5px solid #c99a3e;
+			color: #f5df97;
+			padding: 6px 12px;
+			border-radius: 4px;
+			font-family: 'Cinzel', serif;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.8px;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+			transition: all 0.2s ease;
+		}
+
+		.heritage-btn:hover {
+			background: #3d2212;
+			border-color: #ffd875;
+			color: #ffffff;
+			transform: translateY(-1px);
+			box-shadow: 0 6px 14px rgba(212, 175, 55, 0.3);
+		}
+
+		.heritage-btn:active {
+			transform: translateY(1px);
+		}
+
+		/* Dharohar Custom Loading Screen */
+		#dharohar-loading {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #120b07;
+			background-image: 
+				radial-gradient(circle at center, rgba(64, 34, 18, 0.85) 0%, rgba(18, 11, 7, 0.98) 80%),
+				radial-gradient(rgba(212, 175, 55, 0.15) 1px, transparent 1px);
+			background-size: 100% 100%, 20px 20px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			z-index: 100;
+			transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.loading-box {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: 30px;
+			max-width: 540px;
+			width: 90%;
+		}
+
+		.emblem-container {
+			position: relative;
+			width: 96px;
+			height: 96px;
+			margin-bottom: 20px;
+			filter: drop-shadow(0 0 16px rgba(230, 180, 70, 0.45));
+			animation: emblemPulse 3s infinite ease-in-out;
+		}
+
+		@keyframes emblemPulse {
+			0%, 100% { transform: scale(1); filter: drop-shadow(0 0 14px rgba(230, 180, 70, 0.4)); }
+			50% { transform: scale(1.04); filter: drop-shadow(0 0 24px rgba(255, 200, 80, 0.7)); }
+		}
+
+		.game-title {
+			font-family: 'Cinzel', serif;
+			font-size: clamp(28px, 5vw, 44px);
+			font-weight: 800;
+			letter-spacing: 6px;
+			background: linear-gradient(180deg, #fff2c2 0%, #e5c158 50%, #a47625 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+			margin-bottom: 6px;
+		}
+
+		.game-subtitle {
+			font-family: 'Marcellus', serif;
+			font-size: clamp(14px, 2.5vw, 18px);
+			color: #cf9a4a;
+			letter-spacing: 3px;
+			text-transform: uppercase;
+			margin-bottom: 28px;
+		}
+
+		/* Heritage Progress Bar */
+		.progress-frame {
+			width: 100%;
+			height: 18px;
+			background: rgba(18, 10, 6, 0.95);
+			border: 2px solid #b88628;
+			border-radius: 9px;
+			padding: 2px;
+			box-shadow: 
+				inset 0 2px 6px rgba(0, 0, 0, 0.8),
+				0 0 12px rgba(184, 134, 40, 0.35);
+			margin-bottom: 14px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.progress-bar-fill {
+			height: 100%;
+			width: 0%;
+			background: linear-gradient(90deg, #996515 0%, #d4af37 40%, #ffdf78 60%, #d4af37 80%, #996515 100%);
+			background-size: 200% 100%;
+			border-radius: 6px;
+			box-shadow: 0 0 10px rgba(255, 223, 120, 0.7);
+			transition: width 0.15s ease-out;
+			animation: shimmerBar 2s infinite linear;
+		}
+
+		@keyframes shimmerBar {
+			0% { background-position: 100% 0; }
+			100% { background-position: -100% 0; }
+		}
+
+		.loading-status-text {
+			font-size: 13px;
+			color: #d1b88e;
+			letter-spacing: 1px;
+			min-height: 20px;
+			font-style: italic;
+		}
+
+		.loading-percent-text {
+			font-family: 'Cinzel', serif;
+			font-size: 12px;
+			font-weight: 700;
+			color: #f7df97;
+			margin-top: 4px;
+		}
+
+		/* Custom Error Notice */
+		#error-notice {
+			display: none;
+			background: rgba(45, 14, 14, 0.95);
+			border: 2px solid #a83232;
+			border-radius: 8px;
+			padding: 16px 20px;
+			margin-top: 16px;
+			color: #ffcccc;
+			font-size: 13px;
+			line-height: 1.5;
+			max-width: 480px;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+		}
+
+		#error-notice h4 {
+			color: #ff6b6b;
+			margin-bottom: 6px;
+			font-size: 15px;
+			font-family: 'Cinzel', serif;
+		}
+
+		/* Hidden Godot Engine compatibility hooks */
+		#godot-engine-hooks {
+			display: none !important;
+			background-color: $GODOT_SPLASH_COLOR;
+		}
+
+		/* Focus Overlay Reminder */
+		#click-to-play-hint {
+			position: absolute;
+			bottom: 14px;
+			font-size: 11px;
+			color: rgba(212, 175, 55, 0.6);
+			letter-spacing: 1.5px;
+			text-transform: uppercase;
+			pointer-events: none;
+			z-index: 40;
+		}
+	</style>
+	$GODOT_HEAD_INCLUDE
+</head>
+<body>
+	<div id="game-wrapper">
+		<div id="canvas-container">
+			<canvas id="canvas" tabindex="1">
+				Your browser does not support HTML5 Canvas.
+			</canvas>
+
+			<!-- Floating Fullscreen Helper -->
+			<div id="floating-bar">
+				<button id="fullscreen-btn" class="heritage-btn" title="Toggle Fullscreen">
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+						<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+					</svg>
+					FULLSCREEN
+				</button>
+			</div>
+
+			<div id="click-to-play-hint">✦ Click game area for sound & keyboard controls ✦</div>
+		</div>
+
+		<!-- Custom Dharohar Nalanda Loading Screen -->
+		<div id="dharohar-loading">
+			<div class="loading-box">
+				<!-- Nalanda Glowing Diya Emblem -->
+				<div class="emblem-container">
+					<svg viewBox="0 0 96 96" width="96" height="96">
+						<circle cx="48" cy="48" r="44" fill="#24140b" stroke="#d4af37" stroke-width="3.5"/>
+						<circle cx="48" cy="48" r="39" fill="none" stroke="#8b5e1b" stroke-width="1.2" stroke-dasharray="3,3"/>
+						<!-- Diya Base -->
+						<path d="M24 56 C24 50 72 50 72 56 C72 70 60 76 48 76 C36 76 24 70 24 56 Z" fill="#8b3a1a" stroke="#d4af37" stroke-width="2"/>
+						<!-- Stand -->
+						<rect x="42" y="76" width="12" height="6" fill="#5a240e"/>
+						<rect x="34" y="82" width="28" height="4" rx="2" fill="#d4af37"/>
+						<!-- Diya Flame Outer -->
+						<path d="M48 16 C48 16 57 33 57 42 C57 49 53 54 48 54 C43 54 39 49 39 42 C39 33 48 16 48 16 Z" fill="#ff9900"/>
+						<!-- Diya Flame Inner -->
+						<path d="M48 24 C48 24 53 35 53 41 C53 46 50 49 48 49 C46 49 43 46 43 41 C43 35 48 24 48 24 Z" fill="#fff3a8"/>
+					</svg>
+				</div>
+
+				<h1 class="game-title">DHAROHAR</h1>
+				<div class="game-subtitle">Journey into Nalanda</div>
+
+				<div class="progress-frame">
+					<div id="progress-fill" class="progress-bar-fill"></div>
+				</div>
+
+				<div id="status-text" class="loading-status-text">Unrolling ancient scrolls...</div>
+				<div id="percent-text" class="loading-percent-text">0%</div>
+
+				<div id="error-notice">
+					<h4>Journey Interrupted</h4>
+					<p id="error-message">Dharohar could not finish loading. Please check your browser's WebGL support, refresh the page, and try again.</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Hidden Godot engine compatibility container (satisfies Godot export template requirements without showing Godot splash) -->
+		<div id="godot-engine-hooks">
+			<img id="status-splash" class="$GODOT_SPLASH_CLASSES" src="$GODOT_SPLASH" alt="" style="display:none;">
+			<progress id="status-progress" style="display:none;"></progress>
+			<div id="status-notice" style="display:none;"></div>
+		</div>
+	</div>
+
+	<script src="$GODOT_URL"></script>
+	<script>
+		const GODOT_CONFIG = $GODOT_CONFIG;
+		const GODOT_THREADS_ENABLED = $GODOT_THREADS_ENABLED;
+		const engine = new Engine(GODOT_CONFIG);
+
+		(function () {
+			const loadingScreen = document.getElementById('dharohar-loading');
+			const progressFill = document.getElementById('progress-fill');
+			const statusText = document.getElementById('status-text');
+			const percentText = document.getElementById('percent-text');
+			const errorNotice = document.getElementById('error-notice');
+			const errorMessage = document.getElementById('error-message');
+			const canvas = document.getElementById('canvas');
+			const fullscreenBtn = document.getElementById('fullscreen-btn');
+			const clickHint = document.getElementById('click-to-play-hint');
+
+			let isLoaded = false;
+
+			const statusPhases = [
+				{ threshold: 0, text: "Unrolling ancient manuscripts..." },
+				{ threshold: 25, text: "Preparing Nalanda courtyards & stupas..." },
+				{ threshold: 55, text: "Restoring the Ratnasagara library..." },
+				{ threshold: 80, text: "Igniting the lamps of knowledge..." },
+				{ threshold: 95, text: "Entering the Great University..." }
+			];
+
+			function updateProgress(current, total) {
+				if (total > 0) {
+					const pct = Math.min(100, Math.max(0, Math.floor((current / total) * 100)));
+					if (progressFill) progressFill.style.width = pct + '%';
+					if (percentText) percentText.textContent = pct + '%';
+
+					for (let i = statusPhases.length - 1; i >= 0; i--) {
+						if (pct >= statusPhases[i].threshold) {
+							if (statusText) statusText.textContent = statusPhases[i].text;
+							break;
+						}
+					}
+				} else {
+					if (progressFill) progressFill.style.width = '75%';
+					if (percentText) percentText.textContent = '...';
+				}
+			}
+
+			function hideLoadingScreen() {
+				if (isLoaded) return;
+				isLoaded = true;
+
+				if (statusText) statusText.textContent = "Welcome to Nalanda!";
+				if (progressFill) progressFill.style.width = '100%';
+				if (percentText) percentText.textContent = '100%';
+
+				setTimeout(() => {
+					if (loadingScreen) {
+						loadingScreen.style.opacity = '0';
+						setTimeout(() => {
+							loadingScreen.remove();
+							if (canvas) canvas.focus();
+						}, 500);
+					}
+				}, 350);
+
+				setTimeout(() => {
+					if (clickHint) {
+						clickHint.style.transition = 'opacity 1s';
+						clickHint.style.opacity = '0';
+						setTimeout(() => clickHint.remove(), 1000);
+					}
+				}, 6000);
+			}
+
+			function displayError(err) {
+				console.error("[Dharohar Web Export Error]:", err);
+				if (errorNotice) {
+					errorNotice.style.display = 'block';
+					if (errorMessage) {
+						let detail = "Dharohar could not finish loading. Please check WebGL support, refresh the page, and try again.";
+						if (typeof err === 'string') detail = err;
+						else if (err && err.message) detail = err.message;
+						errorMessage.textContent = detail;
+					}
+				}
+				if (statusText) statusText.textContent = "Loading paused.";
+			}
+
+			// Fullscreen Toggle Support
+			if (fullscreenBtn) {
+				fullscreenBtn.addEventListener('click', () => {
+					const wrapper = document.getElementById('game-wrapper') || document.documentElement;
+					if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+						if (wrapper.requestFullscreen) {
+							wrapper.requestFullscreen();
+						} else if (wrapper.webkitRequestFullscreen) {
+							wrapper.webkitRequestFullscreen();
+						}
+					} else {
+						if (document.exitFullscreen) {
+							document.exitFullscreen();
+						} else if (document.webkitExitFullscreen) {
+							document.webkitExitFullscreen();
+						}
+					}
+				});
+			}
+
+			// Ensure canvas receives input focus on any click within the game area
+			document.addEventListener('click', (e) => {
+				if (canvas && isLoaded) {
+					canvas.focus();
+				}
+			});
+
+			// Check feature support
+			const missing = Engine.getMissingFeatures({ threads: GODOT_THREADS_ENABLED });
+			if (missing.length !== 0) {
+				displayError("Your browser is missing required WebGL features:\n" + missing.join(", "));
+				return;
+			}
+
+			// Start Godot Engine
+			engine.startGame({
+				onProgress: updateProgress
+			}).then(() => {
+				hideLoadingScreen();
+			}).catch((err) => {
+				displayError(err);
+			});
+		})();
+	</script>
+</body>
+</html>

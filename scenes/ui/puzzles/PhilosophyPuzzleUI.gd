@@ -31,6 +31,8 @@ var is_solved: bool = false
 var is_processing_answer: bool = false
 
 func _ready() -> void:
+	add_to_group("puzzle_ui")
+	add_to_group("phil_puzzle_ui")
 	visible = false
 	if color_rect:
 		color_rect.visible = false

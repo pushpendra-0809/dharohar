@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/item_stupa_flowers.png-c9aa234f0dea767c0593af
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/ui/ViharaObjectiveHUD.gd" id="1_hud"]
 [ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_bold"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_reg"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="3_reg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
 bg_color = Color(0.12, 0.08, 0.05, 0.92)
@@ -19,16 +19,32 @@ shadow_size = 6
 shadow_color = Color(0, 0, 0, 0.6)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info_btn"]
-bg_color = Color(0.25, 0.16, 0.08, 0.95)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.85, 0.4, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
+bg_color = Color(0.18, 0.12, 0.06, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9, 0.75, 0.35, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info_btn_hover"]
+bg_color = Color(0.35, 0.22, 0.1, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9, 0.5, 1)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 0.8)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_modal"]
 bg_color = Color(0.11, 0.08, 0.05, 0.98)
@@ -47,15 +63,28 @@ shadow_color = Color(0, 0, 0, 0.8)
 [node name="ViharaObjectiveHUD" type="CanvasLayer"]
 layer = 5
 script = ExtResource("1_hud")
+
+[node name="InfoBtn" type="Button" parent="."]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 52.0
+offset_bottom = 52.0
+tooltip_text = "Instructions & Tasks (Click to view)"
+mouse_default_cursor_shape = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("2_bold")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_info_btn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_info_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_info_btn_hover")
+text = "i"
+
 [node name="PanelContainer" type="PanelContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -380.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 205.0
-grow_horizontal = 0
+visible = false
+offset_left = 16.0
+offset_top = 58.0
+offset_right = 396.0
+offset_bottom = 253.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2

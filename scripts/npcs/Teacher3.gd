@@ -25,6 +25,7 @@ func setup_manager(d_mgr: DialogueManager, f_ui: FinalMasteryUI = null, comp_ui:
 			dialogue_manager.dialogue_cancelled.connect(_on_interaction_cancelled)
 
 func _ready() -> void:
+	add_to_group("teacher3")
 	if interaction_area:
 		if not interaction_area.body_entered.is_connected(_on_body_entered):
 			interaction_area.body_entered.connect(_on_body_entered)
@@ -113,6 +114,20 @@ func _start_teacher3_interaction() -> void:
 		
 	_update_ui_elements()
 	
+	if OS.has_feature("web"):
+		if GameState:
+			GameState.unlock_player_movement()
+		var end_uis = get_tree().get_nodes_in_group("web_demo_end_ui")
+		if end_uis.size() > 0:
+			end_uis[0].open_demo_end_popup()
+		else:
+			var scene_res = load("res://scenes/ui/WebDemoEndUI.tscn")
+			if scene_res:
+				var ui = scene_res.instantiate()
+				get_tree().root.add_child(ui)
+				ui.open_demo_end_popup()
+		return
+		
 	# Check unlock condition
 	if GameState and not GameState.are_teacher2_tasks_completed():
 		var locked_seq: Array = [
@@ -149,17 +164,53 @@ func _start_teacher3_interaction() -> void:
 
 	# Final Story & Completion Sequence
 	if GameState and GameState.final_mastery_complete:
-		var final_story_seq: Array = [
-			{"speaker": "Mastery Mentor", "text": "Magnificent."},
-			{"speaker": "Mastery Mentor", "text": "In Nalanda, you did not merely absorb passive words from scrolls."},
-			{"speaker": "Mastery Mentor", "text": "You learned, questioned, experimented, and reasoned independently to solve problems."},
-			{"speaker": "Mastery Mentor", "text": "Across the Stupa, Library, and Vihara, you made mindful and discerning decisions."},
-			{"speaker": "Mastery Mentor", "text": "And in the Final Mastery Trial, you demonstrated the pinnacle of your chosen discipline."},
-			{"speaker": "Mastery Mentor", "text": "This is the true spirit of Nalanda's eternal tradition."},
-			{"speaker": "Mastery Mentor", "text": "Knowledge here was never for mere recitation — it was to understand, reflect upon, and apply for the welfare of the world."},
-			{"speaker": "Mastery Mentor", "text": "You are now a proud bearer of Nalanda's living heritage."},
-			{"speaker": "Player", "text": "I understand now that the pursuit of truth never ends with a single answer."}
-		]
+		var domain: String = GameState.selected_domain.to_lower().strip_edges()
+		var final_story_seq: Array = []
+		if "math" in domain or "ganita" in domain or "gaṇita" in domain:
+			final_story_seq = [
+				{"speaker": "Mastery Mentor", "text": "Magnificent."},
+				{"speaker": "Mastery Mentor", "text": "You did not simply remember the numbers."},
+				{"speaker": "Mastery Mentor", "text": "You understood them."},
+				{"speaker": "Mastery Mentor", "text": "You used them to solve a real problem."},
+				{"speaker": "Mastery Mentor", "text": "That is the beginning of mastery."},
+				{"speaker": "Player", "text": "I understand now that the pursuit of truth never ends with a single answer."}
+			]
+		elif "astro" in domain or "jyotish" in domain or "jyotiṣa" in domain or "jyotisha" in domain:
+			final_story_seq = [
+				{"speaker": "Mastery Mentor", "text": "Magnificent."},
+				{"speaker": "Mastery Mentor", "text": "You did not simply look at the sky."},
+				{"speaker": "Mastery Mentor", "text": "You learned to observe it, compare it, and draw meaning from what you saw."},
+				{"speaker": "Mastery Mentor", "text": "That is the beginning of true astronomical understanding."},
+				{"speaker": "Player", "text": "I understand now that the cosmos is a living order, and observation is the bridge between man and truth."}
+			]
+		elif "med" in domain or "ayur" in domain or "āyur" in domain or "cikits" in domain:
+			final_story_seq = [
+				{"speaker": "Mastery Mentor", "text": "Magnificent."},
+				{"speaker": "Mastery Mentor", "text": "You did not simply remember remedies."},
+				{"speaker": "Mastery Mentor", "text": "You observed carefully, connected what you saw with what you had learned, and chose your response with purpose."},
+				{"speaker": "Mastery Mentor", "text": "That is the beginning of a true healer's understanding."},
+				{"speaker": "Player", "text": "I understand now that healing is not just treatment, but the restoration of harmony between living beings and nature."}
+			]
+		elif "phil" in domain or "darśan" in domain or "darshan" in domain or "nyay" in domain or "nyāy" in domain:
+			final_story_seq = [
+				{"speaker": "Mastery Mentor", "text": "Magnificent."},
+				{"speaker": "Mastery Mentor", "text": "You did not win the debate by speaking first."},
+				{"speaker": "Mastery Mentor", "text": "You observed the claim, examined the reasoning, questioned the weakness, and formed your own conclusion."},
+				{"speaker": "Mastery Mentor", "text": "That is the discipline of thought."},
+				{"speaker": "Player", "text": "I understand now that philosophical debate is not about winning words, but about walking together towards clarity and truth."}
+			]
+		else:
+			final_story_seq = [
+				{"speaker": "Mastery Mentor", "text": "Magnificent."},
+				{"speaker": "Mastery Mentor", "text": "In Nalanda, you did not merely absorb passive words from scrolls."},
+				{"speaker": "Mastery Mentor", "text": "You learned, questioned, experimented, and reasoned independently to solve problems."},
+				{"speaker": "Mastery Mentor", "text": "Across the Stupa, Library, and Vihara, you made mindful and discerning decisions."},
+				{"speaker": "Mastery Mentor", "text": "And in the Final Mastery Trial, you demonstrated the pinnacle of your chosen discipline."},
+				{"speaker": "Mastery Mentor", "text": "This is the true spirit of Nalanda's eternal tradition."},
+				{"speaker": "Mastery Mentor", "text": "Knowledge here was never for mere recitation — it was to understand, reflect upon, and apply for the welfare of the world."},
+				{"speaker": "Mastery Mentor", "text": "You are now a proud bearer of Nalanda's living heritage."},
+				{"speaker": "Player", "text": "I understand now that the pursuit of truth never ends with a single answer."}
+			]
 		dialogue_manager.start_dialogue(final_story_seq, func():
 			if GameState:
 				GameState.complete_nalanda_experience()
@@ -170,13 +221,54 @@ func _start_teacher3_interaction() -> void:
 
 	# State B: Player has all three Scrolls
 	if GameState and GameState.has_all_three_scrolls():
+		var domain: String = GameState.selected_domain.to_lower().strip_edges()
+		var math_mode: bool = ("math" in domain or "ganita" in domain or "gaṇita" in domain)
+		var astro_mode: bool = ("astro" in domain or "jyotish" in domain or "jyotiṣa" in domain or "jyotisha" in domain)
+		var med_mode: bool = ("med" in domain or "ayur" in domain or "āyur" in domain or "cikits" in domain)
+		var phil_mode: bool = ("phil" in domain or "darśan" in domain or "darshan" in domain or "nyay" in domain or "nyāy" in domain)
+		
 		if not GameState.final_mastery_unlocked:
-			var completion_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
-				{"speaker": "Mastery Mentor", "text": "Yet the true worth of these scrolls lies not in the parchment itself."},
-				{"speaker": "Mastery Mentor", "text": "The decisions you made, the errors you corrected, the questions you asked, and the insights you earned — that was your true trial."},
-				{"speaker": "Mastery Mentor", "text": "Now, your Final Mastery Trial commences."}
-			]
+			var completion_seq: Array = []
+			if math_mode:
+				completion_seq = [
+					{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+					{"speaker": "Mastery Mentor", "text": "You have learned the principles."},
+					{"speaker": "Mastery Mentor", "text": "You have practiced them."},
+					{"speaker": "Mastery Mentor", "text": "Now it is time to use what you know without guidance."},
+					{"speaker": "Mastery Mentor", "text": "Three challenges stand between you and mastery."},
+					{"speaker": "Mastery Mentor", "text": "Think carefully. Observe the problem. Then solve it."}
+				]
+			elif astro_mode:
+				completion_seq = [
+					{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+					{"speaker": "Mastery Mentor", "text": "You have learned the celestial principles and methods of Jyotisha."},
+					{"speaker": "Mastery Mentor", "text": "Now you must stand upon the observation terrace without guidance."},
+					{"speaker": "Mastery Mentor", "text": "Three observational trials await: The Moon's Journey, Reading the Sky, and the Final Celestial Observation."},
+					{"speaker": "Mastery Mentor", "text": "Observe carefully. Record with precision. Deduce cosmic harmony."}
+				]
+			elif med_mode:
+				completion_seq = [
+					{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+					{"speaker": "Mastery Mentor", "text": "You have learned the classical principles and formulations of Ayurveda."},
+					{"speaker": "Mastery Mentor", "text": "Now you must stand in the Arogyashala as a practicing healer without guidance."},
+					{"speaker": "Mastery Mentor", "text": "Three diagnostic trials await: The Healer's Eye, The Right Remedy, and The Healer's Final Case."},
+					{"speaker": "Mastery Mentor", "text": "Observe the patient. Choose the remedy. Restore equilibrium."}
+				]
+			elif phil_mode:
+				completion_seq = [
+					{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+					{"speaker": "Mastery Mentor", "text": "You have studied the logic of Nyāya and the dialectical inquiries of Darśana."},
+					{"speaker": "Mastery Mentor", "text": "Now you must step into the debate assembly as a scholar of philosophy without guidance."},
+					{"speaker": "Mastery Mentor", "text": "Three debate trials await: The Scholar's Claim, The Counterargument, and The Final Debate."},
+					{"speaker": "Mastery Mentor", "text": "Observe the reasoning. Question the weakness. Construct truth."}
+				]
+			else:
+				completion_seq = [
+					{"speaker": "Mastery Mentor", "text": "From three sacred sanctuaries, you have brought forth three Heritage Scrolls."},
+					{"speaker": "Mastery Mentor", "text": "Yet the true worth of these scrolls lies not in the parchment itself."},
+					{"speaker": "Mastery Mentor", "text": "The decisions you made, the errors you corrected, the questions you asked, and the insights you earned — that was your true trial."},
+					{"speaker": "Mastery Mentor", "text": "Now, your Final Mastery Trial commences."}
+				]
 			dialogue_manager.start_dialogue(completion_seq, func():
 				if GameState:
 					GameState.unlock_final_mastery()
@@ -185,15 +277,43 @@ func _start_teacher3_interaction() -> void:
 			)
 			return
 		else:
-			var post_unlock_seq: Array = [
-				{"speaker": "Mastery Mentor", "text": "The hour has arrived for the Final Mastery Trial based upon your chosen discipline."},
-				{"speaker": "Mastery Mentor", "text": "Examine the dossier carefully and formulate the most balanced and enlightened plan."}
-			]
+			var post_unlock_seq: Array = []
+			if math_mode:
+				post_unlock_seq = [
+					{"speaker": "Mastery Mentor", "text": "You have learned the principles. You have practiced them."},
+					{"speaker": "Mastery Mentor", "text": "Now it is time to use what you know without guidance."},
+					{"speaker": "Mastery Mentor", "text": "Three challenges stand between you and mastery."},
+					{"speaker": "Mastery Mentor", "text": "Think carefully. Observe the problem. Then solve it."}
+				]
+			elif astro_mode:
+				post_unlock_seq = [
+					{"speaker": "Mastery Mentor", "text": "The hour has arrived to observe the heavens from the Nalanda terrace."},
+					{"speaker": "Mastery Mentor", "text": "Three challenges stand between you and mastery."},
+					{"speaker": "Mastery Mentor", "text": "Observe carefully. Record with precision. Deduce cosmic harmony."}
+				]
+			elif med_mode:
+				post_unlock_seq = [
+					{"speaker": "Mastery Mentor", "text": "The hour has arrived to practice the healer's craft in the Arogyashala."},
+					{"speaker": "Mastery Mentor", "text": "Three challenges stand between you and mastery."},
+					{"speaker": "Mastery Mentor", "text": "Observe the patient. Choose the remedy. Restore equilibrium."}
+				]
+			elif phil_mode:
+				post_unlock_seq = [
+					{"speaker": "Mastery Mentor", "text": "The hour has arrived to enter the Scholar's Assembly in the debate hall."},
+					{"speaker": "Mastery Mentor", "text": "Three challenges stand between you and mastery."},
+					{"speaker": "Mastery Mentor", "text": "Examine the claims, spot the weaknesses, and deliver sound conclusions."}
+				]
+			else:
+				post_unlock_seq = [
+					{"speaker": "Mastery Mentor", "text": "The hour has arrived for the Final Mastery Trial based upon your chosen discipline."},
+					{"speaker": "Mastery Mentor", "text": "Examine the dossier carefully and formulate the most balanced and enlightened plan."}
+				]
 			dialogue_manager.start_dialogue(post_unlock_seq, func():
 				_on_dialogue_finished()
 				_open_final_mastery_challenge()
 			)
 			return
+
 
 	# State A: Player does NOT have all three Scrolls yet
 	var reminder_seq: Array = [
@@ -203,8 +323,11 @@ func _start_teacher3_interaction() -> void:
 
 func _open_final_mastery_challenge() -> void:
 	var uis = get_tree().get_nodes_in_group("final_mastery_ui")
-	if uis.size() > 0:
-		final_mastery_ui = uis[0]
+	final_mastery_ui = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			final_mastery_ui = candidate
+			break
 	if not final_mastery_ui or not is_instance_valid(final_mastery_ui):
 		var fm_scene = load("res://scenes/ui/FinalMasteryUI.tscn")
 		if fm_scene:
@@ -212,6 +335,7 @@ func _open_final_mastery_challenge() -> void:
 			get_tree().root.add_child(final_mastery_ui)
 	if final_mastery_ui and final_mastery_ui.has_method("open_ui"):
 		final_mastery_ui.open_ui(_on_final_mastery_completed)
+
 
 func _on_final_mastery_completed() -> void:
 	_start_teacher3_interaction()

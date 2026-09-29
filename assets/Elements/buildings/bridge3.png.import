@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/bridge3.png-52e79b08f6a0eec87854df9caed52f93.
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

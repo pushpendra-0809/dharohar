@@ -12,9 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="11_student"]
 [ext_resource type="Texture2D" uid="uid://iqsy4tmdof1u" path="res://assets/Dharohar_Character_Sprite_Pack/Scribe/standing.png" id="12_scribe"]
 [ext_resource type="Texture2D" uid="uid://b32vssfh2ql16" path="res://assets/Dharohar_Character_Sprite_Pack/student_girl/girl2.png" id="13_girl"]
-[ext_resource type="PackedScene" uid="uid://cviharataskpoint001" path="res://scenes/objects/ViharaTaskInteractable.tscn" id="14_interactable"]
-[ext_resource type="PackedScene" uid="uid://viharahudscene001" path="res://scenes/ui/ViharaObjectiveHUD.tscn" id="15_hud"]
-[ext_resource type="PackedScene" uid="uid://viharacompletionscene001" path="res://scenes/ui/ViharaCompletionUI.tscn" id="16_comp"]
+[ext_resource type="PackedScene" uid="uid://b31lagljpb50w" path="res://scenes/objects/ViharaTaskInteractable.tscn" id="14_interactable"]
+[ext_resource type="PackedScene" uid="uid://dprymppmyo02w" path="res://scenes/ui/ViharaObjectiveHUD.tscn" id="15_hud"]
+[ext_resource type="PackedScene" uid="uid://c3s2mquwlr6ns" path="res://scenes/ui/ViharaCompletionUI.tscn" id="16_comp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 100)
@@ -168,9 +168,8 @@ shape = SubResource("RectangleShape2D_pillar")
 position = Vector2(932, 440)
 shape = SubResource("RectangleShape2D_pillar")
 
-# --- CHARACTERS & NPCS ---
 [node name="Warden_Entrance" type="Sprite2D" parent="." unique_id=1992019311]
-position = Vector2(513, 440)
+position = Vector2(511, 382.99997)
 scale = Vector2(0.038, 0.038)
 texture = ExtResource("9_monk")
 
@@ -185,7 +184,7 @@ scale = Vector2(0.036, 0.036)
 texture = ExtResource("11_student")
 
 [node name="Scribe_MidLeft" type="Sprite2D" parent="." unique_id=1992019314]
-position = Vector2(350, 280)
+position = Vector2(397.00003, 276)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("12_scribe")
 
@@ -204,7 +203,6 @@ position = Vector2(846, 275)
 scale = Vector2(0.036, 0.036)
 texture = ExtResource("11_student")
 
-# --- VISUAL PROPS (ACTIVATED UPON TASK COMPLETION) ---
 [node name="Prop_LampLit" type="Label" parent="." unique_id=1992019350]
 visible = false
 layout_mode = 0
@@ -245,10 +243,8 @@ offset_bottom = 415.0
 theme_override_font_sizes/font_size = 18
 text = "📋🖋️"
 
-# --- INTERACTIVE TASK POINTS WITH VISUAL BADGES ---
 [node name="Interact_Warden" parent="." unique_id=1992019400 instance=ExtResource("14_interactable")]
-position = Vector2(513, 440)
-interactable_id = "warden"
+position = Vector2(511, 382)
 station_title = "Vihara Warden"
 station_icon = "🏛️"
 
@@ -266,7 +262,7 @@ station_icon = "💡"
 associated_prop_path = NodePath("../Prop_LampLit")
 
 [node name="Interact_ScribeStation" parent="." unique_id=1992019403 instance=ExtResource("14_interactable")]
-position = Vector2(350, 280)
+position = Vector2(399, 276)
 interactable_id = "scribe_station"
 station_title = "Scribe (Astronomy Log)"
 station_icon = "📜"
@@ -292,7 +288,7 @@ station_icon = "💧"
 associated_prop_path = NodePath("../Prop_WaterVesselsPlaced")
 
 [node name="Interact_WritingKitStation" parent="." unique_id=1992019407 instance=ExtResource("14_interactable")]
-position = Vector2(305, 282)
+position = Vector2(301, 281)
 interactable_id = "writing_kit_station"
 station_title = "Writing Supplies Shelf"
 station_icon = "✍️"

@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://b0qrb84ua0kly"]
 
-[ext_resource type="Script" uid="uid://0arpe7g0ppet" path="res://scenes/innerLibrary.gd" id="1_libgd"]
+[ext_resource type="Script" path="res://scenes/innerLibrary.gd" id="1_libgd"]
 [ext_resource type="Texture2D" uid="uid://cw6h5bybes65t" path="res://assets/Elements/buildings/InnerLibrary.png" id="2_bgpng"]
 [ext_resource type="PackedScene" uid="uid://cg7t4qw37ewty" path="res://scenes/player.tscn" id="3_player"]
 [ext_resource type="PackedScene" uid="uid://ylmvb8a874p3" path="res://scenes/objects/LibraryExit.tscn" id="4_exit"]
-[ext_resource type="PackedScene" uid="uid://vgp5so4rlm5m" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
+[ext_resource type="PackedScene" uid="uid://c8d2dialogueui" path="res://scenes/ui/DialogueUI.tscn" id="5_dlgui"]
 [ext_resource type="PackedScene" uid="uid://cquestuiscene" path="res://scenes/ui/QuestUI.tscn" id="6_questui"]
-[ext_resource type="PackedScene" uid="uid://bgy2y6nyiphg5" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
+[ext_resource type="PackedScene" uid="uid://cpausemenuscene" path="res://scenes/ui/PauseMenu.tscn" id="7_pauseui"]
 [ext_resource type="PackedScene" uid="uid://cp7ltl4ew0hvq" path="res://scenes/ui/ObjectiveTrail.tscn" id="8_trail"]
 [ext_resource type="Texture2D" uid="uid://djqwlaccwu0al" path="res://assets/Dharohar_Character_Sprite_Pack/villager/standing2.png" id="9_vh8sf"]
 [ext_resource type="Texture2D" uid="uid://b7i30ws0723qf" path="res://assets/Dharohar_Character_Sprite_Pack/student_boy/standing.png" id="10_nwcvm"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://klmc8ul3n3d7" path="res://scenes/npcs/ExplorationNPC.tscn" id="15_explornpc"]
 [ext_resource type="PackedScene" uid="uid://dc0vycr5ok1q2" path="res://scenes/ui/ScholarReasoningUI.tscn" id="16_scholar_ui"]
 [ext_resource type="PackedScene" uid="uid://cq2kfu4o8w8vc" path="res://scenes/ui/PlayerProgressUI.tscn" id="17_prog_ui"]
-[ext_resource type="PackedScene" uid="uid://dhulax1pnt6ez" path="res://scenes/ui/LibraryChallengeUI.tscn" id="18_librarychallengeui"]
+[ext_resource type="PackedScene" uid="uid://dhulax1pnt6e0" path="res://scenes/ui/LibraryChallengeUI.tscn" id="18_librarychallengeui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wall_top"]
 size = Vector2(1152, 130)

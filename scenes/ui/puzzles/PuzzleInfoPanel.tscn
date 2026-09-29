@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dgy0y3nbhjsgl"]
 
 [ext_resource type="Script" path="res://scenes/ui/puzzles/PuzzleInfoPanel.gd" id="1_infoscript"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="2_oswald_bold"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_info_bg"]
 bg_color = Color(0.18, 0.13, 0.09, 0.96)

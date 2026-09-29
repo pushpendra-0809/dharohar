@@ -333,3 +333,7 @@ static func get_final_mastery_scenario(domain: String) -> Dictionary:
 	elif "phil" in dom or "darsana" in dom or "nyaya" in dom or "hetuvidya" in dom:
 		return FINAL_MASTERY_SCENARIOS.get("philosophy", {})
 	return FINAL_MASTERY_SCENARIOS.get("mathematics", {})
+
+static func get_scenario(domain: String) -> Dictionary:
+	return get_final_mastery_scenario(domain)
+

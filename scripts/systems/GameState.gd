@@ -5,6 +5,43 @@ signal teacher_state_changed()
 signal merchant_state_changed()
 signal quest_state_changed()
 
+const SAVE_PATH: String = "user://dharohar_save.json"
+const WEB_STORAGE_KEY: String = "dharohar_save_data_v1"
+
+var _save_timer_pending: bool = false
+var _is_loading_data: bool = false
+
+func _ready() -> void:
+	load_game()
+	quest_state_changed.connect(_on_state_modified)
+	teacher_state_changed.connect(_on_state_modified)
+	merchant_state_changed.connect(_on_state_modified)
+
+func _on_state_modified() -> void:
+	if _is_loading_data:
+		return
+	if not _save_timer_pending:
+		_save_timer_pending = true
+		call_deferred("_deferred_save")
+
+func _deferred_save() -> void:
+	_save_timer_pending = false
+	save_game()
+
+# Player Profile State
+var player_name: String = "Player"
+
+func set_player_name(p_name: String) -> void:
+	var clean := p_name.strip_edges()
+	if clean != "":
+		player_name = clean
+	else:
+		player_name = "Player"
+	quest_state_changed.emit()
+
+func get_player_name() -> String:
+	return player_name if player_name != "" else "Player"
+
 # Teacher state
 var selected_domain: String = ""
 var teacher_quiz_score: int = 0
@@ -469,6 +506,280 @@ var final_mastery_exp_claimed: bool = false
 var nalanda_complete: bool = false
 var nalanda_completion_reward_claimed: bool = false
 
+# Mathematics Mastery Specific Progression (3 Levels)
+var math_mastery_complete: bool = false
+var math_mastery_stages: Dictionary = {
+	"numbers": false,
+	"calculation": false,
+	"final_problem": false
+}
+
+func is_math_mastery_stage_complete(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"numbers", "level_1", "0":
+			return math_mastery_stages.get("numbers", false)
+		"calculation", "level_2", "1":
+			return math_mastery_stages.get("calculation", false)
+		"final_problem", "level_3", "2":
+			return math_mastery_stages.get("final_problem", false)
+		_:
+			return math_mastery_stages.get(s_id, false)
+
+func is_math_mastery_stage_unlocked(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"numbers", "level_1", "0":
+			return true
+		"calculation", "level_2", "1":
+			return math_mastery_stages.get("numbers", false)
+		"final_problem", "level_3", "2":
+			return math_mastery_stages.get("calculation", false)
+		_:
+			return false
+
+func complete_math_mastery_stage(stage_id: String) -> void:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"numbers", "level_1", "0":
+			math_mastery_stages["numbers"] = true
+		"calculation", "level_2", "1":
+			math_mastery_stages["calculation"] = true
+		"final_problem", "level_3", "2":
+			math_mastery_stages["final_problem"] = true
+		_:
+			if math_mastery_stages.has(s_id):
+				math_mastery_stages[s_id] = true
+	if are_all_math_mastery_stages_complete():
+		complete_math_mastery()
+	else:
+		quest_state_changed.emit()
+
+func are_all_math_mastery_stages_complete() -> bool:
+	for s_id in ["numbers", "calculation", "final_problem"]:
+		if not math_mastery_stages.get(s_id, false):
+			return false
+	return true
+
+func complete_math_mastery() -> void:
+	math_mastery_complete = true
+	final_mastery_stages["mathematics"] = true
+	complete_final_mastery()
+
+func reset_math_mastery_progress() -> void:
+	math_mastery_complete = false
+	for s_id in math_mastery_stages:
+		math_mastery_stages[s_id] = false
+	final_mastery_stages["mathematics"] = false
+	final_mastery_complete = false
+	quest_state_changed.emit()
+
+# Astronomy Mastery Specific Progression (3 Levels)
+var astro_mastery_complete: bool = false
+var astro_mastery_stages: Dictionary = {
+	"moon_journey": false,
+	"reading_sky": false,
+	"final_observation": false
+}
+
+func is_astro_mastery_stage_complete(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"moon_journey", "level_1", "0":
+			return astro_mastery_stages.get("moon_journey", false)
+		"reading_sky", "level_2", "1":
+			return astro_mastery_stages.get("reading_sky", false)
+		"final_observation", "level_3", "2":
+			return astro_mastery_stages.get("final_observation", false)
+		_:
+			return astro_mastery_stages.get(s_id, false)
+
+func is_astro_mastery_stage_unlocked(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"moon_journey", "level_1", "0":
+			return true
+		"reading_sky", "level_2", "1":
+			return astro_mastery_stages.get("moon_journey", false)
+		"final_observation", "level_3", "2":
+			return astro_mastery_stages.get("reading_sky", false)
+		_:
+			return false
+
+func complete_astro_mastery_stage(stage_id: String) -> void:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"moon_journey", "level_1", "0":
+			astro_mastery_stages["moon_journey"] = true
+		"reading_sky", "level_2", "1":
+			astro_mastery_stages["reading_sky"] = true
+		"final_observation", "level_3", "2":
+			astro_mastery_stages["final_observation"] = true
+		_:
+			if astro_mastery_stages.has(s_id):
+				astro_mastery_stages[s_id] = true
+	if are_all_astro_mastery_stages_complete():
+		complete_astro_mastery()
+	else:
+		quest_state_changed.emit()
+
+func are_all_astro_mastery_stages_complete() -> bool:
+	for s_id in ["moon_journey", "reading_sky", "final_observation"]:
+		if not astro_mastery_stages.get(s_id, false):
+			return false
+	return true
+
+func complete_astro_mastery() -> void:
+	astro_mastery_complete = true
+	final_mastery_stages["astronomy"] = true
+	complete_final_mastery()
+
+func reset_astro_mastery_progress() -> void:
+	astro_mastery_complete = false
+	for s_id in astro_mastery_stages:
+		astro_mastery_stages[s_id] = false
+	final_mastery_stages["astronomy"] = false
+	final_mastery_complete = false
+	quest_state_changed.emit()
+
+# Medicine Mastery Specific Progression (3 Levels)
+var med_mastery_complete: bool = false
+var med_mastery_stages: Dictionary = {
+	"healers_eye": false,
+	"right_remedy": false,
+	"final_case": false
+}
+
+func is_med_mastery_stage_complete(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"healers_eye", "level_1", "0":
+			return med_mastery_stages.get("healers_eye", false)
+		"right_remedy", "level_2", "1":
+			return med_mastery_stages.get("right_remedy", false)
+		"final_case", "level_3", "2":
+			return med_mastery_stages.get("final_case", false)
+		_:
+			return med_mastery_stages.get(s_id, false)
+
+func is_med_mastery_stage_unlocked(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"healers_eye", "level_1", "0":
+			return true
+		"right_remedy", "level_2", "1":
+			return med_mastery_stages.get("healers_eye", false)
+		"final_case", "level_3", "2":
+			return med_mastery_stages.get("right_remedy", false)
+		_:
+			return false
+
+func complete_med_mastery_stage(stage_id: String) -> void:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"healers_eye", "level_1", "0":
+			med_mastery_stages["healers_eye"] = true
+		"right_remedy", "level_2", "1":
+			med_mastery_stages["right_remedy"] = true
+		"final_case", "level_3", "2":
+			med_mastery_stages["final_case"] = true
+		_:
+			if med_mastery_stages.has(s_id):
+				med_mastery_stages[s_id] = true
+	if are_all_med_mastery_stages_complete():
+		complete_med_mastery()
+	else:
+		quest_state_changed.emit()
+
+func are_all_med_mastery_stages_complete() -> bool:
+	for s_id in ["healers_eye", "right_remedy", "final_case"]:
+		if not med_mastery_stages.get(s_id, false):
+			return false
+	return true
+
+func complete_med_mastery() -> void:
+	med_mastery_complete = true
+	final_mastery_stages["medicine"] = true
+	complete_final_mastery()
+
+func reset_med_mastery_progress() -> void:
+	med_mastery_complete = false
+	for s_id in med_mastery_stages:
+		med_mastery_stages[s_id] = false
+	final_mastery_stages["medicine"] = false
+	final_mastery_complete = false
+	quest_state_changed.emit()
+
+# Philosophy Mastery Specific Progression (3 Levels)
+var phil_mastery_complete: bool = false
+var phil_mastery_stages: Dictionary = {
+	"scholars_claim": false,
+	"counterargument": false,
+	"final_debate": false
+}
+
+func is_phil_mastery_stage_complete(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"scholars_claim", "level_1", "0":
+			return phil_mastery_stages.get("scholars_claim", false)
+		"counterargument", "level_2", "1":
+			return phil_mastery_stages.get("counterargument", false)
+		"final_debate", "level_3", "2":
+			return phil_mastery_stages.get("final_debate", false)
+		_:
+			return phil_mastery_stages.get(s_id, false)
+
+func is_phil_mastery_stage_unlocked(stage_id: String) -> bool:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"scholars_claim", "level_1", "0":
+			return true
+		"counterargument", "level_2", "1":
+			return phil_mastery_stages.get("scholars_claim", false)
+		"final_debate", "level_3", "2":
+			return phil_mastery_stages.get("counterargument", false)
+		_:
+			return false
+
+func complete_phil_mastery_stage(stage_id: String) -> void:
+	var s_id := stage_id.to_lower().strip_edges()
+	match s_id:
+		"scholars_claim", "level_1", "0":
+			phil_mastery_stages["scholars_claim"] = true
+		"counterargument", "level_2", "1":
+			phil_mastery_stages["counterargument"] = true
+		"final_debate", "level_3", "2":
+			phil_mastery_stages["final_debate"] = true
+		_:
+			if phil_mastery_stages.has(s_id):
+				phil_mastery_stages[s_id] = true
+	if are_all_phil_mastery_stages_complete():
+		complete_phil_mastery()
+	else:
+		quest_state_changed.emit()
+
+func are_all_phil_mastery_stages_complete() -> bool:
+	for s_id in ["scholars_claim", "counterargument", "final_debate"]:
+		if not phil_mastery_stages.get(s_id, false):
+			return false
+	return true
+
+func complete_phil_mastery() -> void:
+	phil_mastery_complete = true
+	final_mastery_stages["philosophy"] = true
+	complete_final_mastery()
+
+func reset_phil_mastery_progress() -> void:
+	phil_mastery_complete = false
+	for s_id in phil_mastery_stages:
+		phil_mastery_stages[s_id] = false
+	final_mastery_stages["philosophy"] = false
+	final_mastery_complete = false
+	quest_state_changed.emit()
+
+
+
 var final_mastery_stages: Dictionary = {
 	"mathematics": false,
 	"astronomy": false,
@@ -560,6 +871,10 @@ func serialize_building_progression() -> Dictionary:
 		"nalanda_complete": nalanda_complete,
 		"nalanda_completion_reward_claimed": nalanda_completion_reward_claimed,
 		"final_mastery_stages": final_mastery_stages.duplicate(true),
+		"math_mastery_complete": math_mastery_complete,
+		"math_mastery_stages": math_mastery_stages.duplicate(true),
+		"astro_mastery_complete": astro_mastery_complete,
+		"astro_mastery_stages": astro_mastery_stages.duplicate(true),
 		"player_exp": player_exp,
 		"player_level": player_level,
 		"total_accumulated_exp": total_accumulated_exp
@@ -603,6 +918,10 @@ func deserialize_building_progression(data: Dictionary) -> void:
 	nalanda_complete = data.get("nalanda_complete", false)
 	nalanda_completion_reward_claimed = data.get("nalanda_completion_reward_claimed", false)
 	final_mastery_stages = data.get("final_mastery_stages", final_mastery_stages)
+	math_mastery_complete = data.get("math_mastery_complete", false)
+	math_mastery_stages = data.get("math_mastery_stages", math_mastery_stages)
+	astro_mastery_complete = data.get("astro_mastery_complete", false)
+	astro_mastery_stages = data.get("astro_mastery_stages", astro_mastery_stages)
 		
 	if data.has("player_exp"):
 		player_exp = data["player_exp"]
@@ -1004,6 +1323,9 @@ func unlock_all_progression() -> void:
 	teacher_state_changed.emit()
 	quest_state_changed.emit()
 
+func reset_for_new_game() -> void:
+	reset_test_progression()
+
 func reset_test_progression() -> void:
 	selected_domain = ""
 	teacher_quiz_score = 0
@@ -1064,6 +1386,12 @@ func reset_test_progression() -> void:
 	nalanda_completion_reward_claimed = false
 	for s_id in final_mastery_stages:
 		final_mastery_stages[s_id] = false
+	math_mastery_complete = false
+	for s_id in math_mastery_stages:
+		math_mastery_stages[s_id] = false
+	astro_mastery_complete = false
+	for s_id in astro_mastery_stages:
+		astro_mastery_stages[s_id] = false
 
 	session_exp = 0
 	
@@ -1099,3 +1427,170 @@ func reset_test_progression() -> void:
 	merchant_state_changed.emit()
 	teacher_state_changed.emit()
 	quest_state_changed.emit()
+
+func serialize_full_save() -> Dictionary:
+	var data := {
+		"version": 1,
+		"player_name": player_name,
+		"selected_domain": selected_domain,
+		"teacher_quiz_score": teacher_quiz_score,
+		"teacher_quiz_completed": teacher_quiz_completed,
+		"teacher_admitted": teacher_admitted,
+		"teacher_retry_available": teacher_retry_available,
+		"math_puzzle_completed": math_puzzle_completed,
+		"medicine_puzzle_completed": medicine_puzzle_completed,
+		"astronomy_puzzle_completed": astronomy_puzzle_completed,
+		"philosophy_puzzle_completed": philosophy_puzzle_completed,
+		"merchant_quiz_score": merchant_quiz_score,
+		"merchant_quiz_completed": merchant_quiz_completed,
+		"merchant_passed": merchant_passed,
+		"merchant_retry_available": merchant_retry_available,
+		"nalanda_location_revealed": nalanda_location_revealed,
+		"merchant_water_quest_started": merchant_water_quest_started,
+		"water_collected": water_collected,
+		"water_quest_completed": water_quest_completed,
+		"university_location_revealed": university_location_revealed,
+		"has_water": has_water,
+		"has_visited_university": has_visited_university,
+		"has_returned_to_nalanda": has_returned_to_nalanda,
+		"teacher2_convo_started": teacher2_convo_started,
+		"has_played_nalanda_intro_cutscene": has_played_nalanda_intro_cutscene,
+		"nalanda_intro_seen": nalanda_intro_seen,
+		"has_played_math_cutscene": has_played_math_cutscene,
+		"has_played_astro_cutscene": has_played_astro_cutscene,
+		"has_played_medicine_cutscene": has_played_medicine_cutscene,
+		"has_played_philosophy_cutscene": has_played_philosophy_cutscene,
+		"has_shown_nalanda_controls_tutorial": has_shown_nalanda_controls_tutorial,
+		"has_met_teacher3": has_met_teacher3,
+		"mastery_challenges_unlocked": mastery_challenges_unlocked,
+		"building_progression": serialize_building_progression(),
+		"side_quests": side_quests.duplicate(true),
+		"quest_rewards_claimed": quest_rewards_claimed.duplicate(true),
+		"player_level": player_level,
+		"player_exp": player_exp,
+		"total_accumulated_exp": total_accumulated_exp
+	}
+	return data
+
+func deserialize_full_save(data: Dictionary) -> void:
+	if data.is_empty():
+		return
+	_is_loading_data = true
+	player_name = data.get("player_name", player_name)
+	selected_domain = data.get("selected_domain", selected_domain)
+	teacher_quiz_score = data.get("teacher_quiz_score", teacher_quiz_score)
+	teacher_quiz_completed = data.get("teacher_quiz_completed", teacher_quiz_completed)
+	teacher_admitted = data.get("teacher_admitted", teacher_admitted)
+	teacher_retry_available = data.get("teacher_retry_available", teacher_retry_available)
+	math_puzzle_completed = data.get("math_puzzle_completed", math_puzzle_completed)
+	medicine_puzzle_completed = data.get("medicine_puzzle_completed", medicine_puzzle_completed)
+	astronomy_puzzle_completed = data.get("astronomy_puzzle_completed", astronomy_puzzle_completed)
+	philosophy_puzzle_completed = data.get("philosophy_puzzle_completed", philosophy_puzzle_completed)
+	merchant_quiz_score = data.get("merchant_quiz_score", merchant_quiz_score)
+	merchant_quiz_completed = data.get("merchant_quiz_completed", merchant_quiz_completed)
+	merchant_passed = data.get("merchant_passed", merchant_passed)
+	merchant_retry_available = data.get("merchant_retry_available", merchant_retry_available)
+	nalanda_location_revealed = data.get("nalanda_location_revealed", nalanda_location_revealed)
+	merchant_water_quest_started = data.get("merchant_water_quest_started", merchant_water_quest_started)
+	water_collected = data.get("water_collected", water_collected)
+	water_quest_completed = data.get("water_quest_completed", water_quest_completed)
+	university_location_revealed = data.get("university_location_revealed", university_location_revealed)
+	has_water = data.get("has_water", has_water)
+	has_visited_university = data.get("has_visited_university", has_visited_university)
+	has_returned_to_nalanda = data.get("has_returned_to_nalanda", has_returned_to_nalanda)
+	teacher2_convo_started = data.get("teacher2_convo_started", teacher2_convo_started)
+	has_played_nalanda_intro_cutscene = data.get("has_played_nalanda_intro_cutscene", has_played_nalanda_intro_cutscene)
+	nalanda_intro_seen = data.get("nalanda_intro_seen", nalanda_intro_seen)
+	has_played_math_cutscene = data.get("has_played_math_cutscene", has_played_math_cutscene)
+	has_played_astro_cutscene = data.get("has_played_astro_cutscene", has_played_astro_cutscene)
+	has_played_medicine_cutscene = data.get("has_played_medicine_cutscene", has_played_medicine_cutscene)
+	has_played_philosophy_cutscene = data.get("has_played_philosophy_cutscene", has_played_philosophy_cutscene)
+	has_shown_nalanda_controls_tutorial = data.get("has_shown_nalanda_controls_tutorial", has_shown_nalanda_controls_tutorial)
+	has_met_teacher3 = data.get("has_met_teacher3", has_met_teacher3)
+	mastery_challenges_unlocked = data.get("mastery_challenges_unlocked", mastery_challenges_unlocked)
+	
+	if data.has("building_progression"):
+		deserialize_building_progression(data["building_progression"])
+		
+	if data.has("side_quests"):
+		var sq_data: Dictionary = data["side_quests"]
+		for q_id in sq_data:
+			if side_quests.has(q_id) and sq_data[q_id] is Dictionary:
+				for k in sq_data[q_id]:
+					side_quests[q_id][k] = sq_data[q_id][k]
+					
+	if data.has("quest_rewards_claimed") and data["quest_rewards_claimed"] is Dictionary:
+		quest_rewards_claimed = data["quest_rewards_claimed"]
+		
+	player_level = data.get("player_level", player_level)
+	player_exp = data.get("player_exp", player_exp)
+	total_accumulated_exp = data.get("total_accumulated_exp", total_accumulated_exp)
+	_is_loading_data = false
+
+func save_game() -> bool:
+	var data := serialize_full_save()
+	var json_str := JSON.stringify(data, "\t")
+	
+	# 1. Standard Godot storage (IndexedDB in Web, local disk in Desktop)
+	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(json_str)
+		file.close()
+	
+	# 2. Browser localStorage fallback mirror for Web builds
+	if OS.has_feature("web"):
+		_web_save_to_local_storage(json_str)
+		
+	return true
+
+func load_game() -> bool:
+	var json_str := ""
+	
+	if FileAccess.file_exists(SAVE_PATH):
+		var file := FileAccess.open(SAVE_PATH, FileAccess.READ)
+		if file:
+			json_str = file.get_as_text()
+			file.close()
+			
+	if json_str == "" and OS.has_feature("web"):
+		json_str = _web_load_from_local_storage()
+		
+	if json_str != "":
+		var parsed = JSON.parse_string(json_str)
+		if parsed is Dictionary:
+			deserialize_full_save(parsed)
+			return true
+	return false
+
+func has_save_file() -> bool:
+	if FileAccess.file_exists(SAVE_PATH):
+		return true
+	if OS.has_feature("web"):
+		var val = _web_load_from_local_storage()
+		return val != ""
+	return false
+
+func clear_saved_game() -> void:
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+	if OS.has_feature("web"):
+		_web_clear_local_storage()
+
+func _web_save_to_local_storage(json_str: String) -> void:
+	if not OS.has_feature("web"):
+		return
+	var js_escaped := json_str.c_escape()
+	JavaScriptBridge.eval("try { localStorage.setItem('" + WEB_STORAGE_KEY + "', '" + js_escaped + "'); } catch(e) { console.warn('LocalStorage save failed:', e); }", true)
+
+func _web_load_from_local_storage() -> String:
+	if not OS.has_feature("web"):
+		return ""
+	var result = JavaScriptBridge.eval("try { localStorage.getItem('" + WEB_STORAGE_KEY + "') || ''; } catch(e) { ''; }", true)
+	if result != null and result is String:
+		return result
+	return ""
+
+func _web_clear_local_storage() -> void:
+	if not OS.has_feature("web"):
+		return
+	JavaScriptBridge.eval("try { localStorage.removeItem('" + WEB_STORAGE_KEY + "'); } catch(e) {}", true)

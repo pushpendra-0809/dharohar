@@ -1,8 +1,5 @@
 extends Control
 
-const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
-const ControlsTutorialPlayer = preload("res://scripts/systems/ControlsTutorialPlayer.gd")
-
 @onready var dialogue_ui = $DialogueUI
 @onready var domain_ui = $DomainSelectionUI
 @onready var quiz_ui = $QuizUI

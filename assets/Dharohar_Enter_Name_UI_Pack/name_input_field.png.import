@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/name_input_field.png-4ace880bddfe0ff4a6485685
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

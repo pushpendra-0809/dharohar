@@ -36,18 +36,26 @@ var tab_buttons: Array = []
 var view_containers: Array = []
 var domain_bar_buttons: Dictionary = {}
 
+func _is_dev_mode_allowed() -> bool:
+	if not DEV_MODE_AVAILABLE:
+		return false
+	if OS.has_feature("web"):
+		return false
+	return true
+
 func _ready() -> void:
 	layer = 120
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	if not DEV_MODE_AVAILABLE:
+	if not _is_dev_mode_allowed():
+		dev_mode_enabled = false
 		return
 		
 	_sync_active_domain()
 	_build_ui()
 
 func _input(event: InputEvent) -> void:
-	if not DEV_MODE_AVAILABLE:
+	if not _is_dev_mode_allowed():
 		return
 		
 	if event is InputEventKey and event.is_pressed() and not event.is_echo():
@@ -504,6 +512,26 @@ func _build_domain_matrix_view() -> VBoxContainer:
 		)
 		actions_hbox.add_child(btn_vihara)
 		
+		var btn_mastery := Button.new()
+		btn_mastery.text = "🎓 Mastery Trial"
+		btn_mastery.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		btn_mastery.custom_minimum_size = Vector2(0, 26)
+		btn_mastery.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		btn_mastery.pressed.connect(func():
+			_set_active_domain(d_id)
+			if d_id == "mathematics":
+				_launch_math_mastery(-1)
+			elif d_id == "astronomy":
+				_launch_astro_mastery(-1)
+			elif d_id == "medicine":
+				_launch_med_mastery(-1)
+			elif d_id == "philosophy":
+				_launch_phil_mastery(-1)
+			else:
+				_launch_final_mastery()
+		)
+		actions_hbox.add_child(btn_mastery)
+		
 		c_vbox.add_child(actions_hbox)
 		card.add_child(c_vbox)
 		vbox.add_child(card)
@@ -587,8 +615,161 @@ func _build_landmarks_view() -> VBoxContainer:
 	_add_action_button(vbox, "🔍 Scholar Reasoning Trial (NPC Clues)", "Opens the clue deduction inspection UI directly.", func():
 		_launch_scholar_ui()
 	)
+
+	_add_section_header(vbox, "MATHEMATICS MASTERY (3-LEVEL TRIAL SYSTEM)")
+	
+	_add_action_button(vbox, "📐 START MATHEMATICS MASTERY (Full UI)", "Opens Mathematics Mastery 3-level UI directly.", func():
+		_launch_math_mastery(-1)
+	)
+	
+	_add_action_button(vbox, "1️⃣ START LEVEL 1: The Numbers", "Directly launches Level 1: Number Recognition & Sequences.", func():
+		_launch_math_mastery(0)
+	)
+	
+	_add_action_button(vbox, "2️⃣ START LEVEL 2: The Scholar's Calculation", "Directly launches Level 2: Practical Arithmetic & Distribution.", func():
+		_launch_math_mastery(1)
+	)
+	
+	_add_action_button(vbox, "3️⃣ START LEVEL 3: The Final Problem", "Directly launches Level 3: Multi-Step Logistical Solver.", func():
+		_launch_math_mastery(2)
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 1: The Numbers", "Marks Level 1 completed and unlocks Level 2.", func():
+		_dev_complete_math_level("numbers")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 2: The Scholar's Calculation", "Marks Level 2 completed and unlocks Level 3.", func():
+		_dev_complete_math_level("calculation")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 3: The Final Problem", "Marks Level 3 completed.", func():
+		_dev_complete_math_level("final_problem")
+	)
+	
+	_add_action_button(vbox, "🏆 COMPLETE MATHEMATICS MASTERY", "Marks all 3 Mathematics Mastery levels 100% completed.", func():
+		_dev_complete_math_mastery()
+	)
+	
+	_add_action_button(vbox, "🔄 RESET MATHEMATICS MASTERY", "Resets Mathematics Mastery progression.", func():
+		_dev_reset_math_mastery()
+	)
+
+	_add_section_header(vbox, "ASTRONOMY MASTERY (3-LEVEL OBSERVATION SYSTEM)")
+	
+	_add_action_button(vbox, "🌌 START ASTRONOMY MASTERY (Full UI)", "Opens Astronomy Mastery 3-level UI directly.", func():
+		_launch_astro_mastery(-1)
+	)
+	
+	_add_action_button(vbox, "1️⃣ START LEVEL 1: The Moon's Journey", "Directly launches Level 1: Moon Phase Sequencing & Dial.", func():
+		_launch_astro_mastery(0)
+	)
+	
+	_add_action_button(vbox, "2️⃣ START LEVEL 2: Reading the Sky", "Directly launches Level 2: Terrace Horizon & Constellations.", func():
+		_launch_astro_mastery(1)
+	)
+	
+	_add_action_button(vbox, "3️⃣ START LEVEL 3: Final Observation", "Directly launches Level 3: Field Notebook Deduction.", func():
+		_launch_astro_mastery(2)
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 1: The Moon's Journey", "Marks Level 1 completed and unlocks Level 2.", func():
+		_dev_complete_astro_level("moon_journey")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 2: Reading the Sky", "Marks Level 2 completed and unlocks Level 3.", func():
+		_dev_complete_astro_level("reading_sky")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 3: Final Observation", "Marks Level 3 completed.", func():
+		_dev_complete_astro_level("final_observation")
+	)
+	
+	_add_action_button(vbox, "🏆 COMPLETE ASTRONOMY MASTERY", "Marks all 3 Astronomy Mastery levels 100% completed.", func():
+		_dev_complete_astro_mastery()
+	)
+	
+	_add_action_button(vbox, "🔄 RESET ASTRONOMY MASTERY", "Resets Astronomy Mastery progression.", func():
+		_dev_reset_astro_mastery()
+	)
+
+	_add_section_header(vbox, "MEDICINE MASTERY (3-LEVEL HEALER DIAGNOSTIC SYSTEM)")
+	
+	_add_action_button(vbox, "🌿 START MEDICINE MASTERY (Full UI)", "Opens Medicine Mastery 3-level UI directly.", func():
+		_launch_med_mastery(-1)
+	)
+	
+	_add_action_button(vbox, "1️⃣ START LEVEL 1: The Healer's Eye", "Directly launches Level 1: Patient Signs & Symptom Cards.", func():
+		_launch_med_mastery(0)
+	)
+	
+	_add_action_button(vbox, "2️⃣ START LEVEL 2: The Right Remedy", "Directly launches Level 2: Apothecary Bench & Preparation.", func():
+		_launch_med_mastery(1)
+	)
+	
+	_add_action_button(vbox, "3️⃣ START LEVEL 3: The Healer's Final Case", "Directly launches Level 3: Royal Dossier & Protocol Deduction.", func():
+		_launch_med_mastery(2)
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 1: The Healer's Eye", "Marks Level 1 completed and unlocks Level 2.", func():
+		_dev_complete_med_level("healers_eye")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 2: The Right Remedy", "Marks Level 2 completed and unlocks Level 3.", func():
+		_dev_complete_med_level("right_remedy")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 3: Final Case", "Marks Level 3 completed.", func():
+		_dev_complete_med_level("final_case")
+	)
+	
+	_add_action_button(vbox, "🏆 COMPLETE MEDICINE MASTERY", "Marks all 3 Medicine Mastery levels 100% completed.", func():
+		_dev_complete_med_mastery()
+	)
+	
+	_add_action_button(vbox, "🔄 RESET MEDICINE MASTERY", "Resets Medicine Mastery progression.", func():
+		_dev_reset_med_mastery()
+	)
+
+	_add_section_header(vbox, "PHILOSOPHY MASTERY (3-LEVEL SCHOLAR DEBATE SYSTEM)")
+	
+	_add_action_button(vbox, "⚖️ START PHILOSOPHY MASTERY (Full UI)", "Opens Philosophy Mastery 3-level UI directly.", func():
+		_launch_phil_mastery(-1)
+	)
+	
+	_add_action_button(vbox, "1️⃣ START LEVEL 1: The Scholar's Claim", "Directly launches Level 1: Argument Board (Claim, Reason, Evidence, Conclusion).", func():
+		_launch_phil_mastery(0)
+	)
+	
+	_add_action_button(vbox, "2️⃣ START LEVEL 2: The Counterargument", "Directly launches Level 2: Spot Problematic Assumptions & Counterarguments.", func():
+		_launch_phil_mastery(1)
+	)
+	
+	_add_action_button(vbox, "3️⃣ START LEVEL 3: The Final Debate", "Directly launches Level 3: Assembly Council & Deductive Synthesis.", func():
+		_launch_phil_mastery(2)
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 1: The Scholar's Claim", "Marks Level 1 completed and unlocks Level 2.", func():
+		_dev_complete_phil_level("scholars_claim")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 2: The Counterargument", "Marks Level 2 completed and unlocks Level 3.", func():
+		_dev_complete_phil_level("counterargument")
+	)
+	
+	_add_action_button(vbox, "✓ COMPLETE LEVEL 3: The Final Debate", "Marks Level 3 completed.", func():
+		_dev_complete_phil_level("final_debate")
+	)
+	
+	_add_action_button(vbox, "🏆 COMPLETE PHILOSOPHY MASTERY", "Marks all 3 Philosophy Mastery levels 100% completed.", func():
+		_dev_complete_phil_mastery()
+	)
+	
+	_add_action_button(vbox, "🔄 RESET PHILOSOPHY MASTERY", "Resets Philosophy Mastery progression.", func():
+		_dev_reset_phil_mastery()
+	)
 	
 	return vbox
+
 
 # ==============================================================================
 # VIEW 3: SCENE TELEPORTS
@@ -910,6 +1091,10 @@ func _jump_teacher1() -> void:
 	if gs:
 		_reset_all_game_state(gs)
 		gs.selected_domain = active_domain_name
+		gs.merchant_passed = true
+		gs.university_location_revealed = true
+		if gs.has_signal("quest_state_changed"):
+			gs.quest_state_changed.emit()
 	_teleport_to_exterior("Teacher 1 (Admission)")
 
 func _jump_teacher2() -> void:
@@ -1200,26 +1385,281 @@ func _launch_final_mastery() -> void:
 			gs.quest_state_changed.emit()
 			
 	close_dev_menu()
-	var tree := get_tree()
-	if tree:
-		var scene = tree.current_scene
-		if scene and (scene.name == "NalandaUniversity" or scene.name == "Nalanda_University"):
-			_open_final_mastery_ui_in_tree()
-		else:
-			tree.change_scene_to_file("res://scenes/nalanda_university.tscn")
-			call_deferred("_open_final_mastery_ui_in_tree")
-	_show_toast("Launched Teacher 3 Final Grand Mastery (" + active_domain_name.to_upper() + ")")
+	if active_domain_name == "mathematics":
+		_open_math_mastery_ui_in_tree(-1)
+	else:
+		_open_final_mastery_ui_in_tree()
+	_show_toast("Launched Final Mastery (" + active_domain_name.to_upper() + ")")
 
 func _open_final_mastery_ui_in_tree() -> void:
 	var uis := get_tree().get_nodes_in_group("final_mastery_ui")
-	if uis.size() > 0:
-		uis[0].open_ui()
-	else:
+	var ui: FinalMasteryUI = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			ui = candidate
+			break
+	if not ui or not is_instance_valid(ui):
 		var scene_res := load("res://scenes/ui/FinalMasteryUI.tscn")
 		if scene_res:
-			var ui = scene_res.instantiate()
+			ui = scene_res.instantiate()
 			get_tree().root.add_child(ui)
-			ui.open_ui()
+	if ui and is_instance_valid(ui):
+		ui.open_ui()
+
+func _launch_math_mastery(target_stage_idx: int = -1) -> void:
+	active_domain_name = "mathematics"
+	var gs = _get_game_state()
+	if gs:
+		gs.selected_domain = "mathematics"
+		gs.stupa_complete = true
+		gs.stupa_scroll_earned = true
+		gs.library_complete = true
+		gs.library_scroll_earned = true
+		gs.vihara_complete = true
+		gs.vihara_scroll_earned = true
+		gs.three_scrolls_collected = true
+		gs.final_mastery_unlocked = true
+		if gs.has_signal("quest_state_changed"):
+			gs.quest_state_changed.emit()
+			
+	close_dev_menu()
+	var tree := get_tree()
+	if tree:
+		var scene = tree.current_scene
+		if scene and ("nalanda" in scene.name.to_lower()):
+			_open_math_mastery_ui_in_tree(target_stage_idx)
+		else:
+			tree.change_scene_to_file("res://scenes/nalanda_university.tscn")
+			call_deferred("_open_math_mastery_ui_in_tree", target_stage_idx)
+	_show_toast("Launched Mathematics Mastery" + (" (Stage " + str(target_stage_idx + 1) + ")" if target_stage_idx >= 0 else ""))
+
+func _open_math_mastery_ui_in_tree(target_stage_idx: int = -1) -> void:
+	var uis := get_tree().get_nodes_in_group("final_mastery_ui")
+	var ui: FinalMasteryUI = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			ui = candidate
+			break
+	if not ui or not is_instance_valid(ui):
+		var scene_res := load("res://scenes/ui/FinalMasteryUI.tscn")
+		if scene_res:
+			ui = scene_res.instantiate()
+			get_tree().root.add_child(ui)
+	if ui and is_instance_valid(ui):
+		ui.open_ui(Callable(), target_stage_idx)
+
+
+func _dev_complete_math_level(lvl_id: String) -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("complete_math_mastery_stage"):
+		gs.complete_math_mastery_stage(lvl_id)
+		_show_toast("Mathematics Level Complete: " + lvl_id.to_upper())
+
+func _dev_complete_math_mastery() -> void:
+	var gs = _get_game_state()
+	if gs:
+		gs.math_mastery_complete = true
+		for s in gs.math_mastery_stages:
+			gs.math_mastery_stages[s] = true
+		gs.complete_final_mastery()
+	_show_toast("Mathematics Mastery 100% Completed!")
+
+func _dev_reset_math_mastery() -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("reset_math_mastery_progress"):
+		gs.reset_math_mastery_progress()
+	_show_toast("Mathematics Mastery Progress Reset")
+
+func _launch_astro_mastery(target_stage_idx: int = -1) -> void:
+	active_domain_name = "astronomy"
+	var gs = _get_game_state()
+	if gs:
+		gs.selected_domain = "astronomy"
+		gs.stupa_complete = true
+		gs.stupa_scroll_earned = true
+		gs.library_complete = true
+		gs.library_scroll_earned = true
+		gs.vihara_complete = true
+		gs.vihara_scroll_earned = true
+		gs.three_scrolls_collected = true
+		gs.final_mastery_unlocked = true
+		if gs.has_signal("quest_state_changed"):
+			gs.quest_state_changed.emit()
+			
+	close_dev_menu()
+	var tree := get_tree()
+	if tree:
+		var scene = tree.current_scene
+		if scene and ("nalanda" in scene.name.to_lower()):
+			_open_astro_mastery_ui_in_tree(target_stage_idx)
+		else:
+			tree.change_scene_to_file("res://scenes/nalanda_university.tscn")
+			call_deferred("_open_astro_mastery_ui_in_tree", target_stage_idx)
+	_show_toast("Launched Astronomy Mastery" + (" (Level " + str(target_stage_idx + 1) + ")" if target_stage_idx >= 0 else ""))
+
+func _open_astro_mastery_ui_in_tree(target_stage_idx: int = -1) -> void:
+	var uis := get_tree().get_nodes_in_group("final_mastery_ui")
+	var ui: FinalMasteryUI = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			ui = candidate
+			break
+	if not ui or not is_instance_valid(ui):
+		var scene_res := load("res://scenes/ui/FinalMasteryUI.tscn")
+		if scene_res:
+			ui = scene_res.instantiate()
+			get_tree().root.add_child(ui)
+	if ui and is_instance_valid(ui):
+		ui.open_ui(Callable(), target_stage_idx)
+
+func _dev_complete_astro_level(lvl_id: String) -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("complete_astro_mastery_stage"):
+		gs.complete_astro_mastery_stage(lvl_id)
+		_show_toast("Astronomy Level Complete: " + lvl_id.to_upper())
+
+func _dev_complete_astro_mastery() -> void:
+	var gs = _get_game_state()
+	if gs:
+		gs.astro_mastery_complete = true
+		for s in gs.astro_mastery_stages:
+			gs.astro_mastery_stages[s] = true
+		gs.complete_final_mastery()
+	_show_toast("Astronomy Mastery 100% Completed!")
+
+func _dev_reset_astro_mastery() -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("reset_astro_mastery_progress"):
+		gs.reset_astro_mastery_progress()
+	_show_toast("Astronomy Mastery Progress Reset")
+
+func _launch_med_mastery(target_stage_idx: int = -1) -> void:
+	active_domain_name = "medicine"
+	var gs = _get_game_state()
+	if gs:
+		gs.selected_domain = "medicine"
+		gs.stupa_complete = true
+		gs.stupa_scroll_earned = true
+		gs.library_complete = true
+		gs.library_scroll_earned = true
+		gs.vihara_complete = true
+		gs.vihara_scroll_earned = true
+		gs.three_scrolls_collected = true
+		gs.final_mastery_unlocked = true
+		if gs.has_signal("quest_state_changed"):
+			gs.quest_state_changed.emit()
+			
+	close_dev_menu()
+	var tree := get_tree()
+	if tree:
+		var scene = tree.current_scene
+		if scene and ("nalanda" in scene.name.to_lower()):
+			_open_med_mastery_ui_in_tree(target_stage_idx)
+		else:
+			tree.change_scene_to_file("res://scenes/nalanda_university.tscn")
+			call_deferred("_open_med_mastery_ui_in_tree", target_stage_idx)
+	_show_toast("Launched Medicine Mastery" + (" (Level " + str(target_stage_idx + 1) + ")" if target_stage_idx >= 0 else ""))
+
+func _open_med_mastery_ui_in_tree(target_stage_idx: int = -1) -> void:
+	var uis := get_tree().get_nodes_in_group("final_mastery_ui")
+	var ui: FinalMasteryUI = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			ui = candidate
+			break
+	if not ui or not is_instance_valid(ui):
+		var scene_res := load("res://scenes/ui/FinalMasteryUI.tscn")
+		if scene_res:
+			ui = scene_res.instantiate()
+			get_tree().root.add_child(ui)
+	if ui and is_instance_valid(ui):
+		ui.open_ui(Callable(), target_stage_idx)
+
+func _dev_complete_med_level(lvl_id: String) -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("complete_med_mastery_stage"):
+		gs.complete_med_mastery_stage(lvl_id)
+		_show_toast("Medicine Level Complete: " + lvl_id.to_upper())
+
+func _dev_complete_med_mastery() -> void:
+	var gs = _get_game_state()
+	if gs:
+		gs.med_mastery_complete = true
+		for s in gs.med_mastery_stages:
+			gs.med_mastery_stages[s] = true
+		gs.complete_final_mastery()
+	_show_toast("Medicine Mastery 100% Completed!")
+
+func _dev_reset_med_mastery() -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("reset_med_mastery_progress"):
+		gs.reset_med_mastery_progress()
+	_show_toast("Medicine Mastery Progress Reset")
+
+func _launch_phil_mastery(target_stage_idx: int = -1) -> void:
+	active_domain_name = "philosophy"
+	var gs = _get_game_state()
+	if gs:
+		gs.selected_domain = "philosophy"
+		gs.stupa_complete = true
+		gs.stupa_scroll_earned = true
+		gs.library_complete = true
+		gs.library_scroll_earned = true
+		gs.vihara_complete = true
+		gs.vihara_scroll_earned = true
+		gs.three_scrolls_collected = true
+		gs.final_mastery_unlocked = true
+		if gs.has_signal("quest_state_changed"):
+			gs.quest_state_changed.emit()
+			
+	close_dev_menu()
+	var tree := get_tree()
+	if tree:
+		var scene = tree.current_scene
+		if scene and ("nalanda" in scene.name.to_lower()):
+			_open_phil_mastery_ui_in_tree(target_stage_idx)
+		else:
+			tree.change_scene_to_file("res://scenes/nalanda_university.tscn")
+			call_deferred("_open_phil_mastery_ui_in_tree", target_stage_idx)
+	_show_toast("Launched Philosophy Mastery" + (" (Level " + str(target_stage_idx + 1) + ")" if target_stage_idx >= 0 else ""))
+
+func _open_phil_mastery_ui_in_tree(target_stage_idx: int = -1) -> void:
+	var uis := get_tree().get_nodes_in_group("final_mastery_ui")
+	var ui: FinalMasteryUI = null
+	for candidate in uis:
+		if is_instance_valid(candidate) and not candidate.is_queued_for_deletion():
+			ui = candidate
+			break
+	if not ui or not is_instance_valid(ui):
+		var scene_res := load("res://scenes/ui/FinalMasteryUI.tscn")
+		if scene_res:
+			ui = scene_res.instantiate()
+			get_tree().root.add_child(ui)
+	if ui and is_instance_valid(ui):
+		ui.open_ui(Callable(), target_stage_idx)
+
+func _dev_complete_phil_level(lvl_id: String) -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("complete_phil_mastery_stage"):
+		gs.complete_phil_mastery_stage(lvl_id)
+		_show_toast("Philosophy Level Complete: " + lvl_id.to_upper())
+
+func _dev_complete_phil_mastery() -> void:
+	var gs = _get_game_state()
+	if gs:
+		gs.phil_mastery_complete = true
+		for s in gs.phil_mastery_stages:
+			gs.phil_mastery_stages[s] = true
+		gs.complete_final_mastery()
+	_show_toast("Philosophy Mastery 100% Completed!")
+
+func _dev_reset_phil_mastery() -> void:
+	var gs = _get_game_state()
+	if gs and gs.has_method("reset_phil_mastery_progress"):
+		gs.reset_phil_mastery_progress()
+	_show_toast("Philosophy Mastery Progress Reset")
+
+
 
 func _launch_scholar_ui() -> void:
 	close_dev_menu()

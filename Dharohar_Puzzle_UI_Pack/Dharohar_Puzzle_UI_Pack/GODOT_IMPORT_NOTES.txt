@@ -1,3 +1,0 @@
-[reminder]
-texture_filter = nearest
-use_atlas_regions = true

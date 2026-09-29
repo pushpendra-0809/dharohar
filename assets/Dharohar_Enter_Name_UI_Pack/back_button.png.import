@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/back_button.png-9304f7fb4380f50cd6d839560a1a8
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

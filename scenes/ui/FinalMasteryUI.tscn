@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://y1jbmoh7h40g"]
 
 [ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="1_oswaldbold"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswaldreg"]
-[ext_resource type="Script" path="res://scenes/ui/FinalMasteryUI.gd" id="3_finalmasterygd"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswaldreg"]
+[ext_resource type="FontFile" uid="uid://cj6tt2gmlsse8" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="3_oswaldmed"]
+[ext_resource type="Script" path="res://scenes/ui/FinalMasteryUI.gd" id="4_finalmasterygd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.08, 0.06, 0.04, 0.98)
@@ -15,7 +16,7 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-shadow_size = 12
+shadow_size = 14
 shadow_color = Color(0, 0, 0, 0.85)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inner"]
@@ -30,85 +31,138 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
-bg_color = Color(0.18, 0.13, 0.08, 0.95)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nav_btn"]
+bg_color = Color(0.15, 0.11, 0.07, 0.95)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.85, 0.7, 0.35, 0.9)
+border_color = Color(0.6, 0.45, 0.2, 0.7)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.2, 0.14, 0.09, 0.95)
+border_width_left = 2
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 2
+border_color = Color(0.75, 0.55, 0.25, 0.9)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
-bg_color = Color(0.35, 0.24, 0.12, 0.98)
+bg_color = Color(0.32, 0.22, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+bg_color = Color(0.1, 0.07, 0.04, 0.95)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(1, 0.88, 0.5, 1)
+border_color = Color(0.75, 0.55, 0.2, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_empty"]
+bg_color = Color(0.16, 0.12, 0.08, 0.8)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.55, 0.4, 0.2, 0.6)
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_filled"]
+bg_color = Color(0.25, 0.18, 0.1, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.85, 0.4, 0.9)
 corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
 [node name="FinalMasteryUI" type="CanvasLayer"]
-layer = 60
+layer = 70
 visible = false
-script = ExtResource("3_finalmasterygd")
+script = ExtResource("4_finalmasterygd")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.75)
+color = Color(0, 0, 0, 0.78)
+
 [node name="MainPanel" type="Panel" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -460.0
-offset_top = -260.0
-offset_right = 460.0
-offset_bottom = 260.0
+offset_left = -480.0
+offset_top = -275.0
+offset_right = 480.0
+offset_bottom = 275.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
 [node name="Header" type="Control" parent="MainPanel"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 56.0
+offset_bottom = 54.0
 grow_horizontal = 2
+
 [node name="TitleLabel" type="Label" parent="MainPanel/Header"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 8.0
-offset_bottom = 32.0
+offset_top = 6.0
+offset_bottom = 30.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
 theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 18
 text = "FINAL MASTERY TRIAL"
 horizontal_alignment = 1
+
 [node name="SubtitleLabel" type="Label" parent="MainPanel/Header"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 31.0
-offset_bottom = 50.0
+offset_top = 28.0
+offset_bottom = 48.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_fonts/font = ExtResource("2_oswaldreg")
 theme_override_font_sizes/font_size = 13
-text = "Demonstrate Mastery of Your Chosen Domain"
+text = "DEMONSTRATE MASTERY OF YOUR CHOSEN DISCIPLINE"
 horizontal_alignment = 1
-
 autowrap_mode = 3
 
 [node name="CloseButton" type="Button" parent="MainPanel/Header"]
@@ -125,155 +179,119 @@ theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
 theme_override_fonts/font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/font_size = 14
 text = "✕"
-[node name="TrialView" type="Control" parent="MainPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-[node name="DossierPanel" type="Panel" parent="MainPanel/TrialView"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 20.0
-offset_top = 4.0
-offset_right = -20.0
-offset_bottom = 224.0
-grow_horizontal = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
-[node name="NarrativeText" type="RichTextLabel" parent="MainPanel/TrialView"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 32.0
-offset_top = 12.0
-offset_right = -32.0
-offset_bottom = 85.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0.95, 0.9, 0.82, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/normal_font_size = 13
-theme_override_font_sizes/bold_font_size = 13
-bbcode_enabled = true
-text = "Narrative introduction..."
-[node name="CluesText" type="RichTextLabel" parent="MainPanel/TrialView"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 32.0
-offset_top = 90.0
-offset_right = -32.0
-offset_bottom = 195.0
-grow_horizontal = 2
-theme_override_colors/default_color = Color(0.88, 0.85, 0.75, 1)
-theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
-theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/normal_font_size = 12
-theme_override_font_sizes/bold_font_size = 12
-bbcode_enabled = true
-text = "Clues text..."
-[node name="PromptLabel" type="Label" parent="MainPanel/TrialView"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 32.0
-offset_top = 200.0
-offset_right = -32.0
-offset_bottom = 222.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/font_size = 13
-text = "Formulate the comprehensive plan:"
-[node name="OptionsContainer" type="VBoxContainer" parent="MainPanel/TrialView"]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -230.0
-offset_right = -20.0
-offset_bottom = -12.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 8
-[node name="OptionA" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option A"
-autowrap_mode = 2
-[node name="OptionB" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option B"
-autowrap_mode = 2
-[node name="OptionC" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
-custom_minimum_size = Vector2(0, 64)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
-theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
-theme_override_fonts/font = ExtResource("2_oswaldreg")
-theme_override_font_sizes/font_size = 13
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "Option C"
-autowrap_mode = 2
-[node name="FeedbackView" type="Control" parent="MainPanel"]
+
+[node name="MathMasteryView" type="Control" parent="MainPanel"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 60.0
-offset_right = -20.0
-offset_bottom = -20.0
+offset_top = 54.0
 grow_horizontal = 2
 grow_vertical = 2
-[node name="FeedbackPanel" type="Panel" parent="MainPanel/FeedbackView"]
+
+[node name="NavContainer" type="HBoxContainer" parent="MainPanel/MathMasteryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnNav0" type="Button" parent="MainPanel/MathMasteryView/NavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 1 ] THE NUMBERS"
+
+[node name="BtnNav1" type="Button" parent="MainPanel/MathMasteryView/NavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 2 ] THE SCHOLAR'S CALCULATION"
+
+[node name="BtnNav2" type="Button" parent="MainPanel/MathMasteryView/NavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 3 ] THE FINAL PROBLEM"
+
+[node name="LevelPanel" type="Panel" parent="MainPanel/MathMasteryView"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = -16.0
+offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
-[node name="FeedbackStatus" type="Label" parent="MainPanel/FeedbackView"]
+
+[node name="LevelContent" type="Control" parent="MainPanel/MathMasteryView/LevelPanel"]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = 18.0
-offset_bottom = 45.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
-theme_override_fonts/font = ExtResource("1_oswaldbold")
-theme_override_font_sizes/font_size = 18
-text = "★ MASTER SYNTHESIS ACHIEVED ★"
-horizontal_alignment = 1
-[node name="FeedbackText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+grow_vertical = 2
+
+[node name="LevelHeader" type="HBoxContainer" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_top = 55.0
-offset_right = -24.0
-offset_bottom = 110.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="LevelTitleLabel" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/LevelHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+text = "LEVEL 1: THE NUMBERS"
+
+[node name="LevelProgressLabel" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/LevelHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "Task 1 of 5"
+
+[node name="InstructionsLabel" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+text = "Examine the mathematical sequence and select the tile that completes the progression."
+autowrap_mode = 2
+
+[node name="PromptText" type="RichTextLabel" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_bottom = 120.0
 grow_horizontal = 2
 theme_override_colors/default_color = Color(0.95, 0.92, 0.85, 1)
 theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
@@ -281,27 +299,2621 @@ theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
 theme_override_font_sizes/normal_font_size = 14
 theme_override_font_sizes/bold_font_size = 14
 bbcode_enabled = true
-text = "Feedback text..."
-[node name="ExplanationText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+autowrap_mode = 2
+text = "Identify the number that completes this fundamental sequence:"
+
+[node name="WorkspaceCard" type="Panel" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 24.0
-offset_top = 120.0
-offset_right = -24.0
-offset_bottom = 330.0
+offset_top = 124.0
+offset_bottom = 244.0
 grow_horizontal = 2
-theme_override_colors/default_color = Color(0.88, 0.82, 0.7, 1)
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="WorkspaceVBox" type="VBoxContainer" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/WorkspaceCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = -12.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="WorkspaceTitle" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/WorkspaceCard/WorkspaceVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+text = "SCHOLAR'S WORKSPACE"
+horizontal_alignment = 1
+
+[node name="WorkspaceMain" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/WorkspaceCard/WorkspaceVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.98, 0.98, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 16
+text = "2   ⟶   4   ⟶   6   ⟶   [ ? ]"
+horizontal_alignment = 1
+
+[node name="WorkspaceSub" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/WorkspaceCard/WorkspaceVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.8, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+text = "Pattern: Step increases by +2 each transition"
+horizontal_alignment = 1
+
+[node name="OptionsGrid" type="GridContainer" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -142.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Option0" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/OptionsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "A) 7"
+autowrap_mode = 2
+
+[node name="Option1" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/OptionsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "B) 8"
+autowrap_mode = 2
+
+[node name="Option2" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/OptionsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "C) 9"
+autowrap_mode = 2
+
+[node name="Option3" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/LevelContent/OptionsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.6, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "D) 10"
+autowrap_mode = 2
+
+[node name="MathFeedbackView" type="Control" parent="MainPanel/MathMasteryView/LevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FeedbackVBox" type="VBoxContainer" parent="MainPanel/MathMasteryView/LevelPanel/MathFeedbackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="StatusLabel" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/MathFeedbackView/FeedbackVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+text = "★ ANSWER LOCKED IN ★"
+horizontal_alignment = 1
+
+[node name="FeedbackMsg" type="RichTextLabel" parent="MainPanel/MathMasteryView/LevelPanel/MathFeedbackView/FeedbackVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][b][color=#55ff55]Correct! Your calculation and reasoning are flawless.[/color][/b][/center]"
+
+[node name="ExplanationBox" type="RichTextLabel" parent="MainPanel/MathMasteryView/LevelPanel/MathFeedbackView/FeedbackVBox"]
+custom_minimum_size = Vector2(760, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
 theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
-theme_override_fonts/italics_font = ExtResource("2_oswaldreg")
 theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 13
-theme_override_font_sizes/italics_font_size = 13
 bbcode_enabled = true
-text = "Explanation text..."
-[node name="BtnAction" type="Button" parent="MainPanel/FeedbackView"]
-custom_minimum_size = Vector2(340, 50)
+autowrap_mode = 2
+text = "[b]Scholarly Analysis:[/b]
+Adding 2 to 6 yields 8. The sequence follows an arithmetic step of +2."
+
+[node name="BtnFeedbackAction" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/MathFeedbackView/FeedbackVBox"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Next Task ➔"
+
+[node name="LevelCompleteView" type="Control" parent="MainPanel/MathMasteryView/LevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LvlCompVBox" type="VBoxContainer" parent="MainPanel/MathMasteryView/LevelPanel/LevelCompleteView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 28.0
+offset_right = -36.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="LvlCompBadge" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelCompleteView/LvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "★ LEVEL 1 COMPLETE ★"
+horizontal_alignment = 1
+
+[node name="LvlCompTitle" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/LevelCompleteView/LvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "Number Recognition & Sequence Thinking Mastered"
+horizontal_alignment = 1
+
+[node name="LvlCompQuote" type="RichTextLabel" parent="MainPanel/MathMasteryView/LevelPanel/LevelCompleteView/LvlCompVBox"]
+custom_minimum_size = Vector2(760, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]You recognized the pattern.
+
+But numbers are useful only when we know how to apply them.[/color][/center]"
+
+[node name="BtnProceedLevel" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/LevelCompleteView/LvlCompVBox"]
+custom_minimum_size = Vector2(320, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Unlock & Begin Level 2 ➔"
+
+[node name="MathCompletionView" type="Control" parent="MainPanel/MathMasteryView/LevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CompVBox" type="VBoxContainer" parent="MainPanel/MathMasteryView/LevelPanel/MathCompletionView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="CompBadge" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/MathCompletionView/CompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "🏆 MATHEMATICS MASTERY COMPLETE 🏆"
+horizontal_alignment = 1
+
+[node name="CompTitle" type="Label" parent="MainPanel/MathMasteryView/LevelPanel/MathCompletionView/CompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "Scholarly Synthesis of Ganita — Nalanda Heritage"
+horizontal_alignment = 1
+
+[node name="CompQuote" type="RichTextLabel" parent="MainPanel/MathMasteryView/LevelPanel/MathCompletionView/CompVBox"]
+custom_minimum_size = Vector2(760, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]You did not simply remember the numbers.
+
+You understood them.
+
+You used them to solve a real problem.
+
+That is the beginning of mastery.[/color][/center]"
+
+[node name="BtnConcludeMastery" type="Button" parent="MainPanel/MathMasteryView/LevelPanel/MathCompletionView/CompVBox"]
+custom_minimum_size = Vector2(380, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🎓 Return to Teacher 3 & Present Mastery"
+
+[node name="AstroMasteryView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AstroNavContainer" type="HBoxContainer" parent="MainPanel/AstroMasteryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnAstroNav0" type="Button" parent="MainPanel/AstroMasteryView/AstroNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 1 ] THE MOON'S JOURNEY"
+
+[node name="BtnAstroNav1" type="Button" parent="MainPanel/AstroMasteryView/AstroNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 2 ] READING THE SKY"
+
+[node name="BtnAstroNav2" type="Button" parent="MainPanel/AstroMasteryView/AstroNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 3 ] FINAL OBSERVATION"
+
+[node name="AstroLevelPanel" type="Panel" parent="MainPanel/AstroMasteryView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="AstroLevelContent" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AstroHeader" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="AstroTitleLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/AstroHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+text = "LEVEL 1: THE MOON'S JOURNEY"
+
+[node name="AstroProgressLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/AstroHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "Phase 1: Sequence Arrangement"
+
+[node name="AstroInstructionsLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+text = "Arrange the 5 lunar phase tablets in the exact order of the Moon's natural waxing journey."
+autowrap_mode = 2
+
+[node name="L1Container" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoonDialBox" type="Panel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="MoonDialLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/MoonDialBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "🌙 MOON OBSERVATION DIAL:   START [ 🌑 New Moon ]  ➔  [ 🌒 Crescent ]  ➔  [ 🌓 First Quarter ]  ➔  [ 🌔 Gibbous ]  ➔  [ 🌕 Full Moon ]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="L1SequencerBox" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SeqPromptLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+text = "Destination Slots (Click a tile below, then click a slot to place/swap):"
+
+[node name="SlotsRow" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 26.0
+offset_bottom = 106.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Slot0" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SlotsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "Slot 1
+[ Empty ]"
+autowrap_mode = 2
+
+[node name="Slot1" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SlotsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "Slot 2
+[ Empty ]"
+autowrap_mode = 2
+
+[node name="Slot2" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SlotsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "Slot 3
+[ Empty ]"
+autowrap_mode = 2
+
+[node name="Slot3" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SlotsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "Slot 4
+[ Empty ]"
+autowrap_mode = 2
+
+[node name="Slot4" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SlotsRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "Slot 5
+[ Empty ]"
+autowrap_mode = 2
+
+[node name="SourcePromptLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 114.0
+offset_bottom = 134.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.7, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+text = "Available Lunar Phase Tablets (Scrambled):"
+
+[node name="SourceTilesRow" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 138.0
+offset_bottom = 208.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Source0" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SourceTilesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "🌕 Full Moon"
+autowrap_mode = 2
+
+[node name="Source1" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SourceTilesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "🌑 New Moon"
+autowrap_mode = 2
+
+[node name="Source2" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SourceTilesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "🌓 First Quarter"
+autowrap_mode = 2
+
+[node name="Source3" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SourceTilesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "🌒 Crescent"
+autowrap_mode = 2
+
+[node name="Source4" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox/SourceTilesRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "🌔 Gibbous"
+autowrap_mode = 2
+
+[node name="BtnVerifySeq" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1SequencerBox"]
+custom_minimum_size = Vector2(280, 42)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -140.0
+offset_top = -48.0
+offset_right = 140.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "✓ Verify Moon Sequence"
+
+[node name="L1MiniObsBox" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MiniObsCard" type="Panel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="MiniObsPrompt" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox/MiniObsCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Observation Prompt Text"
+
+[node name="MiniObsGrid" type="GridContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="MiniOpt0" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox/MiniObsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option A"
+autowrap_mode = 2
+
+[node name="MiniOpt1" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox/MiniObsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option B"
+autowrap_mode = 2
+
+[node name="MiniOpt2" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox/MiniObsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option C"
+autowrap_mode = 2
+
+[node name="MiniOpt3" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L1Container/L1MiniObsBox/MiniObsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option D"
+autowrap_mode = 2
+
+[node name="L2Container" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TerraceCard" type="Panel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="TerraceVBox" type="VBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/TerraceCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="TerraceTitle" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/TerraceCard/TerraceVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+text = "TERRACE OBSERVATION BOARD"
+horizontal_alignment = 1
+
+[node name="TerraceVisual" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/TerraceCard/TerraceVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Terrace Visual Description"
+
+[node name="L2ChoicesGrid" type="GridContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="L2Opt0" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/L2ChoicesGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option A"
+autowrap_mode = 2
+
+[node name="L2Opt1" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/L2ChoicesGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option B"
+autowrap_mode = 2
+
+[node name="L2Opt2" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/L2ChoicesGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option C"
+autowrap_mode = 2
+
+[node name="L2Opt3" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L2Container/L2ChoicesGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Option D"
+autowrap_mode = 2
+
+[node name="L3Container" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FieldLogCard" type="Panel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="FieldLogText" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/FieldLogCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Field Log Text"
+
+[node name="NotebookSlotsVBox" type="VBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 118.0
+offset_bottom = 246.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+
+[node name="FieldRow0" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox"]
+layout_mode = 2
+
+[node name="FieldLbl0" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow0"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "1. Season (Ritu):"
+
+[node name="FieldBtn0" type="OptionButton" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FieldRow1" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox"]
+layout_mode = 2
+
+[node name="FieldLbl1" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow1"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "2. Time of Day:"
+
+[node name="FieldBtn1" type="OptionButton" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FieldRow2" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox"]
+layout_mode = 2
+
+[node name="FieldLbl2" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow2"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "3. Observed Moon Phase:"
+
+[node name="FieldBtn2" type="OptionButton" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FieldRow3" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox"]
+layout_mode = 2
+
+[node name="FieldLbl3" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow3"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "4. Horizon of Sunset:"
+
+[node name="FieldBtn3" type="OptionButton" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FieldRow4" type="HBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox"]
+layout_mode = 2
+
+[node name="FieldLbl4" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow4"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "5. Identified Constellation:"
+
+[node name="FieldBtn4" type="OptionButton" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container/NotebookSlotsVBox/FieldRow4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnSubmitFinalObs" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelContent/L3Container"]
+custom_minimum_size = Vector2(320, 38)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -42.0
+offset_right = 160.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "📜 Verify & Submit Field Notebook"
+
+[node name="AstroFeedbackView" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AstroFeedbackVBox" type="VBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroFeedbackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="AstroStatusLabel" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroFeedbackView/AstroFeedbackVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+text = "★ CELESTIAL OBSERVATION VERIFIED ★"
+horizontal_alignment = 1
+
+[node name="AstroFeedbackMsg" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroFeedbackView/AstroFeedbackVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][b][color=#55ff55]Correct! Your observational deduction aligns with celestial reality.[/color][/b][/center]"
+
+[node name="AstroExplanationBox" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroFeedbackView/AstroFeedbackVBox"]
+custom_minimum_size = Vector2(760, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "[b]Astronomical Analysis:[/b]
+The observation matches exact celestial mechanics."
+
+[node name="BtnAstroFeedbackAction" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroFeedbackView/AstroFeedbackVBox"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Proceed ➔"
+
+[node name="AstroLevelCompleteView" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AstroLvlCompVBox" type="VBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelCompleteView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 28.0
+offset_right = -36.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="AstroLvlCompBadge" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelCompleteView/AstroLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "★ LEVEL 1 COMPLETE ★"
+horizontal_alignment = 1
+
+[node name="AstroLvlCompTitle" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelCompleteView/AstroLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "The Moon's Journey Mastered"
+horizontal_alignment = 1
+
+[node name="AstroLvlCompQuote" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelCompleteView/AstroLvlCompVBox"]
+custom_minimum_size = Vector2(760, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]You observed the changing face of Soma.
+
+The Moon does not change its nature, only its dance with light and earth.[/color][/center]"
+
+[node name="BtnAstroProceedLevel" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroLevelCompleteView/AstroLvlCompVBox"]
+custom_minimum_size = Vector2(320, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Unlock & Begin Level 2 ➔"
+
+[node name="AstroCompletionView" type="Control" parent="MainPanel/AstroMasteryView/AstroLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AstroCompVBox" type="VBoxContainer" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroCompletionView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="AstroCompBadge" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroCompletionView/AstroCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "🏆 ASTRONOMY MASTERY COMPLETE 🏆"
+horizontal_alignment = 1
+
+[node name="AstroCompTitle" type="Label" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroCompletionView/AstroCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "Scholar of Jyotisha — Living Heritage of Nalanda Observatory"
+horizontal_alignment = 1
+
+[node name="AstroCompQuote" type="RichTextLabel" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroCompletionView/AstroCompVBox"]
+custom_minimum_size = Vector2(760, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]You did not simply look at the sky.
+
+You learned to observe it, compare it, and draw meaning from what you saw.
+
+That is the beginning of true astronomical understanding.[/color][/center]"
+
+[node name="BtnAstroConcludeMastery" type="Button" parent="MainPanel/AstroMasteryView/AstroLevelPanel/AstroCompletionView/AstroCompVBox"]
+custom_minimum_size = Vector2(380, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🎓 Return to Teacher 3 & Present Mastery"
+
+[node name="MedMasteryView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MedNavContainer" type="HBoxContainer" parent="MainPanel/MedMasteryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 2.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnMedNav0" type="Button" parent="MainPanel/MedMasteryView/MedNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 1 ] THE HEALER'S EYE"
+
+[node name="BtnMedNav1" type="Button" parent="MainPanel/MedMasteryView/MedNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 2 ] THE RIGHT REMEDY"
+
+[node name="BtnMedNav2" type="Button" parent="MainPanel/MedMasteryView/MedNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 3 ] FINAL CASE"
+
+[node name="MedLevelPanel" type="Panel" parent="MainPanel/MedMasteryView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="MedLevelContent" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 10.0
+offset_right = -16.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MedHeader" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+
+[node name="MedTitleLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+text = "LEVEL 1: THE HEALER'S EYE"
+
+[node name="MedProgressLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "Case 1 of 3"
+
+[node name="MedInstructionsLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 48.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+text = "Examine the patient's visible presentation and extract matching symptoms into the Healer's Notes."
+autowrap_mode = 2
+
+[node name="MedL1Container" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PatientCard" type="Panel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="PatientVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/PatientCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="PatientTitle" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/PatientCard/PatientVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+text = "PATIENT OBSERVATION CARD"
+
+[node name="PatientDescText" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/PatientCard/PatientVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Patient Description"
+
+[node name="HealersNotesCard" type="Panel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 126.0
+offset_bottom = 168.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="HealersNotesLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/HealersNotesCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.6, 1, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "HEALER'S NOTES: [ None Selected — Click matching symptoms below ]"
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SymptomGrid" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 174.0
+offset_bottom = 236.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="SymptomBtn0" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/SymptomGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Symptom 1"
+autowrap_mode = 2
+
+[node name="SymptomBtn1" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/SymptomGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Symptom 2"
+autowrap_mode = 2
+
+[node name="SymptomBtn2" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/SymptomGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Symptom 3"
+autowrap_mode = 2
+
+[node name="SymptomBtn3" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/SymptomGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Symptom 4"
+autowrap_mode = 2
+
+[node name="SymptomBtn4" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container/SymptomGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Symptom 5"
+autowrap_mode = 2
+
+[node name="BtnConfirmDiagnosis" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL1Container"]
+custom_minimum_size = Vector2(300, 38)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -42.0
+offset_right = 150.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "✓ Confirm Healer's Observations"
+
+[node name="MedL2Container" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ApothecaryCard" type="Panel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="ApothecaryVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/ApothecaryCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 6.0
+offset_right = -14.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="ApothecaryTitle" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/ApothecaryCard/ApothecaryVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+text = "HEALER'S APOTHECARY BENCH"
+
+[node name="ApothecaryGoalText" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/ApothecaryCard/ApothecaryVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Diagnosis Summary & Formulation Target"
+
+[node name="MortarBowlCard" type="Panel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="MortarBowlLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/MortarBowlCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_right = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "🥣 PREPARATION BOWL: [ Empty — Select 3 synergistic herbs below ]"
+vertical_alignment = 1
+
+[node name="HerbShelfLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 126.0
+offset_bottom = 142.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+text = "Select 3 Active Herbs from the Apothecary Shelf:"
+
+[node name="HerbGrid" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 144.0
+offset_bottom = 196.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="HerbBtn0" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/HerbGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Herb 1"
+autowrap_mode = 2
+
+[node name="HerbBtn1" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/HerbGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Herb 2"
+autowrap_mode = 2
+
+[node name="HerbBtn2" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/HerbGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Herb 3"
+autowrap_mode = 2
+
+[node name="HerbBtn3" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/HerbGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Herb 4"
+autowrap_mode = 2
+
+[node name="HerbBtn4" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/HerbGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Herb 5"
+autowrap_mode = 2
+
+[node name="MethodLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 200.0
+offset_bottom = 216.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+text = "Choose Classical Preparation Technique:"
+
+[node name="MethodRow" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 218.0
+offset_bottom = 254.0
+grow_horizontal = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MethodBtn0" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/MethodRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Method 1"
+autowrap_mode = 2
+
+[node name="MethodBtn1" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/MethodRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Method 2"
+autowrap_mode = 2
+
+[node name="MethodBtn2" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container/MethodRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Method 3"
+autowrap_mode = 2
+
+[node name="BtnPrepareRemedy" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL2Container"]
+custom_minimum_size = Vector2(300, 36)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -38.0
+offset_right = 150.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🌿 Compound & Prepare Remedy"
+
+[node name="MedL3Container" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClinicalDossierCard" type="Panel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 110.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="ClinicalDossierText" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalDossierCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 8.0
+offset_right = -14.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Clinical Dossier Text"
+
+[node name="ClinicalSlotsVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 118.0
+offset_bottom = 246.0
+grow_horizontal = 2
+theme_override_constants/separation = 4
+
+[node name="MedFieldRow0" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox"]
+layout_mode = 2
+
+[node name="MedFieldLbl0" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow0"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "1. Primary Dosha Diagnosis:"
+
+[node name="MedFieldBtn0" type="OptionButton" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MedFieldRow1" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox"]
+layout_mode = 2
+
+[node name="MedFieldLbl1" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow1"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "2. Prescribed Formulation:"
+
+[node name="MedFieldBtn1" type="OptionButton" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MedFieldRow2" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox"]
+layout_mode = 2
+
+[node name="MedFieldLbl2" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow2"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "3. Core Herbal Composition:"
+
+[node name="MedFieldBtn2" type="OptionButton" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MedFieldRow3" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox"]
+layout_mode = 2
+
+[node name="MedFieldLbl3" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow3"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "4. Preparation & Vehicle:"
+
+[node name="MedFieldBtn3" type="OptionButton" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MedFieldRow4" type="HBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox"]
+layout_mode = 2
+
+[node name="MedFieldLbl4" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow4"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 12
+text = "5. Vaidya's Pathya Counsel:"
+
+[node name="MedFieldBtn4" type="OptionButton" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container/ClinicalSlotsVBox/MedFieldRow4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnSubmitFinalPrescription" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelContent/MedL3Container"]
+custom_minimum_size = Vector2(320, 38)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -160.0
+offset_top = -42.0
+offset_right = 160.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "📜 Submit Healer's Treatment Protocol"
+
+[node name="MedFeedbackView" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MedFeedbackVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedFeedbackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="MedStatusLabel" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedFeedbackView/MedFeedbackVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4, 1, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+text = "★ CLINICAL OBSERVATION VERIFIED ★"
+horizontal_alignment = 1
+
+[node name="MedFeedbackMsg" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedFeedbackView/MedFeedbackVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][b][color=#55ff55]Correct! Your diagnostic deduction matches classical Chikitsa.[/color][/b][/center]"
+
+[node name="MedExplanationBox" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedFeedbackView/MedFeedbackVBox"]
+custom_minimum_size = Vector2(760, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+text = "[b]Scholarly Analysis:[/b]
+Clinical details recorded accurately."
+
+[node name="BtnMedFeedbackAction" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedFeedbackView/MedFeedbackVBox"]
+custom_minimum_size = Vector2(240, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Proceed ➔"
+
+[node name="MedLevelCompleteView" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MedLvlCompVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelCompleteView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = 28.0
+offset_right = -36.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MedLvlCompBadge" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelCompleteView/MedLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "★ LEVEL 1 COMPLETE ★"
+horizontal_alignment = 1
+
+[node name="MedLvlCompTitle" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelCompleteView/MedLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "The Healer's Eye Mastered"
+horizontal_alignment = 1
+
+[node name="MedLvlCompQuote" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelCompleteView/MedLvlCompVBox"]
+custom_minimum_size = Vector2(760, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]Observation is the first pillar of Chikitsa.
+
+Before any herb is touched, the patient must be understood.[/color][/center]"
+
+[node name="BtnMedProceedLevel" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedLevelCompleteView/MedLvlCompVBox"]
+custom_minimum_size = Vector2(320, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Unlock & Begin Level 2 ➔"
+
+[node name="MedCompletionView" type="Control" parent="MainPanel/MedMasteryView/MedLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MedCompVBox" type="VBoxContainer" parent="MainPanel/MedMasteryView/MedLevelPanel/MedCompletionView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 24.0
+offset_right = -32.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="MedCompBadge" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedCompletionView/MedCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.25, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "🏆 MEDICINE MASTERY COMPLETE 🏆"
+horizontal_alignment = 1
+
+[node name="MedCompTitle" type="Label" parent="MainPanel/MedMasteryView/MedLevelPanel/MedCompletionView/MedCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.6, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "Scholar of Ayurveda — Living Heritage of Nalanda Arogyashala"
+horizontal_alignment = 1
+
+[node name="MedCompQuote" type="RichTextLabel" parent="MainPanel/MedMasteryView/MedLevelPanel/MedCompletionView/MedCompVBox"]
+custom_minimum_size = Vector2(760, 110)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 15
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+text = "[center][color=#ffdd88]You did not simply remember remedies.
+
+You observed carefully, connected what you saw with what you had learned, and chose your response with purpose.
+
+That is the beginning of a true healer's understanding.[/color][/center]"
+
+[node name="BtnMedConcludeMastery" type="Button" parent="MainPanel/MedMasteryView/MedLevelPanel/MedCompletionView/MedCompVBox"]
+custom_minimum_size = Vector2(380, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🎓 Return to Teacher 3 & Present Mastery"
+
+[node name="PhilMasteryView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilNavContainer" type="HBoxContainer" parent="MainPanel/PhilMasteryView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = -16.0
+offset_bottom = 38.0
+grow_horizontal = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BtnPhilNav0" type="Button" parent="MainPanel/PhilMasteryView/PhilNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 1 ] THE SCHOLAR'S CLAIM"
+
+[node name="BtnPhilNav1" type="Button" parent="MainPanel/PhilMasteryView/PhilNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 2 ] THE COUNTERARGUMENT"
+
+[node name="BtnPhilNav2" type="Button" parent="MainPanel/PhilMasteryView/PhilNavContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_nav_btn")
+text = "[ 3 ] THE FINAL DEBATE"
+
+[node name="PhilLevelPanel" type="Panel" parent="MainPanel/PhilMasteryView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 44.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="PhilLevelContent" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilHeader" type="HBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+
+[node name="PhilTitleLabel" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilHeader"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.88, 0.35, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
+text = "LEVEL 1: THE SCHOLAR'S CLAIM"
+
+[node name="PhilProgressLabel" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilHeader"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85, 0.75, 0.55, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 13
+text = "Argument 1 of 3"
+
+[node name="PhilInstructionsLabel" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 26.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.75, 0.85, 0.95, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 12
+text = "Examine the statements on the scholar's desk. Click a statement to select, then click a slot to build the argument."
+autowrap_mode = 2
+
+[node name="PhilL1Container" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilL1ContextCard" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="PhilL1ContextVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1ContextCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 4.0
+offset_right = -12.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL1ContextTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1ContextCard/PhilL1ContextVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 12
+text = "DEBATE PROPOSITION"
+
+[node name="PhilL1ContextText" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1ContextCard/PhilL1ContextVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Context description of the argument scenario."
+
+[node name="PhilL1BoardPanel" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 60.0
+offset_bottom = 206.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="PhilL1SlotsVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 6.0
+offset_right = -10.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="SlotRow0" type="HBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SlotLabel0" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow0"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "1. CLAIM:"
+vertical_alignment = 1
+
+[node name="SlotBtn0" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow0"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "[ Click statement below, then click here to place Claim ]"
+alignment = 0
+autowrap_mode = 2
+
+[node name="SlotRow1" type="HBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SlotLabel1" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow1"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.9, 1, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "2. REASON:"
+vertical_alignment = 1
+
+[node name="SlotBtn1" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow1"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "[ Click statement below, then click here to place Reason ]"
+alignment = 0
+autowrap_mode = 2
+
+[node name="SlotRow2" type="HBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SlotLabel2" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow2"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 1, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "3. EVIDENCE / EX.:"
+vertical_alignment = 1
+
+[node name="SlotBtn2" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "[ Click statement below, then click here to place Evidence ]"
+alignment = 0
+autowrap_mode = 2
+
+[node name="SlotRow3" type="HBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SlotLabel3" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow3"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.9, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "4. CONCLUSION:"
+vertical_alignment = 1
+
+[node name="SlotBtn3" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1BoardPanel/PhilL1SlotsVBox/SlotRow3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_slot_empty")
+text = "[ Click statement below, then click here to place Conclusion ]"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL1CardsTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 210.0
+offset_bottom = 224.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.85, 0.8, 0.65, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+text = "📜 AVAILABLE STATEMENTS ON SCHOLAR'S DESK (Click to select, then click slot above):"
+
+[node name="PhilL1CardsGrid" type="GridContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 226.0
+offset_bottom = 310.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="PhilL1Card0" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1CardsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Statement A"
+autowrap_mode = 2
+
+[node name="PhilL1Card1" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1CardsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Statement B"
+autowrap_mode = 2
+
+[node name="PhilL1Card2" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1CardsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Statement C"
+autowrap_mode = 2
+
+[node name="PhilL1Card3" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container/PhilL1CardsGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Statement D"
+autowrap_mode = 2
+
+[node name="BtnPhilL1Verify" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL1Container"]
+custom_minimum_size = Vector2(300, 36)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -38.0
+offset_right = 150.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "⚖️ Verify Argument Board ➔"
+
+[node name="PhilL2Container" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilL2DebateCard" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 74.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="PhilL2DebateVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2DebateCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = -12.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL2DebateTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2DebateCard/PhilL2DebateVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+text = "SCHOLAR A'S PROPOSITION"
+
+[node name="PhilL2ScholarSpeech" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2DebateCard/PhilL2DebateVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Scholar speech text"
+
+[node name="PhilL2LensCard" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 80.0
+offset_bottom = 196.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="PhilL2LensVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2LensCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = -10.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="PhilL2LensTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2LensCard/PhilL2LensVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.5, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "🔍 STEP 1: SPOT THE PROBLEMATIC ASSUMPTION / FLAW"
+
+[node name="PhilL2WeaknessBtn0" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2LensCard/PhilL2LensVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Weakness Option 1"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL2WeaknessBtn1" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2LensCard/PhilL2LensVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Weakness Option 2"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL2WeaknessBtn2" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2LensCard/PhilL2LensVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Weakness Option 3"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL2BuilderCard" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 202.0
+offset_bottom = 318.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_inner")
+
+[node name="PhilL2BuilderVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2BuilderCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 4.0
+offset_right = -10.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="PhilL2BuilderTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2BuilderCard/PhilL2BuilderVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 1, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 11
+text = "⚖️ STEP 2: CONSTRUCT YOUR SOUND COUNTERARGUMENT"
+
+[node name="PhilL2ResponseBtn0" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2BuilderCard/PhilL2BuilderVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Response Option 1"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL2ResponseBtn1" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2BuilderCard/PhilL2BuilderVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Response Option 2"
+alignment = 0
+autowrap_mode = 2
+
+[node name="PhilL2ResponseBtn2" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container/PhilL2BuilderCard/PhilL2BuilderVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "Response Option 3"
+alignment = 0
+autowrap_mode = 2
+
+[node name="BtnPhilL2Submit" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL2Container"]
+custom_minimum_size = Vector2(300, 34)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -36.0
+offset_right = 150.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "💬 Deliver Counterargument ➔"
+
+[node name="PhilL3Container" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilL3DebateBoard" type="Panel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="PhilL3DebateVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3DebateBoard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 6.0
+offset_right = -12.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL3CouncilTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3DebateBoard/PhilL3DebateVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.4, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+text = "THE GRAND ASSEMBLY OF NALANDA"
+
+[node name="PhilL3OpponentSpeech" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3DebateBoard/PhilL3DebateVBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+autowrap_mode = 2
+text = "Opponent challenge speech."
+
+[node name="PhilL3SlotsVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 86.0
+offset_bottom = 312.0
+grow_horizontal = 2
+theme_override_constants/separation = 6
+
+[node name="PhilL3StepRow0" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL3StepLabel0" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow0"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+text = "1. IDENTIFY THE OPPONENT'S CORE REASON:"
+
+[node name="PhilL3Field0" type="OptionButton" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow0"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+
+[node name="PhilL3StepRow1" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL3StepLabel1" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow1"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+text = "2. PINPOINT THE PROBLEMATIC ASSUMPTION / FLAW:"
+
+[node name="PhilL3Field1" type="OptionButton" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow1"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+
+[node name="PhilL3StepRow2" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL3StepLabel2" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+text = "3. CONSTRUCT SOUND DIALECTICAL COUNTERARGUMENT:"
+
+[node name="PhilL3Field2" type="OptionButton" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow2"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+
+[node name="PhilL3StepRow3" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="PhilL3StepLabel3" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow3"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.4, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 11
+text = "4. FORMULATE GRAND PHILOSOPHICAL CONCLUSION:"
+
+[node name="PhilL3Field3" type="OptionButton" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container/PhilL3SlotsVBox/PhilL3StepRow3"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+
+[node name="BtnPhilL3Submit" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelContent/PhilL3Container"]
+custom_minimum_size = Vector2(340, 36)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -309,15 +2921,353 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -170.0
-offset_top = -68.0
+offset_top = -38.0
 offset_right = 170.0
-offset_bottom = -18.0
+offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 0.6, 1)
+theme_override_colors/font_color = Color(1, 0.95, 0.7, 1)
 theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "🏆 Present Argument to the Assembly of Acharyas ➔"
+
+[node name="PhilFeedbackView" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilFeedbackVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilFeedbackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="PhilStatusLabel" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilFeedbackView/PhilFeedbackVBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+text = "ARGUMENT VERIFICATION"
+horizontal_alignment = 1
+
+[node name="PhilFeedbackMsg" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilFeedbackView/PhilFeedbackVBox"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+
+[node name="PhilExplanationBox" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilFeedbackView/PhilFeedbackVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="BtnPhilFeedbackAction" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilFeedbackView/PhilFeedbackVBox"]
+custom_minimum_size = Vector2(240, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Continue ➔"
+
+[node name="PhilLevelCompleteView" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilLvlCompVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelCompleteView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PhilLvlCompBadge" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelCompleteView/PhilLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 20
+text = "★ LEVEL COMPLETE ★"
+horizontal_alignment = 1
+
+[node name="PhilLvlCompTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelCompleteView/PhilLvlCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
+theme_override_font_sizes/font_size = 15
+text = "LEVEL 1 MASTERED"
+horizontal_alignment = 1
+
+[node name="PhilLvlCompQuote" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelCompleteView/PhilLvlCompVBox"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+
+[node name="BtnPhilProceedLevel" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilLevelCompleteView/PhilLvlCompVBox"]
+custom_minimum_size = Vector2(280, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.65, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "Proceed to Next Level ➔"
+
+[node name="PhilCompletionView" type="Control" parent="MainPanel/PhilMasteryView/PhilLevelPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 20.0
+offset_right = -24.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PhilCompVBox" type="VBoxContainer" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilCompletionView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="PhilCompBadge" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilCompletionView/PhilCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.2, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 22
+text = "🏆 PHILOSOPHY MASTERY COMPLETE 🏆"
+horizontal_alignment = 1
+
+[node name="PhilCompTitle" type="Label" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilCompletionView/PhilCompVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.9, 0.9, 1)
+theme_override_fonts/font = ExtResource("3_oswaldmed")
 theme_override_font_sizes/font_size = 16
+text = "SCHOLAR OF DARSANA & NYAYA — LIVING HERITAGE OF NALANDA"
+horizontal_alignment = 1
+
+[node name="PhilCompQuote" type="RichTextLabel" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilCompletionView/PhilCompVBox"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+fit_content = true
+autowrap_mode = 2
+
+[node name="BtnPhilConcludeMastery" type="Button" parent="MainPanel/PhilMasteryView/PhilLevelPanel/PhilCompletionView/PhilCompVBox"]
+custom_minimum_size = Vector2(320, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0.95, 0.65, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
 text = "🏆 Conclude Mastery & Present to Council"
+
+[node name="TrialView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 54.0
+offset_right = -16.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NarrativeText" type="RichTextLabel" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.9, 0.85, 0.75, 1)
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="CluesText" type="RichTextLabel" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 108.0
+offset_bottom = 230.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.85, 0.9, 0.8, 1)
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="PromptLabel" type="Label" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 238.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.45, 1)
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+text = "Select the optimal resolution plan:"
+
+[node name="OptionsContainer" type="VBoxContainer" parent="MainPanel/TrialView"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 8
+
+[node name="OptionA" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+autowrap_mode = 2
+
+[node name="OptionB" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+autowrap_mode = 2
+
+[node name="OptionC" type="Button" parent="MainPanel/TrialView/OptionsContainer"]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_fonts/font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+autowrap_mode = 2
+
+[node name="FeedbackView" type="Control" parent="MainPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 60.0
+offset_right = -24.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FeedbackStatus" type="Label" parent="MainPanel/FeedbackView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
+[node name="FeedbackText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 36.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="ExplanationText" type="RichTextLabel" parent="MainPanel/FeedbackView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 86.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oswaldreg")
+theme_override_fonts/bold_font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="BtnAction" type="Button" parent="MainPanel/FeedbackView"]
+custom_minimum_size = Vector2(260, 40)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = -44.0
+offset_right = 130.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_oswaldbold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")

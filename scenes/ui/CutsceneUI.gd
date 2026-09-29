@@ -21,10 +21,9 @@ func _ready() -> void:
 			video_player.finished.connect(_on_video_finished)
 
 func start_cutscene(video_resource: VideoStream = null) -> void:
-	if is_playing or _is_transitioning:
+	if is_playing:
 		return
 	is_playing = true
-	_is_transitioning = true
 	visible = true
 	
 	if video_resource:
@@ -37,19 +36,18 @@ func start_cutscene(video_resource: VideoStream = null) -> void:
 		video_player.loop = false
 		video_player.play()
 	else:
-		call_deferred("_on_video_finished")
+		call_deferred("_end_cutscene")
 		return
 	
+	_is_transitioning = true
 	var tween = create_tween()
 	tween.tween_property(fade_rect, "color:a", 0.0, 0.4)
 	await tween.finished
 	_is_transitioning = false
 
-
-
 func _unhandled_input(event: InputEvent) -> void:
 	if is_playing and visible:
-		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("escape"):
+		if event.is_action_pressed("ui_cancel") or event.is_action_pressed("escape") or event.is_action_pressed("ui_accept"):
 			get_viewport().set_input_as_handled()
 			_on_skip_pressed()
 
@@ -60,24 +58,14 @@ func _on_video_finished() -> void:
 	_end_cutscene()
 
 func _end_cutscene() -> void:
-	if not is_playing or _is_transitioning:
+	if not is_playing:
 		return
-	_is_transitioning = true
-	
-	var tween = create_tween()
-	tween.tween_property(fade_rect, "color:a", 1.0, 0.4)
-	await tween.finished
+	is_playing = false
+	_is_transitioning = false
 	
 	if video_player:
 		video_player.stop()
 	
-	var fade_out_tween = create_tween()
-	fade_out_tween.tween_property(fade_rect, "color:a", 0.0, 0.3)
-	await fade_out_tween.finished
-	
 	visible = false
-	is_playing = false
-	_is_transitioning = false
-	
 	cutscene_finished.emit()
 	queue_free()

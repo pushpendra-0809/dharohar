@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/neem.png-34581e0c40c5cc703abc0f4e46ee706f.cte
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

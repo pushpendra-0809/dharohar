@@ -22,12 +22,34 @@ static func play_video(parent: Node, video_path: String = "res://assets/videos/v
 			
 	cutscene_instance.cutscene_finished.connect(finish_wrapper, CONNECT_ONE_SHOT)
 		
-	var video_stream: VideoStream = null
-	var ogv_path = video_path.replace(".mp4", ".ogv")
-	if ResourceLoader.exists(ogv_path):
-		video_stream = load(ogv_path)
-	elif ResourceLoader.exists(video_path):
-		video_stream = load(video_path)
-		
+	var video_stream: VideoStream = _load_video_stream(video_path)
 	cutscene_instance.start_cutscene(video_stream)
 	return cutscene_instance
+
+static func _load_video_stream(video_path: String) -> VideoStream:
+	var ogv_path: String = video_path.replace(".mp4", ".ogv")
+	
+	# 1. Try loading via ResourceLoader on OGV
+	if ResourceLoader.exists(ogv_path):
+		var res = load(ogv_path)
+		if res is VideoStream:
+			return res
+			
+	# 2. Try loading via ResourceLoader on original path
+	if ResourceLoader.exists(video_path):
+		var res = load(video_path)
+		if res is VideoStream:
+			return res
+			
+	# 3. Direct instantiate VideoStreamTheora (Godot 4 native)
+	if FileAccess.file_exists(ogv_path):
+		var theora_stream := VideoStreamTheora.new()
+		theora_stream.file = ogv_path
+		return theora_stream
+		
+	if FileAccess.file_exists(video_path):
+		var theora_stream := VideoStreamTheora.new()
+		theora_stream.file = video_path
+		return theora_stream
+		
+	return null

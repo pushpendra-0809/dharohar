@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cquestuiscene"]
 
 [ext_resource type="Script" path="res://scenes/ui/QuestUI.gd" id="1_questscript"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_pixel_med"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="5_pixel_reg"]
+[ext_resource type="FontFile" uid="uid://bp5qa52k5csg4" path="res://assets/Oswald/static/Oswald-Bold.ttf" id="3_pixel_bold"]
+[ext_resource type="FontFile" uid="uid://cj6tt2gmlsse8" path="res://assets/Oswald/static/Oswald-Medium.ttf" id="4_pixel_med"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="5_pixel_reg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_quest_bg"]
 bg_color = Color(0.92, 0.81, 0.60, 0.94)
@@ -33,9 +33,56 @@ corner_radius_bottom_left = 8
 shadow_color = Color(0, 0, 0, 0.75)
 shadow_size = 8
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_o"]
+bg_color = Color(0.92, 0.81, 0.6, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.52, 0.26, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_o_hover"]
+bg_color = Color(1, 0.92, 0.75, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.65, 0.3, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 5
+
 [node name="QuestUI" type="CanvasLayer"]
 layer = 20
 script = ExtResource("1_questscript")
+
+[node name="MinimizedBtn" type="Button" parent="."]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = 44.0
+grow_horizontal = 0
+tooltip_text = "Toggle Objectives (O)"
+theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
+theme_override_fonts/font = ExtResource("3_pixel_bold")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_o_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_o")
+text = "O"
 
 [node name="PanelBox" type="Control" parent="."]
 layout_mode = 3
@@ -78,7 +125,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
 theme_override_fonts/font = ExtResource("3_pixel_bold")
 theme_override_font_sizes/font_size = 13
-text = "OBJECTIVE"
+text = "CURRENT OBJECTIVE"
 
 [node name="ObjectiveLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]
 layout_mode = 2
@@ -86,7 +133,7 @@ size_flags_vertical = 3
 theme_override_colors/font_color = Color(0.2, 0.12, 0.06, 1)
 theme_override_fonts/font = ExtResource("4_pixel_med")
 theme_override_font_sizes/font_size = 12
-text = "Complete side quests to gain EXP."
+text = "Meet the Merchant near the southern pond."
 autowrap_mode = 3
 
 [node name="RewardLabel" type="Label" parent="PanelBox/MarginContainer/VBox"]

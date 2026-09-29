@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bhnepa65xfx2u"]
 
-[ext_resource type="Script" uid="uid://ba1hojmibodam" path="res://scripts/objects/UniversityMarker.gd" id="1_univscript"]
+[ext_resource type="Script" path="res://scripts/objects/UniversityMarker.gd" id="1_univscript"]
 
 [node name="UniversityMarker" type="Node2D" unique_id=987123459]
 script = ExtResource("1_univscript")

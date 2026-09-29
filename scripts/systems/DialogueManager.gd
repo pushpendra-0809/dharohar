@@ -67,5 +67,10 @@ func _show_current_step() -> void:
 	if _current_index >= 0 and _current_index < _sequence.size():
 		var step: Dictionary = _sequence[_current_index]
 		var speaker: String = step.get("speaker", "???")
+		var p_name: String = GameState.get_player_name() if GameState else "Player"
+		if speaker == "Player":
+			speaker = p_name
 		var text: String = step.get("text", "")
+		text = text.replace("{player_name}", p_name).replace("{player}", p_name)
 		dialogue_step_changed.emit(speaker, text)
+

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/matka.png-e2c867bf2e0d84a9f9845366515c2ae8.ct
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

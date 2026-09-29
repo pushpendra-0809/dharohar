@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dc0vycr5ok1q2"]
 
 [ext_resource type="Script" path="res://scenes/ui/ScholarReasoningUI.gd" id="1_scholarui"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswald"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswald"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
 bg_color = Color(0.08, 0.06, 0.04, 0.96)

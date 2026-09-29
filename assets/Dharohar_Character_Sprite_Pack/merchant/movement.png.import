@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/movement.png-6df0c5dec026ba82f3a9c239e7317e26
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

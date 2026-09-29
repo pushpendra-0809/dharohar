@@ -1,7 +1,5 @@
 extends Control
 
-const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
-
 @onready var dialogue_ui = $DialogueUI
 @onready var pause_menu_ui = $PauseMenuUI
 @onready var math_puzzle_ui = $MathematicsPuzzleUI
@@ -14,6 +12,9 @@ const CutscenePlayer = preload("res://scripts/systems/CutscenePlayer.gd")
 @onready var player = $Player
 @onready var scholar_reasoning_ui = get_node_or_null("ScholarReasoningUI")
 @onready var stupa_challenge_ui = get_node_or_null("StupaChallengeUI")
+@onready var final_mastery_ui = get_node_or_null("FinalMasteryUI")
+@onready var nalanda_completion_ui = get_node_or_null("NalandaCompletionUI")
+@onready var web_demo_end_ui = get_node_or_null("WebDemoEndUI")
 
 var dialogue_manager: Node = null
 var pause_manager: Node = null
@@ -25,6 +26,13 @@ func _ready() -> void:
 	add_child(dialogue_manager)
 	add_child(pause_manager)
 	
+	if not web_demo_end_ui:
+		var w_res = load("res://scenes/ui/WebDemoEndUI.tscn")
+		if w_res:
+			var w_node = w_res.instantiate()
+			add_child(w_node)
+			web_demo_end_ui = w_node
+	
 	if dialogue_ui and dialogue_ui.has_method("setup"):
 		dialogue_ui.setup(dialogue_manager)
 	if pause_manager and pause_manager.has_method("setup"):
@@ -34,7 +42,8 @@ func _ready() -> void:
 		teacher2.setup_manager(dialogue_manager, math_puzzle_ui, med_puzzle_ui, astro_puzzle_ui, phil_puzzle_ui)
 		
 	if teacher3 and teacher3.has_method("setup_manager"):
-		teacher3.setup_manager(dialogue_manager)
+		teacher3.setup_manager(dialogue_manager, final_mastery_ui, nalanda_completion_ui)
+
 		
 	for npc in get_tree().get_nodes_in_group("exploration_npcs"):
 		if npc.has_method("setup_manager"):
@@ -94,3 +103,12 @@ func _check_pending_arrival_message() -> void:
 func _on_arrival_dialogue_finished() -> void:
 	if GameState:
 		GameState.unlock_player_movement()
+
+func _process(_delta: float) -> void:
+	if OS.has_feature("web") and GameState and GameState.are_teacher2_tasks_completed():
+		if player and is_instance_valid(player):
+			if player.global_position.x > 460.0:
+				player.global_position.x = 430.0
+				var end_uis = get_tree().get_nodes_in_group("web_demo_end_ui")
+				if end_uis.size() > 0 and not end_uis[0].is_open:
+					end_uis[0].open_demo_end_popup()

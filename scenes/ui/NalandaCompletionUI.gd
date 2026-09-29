@@ -75,6 +75,5 @@ func _on_continue_pressed() -> void:
 	close_ui()
 
 func _on_hub_pressed() -> void:
-	if GameState:
-		GameState.unlock_player_movement()
+	close_ui()
 	get_tree().change_scene_to_file("res://scenes/experiences/experiences.tscn")

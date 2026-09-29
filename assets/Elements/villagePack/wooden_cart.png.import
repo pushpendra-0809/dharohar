@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/wooden_cart.png-d4bee5f888796bc2eccea6579a53a
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

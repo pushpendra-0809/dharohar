@@ -11,6 +11,8 @@ signal selection_cancelled
 @onready var btn_phil: Button = $SelectionBox/VBoxContainer/BtnPhil
 
 func _ready() -> void:
+	add_to_group("domain_selection")
+	add_to_group("domain_selection_ui")
 	container.visible = false
 	btn_math.pressed.connect(func(): _on_select("mathematics"))
 	btn_astro.pressed.connect(func(): _on_select("astronomy"))

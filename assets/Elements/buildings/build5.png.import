@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/build5.png-c3831ffde337ee1c58bf6e3fa7c318cc.c
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

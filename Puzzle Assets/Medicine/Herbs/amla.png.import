@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/amla.png-09881197a46906a218429773e1b624db.cte
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c8rnkh57g5h7u"]
 
 [ext_resource type="Script" path="res://scripts/objects/PickupItem.gd" id="1_pickupscript"]
-[ext_resource type="FontFile" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswald"]
+[ext_resource type="FontFile" uid="uid://gfkdwijp3x33" path="res://assets/Oswald/static/Oswald-Regular.ttf" id="2_oswald"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pickup"]
 radius = 28.0

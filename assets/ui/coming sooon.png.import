@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/coming sooon.png-8f54ceea8398749c8c1df59c6f65
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

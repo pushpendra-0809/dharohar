@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/market_shelter.png-c02d089f95b0ef71bb36d3edf0
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/back_button_hover.png-144a9e3165746cff0c3d1d2
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
