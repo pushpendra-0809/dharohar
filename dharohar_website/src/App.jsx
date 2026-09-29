@@ -8,6 +8,7 @@ import GameDemo from './components/GameDemo';
 import Team from './components/Team';
 import Footer from './components/Footer';
 import ComingSoonModal from './components/ComingSoonModal';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   const [downloadModalOpen, setDownloadModalOpen] = useState(false);
@@ -66,6 +67,9 @@ export default function App() {
         isOpen={downloadModalOpen}
         onClose={() => setDownloadModalOpen(false)}
       />
+
+      {/* VERCEL WEB ANALYTICS */}
+      <Analytics />
     </div>
   );
 }
