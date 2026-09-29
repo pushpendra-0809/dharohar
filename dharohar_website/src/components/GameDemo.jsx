@@ -48,14 +48,6 @@ export default function GameDemo() {
           <p className="text-xl sm:text-2xl font-cormorant italic text-terracotta tracking-wide max-w-xl mx-auto">
             "Don't just read about history. Step inside it."
           </p>
-
-          {/* Mobile Orientation Hint */}
-          <div className="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 bg-sandstone/15 border border-gold/40 text-deepBrown text-xs sm:text-sm font-sans rounded-full">
-            <span>📱</span>
-            <span className="font-medium">
-              Mobile & Tablet Ready: <strong>Rotate to Landscape</strong> & tap <strong>FULLSCREEN</strong> for best immersion!
-            </span>
-          </div>
         </div>
 
         {/* Dedicated Framed Game Portal Container */}
@@ -158,7 +150,7 @@ export default function GameDemo() {
                 ✦ CONTROLS MAPPING ✦
               </span>
               <span className="text-[11px] sm:text-xs font-mono text-deepBrown/70 font-semibold">
-                Touchscreen, Gamepad & Keyboard Supported
+                Game Controller & Keyboard Supported
               </span>
             </div>
 

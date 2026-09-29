@@ -2,56 +2,32 @@
 
 [ext_resource type="Script" path="res://scenes/ui/MobileTouchControls.gd" id="1_touchscript"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpad"]
-bg_color = Color(0.12, 0.08, 0.05, 0.65)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_base"]
+bg_color = Color(0.12, 0.08, 0.04, 0.35)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.85, 0.68, 0.35, 0.8)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
+border_color = Color(0.9, 0.75, 0.45, 0.65)
+corner_radius_top_left = 65
+corner_radius_top_right = 65
+corner_radius_bottom_right = 65
+corner_radius_bottom_left = 65
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpad_pressed"]
-bg_color = Color(0.78, 0.32, 0.18, 0.85)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_knob"]
+bg_color = Color(0.85, 0.45, 0.2, 0.75)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(1, 0.85, 0.45, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action"]
-bg_color = Color(0.78, 0.32, 0.18, 0.75)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.95, 0.8, 0.45, 0.9)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_action_pressed"]
-bg_color = Color(0.95, 0.5, 0.2, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(1, 0.9, 0.6, 1)
-corner_radius_top_left = 28
-corner_radius_top_right = 28
-corner_radius_bottom_right = 28
-corner_radius_bottom_left = 28
+border_color = Color(1, 0.88, 0.55, 0.9)
+corner_radius_top_left = 26
+corner_radius_top_right = 26
+corner_radius_bottom_right = 26
+corner_radius_bottom_left = 26
 
 [node name="MobileTouchControls" type="CanvasLayer" unique_id=987654800]
-layer = 120
+layer = 125
 script = ExtResource("1_touchscript")
 
 [node name="Control" type="Control" parent="." unique_id=987654801]
@@ -63,107 +39,32 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="DPadContainer" type="Control" parent="Control" unique_id=987654802]
+[node name="JoystickBase" type="Panel" parent="Control" unique_id=987654802]
+modulate = Color(1, 1, 1, 0.45)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -170.0
-offset_right = 184.0
-offset_bottom = -20.0
+offset_left = 36.0
+offset_top = -166.0
+offset_right = 166.0
+offset_bottom = -36.0
 grow_vertical = 0
 mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_base")
 
-[node name="BtnUp" type="Button" parent="Control/DPadContainer" unique_id=987654803]
+[node name="Knob" type="Panel" parent="Control/JoystickBase" unique_id=987654803]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -26.0
-offset_top = 0.0
-offset_right = 26.0
-offset_bottom = 48.0
-grow_horizontal = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_dpad")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dpad_pressed")
-theme_override_font_sizes/font_size = 20
-text = "▲"
-
-[node name="BtnDown" type="Button" parent="Control/DPadContainer" unique_id=987654804]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -26.0
-offset_top = -48.0
-offset_right = 26.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_dpad")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dpad_pressed")
-theme_override_font_sizes/font_size = 20
-text = "▼"
-
-[node name="BtnLeft" type="Button" parent="Control/DPadContainer" unique_id=987654805]
-layout_mode = 1
-anchors_preset = 4
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 0.0
-offset_top = -24.0
-offset_right = 48.0
-offset_bottom = 24.0
+offset_left = -26.0
+offset_top = -26.0
+offset_right = 26.0
+offset_bottom = 26.0
+grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_dpad")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dpad_pressed")
-theme_override_font_sizes/font_size = 20
-text = "◀"
-
-[node name="BtnRight" type="Button" parent="Control/DPadContainer" unique_id=987654806]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -24.0
-offset_right = 0.0
-offset_bottom = 24.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_dpad")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_dpad_pressed")
-theme_override_font_sizes/font_size = 20
-text = "▶"
-
-[node name="ActionContainer" type="Control" parent="Control" unique_id=987654807]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -140.0
-offset_top = -140.0
-offset_right = -24.0
-offset_bottom = -24.0
-grow_horizontal = 0
-grow_vertical = 0
 mouse_filter = 2
-
-[node name="BtnInteract" type="Button" parent="Control/ActionContainer" unique_id=987654808]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_action")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_action_pressed")
-theme_override_font_sizes/font_size = 14
-text = "INTERACT\n[ E ]"
+theme_override_styles/panel = SubResource("StyleBoxFlat_knob")

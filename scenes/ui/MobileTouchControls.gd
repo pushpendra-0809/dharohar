@@ -1,63 +1,133 @@
 extends CanvasLayer
 
-class_name MobileTouchControls
+# ==============================================================================
+# DHAROHAR - MOBILE TOUCH CONTROLS & VIRTUAL ANALOG JOYSTICK
+# Only active on real mobile devices (Android / iOS). 100% hidden on PC/Desktop.
+# ==============================================================================
 
-# Autoload / Global Touch Controls for Mobile (Android, iOS & Touch Web)
-var is_touch_device: bool = false
-var left_pressed: bool = false
-var right_pressed: bool = false
-var up_pressed: bool = false
-var down_pressed: bool = false
+var is_mobile: bool = false
+
+# Joystick touch tracking
+var joystick_touch_id: int = -1
+var joystick_center: Vector2 = Vector2.ZERO
+var joystick_pos: Vector2 = Vector2.ZERO
+var max_radius: float = 65.0
+var deadzone: float = 12.0
+var move_vector: Vector2 = Vector2.ZERO
+
+# Active simulated input states
+var _active_left: bool = false
+var _active_right: bool = false
+var _active_up: bool = false
+var _active_down: bool = false
 
 @onready var container: Control = $Control
-@onready var dpad_container: Control = $Control/DPadContainer
-@onready var action_container: Control = $Control/ActionContainer
+@onready var joystick_base: Control = $Control/JoystickBase
+@onready var joystick_knob: Control = $Control/JoystickBase/Knob
 
 func _ready() -> void:
-	layer = 120 # Above game world, below modals/dialogues
-	_detect_touch_platform()
-	_setup_buttons()
+	layer = 125
+	_detect_platform()
+	_update_visibility()
 
-func _detect_touch_platform() -> void:
-	# Check web mobile features, OS platform, or touch display
-	if OS.has_feature("mobile") or OS.has_feature("web_android") or OS.has_feature("web_ios") or DisplayServer.is_touchscreen_available():
-		is_touch_device = true
+func _detect_platform() -> void:
+	if OS.has_feature("web"):
+		# Check exact User-Agent & Touchscreen in Web Browser
+		var is_touch_ua = JavaScriptBridge.eval("Boolean(navigator.maxTouchPoints > 0 && /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent))")
+		is_mobile = (is_touch_ua == true)
+	elif OS.has_feature("mobile") or OS.has_feature("android") or OS.has_feature("ios"):
+		is_mobile = true
 	else:
-		# Fallback: check if running on web
-		if OS.has_feature("web"):
-			# Visible by default on web with touch detection
-			is_touch_device = true
+		is_mobile = false
 
+func _update_visibility() -> void:
 	if container:
-		container.visible = is_touch_device
+		container.visible = is_mobile
+		container.set_process_input(is_mobile)
 
 func _input(event: InputEvent) -> void:
-	# If any touch or screen drag event occurs, ensure touch controls are visible
-	if (event is InputEventScreenTouch or event is InputEventScreenDrag) and container and not container.visible:
-		container.visible = true
-		is_touch_device = true
+	if not is_mobile:
+		return
 
-func _setup_buttons() -> void:
-	var btn_up = get_node_or_null("Control/DPadContainer/BtnUp")
-	var btn_down = get_node_or_null("Control/DPadContainer/BtnDown")
-	var btn_left = get_node_or_null("Control/DPadContainer/BtnLeft")
-	var btn_right = get_node_or_null("Control/DPadContainer/BtnRight")
-	var btn_interact = get_node_or_null("Control/ActionContainer/BtnInteract")
+	# Handle Screen Touch (Touch Down / Up)
+	if event is InputEventScreenTouch:
+		if event.pressed:
+			_handle_touch_down(event.index, event.position)
+		else:
+			_handle_touch_up(event.index, event.position)
 
-	if btn_up:
-		btn_up.button_down.connect(func(): _set_action("forward", true))
-		btn_up.button_up.connect(func(): _set_action("forward", false))
-	if btn_down:
-		btn_down.button_down.connect(func(): _set_action("backward", true))
-		btn_down.button_up.connect(func(): _set_action("backward", false))
-	if btn_left:
-		btn_left.button_down.connect(func(): _set_action("left", true))
-		btn_left.button_up.connect(func(): _set_action("left", false))
-	if btn_right:
-		btn_right.button_down.connect(func(): _set_action("right", true))
-		btn_right.button_up.connect(func(): _set_action("right", false))
-	if btn_interact:
-		btn_interact.button_down.connect(func(): _trigger_interact())
+	# Handle Screen Drag (Finger Moving)
+	elif event is InputEventScreenDrag:
+		_handle_touch_drag(event.index, event.position)
+
+func _handle_touch_down(touch_id: int, pos: Vector2) -> void:
+	var vp_size = get_viewport().get_visible_rect().size
+	
+	# Left 45% of screen = Virtual Joystick
+	if pos.x < vp_size.x * 0.45 and pos.y > vp_size.y * 0.35:
+		if joystick_touch_id == -1:
+			joystick_touch_id = touch_id
+			joystick_center = pos
+			if joystick_base:
+				joystick_base.global_position = joystick_center - (joystick_base.size * 0.5)
+				joystick_base.modulate.a = 0.85
+			if joystick_knob:
+				joystick_knob.position = (joystick_base.size * 0.5) - (joystick_knob.size * 0.5)
+	else:
+		# Right side touch = Tap to Interact on Mobile
+		_trigger_interact()
+
+func _handle_touch_drag(touch_id: int, pos: Vector2) -> void:
+	if touch_id == joystick_touch_id:
+		var diff = pos - joystick_center
+		var dist = diff.length()
+		
+		if dist > max_radius:
+			diff = diff.normalized() * max_radius
+			
+		joystick_pos = diff
+		
+		if joystick_knob and joystick_base:
+			joystick_knob.position = (joystick_base.size * 0.5) - (joystick_knob.size * 0.5) + diff
+			
+		if dist > deadzone:
+			move_vector = diff.normalized()
+		else:
+			move_vector = Vector2.ZERO
+			
+		_apply_movement_actions(move_vector)
+
+func _handle_touch_up(touch_id: int, _pos: Vector2) -> void:
+	if touch_id == joystick_touch_id:
+		joystick_touch_id = -1
+		move_vector = Vector2.ZERO
+		_apply_movement_actions(Vector2.ZERO)
+		
+		if joystick_knob and joystick_base:
+			joystick_knob.position = (joystick_base.size * 0.5) - (joystick_knob.size * 0.5)
+			joystick_base.modulate.a = 0.45
+
+func _apply_movement_actions(vec: Vector2) -> void:
+	var want_left = (vec.x < -0.3)
+	var want_right = (vec.x > 0.3)
+	var want_up = (vec.y < -0.3)
+	var want_down = (vec.y > 0.3)
+
+	if want_left != _active_left:
+		_set_action("left", want_left)
+		_active_left = want_left
+		
+	if want_right != _active_right:
+		_set_action("right", want_right)
+		_active_right = want_right
+		
+	if want_up != _active_up:
+		_set_action("forward", want_up)
+		_active_up = want_up
+		
+	if want_down != _active_down:
+		_set_action("backward", want_down)
+		_active_down = want_down
 
 func _set_action(action_name: String, pressed: bool) -> void:
 	var ev = InputEventAction.new()
@@ -71,8 +141,7 @@ func _trigger_interact() -> void:
 	ev_down.pressed = true
 	Input.parse_input_event(ev_down)
 	
-	# Release shortly after
-	get_tree().create_timer(0.1).timeout.connect(func():
+	get_tree().create_timer(0.12).timeout.connect(func():
 		var ev_up = InputEventAction.new()
 		ev_up.action = "interact"
 		ev_up.pressed = false
